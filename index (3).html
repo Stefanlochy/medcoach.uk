@@ -1,0 +1,1501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MedCoach | Medical Interview Coaching</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e1520;
+    --deep: #141f30;
+    --blue: #1b3358;
+    --mid: #254878;
+    --accent: #e8b86d;
+    --accent2: #f0d09a;
+    --warm-white: #faf8f4;
+    --off-white: #f2ede6;
+    --muted: #8a97a8;
+    --body: #3a4a5c;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--warm-white);
+    color: var(--body);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 5vw;
+    background: rgba(14, 21, 32, 0.96);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(232, 184, 109, 0.15);
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.55rem;
+    color: #fff;
+    letter-spacing: 0.01em;
+  }
+  .logo span { color: var(--accent); font-style: italic; }
+
+  .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.25s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  .nav-btn {
+    background: var(--accent);
+    color: var(--ink) !important;
+    padding: 0.55rem 1.3rem;
+    border-radius: 3px;
+    font-weight: 600 !important;
+    font-size: 0.78rem !important;
+    letter-spacing: 0.08em !important;
+    transition: background 0.25s, transform 0.2s !important;
+  }
+  .nav-btn:hover { background: var(--accent2) !important; transform: translateY(-1px); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    background: var(--ink);
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  /* animated gradient orbs */
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+  }
+  .orb-1 {
+    width: 600px; height: 600px;
+    top: -150px; right: -150px;
+    background: radial-gradient(circle, rgba(27,51,88,0.7) 0%, transparent 70%);
+    animation: drift 12s ease-in-out infinite alternate;
+  }
+  .orb-2 {
+    width: 400px; height: 400px;
+    bottom: -100px; left: -50px;
+    background: radial-gradient(circle, rgba(232,184,109,0.07) 0%, transparent 70%);
+    animation: drift 9s ease-in-out infinite alternate-reverse;
+  }
+  @keyframes drift {
+    from { transform: translate(0, 0) scale(1); }
+    to { transform: translate(30px, 20px) scale(1.05); }
+  }
+
+  /* dot grid */
+  .hero-dots {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 36px 36px;
+  }
+
+  .hero-inner {
+    position: relative; z-index: 2;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 9rem 5vw 5rem;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: rgba(232,184,109,0.1);
+    border: 1px solid rgba(232,184,109,0.25);
+    color: var(--accent);
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.45rem 1rem;
+    border-radius: 20px;
+    margin-bottom: 1.8rem;
+    width: fit-content;
+  }
+  .hero-tag::before { content: '◆'; font-size: 0.5rem; }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 4.5vw, 4rem);
+    font-weight: 500;
+    color: #fff;
+    line-height: 1.18;
+    margin-bottom: 1.6rem;
+    letter-spacing: -0.015em;
+  }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+
+  .hero-p {
+    color: rgba(255,255,255,0.58);
+    font-size: 1rem;
+    line-height: 1.85;
+    font-weight: 300;
+    max-width: 500px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn-gold {
+    background: var(--accent);
+    color: var(--ink);
+    padding: 0.95rem 2rem;
+    border-radius: 3px;
+    border: none;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    letter-spacing: 0.03em;
+    transition: all 0.3s;
+  }
+  .btn-gold:hover {
+    background: var(--accent2);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 35px rgba(232,184,109,0.3);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: rgba(255,255,255,0.75);
+    padding: 0.95rem 2rem;
+    border-radius: 3px;
+    border: 1px solid rgba(255,255,255,0.18);
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 400;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s;
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* right side hero cards */
+  .hero-cards { display: flex; flex-direction: column; gap: 1rem; }
+
+  .h-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 6px;
+    padding: 1.4rem 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    opacity: 0;
+    animation: riseIn 0.7s ease forwards;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .h-card:hover { background: rgba(255,255,255,0.07); border-color: rgba(232,184,109,0.2); }
+  .h-card:nth-child(1) { animation-delay: 0.3s; }
+  .h-card:nth-child(2) { animation-delay: 0.5s; }
+  .h-card:nth-child(3) { animation-delay: 0.7s; }
+
+  @keyframes riseIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .h-card-icon {
+    width: 48px; height: 48px;
+    background: rgba(232,184,109,0.1);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+  }
+
+  .h-card-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.2rem;
+  }
+
+  .h-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #fff;
+    line-height: 1.3;
+  }
+
+  /* ─── SECTION BASE ─── */
+  .sec { padding: 7rem 5vw; }
+  .sec-inner { max-width: 1240px; margin: 0 auto; }
+
+  .sec-eye {
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.9rem;
+    display: flex; align-items: center; gap: 0.7rem;
+  }
+  .sec-eye::before { content: ''; display: block; width: 22px; height: 1px; background: var(--accent); }
+
+  .sec-h {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.2vw, 2.8rem);
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+  .sec-h em { font-style: italic; color: var(--mid); }
+
+  .sec-p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.85;
+    font-weight: 300;
+    max-width: 580px;
+    margin-top: 0.8rem;
+  }
+
+  /* ─── SERVICES ─── */
+  .services-sec { background: var(--warm-white); }
+
+  .services-intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: end;
+    margin-bottom: 5rem;
+  }
+
+  /* ─── SERVICE CARDS ─── */
+  /* Card 1 & 2: 1-to-1 */
+  .service-duo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5px;
+    background: rgba(14,21,32,0.07);
+    margin-bottom: 1.5px;
+  }
+
+  .svc-card {
+    background: var(--warm-white);
+    padding: 3.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.35s;
+  }
+
+  .svc-card:hover { background: var(--off-white); }
+
+  .svc-card::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 0; height: 3px;
+    background: var(--accent);
+    transition: width 0.4s ease;
+  }
+  .svc-card:hover::after { width: 100%; }
+
+  .svc-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    font-weight: 700;
+    color: rgba(14,21,32,0.05);
+    line-height: 1;
+    position: absolute;
+    top: 1.5rem; right: 2rem;
+  }
+
+  .svc-badge {
+    display: inline-block;
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background: rgba(27,51,88,0.08);
+    color: var(--mid);
+    padding: 0.35rem 0.8rem;
+    border-radius: 3px;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+
+  .svc-icon { font-size: 2.2rem; margin-bottom: 1rem; display: block; }
+
+  .svc-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.55rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.9rem;
+    line-height: 1.25;
+  }
+
+  .svc-desc {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 1.8rem;
+  }
+
+  .svc-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+  }
+
+  .svc-features li {
+    font-size: 0.83rem;
+    color: var(--body);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    font-weight: 400;
+  }
+
+  .svc-features li::before {
+    content: '→';
+    color: var(--accent);
+    flex-shrink: 0;
+    font-weight: 600;
+  }
+
+  .svc-price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .price-big {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .price-label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  .btn-dark {
+    background: var(--ink);
+    color: #fff;
+    padding: 0.85rem 1.8rem;
+    border-radius: 3px;
+    border: none;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.83rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    letter-spacing: 0.03em;
+    transition: all 0.3s;
+  }
+  .btn-dark:hover { background: var(--blue); transform: translateY(-1px); }
+
+  /* ─── WEBINAR CARD (HERO CARD) ─── */
+  .webinar-card {
+    background: var(--ink);
+    position: relative;
+    overflow: hidden;
+    padding: 4rem 5rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .webinar-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+
+  .webinar-glow {
+    position: absolute;
+    top: -100px; right: 200px;
+    width: 500px; height: 400px;
+    background: radial-gradient(circle, rgba(27,51,88,0.8) 0%, transparent 65%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .webinar-left { position: relative; z-index: 1; }
+
+  .webinar-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(232,184,109,0.12);
+    border: 1px solid rgba(232,184,109,0.3);
+    color: var(--accent);
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    animation: pulse-badge 3s ease-in-out infinite;
+  }
+  @keyframes pulse-badge {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(232,184,109,0); }
+    50% { box-shadow: 0 0 0 6px rgba(232,184,109,0.08); }
+  }
+
+  .live-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #ff4757;
+    display: inline-block;
+    animation: blink 1.4s ease-in-out infinite;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+  }
+
+  .webinar-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 500;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+  .webinar-title em { font-style: italic; color: var(--accent); }
+
+  .webinar-desc {
+    color: rgba(255,255,255,0.55);
+    font-size: 0.92rem;
+    line-height: 1.8;
+    font-weight: 300;
+    max-width: 560px;
+    margin-bottom: 2rem;
+  }
+
+  .webinar-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .w-chip {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.7);
+    font-size: 0.75rem;
+    padding: 0.45rem 1rem;
+    border-radius: 20px;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .w-chip span { color: var(--accent); }
+
+  .webinar-btns { display: flex; gap: 1rem; align-items: center; }
+
+  .btn-big-gold {
+    background: var(--accent);
+    color: var(--ink);
+    padding: 1rem 2.2rem;
+    border-radius: 3px;
+    border: none;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    letter-spacing: 0.03em;
+    transition: all 0.3s;
+  }
+  .btn-big-gold:hover {
+    background: var(--accent2);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(232,184,109,0.35);
+  }
+
+  .btn-ghost-light {
+    background: transparent;
+    color: rgba(255,255,255,0.65);
+    padding: 1rem 1.8rem;
+    border-radius: 3px;
+    border: 1px solid rgba(255,255,255,0.15);
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 400;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s;
+  }
+  .btn-ghost-light:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* pricing panel right side */
+  .webinar-right {
+    position: relative; z-index: 1;
+    flex-shrink: 0;
+  }
+
+  .webinar-price-panel {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(232,184,109,0.25);
+    border-radius: 6px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    min-width: 220px;
+  }
+
+  .wpp-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.7rem;
+  }
+
+  .wpp-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 0.2rem;
+  }
+
+  .wpp-price sup { font-size: 1.5rem; vertical-align: top; margin-top: 0.6rem; display: inline-block; }
+
+  .wpp-per {
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+  }
+
+  .wpp-divider { height: 1px; background: rgba(255,255,255,0.07); margin-bottom: 1.2rem; }
+
+  .wpp-detail {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .wpp-unlimited {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(232,184,109,0.1);
+    color: var(--accent);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: 0.4rem 0.9rem;
+    border-radius: 20px;
+    margin-top: 1rem;
+    border: 1px solid rgba(232,184,109,0.2);
+  }
+
+  /* ─── WEBINAR WHAT YOU'LL LEARN ─── */
+  .learn-sec { background: var(--off-white); }
+
+  .learn-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+    margin-top: 0;
+  }
+
+  .learn-header { margin-bottom: 3rem; }
+
+  .learn-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid rgba(14,21,32,0.08);
+  }
+
+  .learn-item {
+    padding: 1.4rem 0;
+    border-bottom: 1px solid rgba(14,21,32,0.08);
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+    transition: background 0.2s;
+    cursor: default;
+  }
+
+  .learn-item:hover .l-num { color: var(--ink); }
+
+  .l-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--accent);
+    font-weight: 700;
+    flex-shrink: 0;
+    width: 2rem;
+    transition: color 0.2s;
+  }
+
+  .l-title {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.25rem;
+  }
+
+  .l-desc {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.65;
+  }
+
+  /* right side of learn */
+  .learn-right {
+    position: sticky;
+    top: 100px;
+  }
+
+  .learn-cta-box {
+    background: var(--ink);
+    border-radius: 6px;
+    padding: 3rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .learn-cta-box::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(27,51,88,0.9) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .lcb-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .lcb-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem;
+    font-weight: 500;
+    color: #fff;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+    position: relative; z-index: 1;
+  }
+  .lcb-title em { font-style: italic; color: var(--accent); }
+
+  .lcb-desc {
+    font-size: 0.83rem;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+    line-height: 1.75;
+    margin-bottom: 2rem;
+    position: relative; z-index: 1;
+  }
+
+  .lcb-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    color: var(--accent);
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+    position: relative; z-index: 1;
+  }
+  .lcb-price sup { font-size: 1.2rem; vertical-align: top; margin-top: 0.5rem; display: inline-block; }
+
+  .lcb-per {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.35);
+    font-weight: 300;
+    margin-bottom: 1.8rem;
+  }
+
+  /* ─── COMPARISON TABLE ─── */
+  .compare-sec { background: var(--warm-white); }
+
+  .compare-header { margin-bottom: 3.5rem; }
+
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid rgba(14,21,32,0.08);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .compare-table thead tr {
+    background: var(--ink);
+  }
+
+  .compare-table th {
+    padding: 1.4rem 2rem;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .compare-table th:first-child { color: rgba(255,255,255,0.4); }
+  .compare-table th.highlight { color: var(--accent); }
+
+  .compare-table td {
+    padding: 1.2rem 2rem;
+    font-size: 0.85rem;
+    color: var(--body);
+    border-bottom: 1px solid rgba(14,21,32,0.06);
+    font-weight: 300;
+    vertical-align: middle;
+  }
+
+  .compare-table td:first-child {
+    font-weight: 500;
+    color: var(--ink);
+    font-size: 0.83rem;
+  }
+
+  .compare-table tbody tr:last-child td { border-bottom: none; }
+  .compare-table tbody tr:nth-child(even) td { background: rgba(14,21,32,0.02); }
+  .compare-table tbody tr:hover td { background: var(--off-white); }
+
+  .compare-table td.highlight { background: rgba(232,184,109,0.05); }
+  .compare-table tbody tr:hover td.highlight { background: rgba(232,184,109,0.1); }
+
+  .check { color: #2ecc71; font-size: 1rem; }
+  .cross { color: #e74c3c; font-size: 1rem; }
+  .partial { color: var(--accent); font-size: 0.9rem; }
+
+  /* ─── TUTORS ─── */
+  .tutors-sec { background: var(--off-white); }
+
+  .tutors-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+
+  .tutor-card {
+    background: var(--warm-white);
+    border-radius: 5px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .tutor-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(14,21,32,0.1);
+  }
+
+  .tutor-avi {
+    height: 160px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .tutor-card:nth-child(1) .tutor-avi { background: linear-gradient(140deg, #1b3358, #0e1520); }
+  .tutor-card:nth-child(2) .tutor-avi { background: linear-gradient(140deg, #254878, #1b3358); }
+  .tutor-card:nth-child(3) .tutor-avi { background: linear-gradient(140deg, #0e1520, #254878); }
+  .tutor-card:nth-child(4) .tutor-avi { background: linear-gradient(140deg, #1b3358, #254878); }
+
+  .tutor-ini {
+    width: 66px; height: 66px;
+    border-radius: 50%;
+    background: rgba(232,184,109,0.15);
+    border: 2px solid rgba(232,184,109,0.5);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .tutor-uni-pill {
+    position: absolute;
+    bottom: 10px; right: 10px;
+    background: var(--accent);
+    color: var(--ink);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    border-radius: 2px;
+  }
+
+  .tutor-body { padding: 1.4rem; }
+
+  .tutor-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.2rem;
+  }
+
+  .tutor-uni {
+    font-size: 0.72rem;
+    color: var(--muted);
+    font-weight: 300;
+    margin-bottom: 0.9rem;
+  }
+
+  .tutor-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+
+  .chip {
+    font-size: 0.62rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    border-radius: 2px;
+    font-weight: 500;
+  }
+  .chip-int { background: rgba(27,51,88,0.08); color: #1b3358; }
+  .chip-mmi { background: rgba(46,125,200,0.08); color: #1a6db5; }
+  .chip-eth { background: rgba(46,156,90,0.08); color: #1e8a52; }
+
+  /* ─── TESTIMONIALS ─── */
+  .testi-sec { background: var(--ink); }
+  .testi-sec .sec-h { color: #fff; }
+  .testi-sec .sec-eye { color: var(--accent); }
+
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+
+  .t-card {
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 5px;
+    padding: 2rem;
+    transition: border-color 0.3s;
+  }
+  .t-card:hover { border-color: rgba(232,184,109,0.2); background: rgba(255,255,255,0.02); }
+
+  .t-stars { color: var(--accent); font-size: 0.75rem; letter-spacing: 0.1em; margin-bottom: 1.2rem; }
+
+  .t-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.98rem;
+    font-style: italic;
+    color: rgba(255,255,255,0.72);
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+  }
+
+  .t-author { display: flex; align-items: center; gap: 0.8rem; }
+
+  .t-ini {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: rgba(232,184,109,0.12);
+    border: 1px solid rgba(232,184,109,0.25);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .t-name { font-size: 0.83rem; color: #fff; font-weight: 500; }
+  .t-detail { font-size: 0.72rem; color: var(--muted); font-weight: 300; }
+
+  /* ─── FINAL CTA ─── */
+  .cta-sec {
+    background: var(--off-white);
+    text-align: center;
+    padding: 8rem 5vw;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-sec::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px; height: 500px;
+    background: radial-gradient(ellipse, rgba(27,51,88,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-sec .sec-eye { justify-content: center; }
+  .cta-sec .sec-h { color: var(--ink); margin-bottom: 1rem; }
+  .cta-sec .sec-p { margin: 0 auto 2.5rem; text-align: center; }
+
+  .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+
+  .btn-dark-lg {
+    background: var(--ink);
+    color: #fff;
+    padding: 1rem 2.2rem;
+    border-radius: 3px;
+    border: none;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s;
+  }
+  .btn-dark-lg:hover { background: var(--blue); transform: translateY(-2px); }
+
+  .cta-note {
+    margin-top: 1.5rem;
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-weight: 300;
+    position: relative; z-index: 1;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ink);
+    padding: 2.5rem 5vw;
+    border-top: 1px solid rgba(232,184,109,0.1);
+  }
+
+  .footer-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .f-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: #fff;
+  }
+  .f-logo span { color: var(--accent); font-style: italic; }
+
+  .f-links { display: flex; gap: 2rem; list-style: none; }
+  .f-links a {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.38);
+    text-decoration: none;
+    font-weight: 300;
+    transition: color 0.2s;
+  }
+  .f-links a:hover { color: var(--accent); }
+
+  .f-copy { font-size: 0.72rem; color: rgba(255,255,255,0.25); font-weight: 300; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1024px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 3rem; padding: 8rem 5vw 5rem; }
+    .hero-cards { display: grid; grid-template-columns: 1fr 1fr; }
+    .services-intro { grid-template-columns: 1fr; gap: 1.5rem; }
+    .service-duo { grid-template-columns: 1fr; gap: 1.5px; }
+    .webinar-card { grid-template-columns: 1fr; padding: 3rem 2.5rem; }
+    .learn-grid { grid-template-columns: 1fr; }
+    .learn-right { position: static; }
+    .tutors-grid { grid-template-columns: 1fr 1fr; }
+    .testi-grid { grid-template-columns: 1fr 1fr; }
+    .compare-table { font-size: 0.82rem; }
+    .compare-table th, .compare-table td { padding: 1rem 1rem; }
+    footer .footer-inner { flex-direction: column; text-align: center; }
+  }
+
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .hero-cards { grid-template-columns: 1fr; }
+    .tutors-grid { grid-template-columns: 1fr; }
+    .testi-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 2.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Med<span>Coach</span></div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#webinar">Live Webinar</a></li>
+    <li><a href="#tutors">Our Tutors</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://ZOOM-WEBINAR-LINK-HERE" target="_blank" rel="noopener" class="nav-btn">Book Webinar — £10</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-dots"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-tag">Medical Interview Specialists · MedCoach</div>
+      <h1>Master your<br>medical school <em>interview</em></h1>
+      <p class="hero-p">Expert coaching from current medical students who recently sat the same interviews. One-to-one personalised sessions, school-specific mock practice, and live group webinars — everything you need to walk in with confidence.</p>
+      <div class="hero-btns">
+        <a href="https://ZOOM-WEBINAR-LINK-HERE" target="_blank" rel="noopener" class="btn-gold">Join Live Webinar — £10</a>
+        <a href="#services" class="btn-ghost">Explore 1-to-1 Coaching</a>
+      </div>
+    </div>
+    <div class="hero-cards">
+      <div class="h-card">
+        <div class="h-card-icon">🎯</div>
+        <div>
+          <div class="h-card-label">Service 01</div>
+          <div class="h-card-title">Personalised 1-to-1 Interview Coaching</div>
+        </div>
+      </div>
+      <div class="h-card">
+        <div class="h-card-icon">🏥</div>
+        <div>
+          <div class="h-card-label">Service 02</div>
+          <div class="h-card-title">School-Specific Mock Interviews</div>
+        </div>
+      </div>
+      <div class="h-card">
+        <div class="h-card-icon">🎙️</div>
+        <div>
+          <div class="h-card-label">Service 03 · Most Popular</div>
+          <div class="h-card-title">Live Group Webinar — only £10</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-sec sec" id="services">
+  <div class="sec-inner">
+    <div class="services-intro">
+      <div>
+        <p class="sec-eye">Our Three Services</p>
+        <h2 class="sec-h">Every type of support,<br><em>one place</em></h2>
+      </div>
+      <p class="sec-p">Whether you want in-depth personal coaching, a realistic mock run-through of your specific school's format, or an affordable group session to master the fundamentals — we've got you covered.</p>
+    </div>
+
+    <!-- 1-to-1 Cards Side by Side -->
+    <div class="service-duo">
+      <!-- Card 1 -->
+      <div class="svc-card">
+        <div class="svc-num">01</div>
+        <span class="svc-badge">One-to-One · Personalised</span>
+        <span class="svc-icon">🎯</span>
+        <div class="svc-title">Tailored Interview Coaching</div>
+        <p class="svc-desc">A deeply personal coaching experience built entirely around you. We analyse your communication style, identify weak spots, and develop a custom strategy — whether that's MMI, panel, or hybrid format.</p>
+        <ul class="svc-features">
+          <li>Thorough initial assessment of your strengths and gaps</li>
+          <li>Custom coaching plan built around your timeline</li>
+          <li>Worked examples on ethics, hot topics & clinical scenarios</li>
+          <li>Honest feedback from a current medical student</li>
+          <li>Techniques for structuring answers under pressure</li>
+          <li>Unlimited messaging support between sessions</li>
+        </ul>
+        <div class="svc-price">
+          <div class="price-big">£30</div>
+          <div class="price-label">per hour</div>
+        </div>
+        <a href="https://calendly.com/YOUR-CALENDLY-LINK/1to1-coaching" target="_blank" rel="noopener" class="btn-dark">Book a Session</a>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="svc-card">
+        <div class="svc-num">02</div>
+        <span class="svc-badge">One-to-One · School-Specific</span>
+        <span class="svc-icon">🏥</span>
+        <div class="svc-title">Mock Interview Practice</div>
+        <p class="svc-desc">A full simulated interview modelled on the exact format used by your chosen medical schools. Your tutor will have first-hand experience of that school's process — so you know exactly what to expect.</p>
+        <ul class="svc-features">
+          <li>Tailored to the exact format of your chosen schools</li>
+          <li>Realistic MMI circuits or panel simulations</li>
+          <li>Station-by-station detailed debrief and scoring</li>
+          <li>Insider tips on what each school values most</li>
+          <li>Repeat sessions to track measurable improvement</li>
+          <li>Written feedback report after each mock</li>
+        </ul>
+        <div class="svc-price">
+          <div class="price-big">£30</div>
+          <div class="price-label">per hour</div>
+        </div>
+        <a href="https://calendly.com/YOUR-CALENDLY-LINK/mock-interview" target="_blank" rel="noopener" class="btn-dark">Book a Mock</a>
+      </div>
+    </div>
+
+    <!-- WEBINAR CARD (full width, dark) -->
+    <div class="webinar-card" id="webinar">
+      <div class="webinar-glow"></div>
+      <div class="webinar-left">
+        <div class="webinar-badge"><span class="live-dot"></span> Live on Zoom · Open to All</div>
+        <div class="webinar-title">The Medical Interview<br><em>Masterclass Webinar</em></div>
+        <p class="webinar-desc">A live, one-hour group session hosted over Zoom where we break down everything you need to know to succeed at medical school interviews. Open to as many students as want to join — the more the merrier.</p>
+        <div class="webinar-features">
+          <div class="w-chip"><span>⏱</span> 1 hour live session</div>
+          <div class="w-chip"><span>👥</span> Unlimited attendees</div>
+          <div class="w-chip"><span>💻</span> Zoom — join from anywhere</div>
+          <div class="w-chip"><span>🎤</span> Live Q&A included</div>
+          <div class="w-chip"><span>📄</span> Slides & notes shared</div>
+          <div class="w-chip"><span>🔁</span> Recording provided</div>
+        </div>
+        <div class="webinar-btns">
+          <a href="https://ZOOM-WEBINAR-LINK-HERE" target="_blank" rel="noopener" class="btn-big-gold">Reserve My Spot — £10</a>
+          <a href="#learn" class="btn-ghost-light">See What We Cover</a>
+        </div>
+      </div>
+      <div class="webinar-right">
+        <div class="webinar-price-panel">
+          <div class="wpp-label">Webinar Price</div>
+          <div class="wpp-price"><sup>£</sup>10</div>
+          <div class="wpp-per">per person</div>
+          <div class="wpp-divider"></div>
+          <div class="wpp-detail">Live Zoom session<br>with current med students<br>Q&A + slides included</div>
+          <div class="wpp-unlimited">∞ Unlimited spaces</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU'LL LEARN -->
+<section class="learn-sec sec" id="learn">
+  <div class="sec-inner">
+    <div class="learn-grid">
+      <div>
+        <div class="learn-header">
+          <p class="sec-eye">Webinar Curriculum</p>
+          <h2 class="sec-h">What you'll learn in<br><em>one hour</em></h2>
+          <p class="sec-p">Our webinar is packed with actionable insight — not vague advice. Here's exactly what we cover in our 60-minute live session.</p>
+        </div>
+        <div class="learn-items">
+          <div class="learn-item">
+            <div class="l-num">01</div>
+            <div>
+              <div class="l-title">Understanding Interview Formats</div>
+              <div class="l-desc">MMI vs panel — how each format works, what assessors are looking for, and how to adapt your approach for different schools.</div>
+            </div>
+          </div>
+          <div class="learn-item">
+            <div class="l-num">02</div>
+            <div>
+              <div class="l-title">Structuring Perfect Answers</div>
+              <div class="l-desc">A proven framework for answering any question clearly and confidently under time pressure, including how to handle unexpected curve-balls.</div>
+            </div>
+          </div>
+          <div class="learn-item">
+            <div class="l-num">03</div>
+            <div>
+              <div class="l-title">Tackling Ethical Scenarios</div>
+              <div class="l-desc">How to approach medical ethics questions using the four principles. Real examples with model answers explained step by step.</div>
+            </div>
+          </div>
+          <div class="learn-item">
+            <div class="l-num">04</div>
+            <div>
+              <div class="l-title">Hot Topics in Medicine</div>
+              <div class="l-desc">Current NHS issues, medical advances, and healthcare debates you need to know about — and how to discuss them fluently in interview.</div>
+            </div>
+          </div>
+          <div class="learn-item">
+            <div class="l-num">05</div>
+            <div>
+              <div class="l-title">Body Language & Presence</div>
+              <div class="l-desc">Non-verbal communication strategies that make a strong impression, including how to manage nerves and project confidence.</div>
+            </div>
+          </div>
+          <div class="learn-item">
+            <div class="l-num">06</div>
+            <div>
+              <div class="l-title">Live Q&A</div>
+              <div class="l-desc">Bring your own questions — we'll answer them live. No topic is off limits. This is your time to get specific, honest answers.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="learn-right">
+        <div class="learn-cta-box">
+          <div class="lcb-eyebrow">◆ Most Accessible Option</div>
+          <div class="lcb-title">Join the next<br><em>live webinar</em></div>
+          <p class="lcb-desc">Seats are limited per session to keep the Q&A personal. Don't miss the next one — book your place for just £10 and get everything you need to walk into your interview ready.</p>
+          <div class="lcb-price"><sup>£</sup>10</div>
+          <div class="lcb-per">one-time · per person</div>
+          <a href="https://ZOOM-WEBINAR-LINK-HERE" target="_blank" rel="noopener" class="btn-big-gold" style="width:100%; text-align:center; display:block;">Reserve My Spot</a>
+        </div>
+
+        <div style="margin-top: 1.5rem; padding: 1.8rem; background: var(--warm-white); border-radius: 5px; border: 1px solid rgba(14,21,32,0.07);">
+          <div style="font-size:0.7rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:0.8rem;">Also Available</div>
+          <div style="font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--ink); margin-bottom:0.5rem; font-weight:600;">1-to-1 Sessions</div>
+          <div style="font-size:0.8rem; color:var(--muted); font-weight:300; line-height:1.7; margin-bottom:1rem;">For deeper, personalised coaching and school-specific mock practice. £30/hr with a free 20-min taster call.</div>
+          <a href="https://calendly.com/YOUR-CALENDLY-LINK/free-taster" target="_blank" rel="noopener" class="btn-dark" style="font-size:0.8rem; padding:0.7rem 1.4rem;">Book Free Taster Call</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section class="compare-sec sec">
+  <div class="sec-inner">
+    <div class="compare-header">
+      <p class="sec-eye">Compare Options</p>
+      <h2 class="sec-h">Which option is right <em>for you?</em></h2>
+    </div>
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th class="highlight">Live Webinar</th>
+          <th>Personalised Coaching</th>
+          <th>Mock Interview</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Price</td>
+          <td class="highlight"><strong style="color:#e8b86d;">£10 / person</strong></td>
+          <td>£30 / hour</td>
+          <td>£30 / hour</td>
+        </tr>
+        <tr>
+          <td>Format</td>
+          <td class="highlight">Live Zoom group</td>
+          <td>1-to-1 video call</td>
+          <td>1-to-1 video call</td>
+        </tr>
+        <tr>
+          <td>Personalised to you</td>
+          <td class="highlight"><span class="partial">Partial (Q&A)</span></td>
+          <td><span class="check">✓ Fully tailored</span></td>
+          <td><span class="check">✓ Fully tailored</span></td>
+        </tr>
+        <tr>
+          <td>School-specific preparation</td>
+          <td class="highlight"><span class="cross">✗</span></td>
+          <td><span class="partial">On request</span></td>
+          <td><span class="check">✓ Core focus</span></td>
+        </tr>
+        <tr>
+          <td>Interview fundamentals taught</td>
+          <td class="highlight"><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="partial">Through practice</span></td>
+        </tr>
+        <tr>
+          <td>Live Q&A</td>
+          <td class="highlight"><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Written feedback</td>
+          <td class="highlight"><span class="cross">✗</span></td>
+          <td><span class="partial">Session notes</span></td>
+          <td><span class="check">✓ Full report</span></td>
+        </tr>
+        <tr>
+          <td>Recording provided</td>
+          <td class="highlight"><span class="check">✓</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+        </tr>
+        <tr>
+          <td>Free taster session</td>
+          <td class="highlight"><span class="cross">✗</span></td>
+          <td><span class="check">✓ 20-min call</span></td>
+          <td><span class="check">✓ 20-min call</span></td>
+        </tr>
+        <tr>
+          <td>Best for</td>
+          <td class="highlight">Early prep · budget-friendly</td>
+          <td>Targeted improvement</td>
+          <td>Final prep & confidence</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- TUTORS -->
+<section class="tutors-sec sec" id="tutors">
+  <div class="sec-inner">
+    <p class="sec-eye">Our Tutors</p>
+    <h2 class="sec-h">Coached by those who <em>just went through it</em></h2>
+    <p class="sec-p">Every tutor is a current medical student at a UK university — they sat the same interviews recently and know what today's admissions panels are looking for.</p>
+    <div class="tutors-grid">
+      <div class="tutor-card">
+        <div class="tutor-avi">
+          <div class="tutor-ini">AS</div>
+          <div class="tutor-uni-pill">UCL</div>
+        </div>
+        <div class="tutor-body">
+          <div class="tutor-name">Aisha S.</div>
+          <div class="tutor-uni">UCL Medical School · Year 3</div>
+          <div class="tutor-chips">
+            <span class="chip chip-int">MMI</span>
+            <span class="chip chip-eth">Ethics</span>
+            <span class="chip chip-mmi">Panel</span>
+          </div>
+        </div>
+      </div>
+      <div class="tutor-card">
+        <div class="tutor-avi">
+          <div class="tutor-ini">JM</div>
+          <div class="tutor-uni-pill">Edinburgh</div>
+        </div>
+        <div class="tutor-body">
+          <div class="tutor-name">Jamie M.</div>
+          <div class="tutor-uni">University of Edinburgh · Year 2</div>
+          <div class="tutor-chips">
+            <span class="chip chip-int">MMI</span>
+            <span class="chip chip-eth">Hot Topics</span>
+          </div>
+        </div>
+      </div>
+      <div class="tutor-card">
+        <div class="tutor-avi">
+          <div class="tutor-ini">PK</div>
+          <div class="tutor-uni-pill">Manchester</div>
+        </div>
+        <div class="tutor-body">
+          <div class="tutor-name">Priya K.</div>
+          <div class="tutor-uni">University of Manchester · Year 4</div>
+          <div class="tutor-chips">
+            <span class="chip chip-mmi">Panel Interview</span>
+            <span class="chip chip-eth">Ethics</span>
+          </div>
+        </div>
+      </div>
+      <div class="tutor-card">
+        <div class="tutor-avi">
+          <div class="tutor-ini">OT</div>
+          <div class="tutor-uni-pill">King's</div>
+        </div>
+        <div class="tutor-body">
+          <div class="tutor-name">Oliver T.</div>
+          <div class="tutor-uni">King's College London · Year 2</div>
+          <div class="tutor-chips">
+            <span class="chip chip-int">MMI</span>
+            <span class="chip chip-mmi">Mock Sessions</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-sec sec">
+  <div class="sec-inner">
+    <p class="sec-eye">Student Results</p>
+    <h2 class="sec-h">What our students say</h2>
+    <div class="testi-grid">
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">"The webinar alone was worth ten times what I paid. In an hour I finally understood how to structure my MMI answers. I went from dreading interviews to feeling genuinely ready."</p>
+        <div class="t-author">
+          <div class="t-ini">R</div>
+          <div>
+            <div class="t-name">Rohan A.</div>
+            <div class="t-detail">Webinar attendee · Now at Bristol Med School</div>
+          </div>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">"The school-specific mock was unbelievably accurate. My tutor had interviewed at the same university and recreated the exact station types. I walked in knowing what to expect."</p>
+        <div class="t-author">
+          <div class="t-ini">S</div>
+          <div>
+            <div class="t-name">Sophie L.</div>
+            <div class="t-detail">Mock interview student · Accepted to UCL</div>
+          </div>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">"Did the webinar first to get my bearings, then booked three 1-to-1 sessions for deep practice. That combination was perfect. Couldn't recommend MedCoach more highly."</p>
+        <div class="t-author">
+          <div class="t-ini">E</div>
+          <div>
+            <div class="t-name">Ellie W.</div>
+            <div class="t-detail">Webinar + 1-to-1 · Now at Edinburgh</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec" id="contact">
+  <div class="sec-inner">
+    <p class="sec-eye">Get Started Today</p>
+    <h2 class="sec-h">Your interview offer<br><em>starts here</em></h2>
+    <p class="sec-p">Join hundreds of students who prepared with MedCoach. Start with our £10 webinar, or book a free 20-minute call to explore our 1-to-1 coaching.</p>
+    <div class="cta-btns">
+      <a href="https://ZOOM-WEBINAR-LINK-HERE" target="_blank" rel="noopener" class="btn-gold">Book Webinar — £10</a>
+      <a href="https://calendly.com/YOUR-CALENDLY-LINK/free-taster" target="_blank" rel="noopener" class="btn-dark-lg">Free 20-Min Taster Call</a>
+    </div>
+    <p class="cta-note">📅 All bookings via Calendly &nbsp;·&nbsp; 📧 hello@medcoach.uk &nbsp;·&nbsp; We reply within 24 hours</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="f-logo">Med<span>Coach</span></div>
+    <ul class="f-links">
+      <li><a href=
