@@ -1007,6 +1007,288 @@
     .services-grid, .book-grid { grid-template-columns: 1fr !important; }
     .about-photos { flex-direction: column; align-items: center; }
     .hero-trust { flex-direction: column; gap: 0.8rem; }
+    .hero-right { display: none; }
+  }
+
+  /* ====== DESIGN IMPROVEMENTS ====== */
+
+  /* PAGE LOAD ANIMATION */
+  body {
+    animation: pageLoad 0.6s ease-out;
+  }
+  @keyframes pageLoad {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* SCROLL REVEAL ANIMATIONS */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* NAV DROPDOWN */
+  .nav-dropdown {
+    position: relative;
+  }
+  .nav-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(8px);
+    background: #fff;
+    border: 1px solid var(--border);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    padding: 1rem 0;
+    min-width: 240px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+    z-index: 200;
+  }
+  .nav-dropdown:hover .nav-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+  .nav-dropdown-menu a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 1.5rem !important;
+    font-size: 0.78rem !important;
+    letter-spacing: 0.02em !important;
+    text-transform: none !important;
+    color: var(--ink) !important;
+    transition: background 0.15s, padding-left 0.15s !important;
+  }
+  .nav-dropdown-menu a:hover {
+    background: var(--light-bg);
+    padding-left: 1.8rem !important;
+  }
+  .nav-dropdown-menu .dd-price {
+    font-size: 0.72rem;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .nav-dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0; height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #fff;
+  }
+  .nav-dropdown-trigger { cursor: pointer; }
+
+  /* HERO TWO-COLUMN LAYOUT */
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .hero-stat-card {
+    background: var(--light-bg);
+    border: 1px solid var(--border);
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .hero-stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  }
+  .hero-stat-icon {
+    width: 42px;
+    height: 42px;
+    background: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .hero-stat-icon svg { width: 20px; height: 20px; }
+  .hero-stat-text {
+    font-size: 0.85rem;
+    color: var(--ink);
+    font-weight: 500;
+    line-height: 1.4;
+  }
+  .hero-stat-text span {
+    display: block;
+    font-size: 0.78rem;
+    color: var(--soft);
+    font-weight: 300;
+  }
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+  }
+
+  /* IMPROVED PHOTO PLACEHOLDERS */
+  .about-photo {
+    background: linear-gradient(145deg, #e8e6e3, #f2f1ef);
+    position: relative;
+  }
+  .about-photo-placeholder {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.5rem;
+    color: var(--accent);
+    opacity: 0.6;
+  }
+  .about-photo-note {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: rgba(17,17,17,0.6);
+    color: rgba(255,255,255,0.8);
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.4rem;
+    text-align: center;
+    backdrop-filter: blur(4px);
+  }
+
+  /* TUTOR CARD HOVER ENHANCEMENTS */
+  .tutor-card {
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+  }
+  .tutor-card:hover {
+    background: var(--light-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+  }
+  .tutor-photo {
+    background: linear-gradient(145deg, #e8e6e3, #f2f1ef);
+    transition: transform 0.3s;
+  }
+  .tutor-card:hover .tutor-photo {
+    transform: scale(1.03);
+  }
+
+  /* QUIZ BANNER GRADIENT */
+  .quiz-banner {
+    background: linear-gradient(135deg, #111 0%, #1a1a1a 50%, #222 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .quiz-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(200,150,62,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* TESTIMONIAL ENHANCEMENTS */
+  .t-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+  }
+  .t-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+  }
+  .t-quote-mark {
+    font-family: 'DM Serif Display', serif;
+    font-size: 3.5rem;
+    color: var(--accent);
+    opacity: 0.15;
+    line-height: 1;
+    margin-bottom: -0.5rem;
+    display: block;
+  }
+
+  /* SERVICE CARD HOVER */
+  .svc-card {
+    transition: background 0.3s, transform 0.3s;
+  }
+  .svc-card:hover {
+    transform: translateY(-2px);
+  }
+
+  /* BOOK CARD HOVER */
+  .book-card {
+    transition: background 0.3s, transform 0.3s;
+  }
+  .book-card:hover {
+    transform: translateY(-3px);
+  }
+
+  /* BIGGER FOOTER CTA */
+  .footer-cta {
+    padding: 6rem 6vw;
+  }
+  .footer-cta-left p {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+  }
+
+  /* MOBILE STICKY CTA */
+  .mobile-sticky-cta {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 90;
+    background: rgba(17,17,17,0.95);
+    backdrop-filter: blur(12px);
+    padding: 0.8rem 6vw;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.8rem;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+  }
+  .mobile-sticky-cta.visible {
+    transform: translateY(0);
+  }
+  .mobile-sticky-cta p {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.6);
+    font-weight: 300;
+  }
+  .mobile-sticky-cta p strong {
+    color: #fff;
+    font-weight: 500;
+  }
+  .mobile-sticky-cta .btn-primary {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  @media (max-width: 900px) {
+    .mobile-sticky-cta { display: flex; }
+  }
+
+  /* NAV SCROLL SHADOW */
+  nav.scrolled {
+    box-shadow: 0 2px 20px rgba(0,0,0,0.06);
   }
 </style>
 </head>
@@ -1027,7 +1309,15 @@
   </a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
-    <li><a href="#services">Services</a></li>
+    <li class="nav-dropdown">
+      <a href="#services" class="nav-dropdown-trigger">Services</a>
+      <div class="nav-dropdown-menu">
+        <a href="https://calendly.com/stefanmoore-medcoach/medical-interview-masterclass-webinar" target="_blank" rel="noopener">Interview Webinar <span class="dd-price">£10</span></a>
+        <a href="https://calendly.com/stefanmoore-medcoach/1-to-1-interview-coaching" target="_blank" rel="noopener">1-to-1 Coaching <span class="dd-price">£30/hr</span></a>
+        <a href="https://calendly.com/stefanmoore-medcoach/mock-interview-practice" target="_blank" rel="noopener">Mock Interview <span class="dd-price">£30/hr</span></a>
+        <a href="https://calendly.com/stefanmoore-medcoach/30min" target="_blank" rel="noopener">Free Taster Call <span class="dd-price" style="color:#3a9c6f">Free</span></a>
+      </div>
+    </li>
     <li><a href="#tutors">Tutors</a></li>
     <li><a href="#testimonials">Results</a></li>
     <li><a href="#faq">FAQ</a></li>
@@ -1073,13 +1363,33 @@
       <a href="#services" class="btn-secondary">See Services</a>
     </div>
   </div>
+  <div class="hero-right">
+    <div class="hero-stat-card reveal reveal-delay-1">
+      <div class="hero-stat-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#c8963e" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <div class="hero-stat-text">6 offers from 6 interviews<span>Combined tutor success rate</span></div>
+    </div>
+    <div class="hero-stat-card reveal reveal-delay-2">
+      <div class="hero-stat-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#c8963e" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+      </div>
+      <div class="hero-stat-text">Coached by Year 2 students<span>Who sat these interviews last year</span></div>
+    </div>
+    <div class="hero-stat-card reveal reveal-delay-3">
+      <div class="hero-stat-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#c8963e" stroke-width="2"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+      </div>
+      <div class="hero-stat-text">MMI, Panel & Ethics<span>Every interview format covered</span></div>
+    </div>
+  </div>
 </section>
 
 <!-- ABOUT / OUR STORY -->
 <section id="about" class="about-sec">
   <div class="sec-inner">
-    <p class="section-label">Our Story</p>
-    <div class="about-grid">
+    <p class="section-label reveal">Our Story</p>
+    <div class="about-grid reveal">
       <div class="about-photos">
         <div class="about-photo-card">
           <div class="about-photo">
@@ -1101,7 +1411,7 @@
         </div>
       </div>
       <div class="about-text">
-        <h2>We sat the same interviews <em>last year</em></h2>
+        <h2 class="reveal">We sat the same interviews <em>last year</em></h2>
         <p>MedCoach was built by two second-year medical students at Peninsula Medical School who know exactly what today's admissions panels are looking for. Between us, we received 6 offers from 6 interviews across Peninsula, Leicester, Newcastle, and Keele.</p>
         <p>We went through the stress of MMI prep, the confusion of ethics stations, and the pressure of panel interviews. Now we use everything we learned to give you an unfair advantage on interview day.</p>
         <p>Our coaching isn't theory from a textbook. It's practical, tested, and based on what actually worked for us and the students we've already helped.</p>
@@ -1127,11 +1437,11 @@
 <!-- SERVICES -->
 <section id="services">
   <div class="sec-inner">
-    <p class="section-label">What We Offer</p>
-    <h2>What we <em>offer</em></h2>
-    <p class="section-desc">From affordable group webinars to fully personalised coaching — choose the format that fits your stage of preparation.</p>
+    <p class="section-label reveal">What We Offer</p>
+    <h2 class="reveal">What we <em>offer</em></h2>
+    <p class="section-desc reveal">From affordable group webinars to fully personalised coaching — choose the format that fits your stage of preparation.</p>
 
-    <div class="services-grid">
+    <div class="services-grid reveal">
       <!-- Webinar -->
       <div class="svc-card">
         <p class="svc-card-label">Group · Live Zoom</p>
@@ -1210,9 +1520,9 @@
 <!-- COMPARISON TABLE -->
 <section class="compare-sec">
   <div class="sec-inner">
-    <p class="section-label">At a Glance</p>
-    <h2>Compare <em>all options</em></h2>
-    <div class="table-wrap">
+    <p class="section-label reveal">At a Glance</p>
+    <h2 class="reveal">Compare <em>all options</em></h2>
+    <div class="table-wrap reveal">
       <table>
         <thead>
           <tr>
@@ -1241,10 +1551,10 @@
 <!-- TUTORS -->
 <section id="tutors">
   <div class="sec-inner">
-    <p class="section-label">Our Tutors</p>
-    <h2>Coached by those who <em>just went through it</em></h2>
-    <p class="section-desc">Every tutor is a current UK medical student. They sat the same interviews recently and know what today's admissions panels want.</p>
-    <div class="tutors-grid">
+    <p class="section-label reveal">Our Tutors</p>
+    <h2 class="reveal">Coached by those who <em>just went through it</em></h2>
+    <p class="section-desc reveal">Every tutor is a current UK medical student. They sat the same interviews recently and know what today's admissions panels want.</p>
+    <div class="tutors-grid reveal">
       <div class="tutor-card">
         <div class="tutor-photo">
           <!-- REPLACE: Add real photo as <img src="stefan.jpg" alt="Stefan Moore" style="width:100%;height:100%;object-fit:cover;"> -->
@@ -1280,11 +1590,12 @@
 <!-- TESTIMONIALS -->
 <section id="testimonials" class="testi-sec">
   <div class="sec-inner">
-    <p class="section-label">Student Results</p>
-    <h2>What our students <em>say</em></h2>
-    <p class="section-desc" style="margin-bottom:3rem;">Real feedback from students who prepared with MedCoach and secured their offers.</p>
+    <p class="section-label reveal">Student Results</p>
+    <h2 class="reveal">What our students <em>say</em></h2>
+    <p class="section-desc reveal" style="margin-bottom:3rem;">Real feedback from students who prepared with MedCoach and secured their offers.</p>
     <div class="testi-grid">
-      <div class="t-card">
+      <div class="t-card reveal">
+        <span class="t-quote-mark">"</span>
         <div class="t-stars">★★★★★</div>
         <p class="t-quote">"The webinar alone was worth ten times what I paid. In an hour I finally understood how to structure my MMI answers. I went from dreading interviews to feeling genuinely ready."</p>
         <div class="t-author">
@@ -1299,7 +1610,8 @@
           </div>
         </div>
       </div>
-      <div class="t-card">
+      <div class="t-card reveal reveal-delay-1">
+        <span class="t-quote-mark">"</span>
         <div class="t-stars">★★★★★</div>
         <p class="t-quote">"The school-specific mock was unbelievably accurate. My tutor had interviewed at the same university and recreated the exact station types. I walked in knowing what to expect."</p>
         <div class="t-author">
@@ -1314,7 +1626,8 @@
           </div>
         </div>
       </div>
-      <div class="t-card">
+      <div class="t-card reveal reveal-delay-2">
+        <span class="t-quote-mark">"</span>
         <div class="t-stars">★★★★★</div>
         <p class="t-quote">"Did the webinar first to get my bearings, then booked three 1-to-1 sessions for deep practice. That combination was perfect. Couldn't recommend MedCoach more highly."</p>
         <div class="t-author">
@@ -1341,10 +1654,10 @@
 <!-- FAQ -->
 <section id="faq" class="faq-sec">
   <div class="sec-inner">
-    <p class="section-label">Common Questions</p>
-    <h2>Frequently <em>asked</em></h2>
-    <p class="section-desc">Everything you need to know before booking.</p>
-    <div class="faq-grid">
+    <p class="section-label reveal">Common Questions</p>
+    <h2 class="reveal">Frequently <em>asked</em></h2>
+    <p class="section-desc reveal">Everything you need to know before booking.</p>
+    <div class="faq-grid reveal">
       <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q">Which medical schools do you prep for?</div>
         <div class="faq-a">We can tailor sessions for any UK medical school. Our tutors are most experienced with Peninsula, Leicester, Keele, and Newcastle, but we prep for all schools using MMI or panel formats. Tell us your target schools during your free taster call and we'll match the prep accordingly.</div>
@@ -1380,8 +1693,8 @@
 <!-- BOOK -->
 <section id="book" class="book-sec">
   <div class="sec-inner">
-    <p class="section-label">Direct Booking</p>
-    <h2>Choose your session &amp; <em>book instantly</em></h2>
+    <p class="section-label reveal">Direct Booking</p>
+    <h2 class="reveal">Choose your session &amp; <em>book instantly</em></h2>
     <p class="section-desc">All bookings are handled via Calendly. Select a time that suits you and confirm in seconds. <a href="https://calendly.com/stefanmoore-medcoach" target="_blank" rel="noopener" style="color:rgba(200,150,62,0.9);border-bottom:1px solid rgba(200,150,62,0.4);transition:border-color 0.2s;">View all sessions on Calendly →</a></p>
 
     <!-- BUNDLE DEALS -->
@@ -1489,6 +1802,18 @@
   </div>
 </footer>
 
+<!-- MOBILE STICKY CTA -->
+<div class="mobile-sticky-cta" id="mobileCta">
+  <p><strong>Ready to start?</strong> Book your session</p>
+  <a href="https://calendly.com/stefanmoore-medcoach/30min" target="_blank" rel="noopener" class="btn-primary">Book Free Call</a>
+</div>
+
+<!-- MOBILE STICKY CTA -->
+<div class="mobile-sticky-cta" id="mobileCta">
+  <p><strong>Ready to start?</strong> Book your session</p>
+  <a href="https://calendly.com/stefanmoore-medcoach/30min" target="_blank" rel="noopener" class="btn-primary">Book Free Call</a>
+</div>
+
 <script>
   // Mobile menu toggle
   function toggleMenu() {
@@ -1496,6 +1821,50 @@
     document.querySelector('.hamburger').classList.toggle('active');
     document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
   }
+
+  // Scroll reveal animations
+  function revealOnScroll() {
+    var reveals = document.querySelectorAll('.reveal');
+    for (var i = 0; i < reveals.length; i++) {
+      var windowHeight = window.innerHeight;
+      var elementTop = reveals[i].getBoundingClientRect().top;
+      var revealPoint = 120;
+      if (elementTop < windowHeight - revealPoint) {
+        reveals[i].classList.add('active');
+      }
+    }
+  }
+
+  // Nav shadow on scroll
+  function navShadow() {
+    var nav = document.querySelector('nav');
+    if (window.scrollY > 20) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  }
+
+  // Mobile sticky CTA visibility
+  function mobileCta() {
+    var cta = document.getElementById('mobileCta');
+    if (!cta) return;
+    if (window.scrollY > 600) {
+      cta.classList.add('visible');
+    } else {
+      cta.classList.remove('visible');
+    }
+  }
+
+  // Combined scroll handler
+  window.addEventListener('scroll', function() {
+    revealOnScroll();
+    navShadow();
+    mobileCta();
+  });
+
+  // Run on page load
+  revealOnScroll();
 </script>
 
 </body>
