@@ -1265,6 +1265,189 @@
   nav.scrolled {
     box-shadow: 0 2px 20px rgba(0,0,0,0.06);
   }
+
+  /* EXIT INTENT POPUP */
+  .exit-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(6px);
+    z-index: 500;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    animation: overlayIn 0.3s ease;
+  }
+  .exit-overlay.show { display: flex; }
+  @keyframes overlayIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .exit-popup {
+    background: #fff;
+    max-width: 460px;
+    width: 100%;
+    padding: 3rem 2.5rem;
+    position: relative;
+    text-align: center;
+    animation: popupIn 0.4s ease;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.15);
+  }
+  @keyframes popupIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .exit-close {
+    position: absolute;
+    top: 1rem;
+    right: 1.2rem;
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    color: var(--soft);
+    cursor: pointer;
+    padding: 0.3rem;
+    line-height: 1;
+    transition: color 0.2s;
+  }
+  .exit-close:hover { color: var(--ink); }
+
+  .exit-badge {
+    display: inline-block;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--accent);
+    padding: 0.3rem 0.8rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+
+  .exit-popup h3 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.25;
+    margin-bottom: 0.6rem;
+  }
+  .exit-popup h3 em {
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .exit-popup .exit-sub {
+    font-size: 0.88rem;
+    color: var(--soft);
+    font-weight: 300;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .exit-timer {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-bottom: 1.8rem;
+  }
+  .exit-timer-block {
+    background: var(--light-bg);
+    border: 1px solid var(--border);
+    padding: 0.6rem 0.9rem;
+    min-width: 56px;
+    text-align: center;
+  }
+  .exit-timer-num {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.4rem;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .exit-timer-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--soft);
+    margin-top: 0.2rem;
+  }
+
+  .exit-form {
+    display: flex;
+    gap: 0;
+    margin-bottom: 1rem;
+  }
+  .exit-email {
+    flex: 1;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--border);
+    border-right: none;
+    font-size: 0.88rem;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .exit-email:focus { border-color: var(--accent); }
+  .exit-email::placeholder { color: #bbb; }
+  .exit-submit {
+    background: var(--ink);
+    color: #fff;
+    padding: 0.85rem 1.5rem;
+    border: 1px solid var(--ink);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .exit-submit:hover { background: #333; }
+
+  .exit-fine {
+    font-size: 0.72rem;
+    color: #bbb;
+    font-weight: 300;
+  }
+
+  /* Success state */
+  .exit-success {
+    display: none;
+  }
+  .exit-success.show { display: block; }
+  .exit-success .exit-code-box {
+    background: var(--light-bg);
+    border: 2px dashed var(--accent);
+    padding: 1.2rem;
+    margin: 1.2rem 0;
+  }
+  .exit-success .exit-code {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 2rem;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+  }
+  .exit-success .exit-code-note {
+    font-size: 0.78rem;
+    color: var(--soft);
+    font-weight: 300;
+    margin-top: 0.4rem;
+  }
+  .exit-success p {
+    font-size: 0.88rem;
+    color: var(--soft);
+    font-weight: 300;
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+  }
+  .exit-success .btn-primary {
+    display: inline-block;
+  }
 </style>
 </head>
 <body>
@@ -1783,6 +1966,51 @@
   <a href="https://calendly.com/stefanmoore-medcoach/30min" target="_blank" rel="noopener" class="btn-primary">Book Free Call</a>
 </div>
 
+<!-- EXIT INTENT POPUP -->
+<div class="exit-overlay" id="exitPopup">
+  <div class="exit-popup">
+    <button class="exit-close" onclick="closeExitPopup()">&times;</button>
+    
+    <!-- Step 1: Email capture -->
+    <div id="exitStep1">
+      <div class="exit-badge">Limited Time Offer</div>
+      <h3>Get <em>10% off</em> your<br>first session</h3>
+      <p class="exit-sub">Enter your email to unlock your discount code. Offer expires in 24 hours.</p>
+      <div class="exit-timer">
+        <div class="exit-timer-block">
+          <div class="exit-timer-num" id="exitHours">23</div>
+          <div class="exit-timer-label">Hours</div>
+        </div>
+        <div class="exit-timer-block">
+          <div class="exit-timer-num" id="exitMins">59</div>
+          <div class="exit-timer-label">Mins</div>
+        </div>
+        <div class="exit-timer-block">
+          <div class="exit-timer-num" id="exitSecs">59</div>
+          <div class="exit-timer-label">Secs</div>
+        </div>
+      </div>
+      <div class="exit-form">
+        <input type="email" class="exit-email" id="exitEmail" placeholder="Your email address" required>
+        <button class="exit-submit" onclick="submitExitEmail()">Get Code</button>
+      </div>
+      <p class="exit-fine">No spam. Just your discount code and a reminder before it expires.</p>
+    </div>
+
+    <!-- Step 2: Show code -->
+    <div id="exitStep2" class="exit-success">
+      <div class="exit-badge">Your Code Is Ready</div>
+      <h3>Here's your <em>10% off</em></h3>
+      <p>Use this code when booking any session on Calendly. It expires in 24 hours.</p>
+      <div class="exit-code-box">
+        <div class="exit-code">FIRST10</div>
+        <div class="exit-code-note">Enter this at checkout on Calendly</div>
+      </div>
+      <a href="https://calendly.com/stefanmoore-medcoach" target="_blank" rel="noopener" class="btn-primary">Book Now with 10% Off</a>
+    </div>
+  </div>
+</div>
+
 <script>
   // Mobile menu toggle
   function toggleMenu() {
@@ -1834,6 +2062,118 @@
 
   // Run on page load
   revealOnScroll();
+
+  // ====== EXIT INTENT POPUP ======
+  var exitShown = false;
+  var exitTimer = null;
+  var exitDeadline = null;
+
+  // Exit intent detection (desktop: mouse leaves viewport, mobile: back button or tab switch)
+  document.addEventListener('mouseout', function(e) {
+    if (exitShown) return;
+    if (sessionStorage.getItem('exitShown')) return;
+    if (e.clientY < 5 && e.relatedTarget === null) {
+      showExitPopup();
+    }
+  });
+
+  // Also trigger after 45 seconds on page (catches mobile users who can't trigger mouseout)
+  setTimeout(function() {
+    if (!exitShown && !sessionStorage.getItem('exitShown')) {
+      // Only show on mobile
+      if (window.innerWidth <= 900) {
+        showExitPopup();
+      }
+    }
+  }, 30000);
+
+  function showExitPopup() {
+    exitShown = true;
+    sessionStorage.setItem('exitShown', 'true');
+    document.getElementById('exitPopup').classList.add('show');
+    document.body.style.overflow = 'hidden';
+    startExitTimer();
+  }
+
+  function closeExitPopup() {
+    document.getElementById('exitPopup').classList.remove('show');
+    document.body.style.overflow = '';
+  }
+
+  // Close on overlay click
+  document.getElementById('exitPopup').addEventListener('click', function(e) {
+    if (e.target === this) closeExitPopup();
+  });
+
+  // 24 hour countdown timer
+  function startExitTimer() {
+    // Check if we have a stored deadline
+    var stored = sessionStorage.getItem('exitDeadline');
+    if (stored) {
+      exitDeadline = parseInt(stored);
+    } else {
+      exitDeadline = Date.now() + (24 * 60 * 60 * 1000);
+      sessionStorage.setItem('exitDeadline', exitDeadline.toString());
+    }
+    updateExitTimer();
+    exitTimer = setInterval(updateExitTimer, 1000);
+  }
+
+  function updateExitTimer() {
+    var remaining = exitDeadline - Date.now();
+    if (remaining <= 0) {
+      clearInterval(exitTimer);
+      document.getElementById('exitHours').textContent = '00';
+      document.getElementById('exitMins').textContent = '00';
+      document.getElementById('exitSecs').textContent = '00';
+      return;
+    }
+    var hours = Math.floor(remaining / (1000 * 60 * 60));
+    var mins = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+    var secs = Math.floor((remaining % (1000 * 60)) / 1000);
+    document.getElementById('exitHours').textContent = hours.toString().padStart(2, '0');
+    document.getElementById('exitMins').textContent = mins.toString().padStart(2, '0');
+    document.getElementById('exitSecs').textContent = secs.toString().padStart(2, '0');
+  }
+
+  // Email submission
+  function submitExitEmail() {
+    var email = document.getElementById('exitEmail').value.trim();
+    if (!email || !email.includes('@') || !email.includes('.')) {
+      document.getElementById('exitEmail').style.borderColor = '#e74c3c';
+      document.getElementById('exitEmail').setAttribute('placeholder', 'Please enter a valid email');
+      return;
+    }
+
+    // Send email to Brevo
+    fetch('https://api.brevo.com/v3/contacts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'api-key': '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'
+      },
+      body: JSON.stringify({
+        email: email,
+        listIds: [3],
+        attributes: {
+          SOURCE: 'exit-intent-popup',
+          DISCOUNT_CODE: 'FIRST10'
+        },
+        updateEnabled: true
+      })
+    }).catch(function() {
+      // Still show code even if submission fails
+    });
+
+    // Show success step
+    document.getElementById('exitStep1').style.display = 'none';
+    document.getElementById('exitStep2').classList.add('show');
+  }
+
+  // Allow Enter key to submit
+  document.getElementById('exitEmail').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') submitExitEmail();
+  });
 </script>
 
 </body>
