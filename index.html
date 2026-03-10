@@ -133,6 +133,10 @@
     max-width: 1100px;
     margin: 0 auto;
     width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
   }
 
   .hero-kicker {
@@ -239,7 +243,7 @@
   .about-photo {
     width: 100%;
     aspect-ratio: 3/4;
-    background: var(--border);
+    background: linear-gradient(145deg, #e8e6e3, #f2f1ef);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -250,19 +254,20 @@
   .about-photo-placeholder {
     font-family: 'DM Serif Display', serif;
     font-size: 2.5rem;
-    color: var(--soft);
-    opacity: 0.4;
+    color: var(--accent);
+    opacity: 0.6;
   }
   .about-photo-note {
     position: absolute;
     bottom: 0; left: 0; right: 0;
-    background: rgba(17,17,17,0.75);
-    color: #fff;
-    font-size: 0.65rem;
+    background: rgba(17,17,17,0.6);
+    color: rgba(255,255,255,0.8);
+    font-size: 0.6rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    padding: 0.5rem;
+    padding: 0.4rem;
     text-align: center;
+    backdrop-filter: blur(4px);
   }
   .about-photo-name {
     font-weight: 500;
@@ -1092,13 +1097,7 @@
   }
   .nav-dropdown-trigger { cursor: pointer; }
 
-  /* HERO TWO-COLUMN LAYOUT */
-  .hero-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: center;
-  }
+  /* HERO RIGHT COLUMN */
   .hero-right {
     display: flex;
     flex-direction: column;
@@ -1142,30 +1141,6 @@
   @media (max-width: 900px) {
     .hero-inner { grid-template-columns: 1fr; }
     .hero-right { display: none; }
-  }
-
-  /* IMPROVED PHOTO PLACEHOLDERS */
-  .about-photo {
-    background: linear-gradient(145deg, #e8e6e3, #f2f1ef);
-    position: relative;
-  }
-  .about-photo-placeholder {
-    font-family: 'DM Serif Display', serif;
-    font-size: 2.5rem;
-    color: var(--accent);
-    opacity: 0.6;
-  }
-  .about-photo-note {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    background: rgba(17,17,17,0.6);
-    color: rgba(255,255,255,0.8);
-    font-size: 0.6rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 0.4rem;
-    text-align: center;
-    backdrop-filter: blur(4px);
   }
 
   /* TUTOR CARD HOVER ENHANCEMENTS */
@@ -1801,12 +1776,6 @@
     </div>
   </div>
 </footer>
-
-<!-- MOBILE STICKY CTA -->
-<div class="mobile-sticky-cta" id="mobileCta">
-  <p><strong>Ready to start?</strong> Book your session</p>
-  <a href="https://calendly.com/stefanmoore-medcoach/30min" target="_blank" rel="noopener" class="btn-primary">Book Free Call</a>
-</div>
 
 <!-- MOBILE STICKY CTA -->
 <div class="mobile-sticky-cta" id="mobileCta">
