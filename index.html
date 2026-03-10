@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MedCoach | Medical Interview Coaching</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.svg">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -39,11 +41,11 @@
   }
 
   .logo {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.3rem;
-    color: var(--ink);
+    display: flex;
+    align-items: center;
+    text-decoration: none;
   }
-  .logo em { color: var(--accent); font-style: italic; }
+  .logo svg { display: block; }
 
   .nav-links {
     display: flex; align-items: center; gap: 2.5rem; list-style: none;
@@ -1012,7 +1014,17 @@
 
 <!-- NAV -->
 <nav>
-  <div class="logo">Med<em>Coach</em></div>
+  <a href="/" class="logo" aria-label="MedCoach Home">
+    <svg width="200" height="34" viewBox="0 0 270 44" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 8 Q8 20 16 20 Q24 20 24 8" fill="none" stroke="#c8963e" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="8" cy="6" r="2.5" fill="#c8963e"/>
+      <circle cx="24" cy="6" r="2.5" fill="#c8963e"/>
+      <line x1="16" y1="20" x2="16" y2="30" stroke="#c8963e" stroke-width="1.8"/>
+      <circle cx="16" cy="34" r="4" fill="none" stroke="#c8963e" stroke-width="1.8"/>
+      <text x="42" y="34" font-family="'DM Serif Display', Georgia, serif" font-size="34" font-weight="400" fill="#c8963e">Med</text>
+      <text x="122" y="34" font-family="'DM Serif Display', Georgia, serif" font-size="34" font-weight="400" fill="#c8963e" font-style="italic">Coach</text>
+    </svg>
+  </a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#services">Services</a></li>
@@ -1445,7 +1457,17 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-left">
-    <div class="footer-logo">MedCoach</div>
+    <div class="footer-logo">
+      <svg width="160" height="28" viewBox="0 0 270 44" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 8 Q8 20 16 20 Q24 20 24 8" fill="none" stroke="#c8963e" stroke-width="1.8" stroke-linecap="round"/>
+        <circle cx="8" cy="6" r="2.5" fill="#c8963e"/>
+        <circle cx="24" cy="6" r="2.5" fill="#c8963e"/>
+        <line x1="16" y1="20" x2="16" y2="30" stroke="#c8963e" stroke-width="1.8"/>
+        <circle cx="16" cy="34" r="4" fill="none" stroke="#c8963e" stroke-width="1.8"/>
+        <text x="42" y="34" font-family="'DM Serif Display', Georgia, serif" font-size="34" font-weight="400" fill="rgba(255,255,255,0.7)">Med</text>
+        <text x="122" y="34" font-family="'DM Serif Display', Georgia, serif" font-size="34" font-weight="400" fill="#c8963e" font-style="italic">Coach</text>
+      </svg>
+    </div>
     <p class="footer-note">© 2025 MedCoach</p>
     <p class="footer-contact">Questions? <a href="mailto:stefanmoore.medcoach@gmail.com">stefanmoore.medcoach@gmail.com</a></p>
   </div>
