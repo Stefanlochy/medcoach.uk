@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MedCoach | Which Service Is Right for You?</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #fafaf8;
+    color: #111;
+    min-height: 100vh;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  .header {
+    background: #fff;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 1.25rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.2rem;
+  }
+  .logo em { color: #c8963e; font-style: italic; }
+  .header-tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #c8963e;
+  }
+
+  .progress-bar {
+    height: 2px;
+    background: #e5e5e5;
+    position: relative;
+  }
+  .progress-fill {
+    height: 100%;
+    background: #c8963e;
+    transition: width 0.5s ease;
+  }
+
+  .container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+  }
+
+  .kicker {
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #c8963e;
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .kicker::before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 1px;
+    background: #c8963e;
+  }
+
+  .question-title {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 2.5rem;
+    color: #111;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: #e5e5e5;
+    border: 1px solid #e5e5e5;
+  }
+
+  .option-btn {
+    background: #fff;
+    color: #111;
+    border: none;
+    padding: 1.2rem 1.5rem;
+    font-size: 0.92rem;
+    font-weight: 400;
+    text-align: left;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: background 0.2s, color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .option-btn:hover { background: #fafaf8; }
+  .option-btn.selected { background: #111; color: #fff; }
+  .option-btn .arrow {
+    font-size: 0.75rem;
+    opacity: 0.2;
+    transition: opacity 0.2s;
+  }
+  .option-btn.selected .arrow { opacity: 1; }
+
+  .back-btn {
+    background: none;
+    border: none;
+    color: #555;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    padding: 0.5rem 0;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .view {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .view.hidden {
+    opacity: 0;
+    transform: translateY(12px);
+    pointer-events: none;
+    position: absolute;
+  }
+  .view.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Results */
+  .results-desc {
+    font-size: 0.92rem;
+    color: #555;
+    font-weight: 300;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+
+  .results-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: #e5e5e5;
+    border: 1px solid #e5e5e5;
+    margin-bottom: 2rem;
+  }
+
+  .result-card {
+    padding: 2rem;
+  }
+  .result-card.top {
+    background: #111;
+    color: #fff;
+  }
+  .result-card.alt {
+    background: #fff;
+    color: #111;
+  }
+
+  .result-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.3rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .result-tag {
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .result-tag.gold { color: rgba(200,150,62,0.9); }
+  .result-tag.gold-dark { color: #c8963e; }
+
+  .result-price {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.3rem;
+  }
+  .result-price.free { color: #6bcf8f; }
+
+  .result-name {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin-bottom: 0.6rem;
+    line-height: 1.25;
+  }
+
+  .result-desc {
+    font-size: 0.85rem;
+    font-weight: 300;
+    line-height: 1.7;
+    margin-bottom: 0.8rem;
+  }
+  .result-card.top .result-desc { color: rgba(255,255,255,0.5); }
+  .result-card.alt .result-desc { color: #555; }
+
+  .result-why {
+    font-size: 0.85rem;
+    font-weight: 400;
+    line-height: 1.7;
+    margin-bottom: 1.2rem;
+    font-style: italic;
+  }
+  .result-card.top .result-why { color: rgba(255,255,255,0.75); }
+  .result-card.alt .result-why { color: #333; }
+
+  .btn-book {
+    display: inline-block;
+    padding: 0.7rem 1.5rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-book.white {
+    background: #fff;
+    color: #111;
+    border: 1px solid #fff;
+  }
+  .btn-book.white:hover { background: transparent; color: #fff; }
+  .btn-book.outline {
+    background: transparent;
+    color: #111;
+    border: 1px solid #111;
+  }
+  .btn-book.outline:hover { background: #111; color: #fff; }
+
+  .results-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .retake-btn {
+    background: none;
+    border: none;
+    color: #555;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 0.5rem 0;
+    font-family: 'DM Sans', sans-serif;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  .unsure-link {
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #c8963e;
+    text-decoration: none;
+    border-bottom: 1px solid #c8963e;
+    padding-bottom: 2px;
+    font-family: 'DM Sans', sans-serif;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">Med<em>Coach</em></div>
+  <div class="header-tag">Service Finder</div>
+</div>
+
+<div class="progress-bar">
+  <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+</div>
+
+<div class="container">
+  <div id="questionView" class="view visible">
+    <div class="kicker" id="kicker">Question 1 of 5</div>
+    <h2 class="question-title" id="questionTitle"></h2>
+    <div class="options" id="optionsContainer"></div>
+    <button class="back-btn" id="backBtn" style="display:none" onclick="goBack()">← Back</button>
+  </div>
+
+  <div id="resultsView" class="view hidden" style="display:none;">
+    <div class="kicker">Your Results</div>
+    <h2 class="question-title">Here's what we'd recommend</h2>
+    <p class="results-desc" id="resultsDesc"></p>
+    <div class="results-grid" id="resultsGrid"></div>
+    <div class="results-footer">
+      <button class="retake-btn" onclick="restart()">Retake Quiz</button>
+      <a href="https://calendly.com/stefanmoore-medcoach/30min" target="_blank" rel="noopener" class="unsure-link">Still unsure? Book a free call →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const QUESTIONS = [
+  {
+    id: "timeline",
+    question: "When is your first medical school interview?",
+    options: [
+      { label: "More than 2 months away", value: "far" },
+      { label: "2 to 4 weeks away", value: "mid" },
+      { label: "Less than 2 weeks away", value: "soon" },
+      { label: "I don't have one yet", value: "none" }
+    ]
+  },
+  {
+    id: "prep",
+    question: "How much interview prep have you done?",
+    options: [
+      { label: "None — I'm just getting started", value: "none" },
+      { label: "I've read about it but not practised", value: "some" },
+      { label: "I've practised answers a few times", value: "fair" },
+      { label: "A lot — I just need to sharpen up", value: "lots" }
+    ]
+  },
+  {
+    id: "concern",
+    question: "What's your biggest concern right now?",
+    options: [
+      { label: "I don't understand how medical interviews work", value: "fundamentals" },
+      { label: "I struggle to structure my answers clearly", value: "structure" },
+      { label: "I need realistic practice under pressure", value: "practice" },
+      { label: "I want preparation specific to my medical schools", value: "school-specific" }
+    ]
+  },
+  {
+    id: "schools",
+    question: "How many schools are you interviewing at?",
+    options: [
+      { label: "1 school", value: "one" },
+      { label: "2 schools", value: "two" },
+      { label: "3 or more", value: "many" },
+      { label: "I don't know yet", value: "unknown" }
+    ]
+  },
+  {
+    id: "budget",
+    question: "What's your budget for interview prep?",
+    options: [
+      { label: "Keep it minimal — under £15", value: "low" },
+      { label: "Happy to invest — £30 to £50", value: "mid" },
+      { label: "Whatever it takes — £50+", value: "high" },
+      { label: "I'd like to try before I commit", value: "try" }
+    ]
+  }
+];
+
+const SERVICES = {
+  webinar: {
+    name: "Interview Webinar",
+    price: "£10",
+    tag: "Group · Live Zoom",
+    description: "A structured live session covering MMI, ethics frameworks, and how to build compelling answers. Includes recording and live Q&A.",
+    link: "https://calendly.com/stefanmoore-medcoach/medical-interview-masterclass-webinar",
+    btnText: "Book Webinar"
+  },
+  coaching: {
+    name: "1-to-1 Personalised Coaching",
+    price: "£30/hr",
+    tag: "1-to-1 · Zoom",
+    description: "A fully tailored session focused on your strengths, weaknesses, and target schools. Written session notes included.",
+    link: "https://calendly.com/stefanmoore-medcoach/1-to-1-interview-coaching",
+    btnText: "Book Coaching"
+  },
+  mock: {
+    name: "Mock Interview",
+    price: "£30/hr",
+    tag: "1-to-1 · Zoom",
+    description: "A full simulated interview matched to the exact format of your chosen schools. Includes a written feedback report.",
+    link: "https://calendly.com/stefanmoore-medcoach/mock-interview-practice",
+    btnText: "Book Mock"
+  },
+  coachingBundle: {
+    name: "2x Personalised Coaching Bundle",
+    price: "£50",
+    tag: "Bundle · Save £10",
+    description: "Two one-hour coaching sessions to work through multiple areas of improvement across separate sessions.",
+    link: "https://calendly.com/stefanmoore-medcoach/2x-personalised-coaching-bundle",
+    btnText: "Book Bundle"
+  },
+  mockBundle: {
+    name: "2x Mock Interview Bundle",
+    price: "£50",
+    tag: "Bundle · Save £10",
+    description: "Two full mock interviews — perfect for practising across different school formats or building confidence over time.",
+    link: "https://calendly.com/stefanmoore-medcoach/2x-personalised-mock-bundle",
+    btnText: "Book Bundle"
+  },
+  taster: {
+    name: "Free Taster Call",
+    price: "Free",
+    tag: "15 minutes · Zoom",
+    description: "Meet your tutor, discuss your goals, and see if MedCoach is the right fit. No commitment needed.",
+    link: "https://calendly.com/stefanmoore-medcoach/30min",
+    btnText: "Book Free Call"
+  }
+};
+
+let current = 0;
+let answers = {};
+
+function renderQuestion() {
+  const q = QUESTIONS[current];
+  document.getElementById("kicker").textContent = "Question " + (current + 1) + " of " + QUESTIONS.length;
+  document.getElementById("questionTitle").textContent = q.question;
+  document.getElementById("progressFill").style.width = ((current) / QUESTIONS.length * 100) + "%";
+  document.getElementById("backBtn").style.display = current > 0 ? "block" : "none";
+
+  const container = document.getElementById("optionsContainer");
+  container.innerHTML = "";
+
+  q.options.forEach(function(opt) {
+    const btn = document.createElement("button");
+    btn.className = "option-btn";
+    if (answers[q.id] === opt.value) btn.classList.add("selected");
+    btn.innerHTML = opt.label + '<span class="arrow">→</span>';
+    btn.addEventListener("click", function() { selectOption(opt.value); });
+    btn.addEventListener("mouseenter", function() {
+      if (!this.classList.contains("selected")) this.style.background = "#fafaf8";
+    });
+    btn.addEventListener("mouseleave", function() {
+      if (!this.classList.contains("selected")) this.style.background = "#fff";
+    });
+    container.appendChild(btn);
+  });
+}
+
+function selectOption(value) {
+  answers[QUESTIONS[current].id] = value;
+
+  var btns = document.querySelectorAll(".option-btn");
+  btns.forEach(function(b) {
+    b.classList.remove("selected");
+    b.style.background = "#fff";
+  });
+  event.currentTarget.classList.add("selected");
+  event.currentTarget.style.background = "#111";
+
+  setTimeout(function() {
+    var qView = document.getElementById("questionView");
+    qView.style.opacity = "0";
+    qView.style.transform = "translateY(12px)";
+
+    setTimeout(function() {
+      if (current < QUESTIONS.length - 1) {
+        current++;
+        renderQuestion();
+      } else {
+        showResults();
+        return;
+      }
+      qView.style.opacity = "1";
+      qView.style.transform = "translateY(0)";
+    }, 300);
+  }, 400);
+}
+
+function goBack() {
+  var qView = document.getElementById("questionView");
+  qView.style.opacity = "0";
+  qView.style.transform = "translateY(12px)";
+  setTimeout(function() {
+    current--;
+    renderQuestion();
+    qView.style.opacity = "1";
+    qView.style.transform = "translateY(0)";
+  }, 300);
+}
+
+function getRecommendations() {
+  var timeline = answers.timeline;
+  var prep = answers.prep;
+  var concern = answers.concern;
+  var schools = answers.schools;
+  var budget = answers.budget;
+  var results = [];
+
+  if (budget === "try") {
+    results.push(Object.assign({}, SERVICES.taster, {
+      why: "You want to try before you commit — a free taster call lets you meet your tutor and talk through your goals with zero pressure.",
+      priority: 100
+    }));
+  }
+
+  if (budget === "low") {
+    results.push(Object.assign({}, SERVICES.webinar, {
+      why: "At £10, the webinar is the most affordable way to learn interview fundamentals, get a recording to revisit, and ask questions live.",
+      priority: 95
+    }));
+  }
+
+  if (prep === "none" && concern === "fundamentals") {
+    results.push(Object.assign({}, SERVICES.webinar, {
+      why: "You're starting fresh and need to understand how medical interviews work — the webinar covers exactly this in a structured live session.",
+      priority: 90
+    }));
+  }
+
+  if (prep === "none" && concern !== "fundamentals" && budget !== "low") {
+    results.push(Object.assign({}, SERVICES.coaching, {
+      why: "You haven't started prep yet but have specific areas you want to work on — a 1-to-1 session lets your tutor build a plan around your exact needs.",
+      priority: 85
+    }));
+  }
+
+  if ((prep === "some" || prep === "fair") && concern === "structure") {
+    if ((schools === "two" || schools === "many") && budget !== "low") {
+      results.push(Object.assign({}, SERVICES.coachingBundle, {
+        why: "You need help structuring answers and you're interviewing at multiple schools — two coaching sessions give you time to practise across different formats and save £10.",
+        priority: 88
+      }));
+    } else if (budget !== "low") {
+      results.push(Object.assign({}, SERVICES.coaching, {
+        why: "You've done some reading but need help turning that into structured, confident answers — this is exactly what 1-to-1 coaching focuses on.",
+        priority: 87
+      }));
+    }
+  }
+
+  if (concern === "practice" && (prep === "fair" || prep === "lots")) {
+    if ((schools === "two" || schools === "many") && budget !== "low") {
+      results.push(Object.assign({}, SERVICES.mockBundle, {
+        why: "You've prepped well and need realistic pressure — with multiple schools, two mocks let you practise different formats and save £10.",
+        priority: 92
+      }));
+    } else if (budget !== "low") {
+      results.push(Object.assign({}, SERVICES.mock, {
+        why: "You've done solid prep and now need to test yourself under real interview conditions — a mock simulates the exact format you'll face.",
+        priority: 91
+      }));
+    }
+  }
+
+  if (concern === "practice" && (prep === "none" || prep === "some")) {
+    if (budget !== "low") {
+      results.push(Object.assign({}, SERVICES.coaching, {
+        why: "You want realistic practice, but you haven't done enough prep yet to get the most from a mock. A coaching session first will give you the foundations, then you can book a mock when you're ready.",
+        priority: 86
+      }));
+    }
+  }
+
+  if (concern === "school-specific") {
+    if ((schools === "two" || schools === "many") && budget !== "low") {
+      results.push(Object.assign({}, SERVICES.mockBundle, {
+        why: "You want school-specific preparation across multiple universities — the 2-session bundle lets you do a tailored mock for each school and saves you £10.",
+        priority: 93
+      }));
+    } else if (budget !== "low") {
+      results.push(Object.assign({}, SERVICES.mock, {
+        why: "You want preparation tailored to a specific school — the mock interview is built around the exact format and station types your university uses.",
+        priority: 92
+      }));
+    }
+  }
+
+  if (timeline === "soon" && (prep === "fair" || prep === "lots") && budget !== "low") {
+    results.push(Object.assign({}, SERVICES.mock, {
+      why: "Your interview is days away and you've already prepped — a mock is the best way to build final confidence and iron out any last issues.",
+      priority: 94
+    }));
+  }
+
+  if (timeline === "soon" && (prep === "none" || prep === "some") && budget !== "low") {
+    results.push(Object.assign({}, SERVICES.coaching, {
+      why: "Your interview is very close and you need to cover ground quickly — a 1-to-1 session is the fastest way to get focused, personalised preparation.",
+      priority: 93
+    }));
+  }
+
+  if (timeline === "none" && prep === "none") {
+    results.push(Object.assign({}, SERVICES.webinar, {
+      why: "You're early in the process and haven't started prep — the webinar gives you a strong foundation in interview technique before you even have a date.",
+      priority: 82
+    }));
+    results.push(Object.assign({}, SERVICES.taster, {
+      why: "Not sure where to start? A free call lets you talk through your situation and get a personalised recommendation from your tutor.",
+      priority: 78
+    }));
+  }
+
+  if (budget === "high" && (schools === "two" || schools === "many")) {
+    var hasMockBundle = results.some(function(r) { return r.name === SERVICES.mockBundle.name; });
+    var hasCoachingBundle = results.some(function(r) { return r.name === SERVICES.coachingBundle.name; });
+    if (!hasMockBundle) {
+      results.push(Object.assign({}, SERVICES.mockBundle, {
+        why: "With multiple interviews and budget flexibility, the mock bundle gives you two full simulations across different school formats and saves £10.",
+        priority: 80
+      }));
+    }
+    if (!hasCoachingBundle && concern === "structure") {
+      results.push(Object.assign({}, SERVICES.coachingBundle, {
+        why: "Two coaching sessions let you work on structuring answers in depth across multiple sessions, with time to improve between them.",
+        priority: 79
+      }));
+    }
+  }
+
+  if (timeline === "mid" && budget === "mid" && (prep === "some" || prep === "fair")) {
+    var hasCoaching = results.some(function(r) { return r.name === SERVICES.coaching.name; });
+    if (!hasCoaching) {
+      results.push(Object.assign({}, SERVICES.coaching, {
+        why: "With a few weeks until your interview and some prep under your belt, a 1-to-1 coaching session is the sweet spot — targeted, personal, and great value.",
+        priority: 84
+      }));
+    }
+  }
+
+  // Deduplicate
+  var seen = {};
+  results.forEach(function(r) {
+    if (!seen[r.name] || r.priority > seen[r.name].priority) {
+      seen[r.name] = r;
+    }
+  });
+  var final = Object.values(seen);
+  final.sort(function(a, b) { return b.priority - a.priority; });
+
+  if (final.length === 0) {
+    final.push(Object.assign({}, SERVICES.taster, {
+      why: "Based on your answers, the best next step is a free call with your tutor to figure out exactly what you need.",
+      priority: 100
+    }));
+  }
+
+  return final.slice(0, 3);
+}
+
+function showResults() {
+  var recs = getRecommendations();
+  document.getElementById("progressFill").style.width = "100%";
+  document.getElementById("resultsDesc").textContent =
+    "Based on your answers, " + (recs.length === 1 ? "this is the best option" : "these are the best options") + " for where you are right now.";
+
+  var grid = document.getElementById("resultsGrid");
+  grid.innerHTML = "";
+
+  recs.forEach(function(r, i) {
+    var card = document.createElement("div");
+    card.className = "result-card " + (i === 0 ? "top" : "alt");
+
+    var tagClass = i === 0 ? "gold" : "gold-dark";
+    var tagLabel = i === 0 ? "★ Top Pick" : "Option " + (i + 1);
+    var priceColor = r.price === "Free" ? "#6bcf8f" : (i === 0 ? "#fff" : "#111");
+    var btnClass = i === 0 ? "white" : "outline";
+
+    card.innerHTML =
+      '<div class="result-header">' +
+        '<span class="result-tag ' + tagClass + '">' + tagLabel + ' · ' + r.tag + '</span>' +
+        '<span class="result-price" style="color:' + priceColor + '">' + r.price + '</span>' +
+      '</div>' +
+      '<h3 class="result-name">' + r.name + '</h3>' +
+      '<p class="result-desc">' + r.description + '</p>' +
+      '<p class="result-why">"' + r.why + '"</p>' +
+      '<a href="' + r.link + '" target="_blank" rel="noopener noreferrer" class="btn-book ' + btnClass + '">' + r.btnText + '</a>';
+
+    grid.appendChild(card);
+  });
+
+  var qView = document.getElementById("questionView");
+  var rView = document.getElementById("resultsView");
+  qView.style.opacity = "0";
+  qView.style.transform = "translateY(12px)";
+
+  setTimeout(function() {
+    qView.style.display = "none";
+    rView.style.display = "block";
+    setTimeout(function() {
+      rView.classList.remove("hidden");
+      rView.classList.add("visible");
+    }, 50);
+  }, 300);
+}
+
+function restart() {
+  current = 0;
+  answers = {};
+  var qView = document.getElementById("questionView");
+  var rView = document.getElementById("resultsView");
+
+  rView.classList.remove("visible");
+  rView.classList.add("hidden");
+
+  setTimeout(function() {
+    rView.style.display = "none";
+    qView.style.display = "block";
+    renderQuestion();
+    setTimeout(function() {
+      qView.style.opacity = "1";
+      qView.style.transform = "translateY(0)";
+    }, 50);
+  }, 300);
+}
+
+// Init
+renderQuestion();
+</script>
+
+</body>
+</html>
