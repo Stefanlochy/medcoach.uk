@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MedCoach | Medical Interview Coaching</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #111;
+    --soft: #555;
+    --border: #e5e5e5;
+    --bg: #fff;
+    --accent: #c8963e;
+    --light-bg: #fafaf8;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 6vw;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    color: var(--ink);
+  }
+  .logo em { color: var(--accent); font-style: italic; }
+
+  .nav-links {
+    display: flex; align-items: center; gap: 2.5rem; list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--soft);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  .nav-cta {
+    font-size: 0.78rem !important;
+    color: var(--ink) !important;
+    border-bottom: 1.5px solid var(--ink);
+    padding-bottom: 1px;
+    letter-spacing: 0.04em !important;
+    text-transform: uppercase !important;
+    transition: color 0.2s, border-color 0.2s !important;
+  }
+  .nav-cta:hover { color: var(--accent) !important; border-color: var(--accent) !important; }
+
+  /* HAMBURGER MENU */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+    z-index: 200;
+  }
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--ink);
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  .hamburger.active span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .hamburger.active span:nth-child(2) { opacity: 0; }
+  .hamburger.active span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(255,255,255,0.98);
+    backdrop-filter: blur(20px);
+    z-index: 150;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    transition: color 0.2s;
+  }
+  .mobile-menu a:hover { color: var(--accent); }
+  .mobile-menu .btn-primary {
+    margin-top: 1rem;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 6vw 5rem;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .hero-kicker {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .hero-kicker::before { content: ''; width: 24px; height: 1px; background: var(--accent); display: block; }
+
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    max-width: 780px;
+    margin-bottom: 2rem;
+    color: var(--ink);
+  }
+  .hero h1 em { font-style: italic; color: var(--soft); }
+
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--soft);
+    font-weight: 300;
+    max-width: 500px;
+    margin-bottom: 2rem;
+    line-height: 1.8;
+  }
+
+  .hero-trust {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+  .hero-trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    color: var(--soft);
+    font-weight: 300;
+  }
+  .hero-trust-item strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .hero-trust-item svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+
+  .btn-primary {
+    background: var(--ink);
+    color: #fff;
+    padding: 0.9rem 2rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    display: inline-block;
+    transition: background 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-primary:hover { background: #333; }
+
+  .btn-secondary {
+    color: var(--soft);
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2px;
+    display: inline-block;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-secondary:hover { color: var(--ink); border-color: var(--soft); }
+
+  /* ABOUT / OUR STORY */
+  .about-sec { background: var(--light-bg); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .about-photos {
+    display: flex;
+    gap: 1.5rem;
+  }
+  .about-photo-card {
+    flex: 1;
+    text-align: center;
+  }
+  .about-photo {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-photo-placeholder {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.5rem;
+    color: var(--soft);
+    opacity: 0.4;
+  }
+  .about-photo-note {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: rgba(17,17,17,0.75);
+    color: #fff;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.5rem;
+    text-align: center;
+  }
+  .about-photo-name {
+    font-weight: 500;
+    font-size: 0.88rem;
+    color: var(--ink);
+  }
+  .about-photo-uni {
+    font-size: 0.78rem;
+    color: var(--soft);
+    font-weight: 300;
+  }
+  .about-text h2 { margin-bottom: 1.5rem; }
+  .about-text p {
+    font-size: 0.95rem;
+    color: var(--soft);
+    font-weight: 300;
+    line-height: 1.85;
+    margin-bottom: 1.2rem;
+  }
+  .about-stats {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .about-stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.8rem;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .about-stat-label {
+    font-size: 0.75rem;
+    color: var(--soft);
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* SECTION BASE */
+  section { padding: 6rem 6vw; border-bottom: 1px solid var(--border); scroll-margin-top: 70px; }
+  .sec-inner { max-width: 1100px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .section-label::before { content: ''; width: 24px; height: 1px; background: var(--accent); display: block; }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+  h2 em { font-style: italic; color: var(--soft); }
+
+  .section-desc {
+    font-size: 0.95rem;
+    color: var(--soft);
+    font-weight: 300;
+    max-width: 560px;
+    line-height: 1.8;
+    margin-bottom: 4rem;
+  }
+
+  /* SERVICES */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .svc-card {
+    background: var(--bg);
+    padding: 2.5rem;
+    position: relative;
+    transition: background 0.2s;
+    display: flex;
+    flex-direction: column;
+  }
+  .svc-card:hover { background: var(--light-bg); }
+  .svc-features { flex: 1; }
+
+  .svc-card-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.2rem;
+    font-weight: 500;
+  }
+
+  .svc-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.35rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.9rem;
+    line-height: 1.25;
+  }
+
+  .svc-card p {
+    font-size: 0.88rem;
+    color: var(--soft);
+    font-weight: 300;
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+  }
+
+  .svc-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  .svc-features li {
+    font-size: 0.82rem;
+    color: var(--ink);
+    display: flex;
+    gap: 0.6rem;
+  }
+  .svc-features li::before {
+    content: '–';
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .svc-price {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.8rem;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+  .svc-price span {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    color: var(--soft);
+    font-weight: 300;
+  }
+
+  .btn-outline {
+    display: inline-block;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    padding: 0.7rem 1.5rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: background 0.2s, color 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-outline:hover { background: var(--ink); color: #fff; }
+
+  .svc-free .svc-price { color: #3a9c6f; }
+
+  /* QUIZ BANNER */
+  .quiz-banner {
+    background: var(--ink);
+    padding: 3.5rem 6vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--border);
+  }
+  .quiz-banner-text h3 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    line-height: 1.25;
+  }
+  .quiz-banner-text h3 em {
+    font-style: italic;
+    color: rgba(255,255,255,0.4);
+  }
+  .quiz-banner-text p {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.4);
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 480px;
+  }
+  .quiz-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: #c8963e;
+    color: #fff;
+    padding: 1rem 2rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif;
+    text-decoration: none;
+    transition: background 0.25s;
+    flex-shrink: 0;
+  }
+  .quiz-btn:hover { background: #b5842f; }
+  .quiz-btn svg {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.25s;
+  }
+  .quiz-btn:hover svg {
+    transform: translateX(3px);
+  }
+
+  /* COMPARISON TABLE */
+  .compare-sec { background: var(--light-bg); }
+  .table-wrap { overflow-x: auto; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+  }
+  thead tr { border-bottom: 2px solid var(--ink); }
+  th {
+    padding: 1rem 1.5rem;
+    text-align: left;
+    font-weight: 500;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  th:first-child { color: var(--soft); font-weight: 300; }
+  td {
+    padding: 0.9rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--soft);
+    font-weight: 300;
+  }
+  td:first-child { color: var(--ink); font-weight: 400; }
+  .col-highlight { background: rgba(200, 150, 62, 0.04); }
+  .col-highlight td:nth-child(2), .col-highlight th:nth-child(2) { color: var(--accent); }
+  tbody tr:hover td { background: rgba(0,0,0,0.02); }
+  .check { color: #3a9c6f; }
+  .cross { color: #ccc; }
+  .partial { color: var(--soft); font-style: italic; }
+
+  /* TUTORS */
+  .tutors-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .tutor-card {
+    background: var(--bg);
+    padding: 2.5rem;
+    transition: background 0.2s;
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+  .tutor-card:hover { background: var(--light-bg); }
+
+  .tutor-photo {
+    width: 80px;
+    height: 80px;
+    background: var(--border);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .tutor-photo-placeholder {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    color: var(--soft);
+    opacity: 0.5;
+  }
+
+  .tutor-info { flex: 1; }
+
+  .tutor-name {
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--ink);
+    margin-bottom: 0.25rem;
+  }
+
+  .tutor-uni {
+    font-size: 0.82rem;
+    color: var(--soft);
+    font-weight: 300;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+
+  .tutor-bio {
+    font-size: 0.85rem;
+    color: var(--soft);
+    font-weight: 300;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .tutor-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .chip {
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid var(--border);
+    color: var(--soft);
+    font-weight: 400;
+  }
+
+  /* TESTIMONIALS */
+  .testi-sec { background: var(--light-bg); }
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .t-card {
+    background: var(--bg);
+    padding: 2.5rem;
+  }
+
+  .t-stars {
+    color: var(--accent);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.2rem;
+  }
+
+  .t-quote {
+    font-size: 0.9rem;
+    color: var(--ink);
+    line-height: 1.75;
+    font-weight: 300;
+    margin-bottom: 1.8rem;
+  }
+
+  .t-author { display: flex; align-items: center; gap: 0.8rem; }
+  .t-ini {
+    width: 34px; height: 34px;
+    background: var(--ink);
+    color: #fff;
+    font-size: 0.75rem;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    border-radius: 50%;
+  }
+  .t-name { font-size: 0.82rem; font-weight: 500; }
+  .t-detail { font-size: 0.75rem; color: var(--soft); font-weight: 300; margin-top: 0.15rem; }
+  .t-verified {
+    font-size: 0.65rem;
+    color: #3a9c6f;
+    font-weight: 400;
+    margin-top: 0.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .testi-cta {
+    text-align: center;
+    margin-top: 3rem;
+  }
+  .testi-cta p {
+    font-size: 0.85rem;
+    color: var(--soft);
+    font-weight: 300;
+    margin-bottom: 0.8rem;
+  }
+  .testi-cta a {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 2px;
+    transition: color 0.2s;
+  }
+  .testi-cta a:hover { color: var(--ink); border-color: var(--ink); }
+
+  /* FAQ */
+  .faq-sec { background: var(--bg); }
+  .faq-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .faq-item {
+    background: var(--bg);
+    padding: 2rem 2.5rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .faq-item:hover { background: var(--light-bg); }
+  .faq-q {
+    font-weight: 500;
+    font-size: 0.92rem;
+    color: var(--ink);
+    margin-bottom: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .faq-q::after {
+    content: '+';
+    font-size: 1.2rem;
+    color: var(--accent);
+    flex-shrink: 0;
+    line-height: 1;
+    transition: transform 0.2s;
+  }
+  .faq-item.open .faq-q::after {
+    transform: rotate(45deg);
+  }
+  .faq-a {
+    font-size: 0.85rem;
+    color: var(--soft);
+    font-weight: 300;
+    line-height: 1.75;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  .faq-item.open .faq-a {
+    max-height: 200px;
+  }
+
+  /* BOOKING */
+  .book-sec { background: var(--ink); color: #fff; border-bottom: none; }
+  .book-sec .section-label { color: rgba(200,150,62,0.9); }
+  .book-sec .section-label::before { background: rgba(200,150,62,0.9); }
+  .book-sec h2 { color: #fff; }
+  .book-sec h2 em { color: rgba(255,255,255,0.4); }
+  .book-sec .section-desc { color: rgba(255,255,255,0.45); }
+
+  .book-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .book-card {
+    background: rgba(255,255,255,0.03);
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: background 0.2s;
+    cursor: pointer;
+  }
+  .book-card:hover { background: rgba(255,255,255,0.07); }
+
+  .book-card-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(200,150,62,0.9);
+    margin-bottom: 1rem;
+  }
+
+  .book-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 0.8rem;
+    line-height: 1.25;
+  }
+
+  .book-card p {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.4);
+    font-weight: 300;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    flex: 1;
+  }
+
+  .book-price {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem;
+    color: #fff;
+    margin-bottom: 1.5rem;
+  }
+  .book-price span {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.3);
+    font-weight: 300;
+  }
+  .book-price.free { color: #6bcf8f; }
+
+  .btn-white {
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.8);
+    padding: 0.7rem 1.5rem;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+    align-self: flex-start;
+  }
+  .btn-white:hover { background: #fff; color: var(--ink); border-color: #fff; }
+
+  /* BUNDLE DEALS */
+  .bundle-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(200,150,62,0.2);
+    border: 1px solid rgba(200,150,62,0.25);
+    margin-bottom: 3rem;
+  }
+  .bundle-card {
+    background: rgba(200,150,62,0.06);
+    padding: 2rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    transition: background 0.2s;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+  }
+  .bundle-card:hover { background: rgba(200,150,62,0.12); }
+  .bundle-info h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 0.3rem;
+  }
+  .bundle-info p {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.45);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+  .bundle-pricing {
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .bundle-old {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.3);
+    text-decoration: line-through;
+    margin-bottom: 0.2rem;
+  }
+  .bundle-new {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    color: #6bcf8f;
+  }
+  .bundle-save {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(200,150,62,0.9);
+    margin-top: 0.2rem;
+  }
+
+  /* CTA / FOOTER */
+  .footer-cta {
+    padding: 5rem 6vw;
+    background: var(--light-bg);
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+    max-width: 100%;
+  }
+
+  .footer-cta-left p {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-weight: 400;
+    line-height: 1.2;
+  }
+  .footer-cta-left p em { font-style: italic; color: var(--soft); }
+
+  .footer-cta-right { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+
+  footer {
+    padding: 2.5rem 6vw;
+    background: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .footer-note {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.25);
+    font-weight: 300;
+  }
+
+  .footer-contact {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.35);
+    font-weight: 300;
+  }
+  .footer-contact a {
+    color: rgba(255,255,255,0.5);
+    transition: color 0.2s;
+  }
+  .footer-contact a:hover { color: rgba(255,255,255,0.8); }
+
+  .footer-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1rem;
+  }
+
+  .footer-links { display: flex; gap: 2rem; }
+  .footer-links a {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: rgba(255,255,255,0.7); }
+
+  .footer-socials {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.6rem;
+  }
+  .footer-socials-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    font-weight: 300;
+  }
+  .social-link {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.65rem 1.2rem;
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.6);
+    transition: all 0.25s ease;
+    text-decoration: none;
+  }
+  .social-link:hover {
+    border-color: rgba(200,150,62,0.5);
+    color: #fff;
+    background: rgba(255,255,255,0.05);
+  }
+  .social-link svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+  .social-link span {
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+  .social-arrow {
+    font-size: 0.8rem;
+    opacity: 0.4;
+    transition: opacity 0.25s, transform 0.25s;
+  }
+  .social-link:hover .social-arrow {
+    opacity: 1;
+    transform: translateX(3px);
+  }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .services-grid, .book-grid { grid-template-columns: 1fr 1fr; }
+    .bundle-strip { grid-template-columns: 1fr; }
+    .testi-grid { grid-template-columns: 1fr; }
+    .tutors-grid { grid-template-columns: 1fr !important; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-photos { justify-content: center; }
+    .about-photo-card { max-width: 200px; }
+    .faq-grid { grid-template-columns: 1fr; }
+    .footer-cta { flex-direction: column; }
+    .quiz-banner { flex-direction: column; text-align: center; }
+    .quiz-banner-text p { max-width: 100%; }
+    .footer-right { align-items: flex-start; }
+    .footer-socials { align-items: flex-start; }
+    h2 { font-size: 1.8rem; }
+    .tutor-card { flex-direction: column; }
+  }
+  @media (max-width: 560px) {
+    .services-grid, .book-grid { grid-template-columns: 1fr !important; }
+    .about-photos { flex-direction: column; align-items: center; }
+    .hero-trust { flex-direction: column; gap: 0.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Med<em>Coach</em></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#tutors">Tutors</a></li>
+    <li><a href="#testimonials">Results</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#book" class="nav-cta">Book Now</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#tutors" onclick="toggleMenu()">Tutors</a>
+  <a href="#testimonials" onclick="toggleMenu()">Results</a>
+  <a href="#faq" onclick="toggleMenu()">FAQ</a>
+  <a href="https://calendly.com/stefanmoore-medcoach/30min" target="_blank" rel="noopener" class="btn-primary" onclick="toggleMenu()">Book Free Call</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <p class="hero-kicker">Medical Interview Coaching</p>
+    <h1>Get the offer<br>you <em>deserve</em></h1>
+    <p class="hero-sub">Coached by current UK medical students who sat the same interviews. MMI, panel, ethics — we prepare you for every format.</p>
+    <div class="hero-trust">
+      <div class="hero-trust-item">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M8 1l2.12 4.3 4.74.69-3.43 3.34.81 4.72L8 11.77l-4.24 2.23.81-4.72L1.14 5.94l4.74-.69L8 1z" fill="#c8963e"/></svg>
+        <span><strong>5.0</strong> average rating</span>
+      </div>
+      <div class="hero-trust-item">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M6.5 12.5l-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z" fill="#3a9c6f"/></svg>
+        <span>Current med students as tutors</span>
+      </div>
+      <div class="hero-trust-item">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 12.6A5.6 5.6 0 1113.6 8 5.6 5.6 0 018 13.6zM8.4 4H7.2v4.4l3.8 2.3.6-1-3.2-1.9V4z" fill="#555"/></svg>
+        <span>Sessions from £10</span>
+      </div>
+    </div>
+    <div class="hero-btns">
+      <a href="https://calendly.com/stefanmoore-medcoach/30min" target="_blank" rel="noopener" class="btn-primary">Free Taster Call</a>
+      <a href="#services" class="btn-secondary">See Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT / OUR STORY -->
+<section id="about" class="about-sec">
+  <div class="sec-inner">
+    <p class="section-label">Our Story</p>
+    <div class="about-grid">
+      <div class="about-photos">
+        <div class="about-photo-card">
+          <div class="about-photo">
+            <!-- REPLACE: Add your real photo here as <img src="stefan.jpg" alt="Stefan" style="width:100%;height:100%;object-fit:cover;"> -->
+            <span class="about-photo-placeholder">SM</span>
+            <span class="about-photo-note">Add your photo</span>
+          </div>
+          <div class="about-photo-name">Stefan Moore</div>
+          <div class="about-photo-uni">Peninsula Medical School</div>
+        </div>
+        <div class="about-photo-card">
+          <div class="about-photo">
+            <!-- REPLACE: Add Lochana's real photo here -->
+            <span class="about-photo-placeholder">LS</span>
+            <span class="about-photo-note">Add your photo</span>
+          </div>
+          <div class="about-photo-name">Lochana S.</div>
+          <div class="about-photo-uni">Peninsula Medical School</div>
+        </div>
+      </div>
+      <div class="about-text">
+        <h2>We sat the same interviews <em>last year</em></h2>
+        <p>MedCoach was built by two second-year medical students at Peninsula Medical School who know exactly what today's admissions panels are looking for. Between us, we received 6 offers from 6 interviews across Peninsula, Leicester, Newcastle, and Keele.</p>
+        <p>We went through the stress of MMI prep, the confusion of ethics stations, and the pressure of panel interviews. Now we use everything we learned to give you an unfair advantage on interview day.</p>
+        <p>Our coaching isn't theory from a textbook. It's practical, tested, and based on what actually worked for us and the students we've already helped.</p>
+        <div class="about-stats">
+          <div>
+            <div class="about-stat-num">6/6</div>
+            <div class="about-stat-label">Offers received</div>
+          </div>
+          <div>
+            <div class="about-stat-num">2nd yr</div>
+            <div class="about-stat-label">Med students</div>
+          </div>
+          <div>
+            <div class="about-stat-num">5.0</div>
+            <div class="about-stat-label">Avg rating</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="sec-inner">
+    <p class="section-label">What We Offer</p>
+    <h2>What we <em>offer</em></h2>
+    <p class="section-desc">From affordable group webinars to fully personalised coaching — choose the format that fits your stage of preparation.</p>
+
+    <div class="services-grid">
+      <!-- Webinar -->
+      <div class="svc-card">
+        <p class="svc-card-label">Group · Live Zoom</p>
+        <h3>Interview Webinar</h3>
+        <p>A structured live session covering the fundamentals of medical interviews — MMI, ethics frameworks, and how to structure compelling answers.</p>
+        <ul class="svc-features">
+          <li>Interview fundamentals taught</li>
+          <li>Live Q&A with current med students</li>
+          <li>Session recording provided</li>
+          <li>Budget-friendly group format</li>
+        </ul>
+        <div class="svc-price">£10 <span>/ person</span></div>
+        <a href="https://calendly.com/stefanmoore-medcoach/medical-interview-masterclass-webinar" target="_blank" rel="noopener" class="btn-outline">Book</a>
+      </div>
+
+      <!-- 1-to-1 Coaching -->
+      <div class="svc-card">
+        <p class="svc-card-label">1-to-1 · Zoom Call</p>
+        <h3>Personalised Coaching</h3>
+        <p>A fully tailored session focused on your individual strengths, weaknesses, and target medical schools. Detailed feedback and session notes included.</p>
+        <ul class="svc-features">
+          <li>Fully tailored to your profile</li>
+          <li>School-specific prep on request</li>
+          <li>Live Q&A throughout</li>
+          <li>Written session notes</li>
+        </ul>
+        <div class="svc-price">£30 <span>/ hour</span></div>
+        <a href="https://calendly.com/stefanmoore-medcoach/1-to-1-interview-coaching" target="_blank" rel="noopener" class="btn-outline">Book</a>
+      </div>
+
+      <!-- Mock Interview -->
+      <div class="svc-card">
+        <p class="svc-card-label">1-to-1 · Zoom Call</p>
+        <h3>Mock Interview</h3>
+        <p>A full simulated interview matched to the exact format of your chosen schools — MMI stations or panel, school-specific themes, with a full written report.</p>
+        <ul class="svc-features">
+          <li>School-specific format &amp; content</li>
+          <li>Full written feedback report</li>
+          <li>Free 15-min taster call</li>
+          <li>Final prep &amp; confidence building</li>
+        </ul>
+        <div class="svc-price">£30 <span>/ hour</span></div>
+        <a href="https://calendly.com/stefanmoore-medcoach/mock-interview-practice" target="_blank" rel="noopener" class="btn-outline">Book</a>
+      </div>
+
+      <!-- Free Taster -->
+      <div class="svc-card svc-free">
+        <p class="svc-card-label">Free · 15 Minutes</p>
+        <h3>Free Taster Call</h3>
+        <p>Meet your tutor, discuss your goals, and see if MedCoach is the right fit — completely free, no commitment needed.</p>
+        <ul class="svc-features">
+          <li>Meet your tutor beforehand</li>
+          <li>Discuss your target schools</li>
+          <li>No commitment required</li>
+          <li>Available for all paid sessions</li>
+        </ul>
+        <div class="svc-price" style="color:#3a9c6f">Free</div>
+        <a href="https://calendly.com/stefanmoore-medcoach/30min" target="_blank" rel="noopener" class="btn-outline">Book</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ BANNER -->
+<div class="quiz-banner">
+  <div class="quiz-banner-text">
+    <h3>Not sure which session <em>is right for you?</em></h3>
+    <p>Take our 1-minute quiz and we'll recommend the best option based on your interview timeline, experience level, and budget.</p>
+  </div>
+  <a href="/quiz.html" target="_blank" rel="noopener" class="quiz-btn">
+    Take the Quiz
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </a>
+</div>
+
+<!-- COMPARISON TABLE -->
+<section class="compare-sec">
+  <div class="sec-inner">
+    <p class="section-label">At a Glance</p>
+    <h2>Compare <em>all options</em></h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Webinar</th>
+            <th>Personalised Coaching</th>
+            <th>Mock Interview</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Price</td><td><strong>£10 / person</strong></td><td>£30 / hour</td><td>£30 / hour</td></tr>
+          <tr><td>Format</td><td>Live Zoom group</td><td>1-to-1 Zoom call</td><td>1-to-1 Zoom call</td></tr>
+          <tr><td>Personalised</td><td><span class="partial">Group Q&A only</span></td><td><span class="check">Fully tailored</span></td><td><span class="check">Fully tailored</span></td></tr>
+          <tr><td>School-specific prep</td><td><span class="cross">—</span></td><td><span class="partial">On request</span></td><td><span class="check">Core focus</span></td></tr>
+          <tr><td>Interview fundamentals</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="partial">Through practice</span></td></tr>
+          <tr><td>Live Q&A</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+          <tr><td>Recording provided</td><td><span class="check">✓</span></td><td><span class="cross">—</span></td><td><span class="cross">—</span></td></tr>
+          <tr><td>Free taster session</td><td><span class="cross">—</span></td><td><span class="check">15-min call</span></td><td><span class="check">15-min call</span></td></tr>
+          <tr><td>Best for</td><td>Early prep · budget</td><td>Targeted improvement</td><td>Final prep & confidence</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- TUTORS -->
+<section id="tutors">
+  <div class="sec-inner">
+    <p class="section-label">Our Tutors</p>
+    <h2>Coached by those who <em>just went through it</em></h2>
+    <p class="section-desc">Every tutor is a current UK medical student. They sat the same interviews recently and know what today's admissions panels want.</p>
+    <div class="tutors-grid">
+      <div class="tutor-card">
+        <div class="tutor-photo">
+          <!-- REPLACE: Add real photo as <img src="stefan.jpg" alt="Stefan Moore" style="width:100%;height:100%;object-fit:cover;"> -->
+          <span class="tutor-photo-placeholder">SM</span>
+        </div>
+        <div class="tutor-info">
+          <div class="tutor-name">Stefan Moore</div>
+          <div class="tutor-uni">Peninsula Medical School · Year 2</div>
+          <div class="tutor-bio">Received 2 offers from 2 interviews (Peninsula & Leicester). Specialises in MMI coaching, ethics stations, and helping students build structured, confident answers.</div>
+          <div class="tutor-chips">
+            <span class="chip">MMI</span><span class="chip">Ethics</span><span class="chip">Panel</span>
+          </div>
+        </div>
+      </div>
+      <div class="tutor-card">
+        <div class="tutor-photo">
+          <!-- REPLACE: Add real photo -->
+          <span class="tutor-photo-placeholder">LS</span>
+        </div>
+        <div class="tutor-info">
+          <div class="tutor-name">Lochana S.</div>
+          <div class="tutor-uni">Peninsula Medical School · Year 2</div>
+          <div class="tutor-bio">Received 4 offers from 4 interviews (Peninsula, Leicester, Newcastle & Keele). Focuses on mock interview delivery, NHS hot topics, and helping students think on their feet under pressure.</div>
+          <div class="tutor-chips">
+            <span class="chip">MMI</span><span class="chip">Hot Topics</span><span class="chip">Mock Sessions</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="testi-sec">
+  <div class="sec-inner">
+    <p class="section-label">Student Results</p>
+    <h2>What our students <em>say</em></h2>
+    <p class="section-desc" style="margin-bottom:3rem;">Real feedback from students who prepared with MedCoach and secured their offers.</p>
+    <div class="testi-grid">
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">"The webinar alone was worth ten times what I paid. In an hour I finally understood how to structure my MMI answers. I went from dreading interviews to feeling genuinely ready."</p>
+        <div class="t-author">
+          <div class="t-ini">R</div>
+          <div>
+            <div class="t-name">Rohan A.</div>
+            <div class="t-detail">Webinar · Now at Bristol Med School</div>
+            <div class="t-verified">
+              <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M6.5 12.5l-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z" fill="#3a9c6f"/></svg>
+              Verified student
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">"The school-specific mock was unbelievably accurate. My tutor had interviewed at the same university and recreated the exact station types. I walked in knowing what to expect."</p>
+        <div class="t-author">
+          <div class="t-ini">S</div>
+          <div>
+            <div class="t-name">Sophie L.</div>
+            <div class="t-detail">Mock Interview · Accepted to UCL</div>
+            <div class="t-verified">
+              <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M6.5 12.5l-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z" fill="#3a9c6f"/></svg>
+              Verified student
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">"Did the webinar first to get my bearings, then booked three 1-to-1 sessions for deep practice. That combination was perfect. Couldn't recommend MedCoach more highly."</p>
+        <div class="t-author">
+          <div class="t-ini">E</div>
+          <div>
+            <div class="t-name">Ellie W.</div>
+            <div class="t-detail">Webinar + 1-to-1 · Now at Edinburgh</div>
+            <div class="t-verified">
+              <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M6.5 12.5l-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z" fill="#3a9c6f"/></svg>
+              Verified student
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-cta">
+      <p>Want to see more reviews?</p>
+      <!-- REPLACE: Add your actual Google Reviews or Trustpilot link here -->
+      <a href="#" target="_blank" rel="noopener">Read all reviews on Google →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="faq-sec">
+  <div class="sec-inner">
+    <p class="section-label">Common Questions</p>
+    <h2>Frequently <em>asked</em></h2>
+    <p class="section-desc">Everything you need to know before booking.</p>
+    <div class="faq-grid">
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Which medical schools do you prep for?</div>
+        <div class="faq-a">We can tailor sessions for any UK medical school. Our tutors are most experienced with Peninsula, Leicester, Keele, and Newcastle, but we prep for all schools using MMI or panel formats. Tell us your target schools during your free taster call and we'll match the prep accordingly.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">How far in advance should I book?</div>
+        <div class="faq-a">Ideally 2 to 4 weeks before your interview. This gives you time to work on feedback and book follow-up sessions if needed. That said, even a session the week before can make a real difference. Slots fill up fast during peak interview season (November to March), so book early.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">What's your cancellation and refund policy?</div>
+        <div class="faq-a">Cancel or reschedule more than 24 hours before your session for a full refund, no questions asked. Cancellations within 24 hours are non-refundable. All changes are handled directly through your Calendly confirmation email.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">I'm not sure which service to pick. What do you recommend?</div>
+        <div class="faq-a">Not sure? <a href="/quiz.html" target="_blank" rel="noopener" style="color:var(--accent);border-bottom:1px solid var(--accent);">Take our 1-minute quiz</a> to find out which session suits your stage of preparation. Or book a free taster call and we'll recommend the best option based on your situation, how much prep you've done, and when your interviews are.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Are your tutors actually medical students?</div>
+        <div class="faq-a">Yes. Every MedCoach tutor is a current medical student at a UK university. We sat the same style of interviews within the last two years, so our advice is based on direct, recent experience rather than outdated textbook answers.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Can I book multiple sessions?</div>
+        <div class="faq-a">Absolutely. Many students start with the webinar, then book 1-to-1 coaching for targeted practice, and finish with a mock interview closer to the date. You can book as many sessions as you like through Calendly.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">How do sessions work technically?</div>
+        <div class="faq-a">Everything happens over Zoom. Once you book through Calendly, you'll receive an automatic confirmation email with your Zoom link. Just click the link at your session time and you're in. No software to install beyond Zoom.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK -->
+<section id="book" class="book-sec">
+  <div class="sec-inner">
+    <p class="section-label">Direct Booking</p>
+    <h2>Choose your session &amp; <em>book instantly</em></h2>
+    <p class="section-desc">All bookings are handled via Calendly. Select a time that suits you and confirm in seconds. <a href="https://calendly.com/stefanmoore-medcoach" target="_blank" rel="noopener" style="color:rgba(200,150,62,0.9);border-bottom:1px solid rgba(200,150,62,0.4);transition:border-color 0.2s;">View all sessions on Calendly →</a></p>
+
+    <!-- BUNDLE DEALS -->
+    <div class="bundle-strip">
+      <a href="https://calendly.com/stefanmoore-medcoach/2x-personalised-coaching-bundle" target="_blank" rel="noopener" class="bundle-card">
+        <div class="bundle-info">
+          <h3>2x Personalised Coaching</h3>
+          <p>Two one-hour 1-to-1 coaching sessions. Save £10 when you book together.</p>
+        </div>
+        <div class="bundle-pricing">
+          <div class="bundle-old">£60</div>
+          <div class="bundle-new">£50</div>
+          <div class="bundle-save">Save £10</div>
+        </div>
+      </a>
+      <a href="https://calendly.com/stefanmoore-medcoach/2x-personalised-mock-bundle" target="_blank" rel="noopener" class="bundle-card">
+        <div class="bundle-info">
+          <h3>2x Mock Interview</h3>
+          <p>Two full mock interviews. Perfect for practicing across different schools.</p>
+        </div>
+        <div class="bundle-pricing">
+          <div class="bundle-old">£60</div>
+          <div class="bundle-new">£50</div>
+          <div class="bundle-save">Save £10</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="book-grid">
+      <a href="https://calendly.com/stefanmoore-medcoach/medical-interview-masterclass-webinar" target="_blank" rel="noopener" class="book-card">
+        <p class="book-card-label">Group · Live Zoom</p>
+        <h3>Interview Webinar</h3>
+        <p>Live group session covering MMI, ethics frameworks, and answer structure. Recording included.</p>
+        <div class="book-price">£10 <span>/ person</span></div>
+        <span class="btn-white">Book Webinar</span>
+      </a>
+      <a href="https://calendly.com/stefanmoore-medcoach/1-to-1-interview-coaching" target="_blank" rel="noopener" class="book-card">
+        <p class="book-card-label">1-to-1 · Zoom Call</p>
+        <h3>Personalised Coaching</h3>
+        <p>Fully tailored coaching session focused on your strengths, weaknesses, and target schools.</p>
+        <div class="book-price">£30 <span>/ hour</span></div>
+        <span class="btn-white">Book on Calendly</span>
+      </a>
+      <a href="https://calendly.com/stefanmoore-medcoach/mock-interview-practice" target="_blank" rel="noopener" class="book-card">
+        <p class="book-card-label">1-to-1 · Zoom Call</p>
+        <h3>Mock Interview Practice</h3>
+        <p>Full simulated interview matched to the exact format of your chosen medical schools.</p>
+        <div class="book-price">£30 <span>/ hour</span></div>
+        <span class="btn-white">Book on Calendly</span>
+      </a>
+      <a href="https://calendly.com/stefanmoore-medcoach/30min" target="_blank" rel="noopener" class="book-card">
+        <p class="book-card-label">Free · 15 Minutes</p>
+        <h3>Free Taster Call</h3>
+        <p>Meet your tutor, discuss your goals, and see if MedCoach is the right fit for you.</p>
+        <div class="book-price free">Free</div>
+        <span class="btn-white">Book on Calendly</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER CTA -->
+<div class="footer-cta">
+  <div class="footer-cta-left">
+    <p>Start with a <em>free 15-minute call</em><br>— no commitment needed.</p>
+  </div>
+  <div class="footer-cta-right">
+    <a href="https://calendly.com/stefanmoore-medcoach/30min" target="_blank" rel="noopener" class="btn-primary">Book Free Taster Call</a>
+    <a href="https://calendly.com/stefanmoore-medcoach/medical-interview-masterclass-webinar" target="_blank" rel="noopener" class="btn-secondary">Book Webinar — £10</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    <div class="footer-logo">MedCoach</div>
+    <p class="footer-note">© 2025 MedCoach</p>
+    <p class="footer-contact">Questions? <a href="mailto:stefanmoore.medcoach@gmail.com">stefanmoore.medcoach@gmail.com</a></p>
+  </div>
+  <div class="footer-right">
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#tutors">Tutors</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="footer-socials">
+      <p class="footer-socials-label">Follow us on socials</p>
+      <a href="https://www.instagram.com/medcoach.uk/" target="_blank" rel="noopener" class="social-link">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        <span>@medcoach.uk</span>
+        <span class="social-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu toggle
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+    document.querySelector('.hamburger').classList.toggle('active');
+    document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
+  }
+</script>
+
+</body>
+</html>
