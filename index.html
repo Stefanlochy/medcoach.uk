@@ -2145,25 +2145,44 @@
       return;
     }
 
-    // Send email to Brevo
-    fetch('https://api.brevo.com/v3/contacts', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'api-key': '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'
-      },
-      body: JSON.stringify({
-        email: email,
-        listIds: [3],
-        attributes: {
-          SOURCE: 'exit-intent-popup',
-          DISCOUNT_CODE: 'FIRST10'
-        },
-        updateEnabled: true
-      })
-    }).catch(function() {
-      // Still show code even if submission fails
-    });
+    // Send email to Brevo via form submission
+    var iframe = document.createElement('iframe');
+    iframe.name = 'brevo_target';
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+
+    var form = document.createElement('form');
+    form.method = 'POST';
+    form.action = 'https://9a069c79.sibforms.com/serve/MUIFAO6gheb2g9EoGRr9RfQgSHnF1NVUgDwBc67a4DNTLUCLoR0KZ1aCoJLq8JqzSduXCKAuERlQlt4HgIuYBIeMTgMVdEJCov_AMfsx_vKOeR7rzdZTHMIrZNeZk8r6v0QpkxO7W5cc_dndhazUMpUA2ubPJzHFyGlXBfPxNFo20oOPFFAJ4U2FdfJMY4vf_20wT2vAu1wmrvelqg==';
+    form.target = 'brevo_target';
+    form.style.display = 'none';
+
+    var emailInput = document.createElement('input');
+    emailInput.type = 'email';
+    emailInput.name = 'EMAIL';
+    emailInput.value = email;
+    form.appendChild(emailInput);
+
+    var localeInput = document.createElement('input');
+    localeInput.type = 'hidden';
+    localeInput.name = 'locale';
+    localeInput.value = 'en';
+    form.appendChild(localeInput);
+
+    var typeInput = document.createElement('input');
+    typeInput.type = 'hidden';
+    typeInput.name = 'html_type';
+    typeInput.value = 'simple';
+    form.appendChild(typeInput);
+
+    document.body.appendChild(form);
+    form.submit();
+
+    // Clean up after submission
+    setTimeout(function() {
+      document.body.removeChild(form);
+      document.body.removeChild(iframe);
+    }, 3000);
 
     // Show success step
     document.getElementById('exitStep1').style.display = 'none';
