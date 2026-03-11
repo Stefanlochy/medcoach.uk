@@ -920,6 +920,169 @@
   .bundle-new { font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: #6bcf8f; }
   .bundle-save { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(200,150,62,0.9); margin-top: 0.2rem; }
 
+  /* FREE RESOURCE */
+  .resource-sec { background: var(--ink); color: #fff; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .resource-sec .section-label { color: rgba(200,150,62,0.9); }
+  .resource-sec .section-label::before { background: rgba(200,150,62,0.9); }
+  .resource-sec h2 { color: #fff; }
+  .resource-sec h2 em { color: rgba(255,255,255,0.35); }
+  .resource-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .resource-desc {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.45);
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 1.8rem;
+  }
+  .resource-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+  }
+  .resource-features li {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.6);
+    font-weight: 300;
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+  }
+  .resource-features li::before {
+    content: '✓';
+    color: #6bcf8f;
+    font-size: 0.75rem;
+    margin-top: 0.1rem;
+    flex-shrink: 0;
+  }
+  .resource-form {
+    display: flex;
+    gap: 0;
+    margin-bottom: 0.8rem;
+  }
+  .resource-email {
+    flex: 1;
+    padding: 0.9rem 1.1rem;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-right: none;
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+    font-size: 0.88rem;
+    font-family: 'DM Sans', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .resource-email::placeholder { color: rgba(255,255,255,0.3); }
+  .resource-email:focus { border-color: var(--accent); }
+  .resource-btn {
+    background: var(--accent);
+    color: #fff;
+    border: 1px solid var(--accent);
+    padding: 0.9rem 1.5rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .resource-btn:hover { background: #b5842f; border-color: #b5842f; }
+  .resource-fine {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.25);
+    font-weight: 300;
+  }
+  .resource-success {
+    display: none;
+    padding: 1rem 1.2rem;
+    background: rgba(107,207,143,0.1);
+    border: 1px solid rgba(107,207,143,0.3);
+    color: #6bcf8f;
+    font-size: 0.85rem;
+    font-weight: 400;
+    margin-bottom: 0.8rem;
+  }
+  .resource-success.show { display: block; }
+
+  /* Resource visual card */
+  .resource-card {
+    border: 1px solid rgba(255,255,255,0.1);
+    overflow: hidden;
+  }
+  .resource-card-header {
+    background: var(--accent);
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .resource-card-tag {
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    font-weight: 500;
+  }
+  .resource-card-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    color: #fff;
+    font-weight: 400;
+  }
+  .resource-card-body {
+    background: rgba(255,255,255,0.03);
+    padding: 1.2rem 0;
+  }
+  .resource-preview-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 0.7rem 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: background 0.2s;
+  }
+  .resource-preview-item:last-of-type { border-bottom: none; }
+  .resource-preview-item:hover { background: rgba(255,255,255,0.04); }
+  .rp-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 0.85rem;
+    color: var(--accent);
+    opacity: 0.8;
+    flex-shrink: 0;
+    min-width: 22px;
+  }
+  .rp-text {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.6);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+  .rp-blur .rp-text {
+    filter: blur(4px);
+    user-select: none;
+    color: rgba(255,255,255,0.3);
+  }
+  .resource-card-more {
+    padding: 0.8rem 1.5rem 0;
+    font-size: 0.75rem;
+    color: var(--accent);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    opacity: 0.8;
+  }
+
+  @media (max-width: 900px) {
+    .resource-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+
   /* CTA / FOOTER */
   .footer-cta {
     padding: 6rem 6vw;
@@ -2251,6 +2414,46 @@
   </div>
 </section>
 
+<!-- FREE RESOURCE -->
+<section class="resource-sec">
+  <div class="sec-inner">
+    <div class="resource-grid">
+      <div class="resource-text">
+        <p class="section-label reveal">Free Resource</p>
+        <h2 class="reveal">50 MMI questions <em>to practise today</em></h2>
+        <p class="resource-desc reveal">The most common MMI station types, real ethics scenarios, and the question frameworks that get offers — completely free. No catch.</p>
+        <ul class="resource-features reveal">
+          <li>50 real-style MMI questions across all station types</li>
+          <li>Ethics, empathy, role play, and hot topic prompts</li>
+          <li>The answer framework our tutors used to get 6 from 6</li>
+          <li>Delivered instantly to your inbox</li>
+        </ul>
+        <div class="resource-form reveal">
+          <input type="email" id="resourceEmail" class="resource-email" placeholder="Your email address">
+          <button class="resource-btn" onclick="submitResourceEmail()">Send Me the Questions</button>
+        </div>
+        <p class="resource-fine">No spam. Just the questions and occasional coaching tips. Unsubscribe any time.</p>
+      </div>
+      <div class="resource-visual reveal">
+        <div class="resource-card">
+          <div class="resource-card-header">
+            <span class="resource-card-tag">Free Download</span>
+            <span class="resource-card-title">50 MMI Questions</span>
+          </div>
+          <div class="resource-card-body">
+            <div class="resource-preview-item"><span class="rp-num">01</span><span class="rp-text">Ethics — A patient refuses life-saving treatment...</span></div>
+            <div class="resource-preview-item"><span class="rp-num">02</span><span class="rp-text">Empathy — Your colleague makes a clinical error...</span></div>
+            <div class="resource-preview-item"><span class="rp-num">03</span><span class="rp-text">Role play — Break bad news to a worried parent...</span></div>
+            <div class="resource-preview-item rp-blur"><span class="rp-num">04</span><span class="rp-text">Hot topic — The NHS is facing a staffing crisis...</span></div>
+            <div class="resource-preview-item rp-blur"><span class="rp-num">05</span><span class="rp-text">Communication — Explain a diagnosis in lay terms...</span></div>
+            <div class="resource-card-more">+ 45 more questions inside</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- BOOK -->
 <section id="book" class="book-sec">
   <div class="sec-inner">
@@ -2590,6 +2793,55 @@
     document.getElementById('exitHours').textContent = String(Math.floor(remaining / 3600000)).padStart(2,'0');
     document.getElementById('exitMins').textContent = String(Math.floor((remaining % 3600000) / 60000)).padStart(2,'0');
     document.getElementById('exitSecs').textContent = String(Math.floor((remaining % 60000) / 1000)).padStart(2,'0');
+  }
+
+  function submitResourceEmail() {
+    var email = document.getElementById('resourceEmail').value.trim();
+    if (!email || !email.includes('@') || !email.includes('.')) {
+      document.getElementById('resourceEmail').style.borderColor = '#e74c3c';
+      document.getElementById('resourceEmail').placeholder = 'Please enter a valid email';
+      return;
+    }
+
+    // Submit to Brevo MMI Questions Delivery list
+    var iframe = document.createElement('iframe');
+    iframe.name = 'resource_target';
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+
+    var form = document.createElement('form');
+    form.method = 'POST';
+    form.action = 'https://9a069c79.sibforms.com/serve/MUIFAKDUafo8pmAIgFsJ-8GlmY2bVNi6jZiCjTr_VS54zv1Hg9ZdwTVoT8P6tWNlV89SUFfIO5Z_QjY3ixTcuJJsggR11557wgg9OVzzMio35j17IA_WknaHIdX7lhhtJ66O6jTgtdCbgWILiftqqePjEHY5vn5JQOOKoSJdmMrKq7cVa1e5N5PCTRqr7i88CFR_gCj1X5cVtUXFVQ==';
+    form.target = 'resource_target';
+    form.style.display = 'none';
+
+    var emailInput = document.createElement('input');
+    emailInput.type = 'email';
+    emailInput.name = 'EMAIL';
+    emailInput.value = email;
+    form.appendChild(emailInput);
+
+    var localeInput = document.createElement('input');
+    localeInput.type = 'hidden';
+    localeInput.name = 'locale';
+    localeInput.value = 'en';
+    form.appendChild(localeInput);
+
+    document.body.appendChild(form);
+    form.submit();
+
+    setTimeout(function() {
+      document.body.removeChild(form);
+      document.body.removeChild(iframe);
+    }, 3000);
+
+    // Show success message
+    document.querySelector('.resource-form').style.display = 'none';
+    document.querySelector('.resource-fine').style.display = 'none';
+    var success = document.createElement('div');
+    success.className = 'resource-success show';
+    success.textContent = '✓ Check your inbox — your 50 MMI questions are on their way.';
+    document.querySelector('.resource-form').parentNode.insertBefore(success, document.querySelector('.resource-form'));
   }
 
   function submitExitEmail() {
