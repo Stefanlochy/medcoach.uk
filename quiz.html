@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MedCoach | Which Service Is Right for You?</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -12,7 +13,9 @@
     background: #fafaf8;
     color: #111;
     min-height: 100vh;
+    animation: fadeIn 0.5s ease-out;
   }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   a { color: inherit; text-decoration: none; }
 
   .header {
@@ -24,10 +27,17 @@
     justify-content: space-between;
   }
   .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+  }
+  .logo-text {
     font-family: 'DM Serif Display', Georgia, serif;
     font-size: 1.2rem;
+    color: #111;
   }
-  .logo em { color: #c8963e; font-style: italic; }
+  .logo-text em { color: #c8963e; font-style: italic; }
   .header-tag {
     font-size: 0.7rem;
     letter-spacing: 0.15em;
@@ -43,7 +53,7 @@
   .progress-fill {
     height: 100%;
     background: #c8963e;
-    transition: width 0.5s ease;
+    transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .container {
@@ -97,19 +107,24 @@
     text-align: left;
     cursor: pointer;
     font-family: 'DM Sans', sans-serif;
-    transition: background 0.2s, color 0.2s;
+    transition: background 0.2s, color 0.2s, padding-left 0.2s;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
-  .option-btn:hover { background: #fafaf8; }
-  .option-btn.selected { background: #111; color: #fff; }
+  .option-btn:hover {
+    background: #fafaf8;
+    padding-left: 1.9rem;
+  }
+  .option-btn.selected { background: #111; color: #fff; padding-left: 1.9rem; }
   .option-btn .arrow {
     font-size: 0.75rem;
     opacity: 0.2;
     transition: opacity 0.2s;
+    flex-shrink: 0;
   }
-  .option-btn.selected .arrow { opacity: 1; }
+  .option-btn.selected .arrow,
+  .option-btn:hover .arrow { opacity: 1; }
 
   .back-btn {
     background: none;
@@ -122,7 +137,9 @@
     margin-top: 1.5rem;
     padding: 0.5rem 0;
     font-family: 'DM Sans', sans-serif;
+    transition: color 0.2s;
   }
+  .back-btn:hover { color: #111; }
 
   .view {
     transition: opacity 0.3s ease, transform 0.3s ease;
@@ -260,7 +277,9 @@
     padding: 0.5rem 0;
     font-family: 'DM Sans', sans-serif;
     border-bottom: 1px solid #e5e5e5;
+    transition: color 0.2s;
   }
+  .retake-btn:hover { color: #111; }
   .unsure-link {
     font-size: 0.78rem;
     letter-spacing: 0.04em;
@@ -270,13 +289,25 @@
     border-bottom: 1px solid #c8963e;
     padding-bottom: 2px;
     font-family: 'DM Sans', sans-serif;
+    transition: color 0.2s;
   }
+  .unsure-link:hover { color: #111; border-color: #111; }
 </style>
 </head>
 <body>
 
 <div class="header">
-  <div class="logo">Med<em>Coach</em></div>
+  <a href="/" class="logo">
+    <svg width="120" height="22" viewBox="0 0 270 44" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 8 Q8 20 16 20 Q24 20 24 8" fill="none" stroke="#c8963e" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="8" cy="6" r="2.5" fill="#c8963e"/>
+      <circle cx="24" cy="6" r="2.5" fill="#c8963e"/>
+      <line x1="16" y1="20" x2="16" y2="30" stroke="#c8963e" stroke-width="1.8"/>
+      <circle cx="16" cy="34" r="4" fill="none" stroke="#c8963e" stroke-width="1.8"/>
+      <text x="42" y="34" font-family="'DM Serif Display', Georgia, serif" font-size="34" font-weight="400" fill="#c8963e">Med</text>
+      <text x="122" y="34" font-family="'DM Serif Display', Georgia, serif" font-size="34" font-weight="400" fill="#c8963e" font-style="italic">Coach</text>
+    </svg>
+  </a>
   <div class="header-tag">Service Finder</div>
 </div>
 
@@ -426,34 +457,23 @@ function renderQuestion() {
     const btn = document.createElement("button");
     btn.className = "option-btn";
     if (answers[q.id] === opt.value) btn.classList.add("selected");
-    btn.innerHTML = opt.label + '<span class="arrow">→</span>';
-    btn.addEventListener("click", function() { selectOption(opt.value); });
-    btn.addEventListener("mouseenter", function() {
-      if (!this.classList.contains("selected")) this.style.background = "#fafaf8";
-    });
-    btn.addEventListener("mouseleave", function() {
-      if (!this.classList.contains("selected")) this.style.background = "#fff";
-    });
+    btn.innerHTML = '<span>' + opt.label + '</span><span class="arrow">→</span>';
+    btn.addEventListener("click", function() { selectOption(opt.value, btn); });
     container.appendChild(btn);
   });
 }
 
-function selectOption(value) {
+function selectOption(value, clickedBtn) {
   answers[QUESTIONS[current].id] = value;
 
   var btns = document.querySelectorAll(".option-btn");
-  btns.forEach(function(b) {
-    b.classList.remove("selected");
-    b.style.background = "#fff";
-  });
-  event.currentTarget.classList.add("selected");
-  event.currentTarget.style.background = "#111";
+  btns.forEach(function(b) { b.classList.remove("selected"); });
+  clickedBtn.classList.add("selected");
 
   setTimeout(function() {
     var qView = document.getElementById("questionView");
     qView.style.opacity = "0";
     qView.style.transform = "translateY(12px)";
-
     setTimeout(function() {
       if (current < QUESTIONS.length - 1) {
         current++;
@@ -465,7 +485,7 @@ function selectOption(value) {
       qView.style.opacity = "1";
       qView.style.transform = "translateY(0)";
     }, 300);
-  }, 400);
+  }, 380);
 }
 
 function goBack() {
@@ -489,151 +509,78 @@ function getRecommendations() {
   var results = [];
 
   if (budget === "try") {
-    results.push(Object.assign({}, SERVICES.taster, {
-      why: "You want to try before you commit — a free taster call lets you meet your tutor and talk through your goals with zero pressure.",
-      priority: 100
-    }));
+    results.push(Object.assign({}, SERVICES.taster, { why: "You want to try before you commit — a free taster call lets you meet your tutor and talk through your goals with zero pressure.", priority: 100 }));
   }
-
   if (budget === "low") {
-    results.push(Object.assign({}, SERVICES.webinar, {
-      why: "At £10, the webinar is the most affordable way to learn interview fundamentals, get a recording to revisit, and ask questions live.",
-      priority: 95
-    }));
+    results.push(Object.assign({}, SERVICES.webinar, { why: "At £10, the webinar is the most affordable way to learn interview fundamentals, get a recording to revisit, and ask questions live.", priority: 95 }));
   }
-
   if (prep === "none" && concern === "fundamentals") {
-    results.push(Object.assign({}, SERVICES.webinar, {
-      why: "You're starting fresh and need to understand how medical interviews work — the webinar covers exactly this in a structured live session.",
-      priority: 90
-    }));
+    results.push(Object.assign({}, SERVICES.webinar, { why: "You're starting fresh and need to understand how medical interviews work — the webinar covers exactly this in a structured live session.", priority: 90 }));
   }
-
   if (prep === "none" && concern !== "fundamentals" && budget !== "low") {
-    results.push(Object.assign({}, SERVICES.coaching, {
-      why: "You haven't started prep yet but have specific areas you want to work on — a 1-to-1 session lets your tutor build a plan around your exact needs.",
-      priority: 85
-    }));
+    results.push(Object.assign({}, SERVICES.coaching, { why: "You haven't started prep yet but have specific areas you want to work on — a 1-to-1 session lets your tutor build a plan around your exact needs.", priority: 85 }));
   }
-
   if ((prep === "some" || prep === "fair") && concern === "structure") {
     if ((schools === "two" || schools === "many") && budget !== "low") {
-      results.push(Object.assign({}, SERVICES.coachingBundle, {
-        why: "You need help structuring answers and you're interviewing at multiple schools — two coaching sessions give you time to practise across different formats and save £10.",
-        priority: 88
-      }));
+      results.push(Object.assign({}, SERVICES.coachingBundle, { why: "You need help structuring answers and you're interviewing at multiple schools — two coaching sessions give you time to practise across different formats and save £10.", priority: 88 }));
     } else if (budget !== "low") {
-      results.push(Object.assign({}, SERVICES.coaching, {
-        why: "You've done some reading but need help turning that into structured, confident answers — this is exactly what 1-to-1 coaching focuses on.",
-        priority: 87
-      }));
+      results.push(Object.assign({}, SERVICES.coaching, { why: "You've done some reading but need help turning that into structured, confident answers — this is exactly what 1-to-1 coaching focuses on.", priority: 87 }));
     }
   }
-
   if (concern === "practice" && (prep === "fair" || prep === "lots")) {
     if ((schools === "two" || schools === "many") && budget !== "low") {
-      results.push(Object.assign({}, SERVICES.mockBundle, {
-        why: "You've prepped well and need realistic pressure — with multiple schools, two mocks let you practise different formats and save £10.",
-        priority: 92
-      }));
+      results.push(Object.assign({}, SERVICES.mockBundle, { why: "You've prepped well and need realistic pressure — with multiple schools, two mocks let you practise different formats and save £10.", priority: 92 }));
     } else if (budget !== "low") {
-      results.push(Object.assign({}, SERVICES.mock, {
-        why: "You've done solid prep and now need to test yourself under real interview conditions — a mock simulates the exact format you'll face.",
-        priority: 91
-      }));
+      results.push(Object.assign({}, SERVICES.mock, { why: "You've done solid prep and now need to test yourself under real interview conditions — a mock simulates the exact format you'll face.", priority: 91 }));
     }
   }
-
-  if (concern === "practice" && (prep === "none" || prep === "some")) {
-    if (budget !== "low") {
-      results.push(Object.assign({}, SERVICES.coaching, {
-        why: "You want realistic practice, but you haven't done enough prep yet to get the most from a mock. A coaching session first will give you the foundations, then you can book a mock when you're ready.",
-        priority: 86
-      }));
-    }
+  if (concern === "practice" && (prep === "none" || prep === "some") && budget !== "low") {
+    results.push(Object.assign({}, SERVICES.coaching, { why: "You want realistic practice, but you haven't done enough prep yet to get the most from a mock. A coaching session first will give you the foundations.", priority: 86 }));
   }
-
   if (concern === "school-specific") {
     if ((schools === "two" || schools === "many") && budget !== "low") {
-      results.push(Object.assign({}, SERVICES.mockBundle, {
-        why: "You want school-specific preparation across multiple universities — the 2-session bundle lets you do a tailored mock for each school and saves you £10.",
-        priority: 93
-      }));
+      results.push(Object.assign({}, SERVICES.mockBundle, { why: "You want school-specific preparation across multiple universities — the 2-session bundle lets you do a tailored mock for each school and saves you £10.", priority: 93 }));
     } else if (budget !== "low") {
-      results.push(Object.assign({}, SERVICES.mock, {
-        why: "You want preparation tailored to a specific school — the mock interview is built around the exact format and station types your university uses.",
-        priority: 92
-      }));
+      results.push(Object.assign({}, SERVICES.mock, { why: "You want preparation tailored to a specific school — the mock interview is built around the exact format and station types your university uses.", priority: 92 }));
     }
   }
-
   if (timeline === "soon" && (prep === "fair" || prep === "lots") && budget !== "low") {
-    results.push(Object.assign({}, SERVICES.mock, {
-      why: "Your interview is days away and you've already prepped — a mock is the best way to build final confidence and iron out any last issues.",
-      priority: 94
-    }));
+    results.push(Object.assign({}, SERVICES.mock, { why: "Your interview is days away and you've already prepped — a mock is the best way to build final confidence and iron out any last issues.", priority: 94 }));
   }
-
   if (timeline === "soon" && (prep === "none" || prep === "some") && budget !== "low") {
-    results.push(Object.assign({}, SERVICES.coaching, {
-      why: "Your interview is very close and you need to cover ground quickly — a 1-to-1 session is the fastest way to get focused, personalised preparation.",
-      priority: 93
-    }));
+    results.push(Object.assign({}, SERVICES.coaching, { why: "Your interview is very close and you need to cover ground quickly — a 1-to-1 session is the fastest way to get focused, personalised preparation.", priority: 93 }));
   }
-
   if (timeline === "none" && prep === "none") {
-    results.push(Object.assign({}, SERVICES.webinar, {
-      why: "You're early in the process and haven't started prep — the webinar gives you a strong foundation in interview technique before you even have a date.",
-      priority: 82
-    }));
-    results.push(Object.assign({}, SERVICES.taster, {
-      why: "Not sure where to start? A free call lets you talk through your situation and get a personalised recommendation from your tutor.",
-      priority: 78
-    }));
+    results.push(Object.assign({}, SERVICES.webinar, { why: "You're early in the process and haven't started prep — the webinar gives you a strong foundation in interview technique before you even have a date.", priority: 82 }));
+    results.push(Object.assign({}, SERVICES.taster, { why: "Not sure where to start? A free call lets you talk through your situation and get a personalised recommendation from your tutor.", priority: 78 }));
   }
-
   if (budget === "high" && (schools === "two" || schools === "many")) {
     var hasMockBundle = results.some(function(r) { return r.name === SERVICES.mockBundle.name; });
     var hasCoachingBundle = results.some(function(r) { return r.name === SERVICES.coachingBundle.name; });
     if (!hasMockBundle) {
-      results.push(Object.assign({}, SERVICES.mockBundle, {
-        why: "With multiple interviews and budget flexibility, the mock bundle gives you two full simulations across different school formats and saves £10.",
-        priority: 80
-      }));
+      results.push(Object.assign({}, SERVICES.mockBundle, { why: "With multiple interviews and budget flexibility, the mock bundle gives you two full simulations across different school formats and saves £10.", priority: 80 }));
     }
     if (!hasCoachingBundle && concern === "structure") {
-      results.push(Object.assign({}, SERVICES.coachingBundle, {
-        why: "Two coaching sessions let you work on structuring answers in depth across multiple sessions, with time to improve between them.",
-        priority: 79
-      }));
+      results.push(Object.assign({}, SERVICES.coachingBundle, { why: "Two coaching sessions let you work on structuring answers in depth across multiple sessions, with time to improve between them.", priority: 79 }));
     }
   }
-
   if (timeline === "mid" && budget === "mid" && (prep === "some" || prep === "fair")) {
     var hasCoaching = results.some(function(r) { return r.name === SERVICES.coaching.name; });
     if (!hasCoaching) {
-      results.push(Object.assign({}, SERVICES.coaching, {
-        why: "With a few weeks until your interview and some prep under your belt, a 1-to-1 coaching session is the sweet spot — targeted, personal, and great value.",
-        priority: 84
-      }));
+      results.push(Object.assign({}, SERVICES.coaching, { why: "With a few weeks until your interview and some prep under your belt, a 1-to-1 coaching session is the sweet spot — targeted, personal, and great value.", priority: 84 }));
     }
   }
 
   // Deduplicate
   var seen = {};
   results.forEach(function(r) {
-    if (!seen[r.name] || r.priority > seen[r.name].priority) {
-      seen[r.name] = r;
-    }
+    if (!seen[r.name] || r.priority > seen[r.name].priority) seen[r.name] = r;
   });
   var final = Object.values(seen);
   final.sort(function(a, b) { return b.priority - a.priority; });
 
   if (final.length === 0) {
-    final.push(Object.assign({}, SERVICES.taster, {
-      why: "Based on your answers, the best next step is a free call with your tutor to figure out exactly what you need.",
-      priority: 100
-    }));
+    final.push(Object.assign({}, SERVICES.taster, { why: "Based on your answers, the best next step is a free call with your tutor to figure out exactly what you need.", priority: 100 }));
   }
 
   return final.slice(0, 3);
@@ -642,8 +589,7 @@ function getRecommendations() {
 function showResults() {
   var recs = getRecommendations();
   document.getElementById("progressFill").style.width = "100%";
-  document.getElementById("resultsDesc").textContent =
-    "Based on your answers, " + (recs.length === 1 ? "this is the best option" : "these are the best options") + " for where you are right now.";
+  document.getElementById("resultsDesc").textContent = "Based on your answers, " + (recs.length === 1 ? "this is the best option" : "these are the best options") + " for where you are right now.";
 
   var grid = document.getElementById("resultsGrid");
   grid.innerHTML = "";
@@ -651,12 +597,10 @@ function showResults() {
   recs.forEach(function(r, i) {
     var card = document.createElement("div");
     card.className = "result-card " + (i === 0 ? "top" : "alt");
-
     var tagClass = i === 0 ? "gold" : "gold-dark";
     var tagLabel = i === 0 ? "★ Top Pick" : "Option " + (i + 1);
     var priceColor = r.price === "Free" ? "#6bcf8f" : (i === 0 ? "#fff" : "#111");
     var btnClass = i === 0 ? "white" : "outline";
-
     card.innerHTML =
       '<div class="result-header">' +
         '<span class="result-tag ' + tagClass + '">' + tagLabel + ' · ' + r.tag + '</span>' +
@@ -666,7 +610,6 @@ function showResults() {
       '<p class="result-desc">' + r.description + '</p>' +
       '<p class="result-why">"' + r.why + '"</p>' +
       '<a href="' + r.link + '" target="_blank" rel="noopener noreferrer" class="btn-book ' + btnClass + '">' + r.btnText + '</a>';
-
     grid.appendChild(card);
   });
 
@@ -690,10 +633,8 @@ function restart() {
   answers = {};
   var qView = document.getElementById("questionView");
   var rView = document.getElementById("resultsView");
-
   rView.classList.remove("visible");
   rView.classList.add("hidden");
-
   setTimeout(function() {
     rView.style.display = "none";
     qView.style.display = "block";
@@ -705,7 +646,6 @@ function restart() {
   }, 300);
 }
 
-// Init
 renderQuestion();
 </script>
 
