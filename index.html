@@ -86,6 +86,17 @@
   }
   .nav-cta:hover { color: var(--accent) !important; border-color: var(--accent) !important; }
 
+  .nav-free {
+    font-size: 0.78rem !important;
+    color: #6bcf8f !important;
+    letter-spacing: 0.04em !important;
+    text-transform: uppercase !important;
+    border-bottom: 1px solid rgba(107,207,143,0.4) !important;
+    padding-bottom: 1px;
+    transition: color 0.2s, border-color 0.2s !important;
+  }
+  .nav-free:hover { color: #4db878 !important; border-color: #4db878 !important; }
+
   /* THEME TOGGLE */
   .theme-toggle {
     background: none;
@@ -615,7 +626,7 @@
   td:first-child { color: var(--ink); font-weight: 400; }
   tbody tr:hover td { background: rgba(200,150,62,0.03); }
   .check { color: #3a9c6f; }
-  .cross { color: var(--border); }
+  .cross { color: var(--soft); opacity: 0.4; }
   .partial { color: var(--soft); font-style: italic; }
 
   /* TUTORS */
@@ -803,8 +814,8 @@
   .book-sec .section-label { color: rgba(200,150,62,0.9); }
   .book-sec .section-label::before { background: rgba(200,150,62,0.9); }
   .book-sec h2 { color: var(--bg); }
-  .book-sec h2 em { color: rgba(128,128,128,0.7); }
-  .book-sec .section-desc { color: rgba(128,128,128,0.7); }
+  .book-sec h2 em { color: rgba(255,255,255,0.35); }
+  .book-sec .section-desc { color: rgba(255,255,255,0.4); }
 
   [data-theme="dark"] .book-sec { background: #0a0a08; }
 
@@ -921,20 +932,36 @@
   .bundle-save { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(200,150,62,0.9); margin-top: 0.2rem; }
 
   /* FREE RESOURCE */
-  .resource-sec { background: var(--ink); color: #fff; border-bottom: 1px solid rgba(255,255,255,0.06); }
-  .resource-sec .section-label { color: rgba(200,150,62,0.9); }
-  .resource-sec .section-label::before { background: rgba(200,150,62,0.9); }
-  .resource-sec h2 { color: #fff; }
-  .resource-sec h2 em { color: rgba(255,255,255,0.35); }
+  .resource-sec { background: #1a2e1a; color: #fff; border-bottom: 1px solid rgba(107,207,143,0.12); }
+  .resource-sec .section-label { color: #6bcf8f; }
+  .resource-sec .section-label::before { background: #6bcf8f; }
+  .resource-sec h2 { color: #f0ede8; }
+  .resource-sec h2 em { color: rgba(240,237,232,0.4); }
+  [data-theme="dark"] .resource-sec { background: #0d1a0d; border-bottom-color: rgba(107,207,143,0.08); }
   .resource-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 5rem;
     align-items: center;
   }
+  .resource-free-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #0d1a0d;
+    background: #6bcf8f;
+    padding: 0.35rem 0.9rem;
+    margin-bottom: 1rem;
+    border-radius: 2px;
+  }
+
   .resource-desc {
     font-size: 0.95rem;
-    color: rgba(255,255,255,0.45);
+    color: rgba(240,237,232,0.65);
     font-weight: 300;
     line-height: 1.8;
     margin-bottom: 1.8rem;
@@ -948,7 +975,7 @@
   }
   .resource-features li {
     font-size: 0.85rem;
-    color: rgba(255,255,255,0.6);
+    color: rgba(240,237,232,0.75);
     font-weight: 300;
     display: flex;
     gap: 0.6rem;
@@ -997,7 +1024,7 @@
   .resource-btn:hover { background: #b5842f; border-color: #b5842f; }
   .resource-fine {
     font-size: 0.72rem;
-    color: rgba(255,255,255,0.25);
+    color: rgba(240,237,232,0.4);
     font-weight: 300;
   }
   .resource-success {
@@ -1014,7 +1041,7 @@
 
   /* Resource visual card */
   .resource-card {
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(107,207,143,0.2);
     overflow: hidden;
   }
   .resource-card-header {
@@ -1038,7 +1065,7 @@
     font-weight: 400;
   }
   .resource-card-body {
-    background: rgba(255,255,255,0.03);
+    background: rgba(0,0,0,0.25);
     padding: 1.2rem 0;
   }
   .resource-preview-item {
@@ -1046,11 +1073,11 @@
     gap: 1rem;
     align-items: flex-start;
     padding: 0.7rem 1.5rem;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
     transition: background 0.2s;
   }
   .resource-preview-item:last-of-type { border-bottom: none; }
-  .resource-preview-item:hover { background: rgba(255,255,255,0.04); }
+  .resource-preview-item:hover { background: rgba(255,255,255,0.05); }
   .rp-num {
     font-family: 'DM Serif Display', serif;
     font-size: 0.85rem;
@@ -1061,14 +1088,14 @@
   }
   .rp-text {
     font-size: 0.82rem;
-    color: rgba(255,255,255,0.6);
+    color: rgba(240,237,232,0.75);
     font-weight: 300;
     line-height: 1.5;
   }
   .rp-blur .rp-text {
     filter: blur(4px);
     user-select: none;
-    color: rgba(255,255,255,0.3);
+    color: rgba(240,237,232,0.4);
   }
   .resource-card-more {
     padding: 0.8rem 1.5rem 0;
@@ -1685,7 +1712,134 @@
   .vr-us { background: rgba(58,156,111,0.03); }
   [data-theme="dark"] .vr-us { background: rgba(58,156,111,0.05); }
 
-  .vr-label-title {
+  /* ======= DARK MODE CONTRAST FIXES ======= */
+
+  /* Nav dropdown arrow — white triangle on dark bg was invisible */
+  [data-theme="dark"] .nav-dropdown-menu::before {
+    border-bottom-color: var(--bg);
+  }
+
+  /* Hero stat cards — light-bg on dark needs a visible border */
+  [data-theme="dark"] .hero-stat-card {
+    border-color: var(--border);
+  }
+
+  /* Service cards grid — the 1px gap lines use border color as background */
+  [data-theme="dark"] .services-grid {
+    background: #1e1e1c;
+  }
+
+  /* Testimonials — t-card on light-bg were nearly same tone in dark */
+  [data-theme="dark"] .testi-grid {
+    background: #1e1e1c;
+  }
+  [data-theme="dark"] .t-card {
+    background: #1a1a18;
+  }
+
+  /* Tutor grid gap lines */
+  [data-theme="dark"] .tutors-grid {
+    background: #1e1e1c;
+  }
+
+  /* FAQ grid gap lines */
+  [data-theme="dark"] .faq-grid {
+    background: #1e1e1c;
+  }
+  [data-theme="dark"] .faq-item {
+    background: #0e0e0c;
+  }
+  [data-theme="dark"] .faq-item:hover {
+    background: #161614;
+  }
+
+  /* FAQ answer text — was var(--soft) which is #999 on dark, readable but bumping contrast */
+  [data-theme="dark"] .faq-a {
+    color: #aaa;
+  }
+
+  /* Table — header row border was very faint in dark */
+  [data-theme="dark"] thead tr {
+    border-bottom-color: rgba(255,255,255,0.15);
+  }
+  [data-theme="dark"] th {
+    color: var(--ink);
+  }
+
+  /* Comparison table hover row */
+  [data-theme="dark"] tbody tr:hover td {
+    background: rgba(255,255,255,0.025);
+  }
+
+  /* Chip tags — border was near-invisible in dark */
+  [data-theme="dark"] .chip {
+    border-color: #333;
+    color: #aaa;
+  }
+
+  /* Hero section background — just var(--bg) which works but hero trust items need check */
+  [data-theme="dark"] .hero-trust-item {
+    color: #888;
+  }
+  [data-theme="dark"] .hero-trust-item strong {
+    color: var(--ink);
+  }
+
+  /* About photo placeholder bg */
+  [data-theme="dark"] .about-photo {
+    background: linear-gradient(145deg, #1e1e1c, #252522);
+  }
+
+  /* How it works section — step cards */
+  [data-theme="dark"] .steps-grid {
+    background: #1e1e1c;
+  }
+  [data-theme="dark"] .step-card {
+    background: #0e0e0c;
+  }
+  [data-theme="dark"] .step-card:hover {
+    background: #161614;
+  }
+
+  /* Scarcity strip in book section */
+  [data-theme="dark"] .scarcity-strip {
+    background: rgba(200,150,62,0.08);
+    border-color: rgba(200,150,62,0.15);
+  }
+
+  /* Mobile sticky CTA */
+  [data-theme="dark"] .mobile-sticky-cta {
+    background: rgba(14,14,12,0.97);
+    border-top-color: rgba(255,255,255,0.06);
+  }
+
+  /* Footer CTA section */
+  [data-theme="dark"] .footer-cta {
+    background: #0e0e0c;
+    border-top-color: var(--border);
+  }
+
+  /* Section desc text — bumping slightly for dark readability */
+  [data-theme="dark"] .section-desc {
+    color: #888;
+  }
+
+  /* Resource section — already dark bg so fine, but success message needs check */
+  [data-theme="dark"] .resource-success {
+    background: rgba(107,207,143,0.08);
+  }
+
+  /* Exit popup overlay darken */
+  [data-theme="dark"] .exit-overlay {
+    background: rgba(0,0,0,0.75);
+  }
+
+  /* Book card description text visibility */
+  [data-theme="dark"] .book-card p {
+    color: rgba(255,255,255,0.45);
+  }
+
+  /* ======= END DARK MODE FIXES ======= */
     font-size: 0.88rem;
     font-weight: 500;
     color: var(--ink);
@@ -1857,7 +2011,7 @@
     outline: none; transition: border-color 0.2s, color 0.3s, background 0.3s;
   }
   .exit-email:focus { border-color: var(--accent); }
-  .exit-email::placeholder { color: #bbb; }
+  .exit-email::placeholder { color: var(--soft); opacity: 0.6; }
   .exit-submit {
     background: var(--ink); color: var(--bg);
     padding: 0.85rem 1.5rem;
@@ -1910,6 +2064,7 @@
     <li><a href="#tutors">Tutors</a></li>
     <li><a href="#testimonials">Results</a></li>
     <li><a href="#faq">FAQ</a></li>
+    <li><a href="#free-resource" class="nav-free">Free MMI Questions</a></li>
     <li><a href="#book" class="nav-cta">Book Now</a></li>
     <li>
       <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
@@ -1958,6 +2113,7 @@
   <a href="#tutors" onclick="toggleMenu()">Tutors</a>
   <a href="#testimonials" onclick="toggleMenu()">Results</a>
   <a href="#faq" onclick="toggleMenu()">FAQ</a>
+  <a href="#free-resource" onclick="toggleMenu()" style="color:#6bcf8f;">Free MMI Questions</a>
   <a href="https://calendly.com/stefanmoore-medcoach/30min" target="_blank" rel="noopener" class="btn-primary" onclick="toggleMenu()">Book Free Call</a>
 </div>
 
@@ -2415,11 +2571,12 @@
 </section>
 
 <!-- FREE RESOURCE -->
-<section class="resource-sec">
+<section id="free-resource" class="resource-sec">
   <div class="sec-inner">
     <div class="resource-grid">
       <div class="resource-text">
         <p class="section-label reveal">Free Resource</p>
+        <div class="resource-free-badge reveal">✓ Completely Free — No Credit Card</div>
         <h2 class="reveal">50 MMI questions <em>to practise today</em></h2>
         <p class="resource-desc reveal">The most common MMI station types, real ethics scenarios, and the question frameworks that get offers — completely free. No catch.</p>
         <ul class="resource-features reveal">
