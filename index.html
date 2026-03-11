@@ -1052,21 +1052,25 @@
 
   /* TESTIMONIAL PHOTO */
   .t-photo-wrap {
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
     flex-shrink: 0;
-    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--border);
+    transition: border-color 0.3s;
   }
   .t-photo {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     display: block;
+    border-radius: 50%;
   }
   .t-photo-wrap .t-ini {
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
   }
 
 
@@ -1430,195 +1434,195 @@
   }
 
   /* COMPETITOR COMPARISON / VERSUS */
+  /* VERSUS COMPARISON — modern row layout */
   .versus-sec {
-    background: var(--bg);
+    background: var(--light-bg);
     transition: background 0.3s;
   }
 
-  .versus-grid {
-    display: grid;
-    grid-template-columns: 1fr 48px 1fr;
-    gap: 0;
-    align-items: start;
-  }
-  .versus-col { display: flex; flex-direction: column; }
-  .versus-list { display: grid; grid-template-rows: repeat(5, 1fr); }
-  .versus-item { display: flex; align-items: center; min-height: 70px; }
-
-  .versus-col {
+  .versus-rows {
     border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.04);
     transition: border-color 0.3s;
   }
 
-  .versus-col--us {
-    border-color: #3a9c6f;
-    position: relative;
-    background: #f6fdf9;
+  .versus-row-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    background: var(--ink);
+    transition: background 0.3s;
   }
-  [data-theme="dark"] .versus-col--us { background: #0d1f15; }
-
-  .versus-col-header {
-    padding: 1.5rem 2rem 1.2rem;
-    border-bottom: 1px solid var(--border);
+  .vrh-label {
+    padding: 1.2rem 2rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    font-weight: 300;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    transition: border-color 0.3s;
   }
-
-  .versus-col--us .versus-col-header {
-    background: #3a9c6f;
-    border-bottom-color: rgba(255,255,255,0.15);
-  }
-
-  .versus-col--them {
-    border-color: #cc4444;
-    background: #fff8f8;
-  }
-  [data-theme="dark"] .versus-col--them { background: #1f0d0d; }
-  .versus-col--them .versus-col-header {
-    background: #cc4444;
-    border-bottom-color: rgba(255,255,255,0.15);
-  }
-  [data-theme="dark"] .versus-col--them .versus-col-header {
-    background: #aa3333;
-  }
-
-  .versus-badge {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.1rem;
-    font-weight: 400;
-    color: #fff;
-    letter-spacing: -0.01em;
-  }
-
-  .versus-badge--them {
-    color: #fff;
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.1rem;
-    font-weight: 400;
-  }
-
-  .versus-tag {
-    font-size: 0.6rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    background: rgba(255,255,255,0.2);
-    color: #fff;
-    padding: 0.2rem 0.6rem;
-    font-weight: 500;
-  }
-
-  .versus-list {
-    list-style: none;
-    padding: 0;
-  }
-
-  .versus-item {
-    display: flex;
-    gap: 1rem;
-    align-items: flex-start;
+  .vrh-us, .vrh-them {
     padding: 1.2rem 2rem;
-    border-bottom: 1px solid var(--border);
-    transition: background 0.2s, border-color 0.3s;
+    display: flex;
+    align-items: center;
   }
-  .versus-item:last-child { border-bottom: none; }
-  .versus-item:hover { background: var(--light-bg); }
-
-  .versus-icon {
-    font-size: 0.85rem;
-    font-weight: 700;
-    flex-shrink: 0;
-    margin-top: 0.15rem;
-    width: 18px;
-    text-align: center;
+  .vrh-us { border-left: 1px solid rgba(255,255,255,0.08); }
+  .vrh-them { border-left: 1px solid rgba(255,255,255,0.08); }
+  .vrh-badge-us {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #fff;
+    background: #3a9c6f;
+    padding: 0.35rem 0.8rem;
+    border-radius: 2px;
+  }
+  .vrh-badge-them {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.08);
+    padding: 0.35rem 0.8rem;
+    border-radius: 2px;
+    border: 1px solid rgba(255,255,255,0.12);
   }
 
-  .versus-win .versus-icon { color: #3a9c6f; }
-  .versus-lose .versus-icon { color: #cc4444; }
+  .versus-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-top: 1px solid var(--border);
+    transition: border-color 0.3s, background 0.2s;
+  }
+  .versus-row:hover { background: rgba(0,0,0,0.015); }
+  [data-theme="dark"] .versus-row:hover { background: rgba(255,255,255,0.02); }
 
-  .versus-item div {
+  .vr-label, .vr-us, .vr-them {
+    padding: 1.5rem 2rem;
     display: flex;
     flex-direction: column;
-    gap: 0.2rem;
+    gap: 0.25rem;
+    justify-content: center;
   }
+  .vr-us, .vr-them {
+    border-left: 1px solid var(--border);
+    transition: border-color 0.3s;
+  }
+  .vr-us { background: rgba(58,156,111,0.03); }
+  [data-theme="dark"] .vr-us { background: rgba(58,156,111,0.05); }
 
-  .versus-item strong {
+  .vr-label-title {
     font-size: 0.88rem;
     font-weight: 500;
     color: var(--ink);
     transition: color 0.3s;
-    line-height: 1.3;
   }
-
-  .versus-item span {
-    font-size: 0.8rem;
+  .vr-label-sub {
+    font-size: 0.75rem;
     color: var(--soft);
     font-weight: 300;
-    line-height: 1.6;
     transition: color 0.3s;
   }
 
-  .versus-lose .versus-item strong,
-  .versus-lose strong {
-    color: var(--soft);
-  }
-
-  .versus-cta {
-    display: block;
-    text-align: center;
-    padding: 1.1rem 2rem;
-    background: var(--ink);
-    color: var(--bg);
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    font-family: 'DM Sans', sans-serif;
-    transition: background 0.2s, color 0.2s;
-    text-decoration: none;
-  }
-  .versus-cta:hover { background: #3a9c6f; color: #fff; }
-
-  .versus-divider {
+  .vr-value-good {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #3a9c6f;
     display: flex;
     align-items: center;
+    gap: 0.4rem;
+  }
+  .vr-value-good::before {
+    content: '✓';
+    font-size: 0.75rem;
+    background: #3a9c6f;
+    color: #fff;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
-    padding-top: 4rem;
+    flex-shrink: 0;
+    font-weight: 700;
   }
-
-  .versus-vs {
-    font-family: 'DM Serif Display', serif;
-    font-size: 2rem;
-    font-style: italic;
-    color: var(--accent);
-    opacity: 0.9;
-    font-weight: 400;
+  .vr-value-bad {
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--soft);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .vr-value-bad::before {
+    content: '✕';
+    font-size: 0.7rem;
+    background: rgba(204,68,68,0.12);
+    color: #cc4444;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-weight: 700;
+  }
+  .vr-sub {
+    font-size: 0.78rem;
+    color: var(--soft);
+    font-weight: 300;
+    line-height: 1.5;
     transition: color 0.3s;
+    padding-left: 22px;
   }
 
-  /* Subtle gold glow on us column in dark mode */
-  [data-theme="dark"] .versus-col--us {
-    box-shadow: 0 0 0 1px #3a9c6f, 0 4px 30px rgba(58,156,111,0.12);
-  }
-  [data-theme="dark"] .versus-col--them {
-    box-shadow: 0 0 0 1px #cc4444, 0 4px 30px rgba(204,68,68,0.08);
+  .versus-cta-row {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
   }
 
   @media (max-width: 700px) {
-    .versus-grid {
+    .versus-row, .versus-row-header {
       grid-template-columns: 1fr;
     }
-    .versus-divider {
-      padding: 1rem 0;
+    .vr-us, .vr-them, .vrh-us, .vrh-them {
+      border-left: none;
+      border-top: 1px solid var(--border);
     }
-    .versus-vs::before { content: '— '; }
-    .versus-vs::after { content: ' —'; }
+    .vrh-label { display: none; }
   }
 
   /* EXIT INTENT POPUP */
+  .exit-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(6px);
+    z-index: 500;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    animation: overlayIn 0.3s ease;
+  }
+  .exit-overlay.show { display: flex; }
+  @keyframes overlayIn { from { opacity: 0; } to { opacity: 1; } }
+
   .exit-overlay {
     display: none;
     position: fixed;
@@ -1712,262 +1716,6 @@
   .exit-success .exit-code-note { font-size: 0.78rem; color: var(--soft); font-weight: 300; margin-top: 0.4rem; transition: color 0.3s; }
   .exit-success p { font-size: 0.88rem; color: var(--soft); font-weight: 300; line-height: 1.6; margin-bottom: 1.2rem; transition: color 0.3s; }
   .exit-success .btn-primary { display: inline-block; }
-
-  /* COUNTER ANIMATION */
-  @keyframes counterPop {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.15); }
-    100% { transform: scale(1); }
-  }
-  .counter.counted { animation: counterPop 0.4s ease forwards; color: var(--accent); }
-
-  /* SCHOOLS ACCEPTANCE BAR */
-  .schools-bar {
-    background: var(--ink);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    padding: 1.4rem 6vw;
-    transition: background 0.3s;
-  }
-  .schools-bar-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .schools-bar-label {
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.35);
-    font-weight: 300;
-    white-space: nowrap;
-  }
-  .schools-list {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .school-pill {
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: rgba(255,255,255,0.7);
-    letter-spacing: 0.02em;
-    transition: color 0.2s;
-  }
-  .school-pill:hover { color: #c8963e; }
-  .school-dot { color: rgba(255,255,255,0.15); font-size: 0.8rem; }
-
-  /* RESULTS TICKER */
-  .results-ticker {
-    overflow: hidden;
-    border: 1px solid var(--border);
-    background: var(--light-bg);
-    padding: 0.75rem 0;
-    margin-bottom: 0;
-    position: relative;
-    transition: background 0.3s, border-color 0.3s;
-  }
-  .results-ticker::before,
-  .results-ticker::after {
-    content: '';
-    position: absolute;
-    top: 0; bottom: 0;
-    width: 80px;
-    z-index: 2;
-    pointer-events: none;
-  }
-  .results-ticker::before { left: 0; background: linear-gradient(to right, var(--light-bg), transparent); }
-  .results-ticker::after { right: 0; background: linear-gradient(to left, var(--light-bg), transparent); }
-  .ticker-track {
-    display: flex;
-    gap: 0;
-    white-space: nowrap;
-    animation: tickerScroll 40s linear infinite;
-  }
-  .results-ticker:hover .ticker-track { animation-play-state: paused; }
-  @keyframes tickerScroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-  .ticker-item {
-    font-size: 0.78rem;
-    color: #3a9c6f;
-    font-weight: 500;
-    padding: 0 1.5rem;
-    letter-spacing: 0.01em;
-  }
-  .ticker-sep {
-    color: var(--border);
-    font-size: 0.78rem;
-  }
-
-  /* FREE RESOURCE SECTION */
-  .resource-sec {
-    background: var(--light-bg);
-    border-bottom: 1px solid var(--border);
-    padding: 6rem 6vw;
-    scroll-margin-top: 70px;
-    transition: background 0.3s, border-color 0.3s;
-  }
-  .resource-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: center;
-  }
-  .resource-desc {
-    font-size: 0.95rem;
-    color: var(--soft);
-    font-weight: 300;
-    line-height: 1.8;
-    margin-bottom: 1.5rem;
-    max-width: 480px;
-    transition: color 0.3s;
-  }
-  .resource-features {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-bottom: 2rem;
-  }
-  .resource-features li {
-    font-size: 0.85rem;
-    color: var(--ink);
-    display: flex;
-    gap: 0.7rem;
-    align-items: flex-start;
-    transition: color 0.3s;
-  }
-  .resource-features li::before {
-    content: '✓';
-    color: #3a9c6f;
-    font-weight: 600;
-    flex-shrink: 0;
-    margin-top: 0.05rem;
-  }
-  .resource-form {
-    display: flex;
-    gap: 0;
-    margin-bottom: 0.8rem;
-    max-width: 460px;
-  }
-  .resource-email {
-    flex: 1;
-    padding: 0.9rem 1rem;
-    border: 1px solid var(--border);
-    border-right: none;
-    font-size: 0.88rem;
-    font-family: 'DM Sans', sans-serif;
-    color: var(--ink);
-    background: var(--bg);
-    outline: none;
-    transition: border-color 0.2s, background 0.3s, color 0.3s;
-  }
-  .resource-email:focus { border-color: var(--accent); }
-  .resource-email::placeholder { color: #bbb; }
-  .resource-btn {
-    background: var(--ink);
-    color: #fff;
-    padding: 0.9rem 1.5rem;
-    border: 1px solid var(--ink);
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    font-family: 'DM Sans', sans-serif;
-    cursor: pointer;
-    transition: background 0.2s;
-    white-space: nowrap;
-  }
-  .resource-btn:hover { background: #333; }
-  .resource-btn.sent { background: #3a9c6f; border-color: #3a9c6f; }
-  .resource-fine {
-    font-size: 0.72rem;
-    color: #bbb;
-    font-weight: 300;
-  }
-  .resource-visual { display: flex; justify-content: center; }
-  .resource-card {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    max-width: 380px;
-    width: 100%;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.06);
-    transition: background 0.3s, border-color 0.3s;
-  }
-  .resource-card-header {
-    background: var(--ink);
-    padding: 1.5rem 2rem;
-    transition: background 0.3s;
-  }
-  .resource-card-tag {
-    display: block;
-    font-size: 0.62rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(200,150,62,0.8);
-    margin-bottom: 0.4rem;
-  }
-  .resource-card-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.4rem;
-    color: #fff;
-    font-weight: 400;
-  }
-  .resource-card-body { padding: 1.5rem 2rem; }
-  .resource-preview-item {
-    display: flex;
-    gap: 0.8rem;
-    align-items: flex-start;
-    padding: 0.6rem 0;
-    border-bottom: 1px solid var(--border);
-    transition: border-color 0.3s;
-  }
-  .resource-preview-item:last-of-type { border-bottom: none; }
-  .rp-num {
-    font-size: 0.7rem;
-    color: var(--accent);
-    font-weight: 600;
-    flex-shrink: 0;
-    padding-top: 0.1rem;
-    font-family: 'DM Serif Display', serif;
-  }
-  .rp-text {
-    font-size: 0.82rem;
-    color: var(--ink);
-    font-weight: 300;
-    line-height: 1.5;
-    transition: color 0.3s;
-  }
-  .rp-blur .rp-text {
-    filter: blur(3px);
-    user-select: none;
-    color: var(--soft);
-  }
-  .resource-card-more {
-    text-align: center;
-    font-size: 0.75rem;
-    color: var(--accent);
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    padding: 1rem 0 0.2rem;
-    text-transform: uppercase;
-  }
-  @media (max-width: 900px) {
-    .resource-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    .resource-visual { display: none; }
-  }
-
-  /* SCROLL PROGRESS */
-  #scrollProgress { pointer-events: none; }
-
-
 </style>
 </head>
 <body>
@@ -2111,16 +1859,14 @@
       <div class="about-photos reveal-left">
         <div class="about-photo-card">
           <div class="about-photo">
-            <span class="about-photo-placeholder">SM</span>
-            <span class="about-photo-note">Add your photo</span>
+            <img src="Stefan.jpg" alt="Stefan Moore" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
           </div>
           <div class="about-photo-name">Stefan Moore</div>
           <div class="about-photo-uni">Peninsula Medical School</div>
         </div>
         <div class="about-photo-card">
           <div class="about-photo">
-            <span class="about-photo-placeholder">LS</span>
-            <span class="about-photo-note">Add your photo</span>
+            <img src="Lochy.jpg" alt="Lochana S." style="width:100%;height:100%;object-fit:cover;object-position:center top;">
           </div>
           <div class="about-photo-name">Lochana S.</div>
           <div class="about-photo-uni">Peninsula Medical School</div>
@@ -2132,9 +1878,9 @@
         <p>We went through the stress of MMI prep, the confusion of ethics stations, and the pressure of panel interviews. Now we use everything we learned to give you an unfair advantage on interview day.</p>
         <p>Our coaching isn't theory from a textbook. It's practical, tested, and based on what actually worked for us and the students we've already helped.</p>
         <div class="about-stats">
-          <div><div class="about-stat-num counter" data-target="6" data-suffix="/6">0/6</div><div class="about-stat-label">Offers received</div></div>
-          <div><div class="about-stat-num counter" data-target="30" data-suffix="+">0+</div><div class="about-stat-label">Sessions delivered</div></div>
-          <div><div class="about-stat-num counter" data-target="5.0" data-suffix="" data-decimal="1">0.0</div><div class="about-stat-label">Avg rating</div></div>
+          <div><div class="about-stat-num">6/6</div><div class="about-stat-label">Offers received</div></div>
+          <div><div class="about-stat-num">30+</div><div class="about-stat-label">Sessions delivered</div></div>
+          <div><div class="about-stat-num">5.0</div><div class="about-stat-label">Avg rating</div></div>
         </div>
       </div>
     </div>
@@ -2253,77 +1999,20 @@
   </div>
 </section>
 
-<!-- SCHOOLS BAR -->
-<div class="schools-bar">
-  <div class="schools-bar-inner">
-    <p class="schools-bar-label">Students we've coached have received offers from</p>
-    <div class="schools-list">
-      <span class="school-pill">Peninsula</span>
-      <span class="school-dot">·</span>
-      <span class="school-pill">Leicester</span>
-      <span class="school-dot">·</span>
-      <span class="school-pill">Newcastle</span>
-      <span class="school-dot">·</span>
-      <span class="school-pill">Keele</span>
-      <span class="school-dot">·</span>
-      <span class="school-pill">Bristol</span>
-      <span class="school-dot">·</span>
-      <span class="school-pill">UCL</span>
-      <span class="school-dot">·</span>
-      <span class="school-pill">Edinburgh</span>
-    </div>
-  </div>
-</div>
-
 <!-- TESTIMONIALS -->
 <section id="testimonials" class="testi-sec">
   <div class="sec-inner">
     <p class="section-label reveal">Student Results</p>
     <h2 class="reveal">What our students <em>say</em></h2>
-    <p class="section-desc reveal" style="margin-bottom:2rem;">Real feedback from students who prepared with MedCoach and secured their offers.</p>
-
-    <div class="results-ticker reveal">
-      <div class="ticker-track">
-        <span class="ticker-item">✓ Offer from Peninsula — Dec 2024</span>
-        <span class="ticker-sep">·</span>
-        <span class="ticker-item">✓ 4 interviews, 4 offers</span>
-        <span class="ticker-sep">·</span>
-        <span class="ticker-item">✓ Accepted to UCL Medicine</span>
-        <span class="ticker-sep">·</span>
-        <span class="ticker-item">✓ Offer from Leicester — Jan 2025</span>
-        <span class="ticker-sep">·</span>
-        <span class="ticker-item">✓ MMI score improved after 1 session</span>
-        <span class="ticker-sep">·</span>
-        <span class="ticker-item">✓ Offer from Bristol — Nov 2024</span>
-        <span class="ticker-sep">·</span>
-        <span class="ticker-item">✓ Accepted to Edinburgh Medicine</span>
-        <span class="ticker-sep">·</span>
-        <span class="ticker-item">✓ Offer from Newcastle — Dec 2024</span>
-        <span class="ticker-sep">·</span>
-        <span class="ticker-item">✓ First session, first offer</span>
-        <span class="ticker-sep">·</span>
-        <span class="ticker-item">✓ Offer from Peninsula — Dec 2024</span>
-        <span class="ticker-sep">·</span>
-        <span class="ticker-item">✓ 4 interviews, 4 offers</span>
-        <span class="ticker-sep">·</span>
-        <span class="ticker-item">✓ Accepted to UCL Medicine</span>
-        <span class="ticker-sep">·</span>
-        <span class="ticker-item">✓ Offer from Leicester — Jan 2025</span>
-        <span class="ticker-sep">·</span>
-        <span class="ticker-item">✓ MMI score improved after 1 session</span>
-        <span class="ticker-sep">·</span>
-      </div>
-    </div>
-
-    <div class="testi-grid" style="margin-top:2rem;">
+    <p class="section-desc reveal" style="margin-bottom:3rem;">Real feedback from students who prepared with MedCoach and secured their offers.</p>
+    <div class="testi-grid">
       <div class="t-card reveal reveal-delay-1">
         <span class="t-quote-mark">"</span>
         <div class="t-stars">★★★★★</div>
         <p class="t-quote">"The webinar alone was worth ten times what I paid. In an hour I finally understood how to structure my MMI answers. I went from dreading interviews to feeling genuinely ready."</p>
         <div class="t-author">
           <div class="t-photo-wrap">
-            <!-- REPLACE: <img src="rohan.jpg" alt="Rohan A." class="t-photo"> -->
-            <div class="t-ini">R</div>
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Rohan A." class="t-photo">
           </div>
           <div>
             <div class="t-name">Rohan A.</div>
@@ -2338,8 +2027,7 @@
         <p class="t-quote">"The school-specific mock was unbelievably accurate. My tutor had interviewed at the same university and recreated the exact station types. I walked in knowing what to expect."</p>
         <div class="t-author">
           <div class="t-photo-wrap">
-            <!-- REPLACE: <img src="sophie.jpg" alt="Sophie L." class="t-photo"> -->
-            <div class="t-ini">S</div>
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sophie L." class="t-photo">
           </div>
           <div>
             <div class="t-name">Sophie L.</div>
@@ -2354,8 +2042,7 @@
         <p class="t-quote">"Did the webinar first to get my bearings, then booked three 1-to-1 sessions for deep practice. That combination was perfect. Couldn't recommend MedCoach more highly."</p>
         <div class="t-author">
           <div class="t-photo-wrap">
-            <!-- REPLACE: <img src="ellie.jpg" alt="Ellie W." class="t-photo"> -->
-            <div class="t-ini">E</div>
+            <img src="https://randomuser.me/api/portraits/women/17.jpg" alt="Ellie W." class="t-photo">
           </div>
           <div>
             <div class="t-name">Ellie W.</div>
@@ -2389,77 +2076,106 @@
 <section class="versus-sec">
   <div class="sec-inner">
     <p class="section-label reveal">Why MedCoach</p>
-    <h2 class="reveal">How we compare to <em>the big companies</em></h2>
-    <p class="section-desc reveal">Large coaching companies charge more, use outdated tutors, and treat you like a ticket number. Here's how we're different.</p>
+    <h2 class="reveal">Why students choose us <em>over the big companies</em></h2>
+    <p class="section-desc reveal">Large coaching platforms charge more, use outdated tutors, and treat you like a ticket number. Here's the difference.</p>
 
-    <div class="versus-grid reveal">
+    <div class="versus-rows reveal">
 
-      <!-- MEDCOACH COLUMN -->
-      <div class="versus-col versus-col--us reveal-left">
-        <div class="versus-col-header">
-          <span class="versus-badge">✓ MedCoach</span>
-          <span class="versus-tag">Recommended</span>
+      <div class="versus-row-header">
+        <div class="vrh-label">What matters</div>
+        <div class="vrh-us">
+          <span class="vrh-badge-us">
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M6.5 12.5l-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z" fill="#fff"/></svg>
+            MedCoach
+          </span>
         </div>
-        <ul class="versus-list">
-          <li class="versus-item versus-win">
-            <span class="versus-icon">✓</span>
-            <div><strong>From £10 per session</strong><span>Sessions from £10–£30. No hidden fees.</span></div>
-          </li>
-          <li class="versus-item versus-win">
-            <span class="versus-icon">✓</span>
-            <div><strong>Current medical students</strong><span>Every tutor is a current medical student who sat these interviews recently.</span></div>
-          </li>
-          <li class="versus-item versus-win">
-            <span class="versus-icon">✓</span>
-            <div><strong>School-specific prep</strong><span>Tailored to your exact schools — format, stations, hot topics.</span></div>
-          </li>
-          <li class="versus-item versus-win">
-            <span class="versus-icon">✓</span>
-            <div><strong>Personal, not corporate</strong><span>Book directly with your tutor. No middlemen.</span></div>
-          </li>
-          <li class="versus-item versus-win">
-            <span class="versus-icon">✓</span>
-            <div><strong>Free taster call</strong><span>Meet your tutor before you commit.</span></div>
-          </li>
-        </ul>
-        <a href="#services" class="versus-cta">View Services</a>
+        <div class="vrh-them">
+          <span class="vrh-badge-them">Other Companies</span>
+        </div>
       </div>
 
-      <!-- DIVIDER -->
-      <div class="versus-divider">
-        <span class="versus-vs">vs</span>
+      <div class="versus-row">
+        <div class="vr-label">
+          <span class="vr-label-title">Price</span>
+          <span class="vr-label-sub">What you pay per session</span>
+        </div>
+        <div class="vr-us">
+          <span class="vr-value-good">From £10</span>
+          <span class="vr-sub">No packages, no pressure</span>
+        </div>
+        <div class="vr-them">
+          <span class="vr-value-bad">£50–£200+/hr</span>
+          <span class="vr-sub">Often bundled, hard to cancel</span>
+        </div>
       </div>
 
-      <!-- THEM COLUMN -->
-      <div class="versus-col versus-col--them reveal-right">
-        <div class="versus-col-header">
-          <span class="versus-badge versus-badge--them">✗ Large Coaching Companies</span>
+      <div class="versus-row">
+        <div class="vr-label">
+          <span class="vr-label-title">Your tutor</span>
+          <span class="vr-label-sub">Who actually coaches you</span>
         </div>
-        <ul class="versus-list">
-          <li class="versus-item versus-lose">
-            <span class="versus-icon">✗</span>
-            <div><strong>£50–£200+ per hour</strong><span>High prices with packages pushing you to spend more.</span></div>
-          </li>
-          <li class="versus-item versus-lose">
-            <span class="versus-icon">✗</span>
-            <div><strong>Tutors who graduated years ago</strong><span>Often doctors or graduates who sat interviews 3–5+ years ago.</span></div>
-          </li>
-          <li class="versus-item versus-lose">
-            <span class="versus-icon">✗</span>
-            <div><strong>Generic content</strong><span>One-size-fits-all prep, not tailored to your schools.</span></div>
-          </li>
-          <li class="versus-item versus-lose">
-            <span class="versus-icon">✗</span>
-            <div><strong>You're a booking reference</strong><span>Assigned to whoever's available, not someone who knows your schools.</span></div>
-          </li>
-          <li class="versus-item versus-lose">
-            <span class="versus-icon">✗</span>
-            <div><strong>Pay upfront, then find out</strong><span>Full payment required before you've even spoken to your tutor.</span></div>
-          </li>
-        </ul>
+        <div class="vr-us">
+          <span class="vr-value-good">Current med student</span>
+          <span class="vr-sub">Sat these interviews 2 years ago</span>
+        </div>
+        <div class="vr-them">
+          <span class="vr-value-bad">Graduated years ago</span>
+          <span class="vr-sub">3–5+ years since their interview</span>
+        </div>
+      </div>
+
+      <div class="versus-row">
+        <div class="vr-label">
+          <span class="vr-label-title">Preparation</span>
+          <span class="vr-label-sub">How tailored it is to you</span>
+        </div>
+        <div class="vr-us">
+          <span class="vr-value-good">School-specific</span>
+          <span class="vr-sub">Format, stations, hot topics for your schools</span>
+        </div>
+        <div class="vr-them">
+          <span class="vr-value-bad">Generic content</span>
+          <span class="vr-sub">One-size-fits-all approach</span>
+        </div>
+      </div>
+
+      <div class="versus-row">
+        <div class="vr-label">
+          <span class="vr-label-title">Relationship</span>
+          <span class="vr-label-sub">Who you're dealing with</span>
+        </div>
+        <div class="vr-us">
+          <span class="vr-value-good">Book direct</span>
+          <span class="vr-sub">Straight to your tutor, no middlemen</span>
+        </div>
+        <div class="vr-them">
+          <span class="vr-value-bad">You're a reference number</span>
+          <span class="vr-sub">Assigned to whoever's available</span>
+        </div>
+      </div>
+
+      <div class="versus-row versus-row--last">
+        <div class="vr-label">
+          <span class="vr-label-title">Commitment</span>
+          <span class="vr-label-sub">Before you spend a penny</span>
+        </div>
+        <div class="vr-us">
+          <span class="vr-value-good">Free taster call</span>
+          <span class="vr-sub">Meet us first, then decide</span>
+        </div>
+        <div class="vr-them">
+          <span class="vr-value-bad">Pay upfront</span>
+          <span class="vr-sub">Full payment before you've spoken to anyone</span>
+        </div>
       </div>
 
     </div>
+
+    <div class="versus-cta-row reveal">
+      <a href="#services" class="btn-primary">View Services</a>
+      <a href="https://calendly.com/stefanmoore-medcoach/30min" target="_blank" rel="noopener" class="btn-secondary">Or book a free call first</a>
+    </div>
+
   </div>
 </section>
 
@@ -2471,7 +2187,7 @@
     <p class="section-desc reveal">Every tutor is a current UK medical student. They sat the same interviews recently and know what today's admissions panels want.</p>
     <div class="tutors-grid reveal">
       <div class="tutor-card reveal-left">
-        <div class="tutor-photo"><span class="tutor-photo-placeholder">SM</span></div>
+        <div class="tutor-photo"><img src="Stefan.jpg" alt="Stefan Moore" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"></div>
         <div class="tutor-info">
           <div class="tutor-name">Stefan Moore</div>
           <div class="tutor-uni">Peninsula Medical School · Year 2</div>
@@ -2480,6 +2196,7 @@
         </div>
       </div>
       <div class="tutor-card reveal-right">
+        <div class="tutor-photo"><img src="Lochy.jpg" alt="Lochana S." style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"></div>
         <div class="tutor-info">
           <div class="tutor-name">Lochana S.</div>
           <div class="tutor-uni">Peninsula Medical School · Year 2</div>
@@ -2534,56 +2251,42 @@
   </div>
 </section>
 
-<!-- FREE RESOURCE -->
-<section class="resource-sec">
-  <div class="sec-inner">
-    <div class="resource-grid">
-      <div class="resource-text">
-        <p class="section-label reveal">Free Resource</p>
-        <h2 class="reveal">50 MMI questions <em>to practise today</em></h2>
-        <p class="resource-desc reveal">The most common MMI station types, real ethics scenarios, and the question frameworks that get offers — completely free. No catch.</p>
-        <ul class="resource-features reveal">
-          <li>50 real-style MMI questions across all station types</li>
-          <li>Ethics, empathy, role play, and hot topic prompts</li>
-          <li>The answer framework our tutors used to get 6 from 6</li>
-          <li>Delivered instantly to your inbox</li>
-        </ul>
-        <div class="resource-form reveal">
-          <input type="email" id="resourceEmail" class="resource-email" placeholder="Your email address">
-          <button class="resource-btn" onclick="submitResourceEmail()">Send Me the Questions</button>
-        </div>
-        <p class="resource-fine">No spam. Just the questions and occasional coaching tips. Unsubscribe any time.</p>
-      </div>
-      <div class="resource-visual reveal">
-        <div class="resource-card">
-          <div class="resource-card-header">
-            <span class="resource-card-tag">Free Download</span>
-            <span class="resource-card-title">50 MMI Questions</span>
-          </div>
-          <div class="resource-card-body">
-            <div class="resource-preview-item"><span class="rp-num">01</span><span class="rp-text">Ethics — A patient refuses life-saving treatment...</span></div>
-            <div class="resource-preview-item"><span class="rp-num">02</span><span class="rp-text">Empathy — Your colleague makes a clinical error...</span></div>
-            <div class="resource-preview-item"><span class="rp-num">03</span><span class="rp-text">Role play — Break bad news to a worried parent...</span></div>
-            <div class="resource-preview-item rp-blur"><span class="rp-num">04</span><span class="rp-text">Hot topic — The NHS is facing a staffing crisis...</span></div>
-            <div class="resource-preview-item rp-blur"><span class="rp-num">05</span><span class="rp-text">Communication — Explain a diagnosis in lay terms...</span></div>
-            <div class="resource-card-more">+ 45 more questions inside</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- BOOK -->
 <section id="book" class="book-sec">
   <div class="sec-inner">
     <p class="section-label reveal">Book Your Session</p>
     <h2 class="reveal">Ready to start? <em>Book instantly</em></h2>
-    <p class="section-desc">Pick a session below and you're confirmed in seconds via Calendly. Not sure where to start? The free taster call is always the right first move.</p>
+    <p class="section-desc">All sessions are via Calendly — pick a time and you're confirmed in seconds. <a href="https://calendly.com/stefanmoore-medcoach" target="_blank" rel="noopener" style="color:rgba(200,150,62,0.9);border-bottom:1px solid rgba(200,150,62,0.4);">View all on Calendly →</a></p>
 
     <div class="scarcity-strip reveal">
       <span class="scarcity-dot"></span>
       <span>Slots are limited each week — <strong>peak season is November to March</strong>. Book early to secure your preferred time.</span>
+    </div>
+
+    <!-- BUNDLE DEALS -->
+    <div class="bundle-strip">
+      <a href="https://calendly.com/stefanmoore-medcoach/2x-personalised-coaching-bundle" target="_blank" rel="noopener" class="bundle-card">
+        <div class="bundle-info">
+          <h3>2x Personalised Coaching</h3>
+          <p>Two one-hour 1-to-1 coaching sessions. Save £10 when you book together.</p>
+        </div>
+        <div class="bundle-pricing">
+          <div class="bundle-old">£60</div>
+          <div class="bundle-new">£50</div>
+          <div class="bundle-save">Save £10</div>
+        </div>
+      </a>
+      <a href="https://calendly.com/stefanmoore-medcoach/2x-personalised-mock-bundle" target="_blank" rel="noopener" class="bundle-card">
+        <div class="bundle-info">
+          <h3>2x Mock Interview</h3>
+          <p>Two full mock interviews. Perfect for practising across different schools.</p>
+        </div>
+        <div class="bundle-pricing">
+          <div class="bundle-old">£60</div>
+          <div class="bundle-new">£50</div>
+          <div class="bundle-save">Save £10</div>
+        </div>
+      </a>
     </div>
 
     <!-- COMPACT SESSION LINKS -->
@@ -2639,8 +2342,8 @@
 <!-- FOOTER CTA -->
 <div class="footer-cta">
   <div class="footer-cta-left">
-    <p>Your offer is <em>within reach.</em><br>Start free — no commitment needed.</p>
-    <p style="font-size:0.88rem;color:var(--soft);font-weight:300;margin-top:0.8rem;line-height:1.7;max-width:480px;">Thousands apply to UK medicine every year. The ones who prepare properly are the ones who get in. Don't leave it to chance.</p>
+    <p>Your interview is worth <em>preparing for properly.</em><br>Start free — no commitment needed.</p>
+    <div class="footer-cta-tagline">Coached by students who got in last year</div>
   </div>
   <div class="footer-cta-right">
     <a href="https://calendly.com/stefanmoore-medcoach/30min" target="_blank" rel="noopener" class="btn-primary">Book Free Taster Call</a>
@@ -2924,49 +2627,6 @@
   document.getElementById('exitEmail').addEventListener('keypress', function(e) {
     if (e.key === 'Enter') submitExitEmail();
   });
-
-  // ====== SCROLL PROGRESS BAR ======
-  var progressBar = document.getElementById('scrollProgress');
-  function updateProgress() {
-    var scrollTop = window.scrollY;
-    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    var pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-    if (progressBar) progressBar.style.width = pct + '%';
-  }
-  window.addEventListener('scroll', updateProgress);
-
-  // ====== FREE RESOURCE EMAIL ======
-  function submitResourceEmail() {
-    var emailEl = document.getElementById('resourceEmail');
-    var btn = document.querySelector('.resource-btn');
-    var email = emailEl ? emailEl.value.trim() : '';
-    if (!email || !email.includes('@') || !email.includes('.')) {
-      if (emailEl) { emailEl.style.borderColor = '#e74c3c'; emailEl.placeholder = 'Please enter a valid email'; }
-      return;
-    }
-    var iframe = document.createElement('iframe');
-    iframe.name = 'resource_target';
-    iframe.style.display = 'none';
-    document.body.appendChild(iframe);
-    var form = document.createElement('form');
-    form.method = 'POST';
-    form.action = 'https://9a069c79.sibforms.com/serve/MUIFAKDUafo8pmAIgFsJ-8GlmY2bVNi6jZiCjTr_VS54zv1Hg9ZdwTVoT8P6tWNlV89SUFfIO5Z_QjY3ixTcuJJsggR11557wgg9OVzzMio35j17IA_WknaHIdX7lhhtJ66O6jTgtdCbgWILiftqqePjEHY5vn5JQOOKoSJdmMrKq7cVa1e5N5PCTRqr7i88CFR_gCj1X5cVtUXFVQ==';
-    form.target = 'resource_target';
-    form.style.display = 'none';
-    [['EMAIL', email, 'email'], ['locale', 'en', 'hidden'], ['html_type', 'simple', 'hidden']].forEach(function(pair) {
-      var input = document.createElement('input');
-      input.type = pair[2]; input.name = pair[0]; input.value = pair[1];
-      form.appendChild(input);
-    });
-    document.body.appendChild(form);
-    form.submit();
-    setTimeout(function() { document.body.removeChild(form); document.body.removeChild(iframe); }, 3000);
-    if (btn) { btn.textContent = '✓ Sent — check your inbox'; btn.classList.add('sent'); btn.disabled = true; }
-    if (emailEl) emailEl.disabled = true;
-  }
-  var resEmail = document.getElementById('resourceEmail');
-  if (resEmail) resEmail.addEventListener('keypress', function(e) { if (e.key === 'Enter') submitResourceEmail(); });
-
 </script>
 
 </body>
