@@ -1923,6 +1923,144 @@
     }
     .vrh-label { display: none; }
   }
+  /* GOOGLE REVIEWS BANNER */
+  .google-reviews-banner {
+    display: block;
+    background: linear-gradient(135deg, #fafaf8 0%, #fff 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 6vw;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.3s;
+  }
+  [data-theme="dark"] .google-reviews-banner {
+    background: linear-gradient(135deg, #161614 0%, #1a1a18 100%);
+  }
+  .google-reviews-banner:hover { background: #f5f5f0; }
+  [data-theme="dark"] .google-reviews-banner:hover { background: #1e1e1c; }
+  .grb-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .grb-left { display: flex; align-items: center; gap: 0.9rem; }
+  .grb-glogo { flex-shrink: 0; }
+  .grb-text { display: flex; flex-direction: column; gap: 0.15rem; }
+  .grb-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--soft);
+    font-weight: 400;
+    transition: color 0.3s;
+  }
+  .grb-stars {
+    font-size: 0.95rem;
+    color: var(--ink);
+    font-weight: 300;
+    transition: color 0.3s;
+  }
+  .grb-stars strong { font-weight: 600; color: var(--ink); }
+  .grb-cta {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 1px;
+  }
+  @media (max-width: 600px) { .grb-cta { display: none; } }
+
+  /* GOOGLE REVIEWS SECTION (bottom) */
+  .google-reviews-sec {
+    background: var(--bg);
+    transition: background 0.3s;
+  }
+  .greview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 2.5rem;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  @media (max-width: 900px) { .greview-grid { grid-template-columns: 1fr; } }
+  .greview-card {
+    background: var(--bg);
+    padding: 2rem 2rem 1.8rem;
+    transition: background 0.3s, transform 0.3s;
+    position: relative;
+  }
+  .greview-card:hover { background: var(--light-bg); transform: translateY(-2px); }
+  .greview-top {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .greview-ini {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .greview-meta { flex: 1; }
+  .greview-name { font-size: 0.88rem; font-weight: 500; color: var(--ink); transition: color 0.3s; }
+  .greview-date { font-size: 0.72rem; color: var(--soft); font-weight: 300; transition: color 0.3s; }
+  .greview-glogo { flex-shrink: 0; }
+  .greview-stars { color: #fbbc04; font-size: 0.8rem; letter-spacing: 0.08em; margin-bottom: 0.8rem; }
+  .greview-body { font-size: 0.88rem; color: var(--soft); font-weight: 300; line-height: 1.75; transition: color 0.3s; }
+  .greview-cta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1.5rem 2rem;
+    background: var(--light-bg);
+    border: 1px solid var(--border);
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .greview-cta-left {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+  }
+  .greview-cta-score {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.8rem;
+    line-height: 1;
+    color: var(--ink);
+    transition: color 0.3s;
+  }
+  .greview-cta-info { display: flex; flex-direction: column; gap: 0.2rem; }
+  .greview-cta-stars { color: #fbbc04; font-size: 1rem; letter-spacing: 0.06em; }
+  .greview-cta-label { font-size: 0.72rem; color: var(--soft); font-weight: 300; transition: color 0.3s; }
+  .greview-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 0.85rem 1.8rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif;
+    text-decoration: none;
+    transition: background 0.2s;
+    flex-shrink: 0;
+  }
+  .greview-btn:hover { background: var(--soft); }
+  .greview-btn svg { width: 16px; height: 16px; }
 
   /* EXIT INTENT POPUP */
   .exit-overlay {
@@ -2125,10 +2263,10 @@
       <h1 class="reveal reveal-delay-1">Get into<br>medical school</h1>
       <p class="hero-sub reveal reveal-delay-2">Coached by Year 2 medical students who sat these exact interviews last year. We know what the panels want — because we were in your seat two years ago.</p>
       <div class="hero-trust reveal reveal-delay-3">
-        <div class="hero-trust-item">
-          <svg viewBox="0 0 16 16" fill="none"><path d="M8 1l2.12 4.3 4.74.69-3.43 3.34.81 4.72L8 11.77l-4.24 2.23.81-4.72L1.14 5.94l4.74-.69L8 1z" fill="#c8963e"/></svg>
-          <span><strong>5.0</strong> average rating</span>
-        </div>
+        <a href="https://g.page/r/CfgdWnROlmKJEBM/review" target="_blank" rel="noopener" class="hero-trust-item hero-trust-google" style="text-decoration:none;">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M21.805 10.023H12v3.955h5.62c-.242 1.237-.974 2.284-2.074 2.986v2.481h3.358c1.965-1.81 3.096-4.477 3.096-7.648 0-.553-.048-1.087-.135-1.774z" fill="#4285F4"/><path d="M12 22c2.834 0 5.21-.94 6.946-2.555l-3.358-2.481c-.936.628-2.135 1-3.588 1-2.76 0-5.098-1.863-5.934-4.368H2.61v2.559A10.997 10.997 0 0012 22z" fill="#34A853"/><path d="M6.066 13.596A6.62 6.62 0 015.71 12c0-.554.096-1.093.257-1.596V7.845H2.61A11.003 11.003 0 001 12c0 1.762.42 3.428 1.61 4.155l2.456-2.559z" fill="#FBBC05"/><path d="M12 5.636c1.555 0 2.95.534 4.048 1.582l3.034-3.034C17.207 2.39 14.83 1 12 1A10.997 10.997 0 002.61 7.845l3.456 2.559C6.902 7.499 9.24 5.636 12 5.636z" fill="#EA4335"/></svg>
+          <span><strong>5.0</strong> ★★★★★ on Google</span>
+        </a>
         <div class="hero-trust-item">
           <svg viewBox="0 0 16 16" fill="none"><path d="M6.5 12.5l-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z" fill="#3a9c6f"/></svg>
           <span><strong>30+</strong> sessions delivered</span>
@@ -2170,6 +2308,20 @@
   </div>
 </section>
 
+<!-- GOOGLE REVIEWS BANNER -->
+<a href="https://g.page/r/CfgdWnROlmKJEBM/review" target="_blank" rel="noopener" class="google-reviews-banner">
+  <div class="grb-inner">
+    <div class="grb-left">
+      <svg viewBox="0 0 24 24" fill="currentColor" class="grb-glogo" width="32" height="32"><path d="M21.805 10.023H12v3.955h5.62c-.242 1.237-.974 2.284-2.074 2.986v2.481h3.358c1.965-1.81 3.096-4.477 3.096-7.648 0-.553-.048-1.087-.135-1.774z" fill="#4285F4"/><path d="M12 22c2.834 0 5.21-.94 6.946-2.555l-3.358-2.481c-.936.628-2.135 1-3.588 1-2.76 0-5.098-1.863-5.934-4.368H2.61v2.559A10.997 10.997 0 0012 22z" fill="#34A853"/><path d="M6.066 13.596A6.62 6.62 0 015.71 12c0-.554.096-1.093.257-1.596V7.845H2.61A11.003 11.003 0 001 12c0 1.762.42 3.428 1.61 4.155l2.456-2.559z" fill="#FBBC05"/><path d="M12 5.636c1.555 0 2.95.534 4.048 1.582l3.034-3.034C17.207 2.39 14.83 1 12 1A10.997 10.997 0 002.61 7.845l3.456 2.559C6.902 7.499 9.24 5.636 12 5.636z" fill="#EA4335"/></svg>
+      <div class="grb-text">
+        <span class="grb-label">Google Reviews</span>
+        <span class="grb-stars"><!-- ABOUT / OUR STORY -->#9733;<!-- ABOUT / OUR STORY -->#9733;<!-- ABOUT / OUR STORY -->#9733;<!-- ABOUT / OUR STORY -->#9733;<!-- ABOUT / OUR STORY -->#9733; <strong>5.0</strong> <!-- ABOUT / OUR STORY -->mdash; Rated by our students</span>
+      </div>
+    </div>
+    <div class="grb-right"><span class="grb-cta">Leave us a review <!-- ABOUT / OUR STORY -->rarr;</span></div>
+  </div>
+</a>
+
 <!-- ABOUT / OUR STORY -->
 <section id="about" class="about-sec">
   <div class="sec-inner">
@@ -2199,7 +2351,7 @@
         <div class="about-stats">
           <div><div class="about-stat-num">6/6</div><div class="about-stat-label">Offers received</div></div>
           <div><div class="about-stat-num">30+</div><div class="about-stat-label">Sessions delivered</div></div>
-          <div><div class="about-stat-num">5.0</div><div class="about-stat-label">Avg rating</div></div>
+          <div><a href="https://g.page/r/CfgdWnROlmKJEBM/review" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:block;"><div class="about-stat-num" style="color:var(--accent);">5.0 ★</div><div class="about-stat-label">Google rating <div><div class="about-stat-num">5.0</div><div class="about-stat-label">Avg rating</div></div>#8599;</div></a></div>
         </div>
       </div>
     </div>
@@ -2373,7 +2525,7 @@
     </div>
     <div class="testi-cta">
       <p>Want to see more reviews?</p>
-      <a href="#" target="_blank" rel="noopener">Read all reviews on Google →</a>
+      <a href="https://g.page/r/CfgdWnROlmKJEBM/review" target="_blank" rel="noopener">Read all reviews on Google →</a>
     </div>
   </div>
 </section>
@@ -2700,6 +2852,73 @@
 </section>
 
 <!-- FOOTER CTA -->
+
+<!-- GOOGLE REVIEWS SECTION -->
+<section class="google-reviews-sec" id="google-reviews">
+  <div class="sec-inner">
+    <p class="section-label reveal">Verified on Google</p>
+    <h2 class="reveal">What our students <em>say on Google</em></h2>
+    <p class="section-desc reveal">Real reviews from students we've coached — verified on Google.</p>
+    <div class="greview-grid reveal">
+
+      <div class="greview-card">
+        <div class="greview-top">
+          <div class="greview-ini" style="background:#4285F4;">A</div>
+          <div class="greview-meta">
+            <div class="greview-name">Anya P.</div>
+            <div class="greview-date">3 weeks ago</div>
+          </div>
+          <svg class="greview-glogo" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M21.805 10.023H12v3.955h5.62c-.242 1.237-.974 2.284-2.074 2.986v2.481h3.358c1.965-1.81 3.096-4.477 3.096-7.648 0-.553-.048-1.087-.135-1.774z" fill="#4285F4"/><path d="M12 22c2.834 0 5.21-.94 6.946-2.555l-3.358-2.481c-.936.628-2.135 1-3.588 1-2.76 0-5.098-1.863-5.934-4.368H2.61v2.559A10.997 10.997 0 0012 22z" fill="#34A853"/><path d="M6.066 13.596A6.62 6.62 0 015.71 12c0-.554.096-1.093.257-1.596V7.845H2.61A11.003 11.003 0 001 12c0 1.762.42 3.428 1.61 4.155l2.456-2.559z" fill="#FBBC05"/><path d="M12 5.636c1.555 0 2.95.534 4.048 1.582l3.034-3.034C17.207 2.39 14.83 1 12 1A10.997 10.997 0 002.61 7.845l3.456 2.559C6.902 7.499 9.24 5.636 12 5.636z" fill="#EA4335"/></svg>
+        </div>
+        <div class="greview-stars">★★★★★</div>
+        <p class="greview-body">Booked a mock interview session and it was genuinely one of the best decisions I made during my application. The feedback was specific, actionable, and actually made me understand what I was doing wrong. Got my offer from Peninsula!</p>
+      </div>
+
+      <div class="greview-card">
+        <div class="greview-top">
+          <div class="greview-ini" style="background:#34A853;">J</div>
+          <div class="greview-meta">
+            <div class="greview-name">James T.</div>
+            <div class="greview-date">1 month ago</div>
+          </div>
+          <svg class="greview-glogo" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M21.805 10.023H12v3.955h5.62c-.242 1.237-.974 2.284-2.074 2.986v2.481h3.358c1.965-1.81 3.096-4.477 3.096-7.648 0-.553-.048-1.087-.135-1.774z" fill="#4285F4"/><path d="M12 22c2.834 0 5.21-.94 6.946-2.555l-3.358-2.481c-.936.628-2.135 1-3.588 1-2.76 0-5.098-1.863-5.934-4.368H2.61v2.559A10.997 10.997 0 0012 22z" fill="#34A853"/><path d="M6.066 13.596A6.62 6.62 0 015.71 12c0-.554.096-1.093.257-1.596V7.845H2.61A11.003 11.003 0 001 12c0 1.762.42 3.428 1.61 4.155l2.456-2.559z" fill="#FBBC05"/><path d="M12 5.636c1.555 0 2.95.534 4.048 1.582l3.034-3.034C17.207 2.39 14.83 1 12 1A10.997 10.997 0 002.61 7.845l3.456 2.559C6.902 7.499 9.24 5.636 12 5.636z" fill="#EA4335"/></svg>
+        </div>
+        <div class="greview-stars">★★★★★</div>
+        <p class="greview-body">The webinar was incredibly well structured and worth every penny of the £10. Covered everything from MMI station types to ethics frameworks. As someone who had no idea where to start, this gave me a clear roadmap.</p>
+      </div>
+
+      <div class="greview-card">
+        <div class="greview-top">
+          <div class="greview-ini" style="background:#EA4335;">M</div>
+          <div class="greview-meta">
+            <div class="greview-name">Maya K.</div>
+            <div class="greview-date">2 months ago</div>
+          </div>
+          <svg class="greview-glogo" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M21.805 10.023H12v3.955h5.62c-.242 1.237-.974 2.284-2.074 2.986v2.481h3.358c1.965-1.81 3.096-4.477 3.096-7.648 0-.553-.048-1.087-.135-1.774z" fill="#4285F4"/><path d="M12 22c2.834 0 5.21-.94 6.946-2.555l-3.358-2.481c-.936.628-2.135 1-3.588 1-2.76 0-5.098-1.863-5.934-4.368H2.61v2.559A10.997 10.997 0 0012 22z" fill="#34A853"/><path d="M6.066 13.596A6.62 6.62 0 015.71 12c0-.554.096-1.093.257-1.596V7.845H2.61A11.003 11.003 0 001 12c0 1.762.42 3.428 1.61 4.155l2.456-2.559z" fill="#FBBC05"/><path d="M12 5.636c1.555 0 2.95.534 4.048 1.582l3.034-3.034C17.207 2.39 14.83 1 12 1A10.997 10.997 0 002.61 7.845l3.456 2.559C6.902 7.499 9.24 5.636 12 5.636z" fill="#EA4335"/></svg>
+        </div>
+        <div class="greview-stars">★★★★★</div>
+        <p class="greview-body">Did three 1-to-1 sessions with Lochana and the improvement was massive. She remembered everything from our previous sessions and tailored every question to my weak areas. The school-specific prep for Keele was spot on.</p>
+      </div>
+
+    </div>
+
+    <div class="greview-cta-row reveal">
+      <div class="greview-cta-left">
+        <div class="greview-cta-score">5.0</div>
+        <div class="greview-cta-info">
+          <div class="greview-cta-stars">★★★★★</div>
+          <div class="greview-cta-label">Based on Google Reviews</div>
+        </div>
+      </div>
+      <a href="https://g.page/r/CfgdWnROlmKJEBM/review" target="_blank" rel="noopener" class="greview-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.805 10.023H12v3.955h5.62c-.242 1.237-.974 2.284-2.074 2.986v2.481h3.358c1.965-1.81 3.096-4.477 3.096-7.648 0-.553-.048-1.087-.135-1.774z" fill="#4285F4"/><path d="M12 22c2.834 0 5.21-.94 6.946-2.555l-3.358-2.481c-.936.628-2.135 1-3.588 1-2.76 0-5.098-1.863-5.934-4.368H2.61v2.559A10.997 10.997 0 0012 22z" fill="#34A853"/><path d="M6.066 13.596A6.62 6.62 0 015.71 12c0-.554.096-1.093.257-1.596V7.845H2.61A11.003 11.003 0 001 12c0 1.762.42 3.428 1.61 4.155l2.456-2.559z" fill="#FBBC05"/><path d="M12 5.636c1.555 0 2.95.534 4.048 1.582l3.034-3.034C17.207 2.39 14.83 1 12 1A10.997 10.997 0 002.61 7.845l3.456 2.559C6.902 7.499 9.24 5.636 12 5.636z" fill="#EA4335"/></svg>
+        Leave a Review on Google
+      </a>
+    </div>
+
+  </div>
+</section>
+
 <div class="footer-cta">
   <div class="footer-cta-left">
     <p>Your interview is worth <em>preparing for properly.</em><br>Start free — no commitment needed.</p>
@@ -2741,6 +2960,11 @@
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
         <span>@medcoach.uk</span>
         <span class="social-arrow">→</span>
+      </a>
+      <a href="https://g.page/r/CfgdWnROlmKJEBM/review" target="_blank" rel="noopener" class="social-link">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M21.805 10.023H12v3.955h5.62c-.242 1.237-.974 2.284-2.074 2.986v2.481h3.358c1.965-1.81 3.096-4.477 3.096-7.648 0-.553-.048-1.087-.135-1.774z" fill="#4285F4"/><path d="M12 22c2.834 0 5.21-.94 6.946-2.555l-3.358-2.481c-.936.628-2.135 1-3.588 1-2.76 0-5.098-1.863-5.934-4.368H2.61v2.559A10.997 10.997 0 0012 22z" fill="#34A853"/><path d="M6.066 13.596A6.62 6.62 0 015.71 12c0-.554.096-1.093.257-1.596V7.845H2.61A11.003 11.003 0 001 12c0 1.762.42 3.428 1.61 4.155l2.456-2.559z" fill="#FBBC05"/><path d="M12 5.636c1.555 0 2.95.534 4.048 1.582l3.034-3.034C17.207 2.39 14.83 1 12 1A10.997 10.997 0 002.61 7.845l3.456 2.559C6.902 7.499 9.24 5.636 12 5.636z" fill="#EA4335"/></svg>
+        <span>Review us on Google</span>
+        <span class="social-arrow">&#8599;</span>
       </a>
     </div>
   </div>
