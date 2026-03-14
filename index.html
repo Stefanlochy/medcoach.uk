@@ -2283,6 +2283,183 @@
     .gcta-rating { border-right: none; padding-right: 0; }
   }
 
+  /* RESOURCES SHOP */
+  .shop-sec { background: var(--light-bg); }
+  .shop-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 2rem;
+  }
+  .shop-card {
+    background: var(--bg);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .shop-card:hover { background: #f5f5f3; transform: translateY(-2px); }
+  [data-theme="dark"] .shop-card:hover { background: rgba(255,255,255,0.04); }
+  .shop-card-tag {
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+  }
+  .shop-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.6rem;
+    line-height: 1.25;
+  }
+  .shop-card p {
+    font-size: 0.88rem;
+    color: var(--soft);
+    font-weight: 300;
+    line-height: 1.7;
+    margin-bottom: 1.2rem;
+    flex: 1;
+  }
+  .shop-card-features {
+    list-style: none;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .shop-card-features li {
+    font-size: 0.82rem;
+    color: var(--ink);
+    display: flex;
+    gap: 0.5rem;
+  }
+  .shop-card-features li::before { content: '–'; color: var(--accent); flex-shrink: 0; }
+  .shop-card-price {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+  .shop-card-price span {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    color: var(--soft);
+    font-weight: 300;
+  }
+  .shop-card-price.coming-soon { color: var(--soft); font-size: 1rem; font-family: 'DM Sans', sans-serif; font-weight: 300; }
+  .shop-coming-badge {
+    display: inline-block;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: var(--border);
+    color: var(--soft);
+    padding: 0.25rem 0.7rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+  .btn-shop {
+    display: inline-block;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    padding: 0.7rem 1.5rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: background 0.2s, color 0.2s;
+    font-family: 'DM Sans', sans-serif;
+    text-decoration: none;
+    align-self: flex-start;
+  }
+  .btn-shop:hover { background: var(--ink); color: #fff; }
+  .btn-shop.disabled { border-color: var(--border); color: var(--soft); pointer-events: none; }
+  .shop-note {
+    font-size: 0.82rem;
+    color: var(--soft);
+    font-weight: 300;
+    text-align: center;
+    margin-top: 1rem;
+    line-height: 1.6;
+  }
+  .shop-note a { color: var(--accent); border-bottom: 1px solid var(--accent); }
+  @media (max-width: 900px) { .shop-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .shop-grid { grid-template-columns: 1fr !important; } }
+
+  .secondary-row {
+    border: 1px solid var(--border);
+    border-top: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    margin-bottom: 0;
+  }
+  .secondary-row-item {
+    text-decoration: none;
+    background: var(--bg);
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    transition: background 0.2s;
+  }
+  .secondary-row-item:hover { background: var(--light-bg); }
+  [data-theme="dark"] .secondary-row-item:hover { background: rgba(255,255,255,0.04); }
+  .secondary-row-label { font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); font-weight:500; margin-bottom:0.3rem; }
+  .secondary-row-name { font-family:'DM Serif Display',serif; font-size:1rem; color:var(--ink); font-weight:400; }
+  .secondary-row-desc { font-size:0.82rem; color:var(--soft); font-weight:300; margin-top:0.2rem; }
+  .secondary-row-price { font-family:'DM Serif Display',serif; font-size:1.3rem; color:var(--ink); flex-shrink:0; text-align:right; }
+  .secondary-row-old { font-size:0.78rem; color:var(--soft); text-decoration:line-through; }
+  @media (max-width: 700px) {
+    .secondary-row { grid-template-columns: 1fr; }
+    .secondary-row-item { padding: 1.2rem 1.5rem; }
+  }
+  .resource-shop-item {
+    border: 1px solid var(--border);
+    background: var(--bg);
+    padding: 2.5rem;
+    margin-bottom: 1px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .resource-shop-upsell {
+    border: 1px solid rgba(200,150,62,0.35);
+    background: rgba(200,150,62,0.04);
+    padding: 2rem 2.5rem;
+    margin-bottom: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .resource-shop-coming {
+    border: 1px solid var(--border);
+    background: var(--bg);
+    padding: 1.5rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+    opacity: 0.6;
+  }
+  @media (max-width: 700px) {
+    .resource-shop-item, .resource-shop-upsell, .resource-shop-coming { padding: 1.5rem; flex-direction: column; }
+    .resource-shop-item > div:last-child { text-align: left; }
+    .resource-shop-upsell > div:last-child { align-items: flex-start; }
+  }
 </style>
 </head>
 <body>
@@ -2305,14 +2482,14 @@
     <li class="nav-dropdown">
       <a href="#services" class="nav-dropdown-trigger">Services</a>
       <div class="nav-dropdown-menu">
-        <a href="https://calendly.com/stefanmoore-medcoach/complete-pack" target="_blank" rel="noopener">Complete Pack <span class="dd-price" style="color:#6bcf8f">£99</span></a>
+        <a href="https://calendly.com/stefanmoore-medcoach/complete-pack" target="_blank" rel="noopener">Complete Pack <span class="dd-price" style="color:#3a9c6f">£99</span></a>
         <a href="https://calendly.com/stefanmoore-medcoach/1-to-1-interview-coaching" target="_blank" rel="noopener">1-to-1 Coaching <span class="dd-price">£45/hr</span></a>
         <a href="https://calendly.com/stefanmoore-medcoach/mock-interview-practice" target="_blank" rel="noopener">Mock Interview <span class="dd-price">£50/hr</span></a>
         <a href="https://calendly.com/stefanmoore-medcoach/medical-interview-masterclass-webinar" target="_blank" rel="noopener">Interview Webinar <span class="dd-price">£10</span></a>
       </div>
     </li>
     <li><a href="#tutors">Tutors</a></li>
-    <li><a href="#testimonials">Results</a></li>
+    <li><a href="#resources">Resources</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#free-resource" class="nav-free">Free MMI Questions</a></li>
     <li><a href="#book" class="nav-cta">Book Now</a></li>
@@ -2361,7 +2538,7 @@
   <a href="#about" onclick="toggleMenu()">About</a>
   <a href="#services" onclick="toggleMenu()">Services</a>
   <a href="#tutors" onclick="toggleMenu()">Tutors</a>
-  <a href="#testimonials" onclick="toggleMenu()">Results</a>
+  <a href="#resources" onclick="toggleMenu()">Resources</a>
   <a href="#faq" onclick="toggleMenu()">FAQ</a>
   <a href="#free-resource" onclick="toggleMenu()" style="color:#6bcf8f;">Free MMI Questions</a>
   <a href="https://calendly.com/stefanmoore-medcoach/complete-pack" target="_blank" rel="noopener" class="btn-primary" onclick="toggleMenu()">Buy Complete Pack</a>
@@ -2390,7 +2567,7 @@
       </div>
       <div class="hero-btns reveal reveal-delay-4">
         <a href="https://calendly.com/stefanmoore-medcoach/complete-pack" target="_blank" rel="noopener" class="btn-primary">Buy Complete Pack — £99</a>
-        <a href="#services" class="btn-secondary">See all services</a>
+        <a href="#services" class="btn-secondary">See Services</a>
       </div>
       <div class="hero-quiz-nudge reveal reveal-delay-5">
         <svg viewBox="0 0 16 16" fill="none" width="13" height="13"><circle cx="8" cy="8" r="7" stroke="#c8963e" stroke-width="1.5"/><path d="M6 8.5l1.5 1.5L11 6" stroke="#c8963e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -2498,12 +2675,14 @@
   <div class="sec-inner">
     <p class="section-label reveal">What We Offer</p>
     <h2 class="reveal">What we <em>offer</em></h2>
-    <p class="section-desc reveal">Personalised 1-to-1 coaching and mock interviews from current medical students who sat these interviews last year.</p>
-    <div class="services-grid">
+    <p class="section-desc reveal">1-to-1 coaching and mock interviews from current medical students who sat these interviews last year.</p>
+
+    <!-- MAIN FOUR -->
+    <div class="services-grid" style="margin-bottom: 1px;">
       <div class="svc-card reveal-scale">
         <p class="svc-card-label">1-to-1 · Zoom Call</p>
         <h3>Personalised Coaching</h3>
-        <p>A fully tailored session focused on your individual strengths, weaknesses, and target medical schools. Detailed feedback and session notes included.</p>
+        <p>A fully tailored session focused on your individual strengths, weaknesses, and target medical schools. Written session notes included.</p>
         <ul class="svc-features">
           <li>Fully tailored to your profile</li>
           <li>School-specific prep on request</li>
@@ -2516,47 +2695,80 @@
       <div class="svc-card reveal-scale reveal-delay-1">
         <p class="svc-card-label">1-to-1 · Zoom Call</p>
         <h3>Mock Interview</h3>
-        <p>A full simulated interview matched to the exact format of your chosen schools — MMI stations or panel, school-specific themes, with a full written report.</p>
+        <p>A full simulated interview matched to the exact format of your chosen schools — MMI or panel, school-specific themes, with a full written report.</p>
         <ul class="svc-features">
           <li>School-specific format &amp; content</li>
           <li>Full written feedback report</li>
-          <li>Matched to your target schools</li>
+          <li>Matched to your target school</li>
           <li>Final prep &amp; confidence building</li>
         </ul>
         <div class="svc-price">£50 <span>/ hour</span></div>
         <a href="https://calendly.com/stefanmoore-medcoach/mock-interview-practice" target="_blank" rel="noopener" class="btn-outline">Book</a>
       </div>
       <div class="svc-card reveal-scale reveal-delay-2">
-        <p class="svc-card-label">Best Value · Everything Included</p>
+        <p class="svc-card-label">PDF Download · Instant Delivery</p>
+        <h3>MMI Question Bank</h3>
+        <p>50 stations across 6 categories with model answers, examiner insight, and a strategy tip for every question.</p>
+        <ul class="svc-features">
+          <li>50 stations across 6 categories</li>
+          <li>Model answers for every station</li>
+          <li>Examiner insight on every question</li>
+          <li>Strategy tip for each station</li>
+        </ul>
+        <div class="svc-price">£25 <span>/ PDF</span></div>
+        <a href="PAYHIP_LINK_HERE" target="_blank" rel="noopener" class="btn-outline">Buy</a>
+      </div>
+      <div class="svc-card reveal-scale reveal-delay-3" style="border-left: 2px solid var(--accent);">
+        <p class="svc-card-label" style="color:#3a9c6f;">Best Value · Everything Included</p>
         <h3>Complete Pack</h3>
-        <p>Coaching session, mock interview, and MMI Question Bank PDF in one purchase. The complete preparation package at the best price.</p>
+        <p>Coaching session, mock interview, and the full MMI Question Bank PDF. Everything in one purchase — save £21 vs buying separately.</p>
         <ul class="svc-features">
           <li>1x personalised coaching session</li>
           <li>1x school-specific mock interview</li>
           <li>MMI Question Bank PDF — 50 stations</li>
           <li>Save £21 vs buying separately</li>
         </ul>
-        <div class="svc-price" style="color:#6bcf8f">£99 <span>/ everything</span></div>
+        <div class="svc-price" style="color:#3a9c6f">£99 <span>/ everything</span></div>
         <a href="https://calendly.com/stefanmoore-medcoach/complete-pack" target="_blank" rel="noopener" class="btn-outline">Buy Now</a>
       </div>
-      <div class="svc-card reveal-scale reveal-delay-3">
-        <p class="svc-card-label">Group · Live Zoom</p>
-        <h3>Interview Webinar</h3>
-        <p>A structured live session covering the fundamentals of medical interviews — MMI, ethics frameworks, and how to structure compelling answers.</p>
-        <ul class="svc-features">
-          <li>Interview fundamentals taught</li>
-          <li>Live Q&amp;A with current med students</li>
-          <li>Session recording provided</li>
-          <li>Budget-friendly group format</li>
-        </ul>
-        <div class="svc-price">£10 <span>/ person</span></div>
-        <a href="https://calendly.com/stefanmoore-medcoach/medical-interview-masterclass-webinar" target="_blank" rel="noopener" class="btn-outline">Book</a>
-      </div>
     </div>
+
+    <!-- SECONDARY ROW: Webinar + Bundles -->
+    <div class="secondary-row">
+      <a href="https://calendly.com/stefanmoore-medcoach/medical-interview-masterclass-webinar" target="_blank" rel="noopener" class="secondary-row-item">
+        <div>
+          <div class="secondary-row-label">Group · Live Zoom</div>
+          <div class="secondary-row-name">Interview Webinar</div>
+          <div class="secondary-row-desc">MMI fundamentals, live Q&amp;A, recording included</div>
+        </div>
+        <div class="secondary-row-price">£10</div>
+      </a>
+      <a href="https://calendly.com/stefanmoore-medcoach/2x-personalised-coaching-bundle" target="_blank" rel="noopener" class="secondary-row-item">
+        <div>
+          <div class="secondary-row-label">Bundle · Save £10</div>
+          <div class="secondary-row-name">2x Coaching Sessions</div>
+          <div class="secondary-row-desc">Two 1-to-1 hours — better value, more improvement</div>
+        </div>
+        <div class="secondary-row-price">
+          <div class="secondary-row-old">£90</div>
+          £80
+        </div>
+      </a>
+      <a href="https://calendly.com/stefanmoore-medcoach/2x-personalised-mock-bundle" target="_blank" rel="noopener" class="secondary-row-item">
+        <div>
+          <div class="secondary-row-label">Bundle · Save £10</div>
+          <div class="secondary-row-name">2x Mock Interviews</div>
+          <div class="secondary-row-desc">Two full mocks — practice across different formats</div>
+        </div>
+        <div class="secondary-row-price">
+          <div class="secondary-row-old">£100</div>
+          £90
+        </div>
+      </a>
+    </div>
+
   </div>
 </section>
-
-<!-- HOW IT WORKS -->
 <section class="how-sec">
   <div class="sec-inner">
     <p class="section-label reveal">The Process</p>
@@ -2566,93 +2778,18 @@
       <div class="step-card reveal reveal-delay-1">
         <div class="step-num">01</div>
         <div class="step-title">Choose your session</div>
-        <p class="step-desc">Pick a slot on Calendly — takes 30 seconds. You'll meet your tutor, tell us your target schools and interview date, and we'll map out exactly what you need. No pressure, no commitment.</p>
+        <p class="step-desc">Pick the option that fits your stage of prep — the webinar if you're just starting out, coaching to sharpen your technique, a mock to test yourself under pressure, or the Complete Pack for everything in one.</p>
       </div>
       <div class="step-card reveal reveal-delay-2">
         <div class="step-num">02</div>
-        <div class="step-title">We build your prep plan</div>
-        <p class="step-desc">Based on your timeline and schools, we recommend the right sessions — whether that's the webinar first, a coaching block, or jumping straight into school-specific mock practice. You decide.</p>
+        <div class="step-title">Find the right session</div>
+        <p class="step-desc">Not sure what you need? Take our 1-minute quiz and we'll recommend the best option based on your timeline, prep level, and budget. Or browse the options above and book directly.</p>
+        <a href="/quiz.html" target="_blank" rel="noopener" style="display:inline-block;margin-top:1rem;font-size:0.75rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--accent);border-bottom:1px solid var(--accent);padding-bottom:2px;text-decoration:none;">Take the quiz →</a>
       </div>
       <div class="step-card reveal reveal-delay-3">
         <div class="step-num">03</div>
         <div class="step-title">Walk in ready</div>
         <p class="step-desc">By your interview day you'll have practised the exact format, received written feedback, and know how to handle anything they throw at you. Every student we've worked with has left feeling significantly more prepared.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section id="testimonials" class="testi-sec">
-  <div class="sec-inner">
-    <p class="section-label reveal">Student Results</p>
-    <h2 class="reveal">What our students <em>say</em></h2>
-    <p class="section-desc reveal" style="margin-bottom:3rem;">Real feedback from students who prepared with MedCoach and secured their offers.</p>
-    <div class="testi-grid">
-      <div class="t-card reveal reveal-delay-1">
-        <span class="t-quote-mark">"</span>
-        <div class="t-stars">★★★★★</div>
-        <p class="t-quote">"The webinar alone was worth ten times what I paid. In an hour I finally understood how to structure my MMI answers. I went from dreading interviews to feeling genuinely ready."</p>
-        <div class="t-author">
-          <div class="t-photo-wrap">
-            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Rohan A." class="t-photo">
-          </div>
-          <div>
-            <div class="t-name">Rohan A.</div>
-            <div class="t-detail">Webinar · Now at Bristol Med School</div>
-            <div class="t-verified"><svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M6.5 12.5l-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z" fill="#3a9c6f"/></svg>Verified student</div>
-          </div>
-        </div>
-      </div>
-      <div class="t-card reveal reveal-delay-1">
-        <span class="t-quote-mark">"</span>
-        <div class="t-stars">★★★★★</div>
-        <p class="t-quote">"The school-specific mock was unbelievably accurate. My tutor had interviewed at the same university and recreated the exact station types. I walked in knowing what to expect."</p>
-        <div class="t-author">
-          <div class="t-photo-wrap">
-            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sophie L." class="t-photo">
-          </div>
-          <div>
-            <div class="t-name">Sophie L.</div>
-            <div class="t-detail">Mock Interview · Accepted to UCL</div>
-            <div class="t-verified"><svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M6.5 12.5l-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z" fill="#3a9c6f"/></svg>Verified student</div>
-          </div>
-        </div>
-      </div>
-      <div class="t-card reveal reveal-delay-2">
-        <span class="t-quote-mark">"</span>
-        <div class="t-stars">★★★★★</div>
-        <p class="t-quote">"Did the webinar first to get my bearings, then booked three 1-to-1 sessions for deep practice. That combination was perfect. Couldn't recommend MedCoach more highly."</p>
-        <div class="t-author">
-          <div class="t-photo-wrap">
-            <img src="https://randomuser.me/api/portraits/women/17.jpg" alt="Ellie W." class="t-photo">
-          </div>
-          <div>
-            <div class="t-name">Ellie W.</div>
-            <div class="t-detail">Webinar + 1-to-1 · Now at Edinburgh</div>
-            <div class="t-verified"><svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M6.5 12.5l-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z" fill="#3a9c6f"/></svg>Verified student</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Google Reviews CTA -->
-    <div class="google-cta-block reveal">
-      <div class="gcta-left">
-        <div class="gcta-rating">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" class="gcta-glogo"><path d="M21.805 10.023H12v3.955h5.62c-.242 1.237-.974 2.284-2.074 2.986v2.481h3.358c1.965-1.81 3.096-4.477 3.096-7.648 0-.553-.048-1.087-.135-1.774z" fill="#4285F4"/><path d="M12 22c2.834 0 5.21-.94 6.946-2.555l-3.358-2.481c-.936.628-2.135 1-3.588 1-2.76 0-5.098-1.863-5.934-4.368H2.61v2.559A10.997 10.997 0 0012 22z" fill="#34A853"/><path d="M6.066 13.596A6.62 6.62 0 015.71 12c0-.554.096-1.093.257-1.596V7.845H2.61A11.003 11.003 0 001 12c0 1.762.42 3.428 1.61 4.155l2.456-2.559z" fill="#FBBC05"/><path d="M12 5.636c1.555 0 2.95.534 4.048 1.582l3.034-3.034C17.207 2.39 14.83 1 12 1A10.997 10.997 0 002.61 7.845l3.456 2.559C6.902 7.499 9.24 5.636 12 5.636z" fill="#EA4335"/></svg>
-          <div>
-            <div class="gcta-score">5.0</div>
-            <div class="gcta-stars">★★★★★</div>
-          </div>
-        </div>
-        <div class="gcta-text">
-          <div class="gcta-label">Google Reviews</div>
-          <div class="gcta-sub">Every review is from a real student we coached</div>
-        </div>
-      </div>
-      <div class="gcta-actions">
-        <a href="https://g.page/r/CfgdWnROlmKJEAI/review" target="_blank" rel="noopener" class="gcta-btn-primary">Read our reviews on Google</a>
-        <a href="https://g.page/r/CfgdWnROlmKJEAI/review" target="_blank" rel="noopener" class="gcta-btn-secondary">Leave us a review &#8599;</a>
       </div>
     </div>
   </div>
@@ -2832,7 +2969,7 @@
       </div>
       <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q">I'm not sure which service to pick. What do you recommend?</div>
-        <div class="faq-a">Not sure? <a href="/quiz.html" target="_blank" rel="noopener" style="color:var(--accent);border-bottom:1px solid var(--accent);">Take our 1-minute quiz</a> to find out which session suits your stage of preparation. Or email us at stefanmoore.medcoach@gmail.com and we'll point you in the right direction.</div>
+        <div class="faq-a">Not sure? <a href="/quiz.html" target="_blank" rel="noopener" style="color:var(--accent);border-bottom:1px solid var(--accent);">Take our 1-minute quiz</a> to find out which session suits your stage of preparation. Or email us at <a href="/cdn-cgi/l/email-protection#b8cbccddded9d6d5d7d7cadd96d5dddcdbd7d9dbd0f8dfd5d9d1d496dbd7d5" style="color:var(--accent);border-bottom:1px solid var(--accent);"><span class="__cf_email__" data-cfemail="7e0d0a1b181f101311110c1b50131b1a1d111f1d163e19131f1712501d1113">[email&#160;protected]</span></a> and we'll point you in the right direction.</div>
       </div>
       <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q">Are your tutors actually medical students?</div>
@@ -2857,12 +2994,12 @@
       <div class="resource-text">
         <p class="section-label reveal">Free Resource</p>
         <div class="resource-free-badge reveal">✓ Completely Free — No Credit Card</div>
-        <h2 class="reveal">50 MMI questions <em>to practise today</em></h2>
-        <p class="resource-desc reveal">The most common MMI station types, real ethics scenarios, and the question frameworks that get offers — completely free. No catch.</p>
+        <h2 class="reveal">5 free MMI questions <em>to practise today</em></h2>
+        <p class="resource-desc reveal">5 sample stations from our full question bank — real ethics scenarios, model answers, and the examiner frameworks that get offers. Completely free, delivered straight to your inbox.</p>
         <ul class="resource-features reveal">
-          <li>50 real-style MMI questions across all station types</li>
-          <li>Ethics, empathy, role play, and hot topic prompts</li>
-          <li>The answer framework our tutors used to get 6 from 6</li>
+          <li>5 real-style MMI ethics stations</li>
+          <li>Model answers and key points for each</li>
+          <li>Examiner insight — what they're actually scoring</li>
           <li>Delivered instantly to your inbox</li>
         </ul>
         <div class="resource-form reveal">
@@ -2875,19 +3012,78 @@
         <div class="resource-card">
           <div class="resource-card-header">
             <span class="resource-card-tag">Free Download</span>
-            <span class="resource-card-title">50 MMI Questions</span>
+            <span class="resource-card-title">5 MMI Taster Stations</span>
           </div>
           <div class="resource-card-body">
-            <div class="resource-preview-item"><span class="rp-num">01</span><span class="rp-text">Ethics — A patient refuses life-saving treatment...</span></div>
-            <div class="resource-preview-item"><span class="rp-num">02</span><span class="rp-text">Empathy — Your colleague makes a clinical error...</span></div>
-            <div class="resource-preview-item"><span class="rp-num">03</span><span class="rp-text">Role play — Break bad news to a worried parent...</span></div>
-            <div class="resource-preview-item rp-blur"><span class="rp-num">04</span><span class="rp-text">Hot topic — The NHS is facing a staffing crisis...</span></div>
-            <div class="resource-preview-item rp-blur"><span class="rp-num">05</span><span class="rp-text">Communication — Explain a diagnosis in lay terms...</span></div>
-            <div class="resource-card-more">+ 45 more questions inside</div>
+            <div class="resource-preview-item"><span class="rp-num">01</span><span class="rp-text">Confidentiality — A 17-year-old asks you not to tell her parents...</span></div>
+            <div class="resource-preview-item"><span class="rp-num">02</span><span class="rp-text">Consent &amp; Capacity — Patient with dementia refuses treatment...</span></div>
+            <div class="resource-preview-item"><span class="rp-num">03</span><span class="rp-text">Truth Telling — Family asks you not to share a terminal diagnosis...</span></div>
+            <div class="resource-preview-item rp-blur"><span class="rp-num">04</span><span class="rp-text">Resource Allocation — Only one ICU bed for two patients...</span></div>
+            <div class="resource-preview-item rp-blur"><span class="rp-num">05</span><span class="rp-text">End of Life — Patient asks you to help end his life...</span></div>
+            <div class="resource-card-more">Full 50-station bank available in the Complete Pack</div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- RESOURCES SHOP -->
+<section id="resources" class="shop-sec">
+  <div class="sec-inner">
+    <p class="section-label reveal">Resources</p>
+    <h2 class="reveal">PDF study guides <em>delivered instantly</em></h2>
+    <p class="section-desc reveal">Written by current medical students. Download and work through at your own pace.</p>
+
+    <!-- PRIMARY PRODUCT -->
+    <div class="resource-shop-item reveal">
+      <div style="flex:1; min-width: 260px;">
+        <div style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:0.6rem;">PDF Download · Instant Delivery</div>
+        <h3 style="font-family:'DM Serif Display',serif;font-size:1.4rem;font-weight:400;color:var(--ink);margin-bottom:0.6rem;">MMI Question Bank</h3>
+        <p style="font-size:0.9rem;color:var(--soft);font-weight:300;line-height:1.7;margin-bottom:1.2rem;max-width:520px;">50 stations across 6 categories — ethics, communication, NHS systems, personal qualities, scenarios, and medical knowledge. Every station includes a model answer, examiner insight, and a strategy tip.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.5rem;">
+          <span style="font-size:0.75rem;padding:0.25rem 0.7rem;border:1px solid var(--border);color:var(--soft);">50 stations</span>
+          <span style="font-size:0.75rem;padding:0.25rem 0.7rem;border:1px solid var(--border);color:var(--soft);">6 categories</span>
+          <span style="font-size:0.75rem;padding:0.25rem 0.7rem;border:1px solid var(--border);color:var(--soft);">Model answers</span>
+          <span style="font-size:0.75rem;padding:0.25rem 0.7rem;border:1px solid var(--border);color:var(--soft);">Examiner insight</span>
+          <span style="font-size:0.75rem;padding:0.25rem 0.7rem;border:1px solid var(--border);color:var(--soft);">Strategy tips</span>
+        </div>
+        <a href="PAYHIP_LINK_HERE" target="_blank" rel="noopener" class="btn-shop">Buy Now — £25</a>
+      </div>
+      <div style="flex-shrink:0;text-align:right;">
+        <div style="font-size:0.78rem;color:var(--soft);font-weight:300;margin-bottom:0.2rem;">One-time purchase</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:2.5rem;color:var(--ink);line-height:1;">£25</div>
+        <div style="font-size:0.75rem;color:var(--soft);font-weight:300;margin-top:0.3rem;">Instant PDF delivery</div>
+      </div>
+    </div>
+
+    <!-- COMPLETE PACK UPSELL -->
+    <div class="resource-shop-upsell reveal">
+      <div>
+        <div style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:#3a9c6f;font-weight:500;margin-bottom:0.5rem;">Best Value — Save £21</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--ink);font-weight:400;margin-bottom:0.3rem;">Complete Pack</div>
+        <div style="font-size:0.85rem;color:var(--soft);font-weight:300;">MMI Question Bank PDF + 1x coaching session + 1x mock interview — everything in one.</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:2rem;flex-shrink:0;flex-wrap:wrap;">
+        <div style="text-align:right;">
+          <div style="font-size:0.78rem;color:var(--soft);text-decoration:line-through;">£120 value</div>
+          <div style="font-family:'DM Serif Display',serif;font-size:2rem;color:#3a9c6f;line-height:1;">£99</div>
+        </div>
+        <a href="https://calendly.com/stefanmoore-medcoach/complete-pack" target="_blank" rel="noopener" class="btn-shop">Buy Now</a>
+      </div>
+    </div>
+
+    <!-- COMING SOON -->
+    <div class="resource-shop-coming reveal">
+      <div>
+        <div style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--soft);font-weight:500;margin-bottom:0.4rem;">Coming Soon</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--ink);font-weight:400;">Medical Ethics Framework Guide</div>
+        <div style="font-size:0.82rem;color:var(--soft);font-weight:300;margin-top:0.2rem;">Four pillars, common dilemmas, and answer frameworks for every ethics station.</div>
+      </div>
+      <span style="font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--soft);border:1px solid var(--border);padding:0.4rem 1rem;flex-shrink:0;">Available soon</span>
+    </div>
+
+    <p class="shop-note" style="margin-top:1.2rem;">All PDFs are delivered instantly by email after purchase. Questions? <a href="mailto:stefanmoore.medcoach@gmail.com">stefanmoore.medcoach@gmail.com</a></p>
   </div>
 </section>
 
@@ -2896,186 +3092,23 @@
   <div class="sec-inner">
     <p class="section-label reveal">Book Your Session</p>
     <h2 class="reveal">Ready to start? <em>Book instantly</em></h2>
-    <p class="section-desc">All sessions are via Calendly — pick a time and you're confirmed in seconds. <a href="https://calendly.com/stefanmoore-medcoach" target="_blank" rel="noopener" style="color:rgba(200,150,62,0.9);border-bottom:1px solid rgba(200,150,62,0.4);">View all on Calendly →</a></p>
+    <p class="section-desc">All sessions are confirmed in seconds via Calendly. <a href="https://calendly.com/stefanmoore-medcoach" target="_blank" rel="noopener" style="color:rgba(200,150,62,0.9);border-bottom:1px solid rgba(200,150,62,0.4);">View all sessions on Calendly →</a></p>
 
     <div class="scarcity-strip reveal">
       <span class="scarcity-dot"></span>
       <span>Slots are limited each week — <strong>peak season is November to March</strong>. Book early to secure your preferred time.</span>
     </div>
 
-    <!-- COMPLETE PACK -->
-    <a href="https://calendly.com/stefanmoore-medcoach/complete-pack" target="_blank" rel="noopener" class="complete-pack-card reveal">
-      <div class="complete-pack-left">
-        <div class="complete-pack-badge">Best Value — Complete Pack</div>
-        <div class="complete-pack-title">Everything you need in one purchase</div>
-        <div class="complete-pack-includes">
-          <span>1x 1-to-1 Coaching Session</span> (£45 value)<br>
-          <span>1x Mock Interview</span> — matched to your target school (£50 value)<br>
-          <span>MMI Question Bank PDF</span> — 50 stations with model answers (£25 value)
-        </div>
-      </div>
-      <div class="complete-pack-right">
-        <div class="complete-pack-old">£120 value</div>
-        <div class="complete-pack-price">£99</div>
-        <span class="complete-pack-save">Save £21</span>
-        <span class="btn-white">Buy Complete Pack</span>
-      </div>
-    </a>
-
-    <!-- BUNDLE DEALS -->
-    <div class="bundle-strip">
-      <a href="https://calendly.com/stefanmoore-medcoach/2x-personalised-coaching-bundle" target="_blank" rel="noopener" class="bundle-card">
-        <div class="bundle-info">
-          <h3>2x Personalised Coaching</h3>
-          <p>Two one-hour 1-to-1 coaching sessions. Save £10 when you book together.</p>
-        </div>
-        <div class="bundle-pricing">
-          <div class="bundle-old">£90</div>
-          <div class="bundle-new">£80</div>
-          <div class="bundle-save">Save £10</div>
-        </div>
-      </a>
-      <a href="https://calendly.com/stefanmoore-medcoach/2x-personalised-mock-bundle" target="_blank" rel="noopener" class="bundle-card">
-        <div class="bundle-info">
-          <h3>2x Mock Interview</h3>
-          <p>Two full mock interviews. Perfect for practising across different schools.</p>
-        </div>
-        <div class="bundle-pricing">
-          <div class="bundle-old">£100</div>
-          <div class="bundle-new">£90</div>
-          <div class="bundle-save">Save £10</div>
-        </div>
-      </a>
-    </div>
-
-    <!-- COMPACT SESSION LINKS -->
-    <div class="book-cta-grid">
-      <a href="https://calendly.com/stefanmoore-medcoach/complete-pack" target="_blank" rel="noopener" class="book-cta-item reveal-left" style="border: 1px solid rgba(200,150,62,0.4); background: rgba(200,150,62,0.06);">
-        <div class="book-cta-left">
-          <div class="book-cta-tag" style="color:rgba(200,150,62,0.9);">Best Value · Coaching + Mock + PDF</div>
-          <div class="book-cta-name">Complete Pack</div>
-          <div class="book-cta-desc">Everything in one. Coaching session, mock interview, and MMI Question Bank PDF.</div>
-        </div>
-        <div class="book-cta-right">
-          <div class="book-cta-price" style="color:#6bcf8f;">£99</div>
-          <span class="btn-white">Buy Now</span>
-        </div>
-      </a>
-      <a href="https://calendly.com/stefanmoore-medcoach/1-to-1-interview-coaching" target="_blank" rel="noopener" class="book-cta-item">
-        <div class="book-cta-left">
-          <div class="book-cta-tag">1-to-1 · Zoom</div>
-          <div class="book-cta-name">Personalised Coaching</div>
-          <div class="book-cta-desc">Tailored to your schools, strengths, and weaknesses.</div>
-        </div>
-        <div class="book-cta-right">
-          <div class="book-cta-price">£45<span style="font-family:'DM Sans',sans-serif;font-size:0.75rem;color:rgba(255,255,255,0.3);font-weight:300;">/hr</span></div>
-          <span class="btn-white">Book Now</span>
-        </div>
-      </a>
-      <a href="https://calendly.com/stefanmoore-medcoach/mock-interview-practice" target="_blank" rel="noopener" class="book-cta-item">
-        <div class="book-cta-left">
-          <div class="book-cta-tag">1-to-1 · Zoom</div>
-          <div class="book-cta-name">Mock Interview</div>
-          <div class="book-cta-desc">Exact format of your target school. Full written report.</div>
-        </div>
-        <div class="book-cta-right">
-          <div class="book-cta-price">£50<span style="font-family:'DM Sans',sans-serif;font-size:0.75rem;color:rgba(255,255,255,0.3);font-weight:300;">/hr</span></div>
-          <span class="btn-white">Book Now</span>
-        </div>
-      </a>
-      <a href="https://calendly.com/stefanmoore-medcoach/medical-interview-masterclass-webinar" target="_blank" rel="noopener" class="book-cta-item">
-        <div class="book-cta-left">
-          <div class="book-cta-tag">Group · Live Zoom</div>
-          <div class="book-cta-name">Interview Webinar</div>
-          <div class="book-cta-desc">MMI, ethics, answer structure. Recording included.</div>
-        </div>
-        <div class="book-cta-right">
-          <div class="book-cta-price">£10</div>
-          <span class="btn-white">Book Now</span>
-        </div>
-      </a>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem;">
+      <a href="https://calendly.com/stefanmoore-medcoach/complete-pack" target="_blank" rel="noopener" class="btn-white" style="font-size:0.82rem;padding:1rem 2rem;">Buy Complete Pack — £99</a>
+      <a href="https://calendly.com/stefanmoore-medcoach/1-to-1-interview-coaching" target="_blank" rel="noopener" class="btn-white" style="font-size:0.82rem;padding:1rem 2rem;opacity:0.7;">Book Coaching — £45</a>
+      <a href="https://calendly.com/stefanmoore-medcoach/mock-interview-practice" target="_blank" rel="noopener" class="btn-white" style="font-size:0.82rem;padding:1rem 2rem;opacity:0.7;">Book Mock — £50</a>
     </div>
   </div>
 </section>
 
 <!-- FOOTER CTA -->
 
-<!-- GOOGLE REVIEWS SECTION -->
-<section class="google-reviews-sec" id="google-reviews">
-  <div class="sec-inner">
-    <p class="section-label reveal">Verified on Google</p>
-    <h2 class="reveal">What our students <em>say on Google</em></h2>
-    <p class="section-desc reveal">Real reviews from students we've coached — verified on Google.</p>
-    <div class="greview-grid reveal">
-
-      <div class="greview-card">
-        <div class="greview-top">
-          <div class="greview-ini" style="background:#4285F4;">A</div>
-          <div class="greview-meta">
-            <div class="greview-name">Anya P.</div>
-            <div class="greview-date">3 weeks ago</div>
-          </div>
-          <svg class="greview-glogo" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M21.805 10.023H12v3.955h5.62c-.242 1.237-.974 2.284-2.074 2.986v2.481h3.358c1.965-1.81 3.096-4.477 3.096-7.648 0-.553-.048-1.087-.135-1.774z" fill="#4285F4"/><path d="M12 22c2.834 0 5.21-.94 6.946-2.555l-3.358-2.481c-.936.628-2.135 1-3.588 1-2.76 0-5.098-1.863-5.934-4.368H2.61v2.559A10.997 10.997 0 0012 22z" fill="#34A853"/><path d="M6.066 13.596A6.62 6.62 0 015.71 12c0-.554.096-1.093.257-1.596V7.845H2.61A11.003 11.003 0 001 12c0 1.762.42 3.428 1.61 4.155l2.456-2.559z" fill="#FBBC05"/><path d="M12 5.636c1.555 0 2.95.534 4.048 1.582l3.034-3.034C17.207 2.39 14.83 1 12 1A10.997 10.997 0 002.61 7.845l3.456 2.559C6.902 7.499 9.24 5.636 12 5.636z" fill="#EA4335"/></svg>
-        </div>
-        <div class="greview-stars">★★★★★</div>
-        <p class="greview-body">Booked a mock interview session and it was genuinely one of the best decisions I made during my application. The feedback was specific, actionable, and actually made me understand what I was doing wrong. Got my offer from Peninsula!</p>
-      </div>
-
-      <div class="greview-card">
-        <div class="greview-top">
-          <div class="greview-ini" style="background:#34A853;">J</div>
-          <div class="greview-meta">
-            <div class="greview-name">James T.</div>
-            <div class="greview-date">1 month ago</div>
-          </div>
-          <svg class="greview-glogo" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M21.805 10.023H12v3.955h5.62c-.242 1.237-.974 2.284-2.074 2.986v2.481h3.358c1.965-1.81 3.096-4.477 3.096-7.648 0-.553-.048-1.087-.135-1.774z" fill="#4285F4"/><path d="M12 22c2.834 0 5.21-.94 6.946-2.555l-3.358-2.481c-.936.628-2.135 1-3.588 1-2.76 0-5.098-1.863-5.934-4.368H2.61v2.559A10.997 10.997 0 0012 22z" fill="#34A853"/><path d="M6.066 13.596A6.62 6.62 0 015.71 12c0-.554.096-1.093.257-1.596V7.845H2.61A11.003 11.003 0 001 12c0 1.762.42 3.428 1.61 4.155l2.456-2.559z" fill="#FBBC05"/><path d="M12 5.636c1.555 0 2.95.534 4.048 1.582l3.034-3.034C17.207 2.39 14.83 1 12 1A10.997 10.997 0 002.61 7.845l3.456 2.559C6.902 7.499 9.24 5.636 12 5.636z" fill="#EA4335"/></svg>
-        </div>
-        <div class="greview-stars">★★★★★</div>
-        <p class="greview-body">The webinar was incredibly well structured and worth every penny of the £10. Covered everything from MMI station types to ethics frameworks. As someone who had no idea where to start, this gave me a clear roadmap.</p>
-      </div>
-
-      <div class="greview-card">
-        <div class="greview-top">
-          <div class="greview-ini" style="background:#EA4335;">M</div>
-          <div class="greview-meta">
-            <div class="greview-name">Maya K.</div>
-            <div class="greview-date">2 months ago</div>
-          </div>
-          <svg class="greview-glogo" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M21.805 10.023H12v3.955h5.62c-.242 1.237-.974 2.284-2.074 2.986v2.481h3.358c1.965-1.81 3.096-4.477 3.096-7.648 0-.553-.048-1.087-.135-1.774z" fill="#4285F4"/><path d="M12 22c2.834 0 5.21-.94 6.946-2.555l-3.358-2.481c-.936.628-2.135 1-3.588 1-2.76 0-5.098-1.863-5.934-4.368H2.61v2.559A10.997 10.997 0 0012 22z" fill="#34A853"/><path d="M6.066 13.596A6.62 6.62 0 015.71 12c0-.554.096-1.093.257-1.596V7.845H2.61A11.003 11.003 0 001 12c0 1.762.42 3.428 1.61 4.155l2.456-2.559z" fill="#FBBC05"/><path d="M12 5.636c1.555 0 2.95.534 4.048 1.582l3.034-3.034C17.207 2.39 14.83 1 12 1A10.997 10.997 0 002.61 7.845l3.456 2.559C6.902 7.499 9.24 5.636 12 5.636z" fill="#EA4335"/></svg>
-        </div>
-        <div class="greview-stars">★★★★★</div>
-        <p class="greview-body">Did three 1-to-1 sessions with Lochana and the improvement was massive. She remembered everything from our previous sessions and tailored every question to my weak areas. The school-specific prep for Keele was spot on.</p>
-      </div>
-
-    </div>
-
-    <div class="greview-cta-row reveal">
-      <div class="greview-cta-left">
-        <div class="greview-cta-score">5.0</div>
-        <div class="greview-cta-info">
-          <div class="greview-cta-stars">★★★★★</div>
-          <div class="greview-cta-label">Based on Google Reviews</div>
-        </div>
-      </div>
-      <a href="https://g.page/r/CfgdWnROlmKJEAI/review" target="_blank" rel="noopener" class="greview-btn">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.805 10.023H12v3.955h5.62c-.242 1.237-.974 2.284-2.074 2.986v2.481h3.358c1.965-1.81 3.096-4.477 3.096-7.648 0-.553-.048-1.087-.135-1.774z" fill="#4285F4"/><path d="M12 22c2.834 0 5.21-.94 6.946-2.555l-3.358-2.481c-.936.628-2.135 1-3.588 1-2.76 0-5.098-1.863-5.934-4.368H2.61v2.559A10.997 10.997 0 0012 22z" fill="#34A853"/><path d="M6.066 13.596A6.62 6.62 0 015.71 12c0-.554.096-1.093.257-1.596V7.845H2.61A11.003 11.003 0 001 12c0 1.762.42 3.428 1.61 4.155l2.456-2.559z" fill="#FBBC05"/><path d="M12 5.636c1.555 0 2.95.534 4.048 1.582l3.034-3.034C17.207 2.39 14.83 1 12 1A10.997 10.997 0 002.61 7.845l3.456 2.559C6.902 7.499 9.24 5.636 12 5.636z" fill="#EA4335"/></svg>
-        Leave a Review on Google
-      </a>
-    </div>
-
-  </div>
-</section>
-
-<div class="footer-cta">
-  <div class="footer-cta-left">
-    <p>Your interview is worth <em>preparing for properly.</em><br>Start free — no commitment needed.</p>
-    <div class="footer-cta-tagline">Coached by students who got in last year</div>
-  </div>
-  <div class="footer-cta-right">
-    <a href="https://calendly.com/stefanmoore-medcoach/complete-pack" target="_blank" rel="noopener" class="btn-primary">Buy Complete Pack — £99</a>
-    <a href="https://calendly.com/stefanmoore-medcoach/medical-interview-masterclass-webinar" target="_blank" rel="noopener" class="btn-secondary">Book Webinar — £10</a>
-  </div>
-</div>
 
 <!-- FOOTER -->
 <footer>
@@ -3155,7 +3188,7 @@
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // ====== THEME TOGGLE ======
   function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
@@ -3368,7 +3401,7 @@
     document.querySelector('.resource-fine').style.display = 'none';
     var success = document.createElement('div');
     success.className = 'resource-success show';
-    success.textContent = '✓ Check your inbox — your 50 MMI questions are on their way.';
+    success.textContent = '✓ Check your inbox — your 5 free MMI stations are on their way.';
     document.querySelector('.resource-form').parentNode.insertBefore(success, document.querySelector('.resource-form'));
   }
 
@@ -3395,19 +3428,4 @@
       form.appendChild(input);
     });
     document.body.appendChild(form);
-    form.submit();
-    setTimeout(function() {
-      document.body.removeChild(form);
-      document.body.removeChild(iframe);
-    }, 3000);
-    document.getElementById('exitStep1').style.display = 'none';
-    document.getElementById('exitStep2').classList.add('show');
-  }
-
-  document.getElementById('exitEmail').addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') submitExitEmail();
-  });
-</script>
-
-</body>
-</html>
+    form.subm
