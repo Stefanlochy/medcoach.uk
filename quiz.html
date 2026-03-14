@@ -299,7 +299,7 @@
     <div class="results-grid" id="resultsGrid"></div>
     <div class="results-footer">
       <button class="retake-btn" onclick="restart()">Retake Quiz</button>
-      <a href="https://calendly.com/stefanmoore-medcoach/30min" target="_blank" rel="noopener" class="unsure-link">Still unsure? Book a free call →</a>
+      <a href="mailto:stefanmoore.medcoach@gmail.com" class="unsure-link">Still unsure? Email us →</a>
     </div>
   </div>
 </div>
@@ -351,8 +351,7 @@ const QUESTIONS = [
     options: [
       { label: "Under £15 — keep it cheap", value: "low" },
       { label: "Up to £50 — happy to invest in one session", value: "single" },
-      { label: "Up to £100 — open to a bundle", value: "bundle" },
-      { label: "I'd like to try before I commit", value: "try" }
+      { label: "Up to £100 — open to a bundle or complete pack", value: "bundle" }
     ]
   }
 ];
@@ -398,13 +397,13 @@ const SERVICES = {
     link: "https://calendly.com/stefanmoore-medcoach/2x-personalised-mock-bundle",
     btnText: "Book Bundle"
   },
-  taster: {
-    name: "Free Taster Call",
-    price: "Free",
-    tag: "15 minutes · Zoom",
-    description: "Meet your tutor, discuss your goals, and see if MedCoach is the right fit. No commitment needed.",
-    link: "https://calendly.com/stefanmoore-medcoach/30min",
-    btnText: "Book Free Call"
+  completePack: {
+    name: "Complete Pack",
+    price: "£99",
+    tag: "Best Value · Coaching + Mock + PDF",
+    description: "One coaching session, one school-specific mock interview, and the MMI Question Bank PDF — 50 stations with model answers. Everything in one purchase.",
+    link: "https://calendly.com/stefanmoore-medcoach/complete-pack",
+    btnText: "Buy Complete Pack"
   }
 };
 
@@ -487,57 +486,43 @@ function getRecommendations() {
   var budget = answers.budget;
   var results = [];
 
-  // TASTER — always first if they want to try first
-  if (budget === "try") {
-    results.push(Object.assign({}, SERVICES.taster, {
-      why: "You want to see if we're a good fit before spending anything — a free 15-minute call lets you meet your tutor and decide with zero pressure.",
-      priority: 100
-    }));
-    // Still show what they'd likely book after
-    if (prep === "none" || concern === "fundamentals") {
-      results.push(Object.assign({}, SERVICES.webinar, {
-        why: "After your taster call, the webinar is a great low-cost next step — it covers the fundamentals and gives you a recording to revisit.",
-        priority: 75
-      }));
-    } else {
-      results.push(Object.assign({}, SERVICES.coaching, {
-        why: "After your taster call, a 1-to-1 coaching session is the natural next step if you want focused, personalised prep.",
-        priority: 75
-      }));
-    }
-    return results.slice(0, 2);
-  }
-
   // UNDER £15 — webinar only
   if (budget === "low") {
     results.push(Object.assign({}, SERVICES.webinar, {
       why: "At £10 it's the only option that fits your budget — and it covers MMI structure, ethics frameworks and common question types in a live session with a recording to keep.",
       priority: 100
     }));
-    results.push(Object.assign({}, SERVICES.taster, {
-      why: "The free taster call is always available alongside any session — meet your tutor and ask questions before committing to anything.",
-      priority: 70
+    results.push(Object.assign({}, SERVICES.coaching, {
+      why: "When you're ready to invest in 1-to-1 prep, a coaching session is the natural next step after the webinar.",
+      priority: 65
     }));
     return results.slice(0, 2);
   }
 
-  // FROM HERE: budget is "single" (up to £50) or "bundle" (up to £100)
+  // COMPLETE PACK — surface whenever budget allows and concern suits it
   var canBundle = budget === "bundle";
+  var canSingle = budget === "single";
+
+  // Complete Pack is always the top pick for bundle budget
+  // unless interview is in less than 2 weeks (not enough time to do both sessions)
+  if (canBundle && timeline !== "soon") {
+    results.push(Object.assign({}, SERVICES.completePack, {
+      why: "You have the budget to do this properly — the Complete Pack gives you a coaching session to build your technique, a school-specific mock to test it under pressure, and the MMI Question Bank PDF to prepare between sessions. Best value by far at £99 vs £120 separately.",
+      priority: 97
+    }));
+  }
 
   // --- FUNDAMENTALS concern ---
   if (concern === "fundamentals") {
-    if (canBundle) {
-      results.push(Object.assign({}, SERVICES.coachingBundle, {
-        why: "You're building from scratch and have the budget to do it properly — two coaching sessions give you the full foundation, with time to practise and improve between them. Saves £10 vs booking separately.",
-        priority: 95
-      }));
+    if (canBundle && timeline !== "soon") {
+      // Complete Pack already added above — add webinar as extra
       results.push(Object.assign({}, SERVICES.webinar, {
-        why: "The webinar is a great low-cost overview to do before your coaching sessions — arrive prepared and get more out of every session.",
+        why: "Do the webinar first before your coaching session — it gives you the foundations so you get far more out of your 1-to-1 time.",
         priority: 75
       }));
-    } else {
+    } else if (canSingle) {
       results.push(Object.assign({}, SERVICES.webinar, {
-        why: "You're not sure how medical interviews work yet — the webinar is specifically designed for this. It covers MMI, ethics stations, and how to structure answers, all in one live session.",
+        why: "You're not sure how medical interviews work yet — the webinar is specifically designed for this. It covers MMI, ethics stations, and how to structure answers, all in one live session with a recording to keep.",
         priority: 95
       }));
       results.push(Object.assign({}, SERVICES.coaching, {
@@ -549,14 +534,14 @@ function getRecommendations() {
 
   // --- STRUCTURE concern ---
   if (concern === "structure") {
-    if (canBundle) {
-      results.push(Object.assign({}, SERVICES.coachingBundle, {
-        why: "Structuring answers takes practice across multiple sessions — the 2x coaching bundle gives you two full hours to work on it, with time to improve between sessions. Saves £10 vs booking separately.",
-        priority: 95
-      }));
-    } else {
+    if (!canBundle) {
       results.push(Object.assign({}, SERVICES.coaching, {
         why: "You've done some prep but answers aren't coming together clearly — a 1-to-1 coaching session is exactly built for this. Your tutor will give you a framework that works for you personally.",
+        priority: 95
+      }));
+    } else if (timeline === "soon") {
+      results.push(Object.assign({}, SERVICES.coachingBundle, {
+        why: "Two coaching sessions give you maximum time to work on structure — one to learn the framework, one to practise applying it. Saves £10 vs booking separately.",
         priority: 95
       }));
     }
@@ -565,25 +550,27 @@ function getRecommendations() {
   // --- PRACTICE concern ---
   if (concern === "practice") {
     if (prep === "none" || prep === "some") {
-      // Not ready for mock yet — needs coaching first
-      results.push(Object.assign({}, SERVICES.coaching, {
-        why: "You want pressure practice but you haven't built the foundations yet — jumping straight into a mock without prep won't help you improve. A coaching session first will give you the structure and technique, then you'll get far more out of a mock.",
-        priority: 95
-      }));
-      results.push(Object.assign({}, SERVICES.mock, {
-        why: "Once you've done a coaching session, book a mock to put it all into practice under real interview conditions.",
-        priority: 75
-      }));
+      // Not ready for mock yet
+      if (!canBundle || timeline === "soon") {
+        results.push(Object.assign({}, SERVICES.coaching, {
+          why: "You want pressure practice but you haven't built the foundations yet — a coaching session first will give you the structure and technique, then you'll get far more out of a mock.",
+          priority: canBundle ? 75 : 95
+        }));
+        results.push(Object.assign({}, SERVICES.mock, {
+          why: "Once you've done a coaching session, book a mock to put everything into practice under real interview conditions.",
+          priority: 70
+        }));
+      }
     } else {
       // prep = fair or lots — ready for mock
-      if (canBundle) {
-        results.push(Object.assign({}, SERVICES.mockBundle, {
-          why: "You've done the prep — now you need reps. Two mocks give you one to identify weaknesses and one to fix them. Saves £10 vs booking separately and is the best way to build real confidence.",
-          priority: 95
-        }));
-      } else {
+      if (!canBundle) {
         results.push(Object.assign({}, SERVICES.mock, {
           why: "You've done solid prep and need to test yourself under real conditions. The mock is matched to the exact format of your target school — stations, timing, and all.",
+          priority: 95
+        }));
+      } else if (timeline === "soon") {
+        results.push(Object.assign({}, SERVICES.mockBundle, {
+          why: "Two mocks before your interview — one to identify weaknesses, one to fix them. Saves £10 and is the best possible final prep.",
           priority: 95
         }));
       }
@@ -592,28 +579,27 @@ function getRecommendations() {
 
   // --- SCHOOL-SPECIFIC concern ---
   if (concern === "school-specific") {
-    if (canBundle) {
-      results.push(Object.assign({}, SERVICES.mockBundle, {
-        why: "The best school-specific prep is doing it twice — one mock to learn the format and get feedback, one mock to put that feedback into practice. The 2x bundle saves £10 and is the closest thing to the real experience.",
+    if (!canBundle) {
+      results.push(Object.assign({}, SERVICES.mock, {
+        why: "The mock interview is built specifically around your target school's format — whether that's MMI, panel, or a mix. Your tutor sat that exact style of interview themselves.",
         priority: 95
       }));
-    } else {
-      results.push(Object.assign({}, SERVICES.mock, {
-        why: "The mock interview is built specifically around your target school's format — whether that's MMI, panel, or a mix. Your tutor will have sat that style of interview themselves.",
+    } else if (timeline === "soon") {
+      results.push(Object.assign({}, SERVICES.mockBundle, {
+        why: "Two school-specific mocks — one to get familiar with the format and one to nail it. Saves £10 and gives you the most realistic prep possible.",
         priority: 95
       }));
     }
   }
 
-  // --- TIMELINE urgency overrides ---
+  // --- TIMELINE urgency: interview in less than 2 weeks ---
   if (timeline === "soon") {
-    // Interview within 2 weeks — prioritise the most time-efficient option
     var hasMock = results.some(function(r) { return r.name === SERVICES.mock.name || r.name === SERVICES.mockBundle.name; });
     var hasCoaching = results.some(function(r) { return r.name === SERVICES.coaching.name || r.name === SERVICES.coachingBundle.name; });
     if (!hasMock && !hasCoaching) {
       if (prep === "fair" || prep === "lots") {
         results.unshift(Object.assign({}, SERVICES.mock, {
-          why: "Your interview is less than 2 weeks away and you've already prepped — a mock is the highest-value thing you can do right now. It builds confidence and irons out the last issues.",
+          why: "Your interview is less than 2 weeks away and you've already prepped — a mock is the highest-value thing you can do right now. Builds final confidence and irons out last issues.",
           priority: 99
         }));
       } else {
@@ -622,17 +608,6 @@ function getRecommendations() {
           priority: 99
         }));
       }
-    }
-  }
-
-  if (timeline === "none" || timeline === "far") {
-    // No interview yet or far away — webinar is a sensible low-stakes starting point
-    var hasWebinar = results.some(function(r) { return r.name === SERVICES.webinar.name; });
-    if (!hasWebinar && concern === "fundamentals") {
-      results.push(Object.assign({}, SERVICES.webinar, {
-        why: "You've got time — use it. The webinar gives you a strong foundation in interview technique without committing to a full coaching session yet.",
-        priority: 70
-      }));
     }
   }
 
@@ -646,10 +621,10 @@ function getRecommendations() {
   var final = Object.values(seen);
   final.sort(function(a, b) { return b.priority - a.priority; });
 
-  // Fallback — should never happen with new logic but just in case
+  // Fallback
   if (final.length === 0) {
-    final.push(Object.assign({}, SERVICES.taster, {
-      why: "Based on your answers, the best next step is a free call with your tutor to talk through exactly what you need.",
+    final.push(Object.assign({}, SERVICES.coaching, {
+      why: "Based on your answers, a 1-to-1 coaching session is the best place to start. Your tutor will tailor the session around exactly where you are.",
       priority: 100
     }));
   }

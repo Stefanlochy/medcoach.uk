@@ -899,6 +899,53 @@
   }
   .btn-white:hover { background: #fff; color: #111; border-color: #fff; }
 
+  /* COMPLETE PACK */
+  .complete-pack-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 2rem 2.5rem;
+    background: rgba(200,150,62,0.08);
+    border: 1px solid rgba(200,150,62,0.4);
+    margin-bottom: 1px;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s;
+    flex-wrap: wrap;
+  }
+  .complete-pack-card:hover { background: rgba(200,150,62,0.15); }
+  .complete-pack-badge {
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #111;
+    background: #c8963e;
+    padding: 0.25rem 0.7rem;
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+    display: inline-block;
+  }
+  .complete-pack-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 0.4rem;
+    line-height: 1.2;
+  }
+  .complete-pack-includes {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.45);
+    font-weight: 300;
+    line-height: 1.8;
+  }
+  .complete-pack-includes span { color: rgba(255,255,255,0.75); font-weight: 400; }
+  .complete-pack-right { text-align: right; flex-shrink: 0; }
+  .complete-pack-old { font-size: 0.82rem; color: rgba(255,255,255,0.3); text-decoration: line-through; margin-bottom: 0.2rem; }
+  .complete-pack-price { font-family: 'DM Serif Display', serif; font-size: 2.2rem; color: #6bcf8f; line-height: 1; margin-bottom: 0.3rem; }
+  .complete-pack-save { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(200,150,62,0.9); margin-bottom: 1rem; display: block; }
+
   /* BUNDLE DEALS */
   .bundle-strip {
     display: grid;
@@ -2258,10 +2305,10 @@
     <li class="nav-dropdown">
       <a href="#services" class="nav-dropdown-trigger">Services</a>
       <div class="nav-dropdown-menu">
-        <a href="https://calendly.com/stefanmoore-medcoach/medical-interview-masterclass-webinar" target="_blank" rel="noopener">Interview Webinar <span class="dd-price">£10</span></a>
+        <a href="https://calendly.com/stefanmoore-medcoach/complete-pack" target="_blank" rel="noopener">Complete Pack <span class="dd-price" style="color:#6bcf8f">£99</span></a>
         <a href="https://calendly.com/stefanmoore-medcoach/1-to-1-interview-coaching" target="_blank" rel="noopener">1-to-1 Coaching <span class="dd-price">£45/hr</span></a>
         <a href="https://calendly.com/stefanmoore-medcoach/mock-interview-practice" target="_blank" rel="noopener">Mock Interview <span class="dd-price">£50/hr</span></a>
-        <a href="https://calendly.com/stefanmoore-medcoach/30min" target="_blank" rel="noopener">Free Taster Call <span class="dd-price" style="color:#3a9c6f">Free</span></a>
+        <a href="https://calendly.com/stefanmoore-medcoach/medical-interview-masterclass-webinar" target="_blank" rel="noopener">Interview Webinar <span class="dd-price">£10</span></a>
       </div>
     </li>
     <li><a href="#tutors">Tutors</a></li>
@@ -2317,7 +2364,7 @@
   <a href="#testimonials" onclick="toggleMenu()">Results</a>
   <a href="#faq" onclick="toggleMenu()">FAQ</a>
   <a href="#free-resource" onclick="toggleMenu()" style="color:#6bcf8f;">Free MMI Questions</a>
-  <a href="https://calendly.com/stefanmoore-medcoach/30min" target="_blank" rel="noopener" class="btn-primary" onclick="toggleMenu()">Book Free Call</a>
+  <a href="https://calendly.com/stefanmoore-medcoach/complete-pack" target="_blank" rel="noopener" class="btn-primary" onclick="toggleMenu()">Buy Complete Pack</a>
 </div>
 
 <!-- HERO -->
@@ -2342,8 +2389,8 @@
         </div>
       </div>
       <div class="hero-btns reveal reveal-delay-4">
-        <a href="https://calendly.com/stefanmoore-medcoach/30min" target="_blank" rel="noopener" class="btn-primary">Free Taster Call</a>
-        <a href="#services" class="btn-secondary">See Services</a>
+        <a href="https://calendly.com/stefanmoore-medcoach/complete-pack" target="_blank" rel="noopener" class="btn-primary">Buy Complete Pack — £99</a>
+        <a href="#services" class="btn-secondary">See all services</a>
       </div>
       <div class="hero-quiz-nudge reveal reveal-delay-5">
         <svg viewBox="0 0 16 16" fill="none" width="13" height="13"><circle cx="8" cy="8" r="7" stroke="#c8963e" stroke-width="1.5"/><path d="M6 8.5l1.5 1.5L11 6" stroke="#c8963e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -2451,59 +2498,59 @@
   <div class="sec-inner">
     <p class="section-label reveal">What We Offer</p>
     <h2 class="reveal">What we <em>offer</em></h2>
-    <p class="section-desc reveal">From affordable group webinars to fully personalised coaching — choose the format that fits your stage of preparation.</p>
+    <p class="section-desc reveal">Personalised 1-to-1 coaching and mock interviews from current medical students who sat these interviews last year.</p>
     <div class="services-grid">
       <div class="svc-card reveal-scale">
-        <p class="svc-card-label">Group · Live Zoom</p>
-        <h3>Interview Webinar</h3>
-        <p>A structured live session covering the fundamentals of medical interviews — MMI, ethics frameworks, and how to structure compelling answers.</p>
-        <ul class="svc-features">
-          <li>Interview fundamentals taught</li>
-          <li>Live Q&A with current med students</li>
-          <li>Session recording provided</li>
-          <li>Budget-friendly group format</li>
-        </ul>
-        <div class="svc-price">£10 <span>/ person</span></div>
-        <a href="https://calendly.com/stefanmoore-medcoach/medical-interview-masterclass-webinar" target="_blank" rel="noopener" class="btn-outline">Book</a>
-      </div>
-      <div class="svc-card reveal-scale reveal-delay-1">
         <p class="svc-card-label">1-to-1 · Zoom Call</p>
         <h3>Personalised Coaching</h3>
         <p>A fully tailored session focused on your individual strengths, weaknesses, and target medical schools. Detailed feedback and session notes included.</p>
         <ul class="svc-features">
           <li>Fully tailored to your profile</li>
           <li>School-specific prep on request</li>
-          <li>Live Q&A throughout</li>
+          <li>Live Q&amp;A throughout</li>
           <li>Written session notes</li>
         </ul>
         <div class="svc-price">£45 <span>/ hour</span></div>
         <a href="https://calendly.com/stefanmoore-medcoach/1-to-1-interview-coaching" target="_blank" rel="noopener" class="btn-outline">Book</a>
       </div>
-      <div class="svc-card reveal-scale reveal-delay-2">
+      <div class="svc-card reveal-scale reveal-delay-1">
         <p class="svc-card-label">1-to-1 · Zoom Call</p>
         <h3>Mock Interview</h3>
         <p>A full simulated interview matched to the exact format of your chosen schools — MMI stations or panel, school-specific themes, with a full written report.</p>
         <ul class="svc-features">
           <li>School-specific format &amp; content</li>
           <li>Full written feedback report</li>
-          <li>Free 15-min taster call</li>
+          <li>Matched to your target schools</li>
           <li>Final prep &amp; confidence building</li>
         </ul>
         <div class="svc-price">£50 <span>/ hour</span></div>
         <a href="https://calendly.com/stefanmoore-medcoach/mock-interview-practice" target="_blank" rel="noopener" class="btn-outline">Book</a>
       </div>
-      <div class="svc-card svc-free reveal-scale reveal-delay-3">
-        <p class="svc-card-label">Free · 15 Minutes</p>
-        <h3>Free Taster Call</h3>
-        <p>Meet your tutor, discuss your goals, and see if MedCoach is the right fit — completely free, no commitment needed.</p>
+      <div class="svc-card reveal-scale reveal-delay-2">
+        <p class="svc-card-label">Best Value · Everything Included</p>
+        <h3>Complete Pack</h3>
+        <p>Coaching session, mock interview, and MMI Question Bank PDF in one purchase. The complete preparation package at the best price.</p>
         <ul class="svc-features">
-          <li>Meet your tutor beforehand</li>
-          <li>Discuss your target schools</li>
-          <li>No commitment required</li>
-          <li>Available for all paid sessions</li>
+          <li>1x personalised coaching session</li>
+          <li>1x school-specific mock interview</li>
+          <li>MMI Question Bank PDF — 50 stations</li>
+          <li>Save £21 vs buying separately</li>
         </ul>
-        <div class="svc-price" style="color:#3a9c6f">Free</div>
-        <a href="https://calendly.com/stefanmoore-medcoach/30min" target="_blank" rel="noopener" class="btn-outline">Book</a>
+        <div class="svc-price" style="color:#6bcf8f">£99 <span>/ everything</span></div>
+        <a href="https://calendly.com/stefanmoore-medcoach/complete-pack" target="_blank" rel="noopener" class="btn-outline">Buy Now</a>
+      </div>
+      <div class="svc-card reveal-scale reveal-delay-3">
+        <p class="svc-card-label">Group · Live Zoom</p>
+        <h3>Interview Webinar</h3>
+        <p>A structured live session covering the fundamentals of medical interviews — MMI, ethics frameworks, and how to structure compelling answers.</p>
+        <ul class="svc-features">
+          <li>Interview fundamentals taught</li>
+          <li>Live Q&amp;A with current med students</li>
+          <li>Session recording provided</li>
+          <li>Budget-friendly group format</li>
+        </ul>
+        <div class="svc-price">£10 <span>/ person</span></div>
+        <a href="https://calendly.com/stefanmoore-medcoach/medical-interview-masterclass-webinar" target="_blank" rel="noopener" class="btn-outline">Book</a>
       </div>
     </div>
   </div>
@@ -2518,7 +2565,7 @@
     <div class="steps-grid">
       <div class="step-card reveal reveal-delay-1">
         <div class="step-num">01</div>
-        <div class="step-title">Book a free 15-min call</div>
+        <div class="step-title">Choose your session</div>
         <p class="step-desc">Pick a slot on Calendly — takes 30 seconds. You'll meet your tutor, tell us your target schools and interview date, and we'll map out exactly what you need. No pressure, no commitment.</p>
       </div>
       <div class="step-card reveal reveal-delay-2">
@@ -2712,7 +2759,7 @@
           <span class="vr-label-sub">Before you spend a penny</span>
         </div>
         <div class="vr-us">
-          <span class="vr-value-good">Free taster call</span>
+          <span class="vr-value-good">Book instantly</span>
           <span class="vr-sub">Meet us first, then decide</span>
         </div>
         <div class="vr-them">
@@ -2725,7 +2772,7 @@
 
     <div class="versus-cta-row reveal">
       <a href="#services" class="btn-primary">View Services</a>
-      <a href="https://calendly.com/stefanmoore-medcoach/30min" target="_blank" rel="noopener" class="btn-secondary">Or book a free call first</a>
+      <a href="/quiz.html" target="_blank" rel="noopener" class="btn-secondary">Not sure? Take the quiz</a>
     </div>
 
   </div>
@@ -2773,7 +2820,7 @@
       </div>
       <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q">Which medical schools do you prep for?</div>
-        <div class="faq-a">We can tailor sessions for any UK medical school. Our tutors are most experienced with Peninsula, Leicester, Keele, and Newcastle, but we prep for all schools using MMI or panel formats. Tell us your target schools during your free taster call and we'll match the prep accordingly.</div>
+        <div class="faq-a">We can tailor sessions for any UK medical school. Our tutors are most experienced with Peninsula, Leicester, Keele, and Newcastle, but we prep for all schools using MMI or panel formats. Just let us know your target schools when you book.</div>
       </div>
       <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q">How far in advance should I book?</div>
@@ -2785,7 +2832,7 @@
       </div>
       <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q">I'm not sure which service to pick. What do you recommend?</div>
-        <div class="faq-a">Not sure? <a href="/quiz.html" target="_blank" rel="noopener" style="color:var(--accent);border-bottom:1px solid var(--accent);">Take our 1-minute quiz</a> to find out which session suits your stage of preparation. Or book a free taster call and we'll recommend the best option based on your situation, how much prep you've done, and when your interviews are.</div>
+        <div class="faq-a">Not sure? <a href="/quiz.html" target="_blank" rel="noopener" style="color:var(--accent);border-bottom:1px solid var(--accent);">Take our 1-minute quiz</a> to find out which session suits your stage of preparation. Or email us at stefanmoore.medcoach@gmail.com and we'll point you in the right direction.</div>
       </div>
       <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q">Are your tutors actually medical students?</div>
@@ -2856,6 +2903,25 @@
       <span>Slots are limited each week — <strong>peak season is November to March</strong>. Book early to secure your preferred time.</span>
     </div>
 
+    <!-- COMPLETE PACK -->
+    <a href="https://calendly.com/stefanmoore-medcoach/complete-pack" target="_blank" rel="noopener" class="complete-pack-card reveal">
+      <div class="complete-pack-left">
+        <div class="complete-pack-badge">Best Value — Complete Pack</div>
+        <div class="complete-pack-title">Everything you need in one purchase</div>
+        <div class="complete-pack-includes">
+          <span>1x 1-to-1 Coaching Session</span> (£45 value)<br>
+          <span>1x Mock Interview</span> — matched to your target school (£50 value)<br>
+          <span>MMI Question Bank PDF</span> — 50 stations with model answers (£25 value)
+        </div>
+      </div>
+      <div class="complete-pack-right">
+        <div class="complete-pack-old">£120 value</div>
+        <div class="complete-pack-price">£99</div>
+        <span class="complete-pack-save">Save £21</span>
+        <span class="btn-white">Buy Complete Pack</span>
+      </div>
+    </a>
+
     <!-- BUNDLE DEALS -->
     <div class="bundle-strip">
       <a href="https://calendly.com/stefanmoore-medcoach/2x-personalised-coaching-bundle" target="_blank" rel="noopener" class="bundle-card">
@@ -2884,26 +2950,15 @@
 
     <!-- COMPACT SESSION LINKS -->
     <div class="book-cta-grid">
-      <a href="https://calendly.com/stefanmoore-medcoach/30min" target="_blank" rel="noopener" class="book-cta-item reveal-left">
+      <a href="https://calendly.com/stefanmoore-medcoach/complete-pack" target="_blank" rel="noopener" class="book-cta-item reveal-left" style="border: 1px solid rgba(200,150,62,0.4); background: rgba(200,150,62,0.06);">
         <div class="book-cta-left">
-          <div class="book-cta-tag">Free · 15 Minutes</div>
-          <div class="book-cta-name">Free Taster Call</div>
-          <div class="book-cta-desc">Meet your tutor, zero commitment. Best starting point.</div>
+          <div class="book-cta-tag" style="color:rgba(200,150,62,0.9);">Best Value · Coaching + Mock + PDF</div>
+          <div class="book-cta-name">Complete Pack</div>
+          <div class="book-cta-desc">Everything in one. Coaching session, mock interview, and MMI Question Bank PDF.</div>
         </div>
         <div class="book-cta-right">
-          <div class="book-cta-price free-price">Free</div>
-          <span class="btn-white">Book Now</span>
-        </div>
-      </a>
-      <a href="https://calendly.com/stefanmoore-medcoach/medical-interview-masterclass-webinar" target="_blank" rel="noopener" class="book-cta-item">
-        <div class="book-cta-left">
-          <div class="book-cta-tag">Group · Live Zoom</div>
-          <div class="book-cta-name">Interview Webinar</div>
-          <div class="book-cta-desc">MMI, ethics, answer structure. Recording included.</div>
-        </div>
-        <div class="book-cta-right">
-          <div class="book-cta-price">£10</div>
-          <span class="btn-white">Book Now</span>
+          <div class="book-cta-price" style="color:#6bcf8f;">£99</div>
+          <span class="btn-white">Buy Now</span>
         </div>
       </a>
       <a href="https://calendly.com/stefanmoore-medcoach/1-to-1-interview-coaching" target="_blank" rel="noopener" class="book-cta-item">
@@ -2925,6 +2980,17 @@
         </div>
         <div class="book-cta-right">
           <div class="book-cta-price">£50<span style="font-family:'DM Sans',sans-serif;font-size:0.75rem;color:rgba(255,255,255,0.3);font-weight:300;">/hr</span></div>
+          <span class="btn-white">Book Now</span>
+        </div>
+      </a>
+      <a href="https://calendly.com/stefanmoore-medcoach/medical-interview-masterclass-webinar" target="_blank" rel="noopener" class="book-cta-item">
+        <div class="book-cta-left">
+          <div class="book-cta-tag">Group · Live Zoom</div>
+          <div class="book-cta-name">Interview Webinar</div>
+          <div class="book-cta-desc">MMI, ethics, answer structure. Recording included.</div>
+        </div>
+        <div class="book-cta-right">
+          <div class="book-cta-price">£10</div>
           <span class="btn-white">Book Now</span>
         </div>
       </a>
@@ -3006,7 +3072,7 @@
     <div class="footer-cta-tagline">Coached by students who got in last year</div>
   </div>
   <div class="footer-cta-right">
-    <a href="https://calendly.com/stefanmoore-medcoach/30min" target="_blank" rel="noopener" class="btn-primary">Book Free Taster Call</a>
+    <a href="https://calendly.com/stefanmoore-medcoach/complete-pack" target="_blank" rel="noopener" class="btn-primary">Buy Complete Pack — £99</a>
     <a href="https://calendly.com/stefanmoore-medcoach/medical-interview-masterclass-webinar" target="_blank" rel="noopener" class="btn-secondary">Book Webinar — £10</a>
   </div>
 </div>
@@ -3054,7 +3120,7 @@
 <!-- MOBILE STICKY CTA -->
 <div class="mobile-sticky-cta" id="mobileCta">
   <p><strong>Ready to start?</strong> Book your session</p>
-  <a href="https://calendly.com/stefanmoore-medcoach/30min" target="_blank" rel="noopener" class="btn-primary">Book Free Call</a>
+  <a href="https://calendly.com/stefanmoore-medcoach/complete-pack" target="_blank" rel="noopener" class="btn-primary">Buy Complete Pack</a>
 </div>
 
 <!-- EXIT INTENT POPUP -->
