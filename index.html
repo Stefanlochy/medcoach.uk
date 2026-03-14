@@ -2179,6 +2179,63 @@
   .exit-success .exit-code-note { font-size: 0.78rem; color: var(--soft); font-weight: 300; margin-top: 0.4rem; transition: color 0.3s; }
   .exit-success p { font-size: 0.88rem; color: var(--soft); font-weight: 300; line-height: 1.6; margin-bottom: 1.2rem; transition: color 0.3s; }
   .exit-success .btn-primary { display: inline-block; }
+
+  /* GOOGLE REVIEWS CTA BLOCK */
+  .google-cta-block {
+    margin-top: 3rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 2rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .gcta-left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .gcta-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding-right: 1.5rem;
+    border-right: 1px solid var(--border);
+  }
+  .gcta-score {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    color: var(--ink);
+    line-height: 1;
+    transition: color 0.3s;
+  }
+  .gcta-stars { color: #f5a623; font-size: 0.95rem; letter-spacing: 0.05em; margin-top: 0.15rem; }
+  .gcta-label { font-weight: 500; font-size: 0.9rem; color: var(--ink); transition: color 0.3s; }
+  .gcta-sub { font-size: 0.78rem; color: var(--soft); font-weight: 300; margin-top: 0.15rem; transition: color 0.3s; }
+  .gcta-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .gcta-btn-primary {
+    display: inline-block;
+    background: var(--ink); color: #fff;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif; text-decoration: none; transition: background 0.2s;
+  }
+  .gcta-btn-primary:hover { background: #333; }
+  .gcta-btn-secondary {
+    font-size: 0.78rem; font-weight: 400; letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--accent); border-bottom: 1px solid var(--accent); padding-bottom: 2px;
+    text-decoration: none; transition: color 0.2s; white-space: nowrap;
+  }
+  .gcta-btn-secondary:hover { color: var(--ink); border-color: var(--ink); }
+  @media (max-width: 700px) {
+    .google-cta-block { flex-direction: column; align-items: flex-start; }
+    .gcta-rating { border-right: none; padding-right: 0; }
+  }
+
 </style>
 </head>
 <body>
@@ -2271,7 +2328,7 @@
       <h1 class="reveal reveal-delay-1">Get into<br>medical school</h1>
       <p class="hero-sub reveal reveal-delay-2">Coached by Year 2 medical students who sat these exact interviews last year. We know what the panels want — because we were in your seat two years ago.</p>
       <div class="hero-trust reveal reveal-delay-3">
-        <a href="https://g.page/r/CfgdWnROlmKJEBM/review" target="_blank" rel="noopener" class="hero-trust-item hero-trust-google" style="text-decoration:none;">
+        <a href="https://g.page/r/CfgdWnROlmKJEAI/review" target="_blank" rel="noopener" class="hero-trust-item hero-trust-google" style="text-decoration:none;">
           <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M21.805 10.023H12v3.955h5.62c-.242 1.237-.974 2.284-2.074 2.986v2.481h3.358c1.965-1.81 3.096-4.477 3.096-7.648 0-.553-.048-1.087-.135-1.774z" fill="#4285F4"/><path d="M12 22c2.834 0 5.21-.94 6.946-2.555l-3.358-2.481c-.936.628-2.135 1-3.588 1-2.76 0-5.098-1.863-5.934-4.368H2.61v2.559A10.997 10.997 0 0012 22z" fill="#34A853"/><path d="M6.066 13.596A6.62 6.62 0 015.71 12c0-.554.096-1.093.257-1.596V7.845H2.61A11.003 11.003 0 001 12c0 1.762.42 3.428 1.61 4.155l2.456-2.559z" fill="#FBBC05"/><path d="M12 5.636c1.555 0 2.95.534 4.048 1.582l3.034-3.034C17.207 2.39 14.83 1 12 1A10.997 10.997 0 002.61 7.845l3.456 2.559C6.902 7.499 9.24 5.636 12 5.636z" fill="#EA4335"/></svg>
           <span><strong>5.0</strong> ★★★★★ on Google</span>
         </a>
@@ -2317,16 +2374,16 @@
 </section>
 
 <!-- GOOGLE REVIEWS BANNER -->
-<a href="https://g.page/r/CfgdWnROlmKJEBM/review" target="_blank" rel="noopener" class="google-reviews-banner">
+<a href="https://g.page/r/CfgdWnROlmKJEAI/review" target="_blank" rel="noopener" class="google-reviews-banner">
   <div class="grb-inner">
     <div class="grb-left">
       <svg viewBox="0 0 24 24" fill="currentColor" class="grb-glogo" width="32" height="32"><path d="M21.805 10.023H12v3.955h5.62c-.242 1.237-.974 2.284-2.074 2.986v2.481h3.358c1.965-1.81 3.096-4.477 3.096-7.648 0-.553-.048-1.087-.135-1.774z" fill="#4285F4"/><path d="M12 22c2.834 0 5.21-.94 6.946-2.555l-3.358-2.481c-.936.628-2.135 1-3.588 1-2.76 0-5.098-1.863-5.934-4.368H2.61v2.559A10.997 10.997 0 0012 22z" fill="#34A853"/><path d="M6.066 13.596A6.62 6.62 0 015.71 12c0-.554.096-1.093.257-1.596V7.845H2.61A11.003 11.003 0 001 12c0 1.762.42 3.428 1.61 4.155l2.456-2.559z" fill="#FBBC05"/><path d="M12 5.636c1.555 0 2.95.534 4.048 1.582l3.034-3.034C17.207 2.39 14.83 1 12 1A10.997 10.997 0 002.61 7.845l3.456 2.559C6.902 7.499 9.24 5.636 12 5.636z" fill="#EA4335"/></svg>
       <div class="grb-text">
         <span class="grb-label">Google Reviews</span>
-        <span class="grb-stars"><!-- ABOUT / OUR STORY -->#9733;<!-- ABOUT / OUR STORY -->#9733;<!-- ABOUT / OUR STORY -->#9733;<!-- ABOUT / OUR STORY -->#9733;<!-- ABOUT / OUR STORY -->#9733; <strong>5.0</strong> <!-- ABOUT / OUR STORY -->mdash; Rated by our students</span>
+        <span class="grb-stars">★★★★★ <strong>5.0</strong> &mdash; Rated by our students</span>
       </div>
     </div>
-    <div class="grb-right"><span class="grb-cta">Leave us a review <!-- ABOUT / OUR STORY -->rarr;</span></div>
+    <div class="grb-right"><span class="grb-cta">Leave us a review &rarr;</span></div>
   </div>
 </a>
 
@@ -2359,7 +2416,7 @@
         <div class="about-stats">
           <div><div class="about-stat-num">6/6</div><div class="about-stat-label">Offers received</div></div>
           <div><div class="about-stat-num">30+</div><div class="about-stat-label">Sessions delivered</div></div>
-          <div><a href="https://g.page/r/CfgdWnROlmKJEBM/review" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:block;"><div class="about-stat-num" style="color:var(--accent);">5.0 ★</div><div class="about-stat-label">Google rating <div><div class="about-stat-num">5.0</div><div class="about-stat-label">Avg rating</div></div>#8599;</div></a></div>
+          <div><a href="https://g.page/r/CfgdWnROlmKJEAI/review" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:block;"><div class="about-stat-num" style="color:var(--accent);">5.0 ★</div><div class="about-stat-label">Google rating ↗</div></a></div>
         </div>
       </div>
     </div>
@@ -2531,9 +2588,25 @@
         </div>
       </div>
     </div>
-    <div class="testi-cta">
-      <p>Want to see more reviews?</p>
-      <a href="https://g.page/r/CfgdWnROlmKJEBM/review" target="_blank" rel="noopener">Read all reviews on Google →</a>
+    <!-- Google Reviews CTA -->
+    <div class="google-cta-block reveal">
+      <div class="gcta-left">
+        <div class="gcta-rating">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" class="gcta-glogo"><path d="M21.805 10.023H12v3.955h5.62c-.242 1.237-.974 2.284-2.074 2.986v2.481h3.358c1.965-1.81 3.096-4.477 3.096-7.648 0-.553-.048-1.087-.135-1.774z" fill="#4285F4"/><path d="M12 22c2.834 0 5.21-.94 6.946-2.555l-3.358-2.481c-.936.628-2.135 1-3.588 1-2.76 0-5.098-1.863-5.934-4.368H2.61v2.559A10.997 10.997 0 0012 22z" fill="#34A853"/><path d="M6.066 13.596A6.62 6.62 0 015.71 12c0-.554.096-1.093.257-1.596V7.845H2.61A11.003 11.003 0 001 12c0 1.762.42 3.428 1.61 4.155l2.456-2.559z" fill="#FBBC05"/><path d="M12 5.636c1.555 0 2.95.534 4.048 1.582l3.034-3.034C17.207 2.39 14.83 1 12 1A10.997 10.997 0 002.61 7.845l3.456 2.559C6.902 7.499 9.24 5.636 12 5.636z" fill="#EA4335"/></svg>
+          <div>
+            <div class="gcta-score">5.0</div>
+            <div class="gcta-stars">★★★★★</div>
+          </div>
+        </div>
+        <div class="gcta-text">
+          <div class="gcta-label">Google Reviews</div>
+          <div class="gcta-sub">Every review is from a real student we coached</div>
+        </div>
+      </div>
+      <div class="gcta-actions">
+        <a href="https://g.page/r/CfgdWnROlmKJEAI/review" target="_blank" rel="noopener" class="gcta-btn-primary">Read our reviews on Google</a>
+        <a href="https://g.page/r/CfgdWnROlmKJEAI/review" target="_blank" rel="noopener" class="gcta-btn-secondary">Leave us a review &#8599;</a>
+      </div>
     </div>
   </div>
 </section>
@@ -2918,7 +2991,7 @@
           <div class="greview-cta-label">Based on Google Reviews</div>
         </div>
       </div>
-      <a href="https://g.page/r/CfgdWnROlmKJEBM/review" target="_blank" rel="noopener" class="greview-btn">
+      <a href="https://g.page/r/CfgdWnROlmKJEAI/review" target="_blank" rel="noopener" class="greview-btn">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.805 10.023H12v3.955h5.62c-.242 1.237-.974 2.284-2.074 2.986v2.481h3.358c1.965-1.81 3.096-4.477 3.096-7.648 0-.553-.048-1.087-.135-1.774z" fill="#4285F4"/><path d="M12 22c2.834 0 5.21-.94 6.946-2.555l-3.358-2.481c-.936.628-2.135 1-3.588 1-2.76 0-5.098-1.863-5.934-4.368H2.61v2.559A10.997 10.997 0 0012 22z" fill="#34A853"/><path d="M6.066 13.596A6.62 6.62 0 015.71 12c0-.554.096-1.093.257-1.596V7.845H2.61A11.003 11.003 0 001 12c0 1.762.42 3.428 1.61 4.155l2.456-2.559z" fill="#FBBC05"/><path d="M12 5.636c1.555 0 2.95.534 4.048 1.582l3.034-3.034C17.207 2.39 14.83 1 12 1A10.997 10.997 0 002.61 7.845l3.456 2.559C6.902 7.499 9.24 5.636 12 5.636z" fill="#EA4335"/></svg>
         Leave a Review on Google
       </a>
@@ -2969,7 +3042,7 @@
         <span>@medcoach.uk</span>
         <span class="social-arrow">→</span>
       </a>
-      <a href="https://g.page/r/CfgdWnROlmKJEBM/review" target="_blank" rel="noopener" class="social-link">
+      <a href="https://g.page/r/CfgdWnROlmKJEAI/review" target="_blank" rel="noopener" class="social-link">
         <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M21.805 10.023H12v3.955h5.62c-.242 1.237-.974 2.284-2.074 2.986v2.481h3.358c1.965-1.81 3.096-4.477 3.096-7.648 0-.553-.048-1.087-.135-1.774z" fill="#4285F4"/><path d="M12 22c2.834 0 5.21-.94 6.946-2.555l-3.358-2.481c-.936.628-2.135 1-3.588 1-2.76 0-5.098-1.863-5.934-4.368H2.61v2.559A10.997 10.997 0 0012 22z" fill="#34A853"/><path d="M6.066 13.596A6.62 6.62 0 015.71 12c0-.554.096-1.093.257-1.596V7.845H2.61A11.003 11.003 0 001 12c0 1.762.42 3.428 1.61 4.155l2.456-2.559z" fill="#FBBC05"/><path d="M12 5.636c1.555 0 2.95.534 4.048 1.582l3.034-3.034C17.207 2.39 14.83 1 12 1A10.997 10.997 0 002.61 7.845l3.456 2.559C6.902 7.499 9.24 5.636 12 5.636z" fill="#EA4335"/></svg>
         <span>Review us on Google</span>
         <span class="social-arrow">&#8599;</span>
