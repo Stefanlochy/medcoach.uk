@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MedCoach | Medical Interview Coaching</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CKYY2WXNWD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-CKYY2WXNWD');
+</script>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon.svg">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -17,6 +25,15 @@
     --light-bg: #fafaf8;
   }
 
+  [data-theme="dark"] {
+    --ink: #f0ede8;
+    --soft: #999;
+    --border: #2a2a2a;
+    --bg: #0e0e0c;
+    --accent: #c8963e;
+    --light-bg: #161614;
+  }
+
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
 
@@ -26,10 +43,12 @@
     color: var(--ink);
     font-size: 16px;
     line-height: 1.6;
+    transition: background 0.3s ease, color 0.3s ease;
   }
 
   a { color: inherit; text-decoration: none; }
 
+  /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
@@ -37,6 +56,11 @@
     background: rgba(255,255,255,0.95);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
+    transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  [data-theme="dark"] nav {
+    background: rgba(14,14,12,0.95);
   }
 
   .logo {
@@ -70,6 +94,47 @@
   }
   .nav-cta:hover { color: var(--accent) !important; border-color: var(--accent) !important; }
 
+  .nav-free {
+    font-size: 0.78rem !important;
+    color: #6bcf8f !important;
+    letter-spacing: 0.04em !important;
+    text-transform: uppercase !important;
+    border-bottom: 1px solid rgba(107,207,143,0.4) !important;
+    padding-bottom: 1px;
+    transition: color 0.2s, border-color 0.2s !important;
+  }
+  .nav-free:hover { color: #4db878 !important; border-color: #4db878 !important; }
+
+  /* THEME TOGGLE */
+  .theme-toggle {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--soft);
+    cursor: pointer;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+    flex-shrink: 0;
+    padding: 0;
+  }
+  .theme-toggle:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .theme-toggle svg {
+    width: 15px;
+    height: 15px;
+    transition: transform 0.4s ease, opacity 0.3s ease;
+  }
+  .icon-sun { display: none; }
+  .icon-moon { display: block; }
+  [data-theme="dark"] .icon-sun { display: block; }
+  [data-theme="dark"] .icon-moon { display: none; }
+
+  /* HAMBURGER MENU */
   .hamburger {
     display: none;
     flex-direction: column;
@@ -85,7 +150,7 @@
     width: 22px;
     height: 1.5px;
     background: var(--ink);
-    transition: transform 0.3s, opacity 0.3s;
+    transition: transform 0.3s, opacity 0.3s, background 0.3s;
   }
   .hamburger.active span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
   .hamburger.active span:nth-child(2) { opacity: 0; }
@@ -102,6 +167,10 @@
     align-items: center;
     justify-content: center;
     gap: 2.5rem;
+    transition: background 0.3s;
+  }
+  [data-theme="dark"] .mobile-menu {
+    background: rgba(14,14,12,0.98);
   }
   .mobile-menu.open { display: flex; }
   .mobile-menu a {
@@ -113,15 +182,32 @@
     transition: color 0.2s;
   }
   .mobile-menu a:hover { color: var(--accent); }
-  .mobile-menu .btn-primary { margin-top: 1rem; }
+  .mobile-menu .btn-primary {
+    margin-top: 1rem;
+  }
 
+  /* HERO */
   .hero {
     min-height: 100vh;
     display: flex;
     align-items: center;
     padding: 8rem 6vw 5rem;
-    background: var(--bg);
+    background: radial-gradient(ellipse 70% 60% at 20% 50%, rgba(200,150,62,0.06) 0%, transparent 60%), var(--bg);
     border-bottom: 1px solid var(--border);
+    transition: background 0.3s, border-color 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0;
+    width: 50%;
+    background: radial-gradient(ellipse 80% 80% at 80% 30%, rgba(200,150,62,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  [data-theme="dark"] .hero {
+    background: radial-gradient(ellipse 70% 60% at 20% 50%, rgba(200,150,62,0.08) 0%, transparent 60%), var(--bg);
   }
 
   .hero-inner {
@@ -153,6 +239,7 @@
     max-width: 780px;
     margin-bottom: 2rem;
     color: var(--ink);
+    transition: color 0.3s;
   }
   .hero h1 em { font-style: italic; color: var(--soft); }
 
@@ -163,6 +250,7 @@
     max-width: 500px;
     margin-bottom: 2rem;
     line-height: 1.8;
+    transition: color 0.3s;
   }
 
   .hero-trust {
@@ -179,25 +267,34 @@
     font-size: 0.82rem;
     color: var(--soft);
     font-weight: 300;
+    transition: color 0.3s;
   }
-  .hero-trust-item strong { color: var(--ink); font-weight: 500; }
-  .hero-trust-item svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .hero-trust-item strong {
+    color: var(--ink);
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  .hero-trust-item svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
 
   .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
 
   .btn-primary {
     background: var(--ink);
-    color: #fff;
+    color: var(--bg);
     padding: 0.9rem 2rem;
     font-size: 0.82rem;
     font-weight: 500;
     letter-spacing: 0.04em;
     text-transform: uppercase;
     display: inline-block;
-    transition: background 0.2s;
+    transition: background 0.2s, color 0.2s;
     font-family: 'DM Sans', sans-serif;
   }
-  .btn-primary:hover { background: #333; }
+  .btn-primary:hover { background: var(--soft); }
 
   .btn-secondary {
     color: var(--soft);
@@ -212,15 +309,22 @@
   }
   .btn-secondary:hover { color: var(--ink); border-color: var(--soft); }
 
-  .about-sec { background: var(--light-bg); }
+  /* ABOUT / OUR STORY */
+  .about-sec { background: var(--light-bg); transition: background 0.3s; }
   .about-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
     align-items: center;
   }
-  .about-photos { display: flex; gap: 1.5rem; }
-  .about-photo-card { flex: 1; text-align: center; }
+  .about-photos {
+    display: flex;
+    gap: 1.5rem;
+  }
+  .about-photo-card {
+    flex: 1;
+    text-align: center;
+  }
   .about-photo {
     width: 100%;
     aspect-ratio: 3/4;
@@ -232,7 +336,15 @@
     position: relative;
     overflow: hidden;
   }
-  .about-photo-placeholder { font-family: 'DM Serif Display', serif; font-size: 2.5rem; color: var(--accent); opacity: 0.6; }
+  [data-theme="dark"] .about-photo {
+    background: linear-gradient(145deg, #2a2a28, #1e1e1c);
+  }
+  .about-photo-placeholder {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.5rem;
+    color: var(--accent);
+    opacity: 0.6;
+  }
   .about-photo-note {
     position: absolute;
     bottom: 0; left: 0; right: 0;
@@ -245,15 +357,54 @@
     text-align: center;
     backdrop-filter: blur(4px);
   }
-  .about-photo-name { font-weight: 500; font-size: 0.88rem; color: var(--ink); }
-  .about-photo-uni { font-size: 0.78rem; color: var(--soft); font-weight: 300; }
+  .about-photo-name {
+    font-weight: 500;
+    font-size: 0.88rem;
+    color: var(--ink);
+    transition: color 0.3s;
+  }
+  .about-photo-uni {
+    font-size: 0.78rem;
+    color: var(--soft);
+    font-weight: 300;
+    transition: color 0.3s;
+  }
   .about-text h2 { margin-bottom: 1.5rem; }
-  .about-text p { font-size: 0.95rem; color: var(--soft); font-weight: 300; line-height: 1.85; margin-bottom: 1.2rem; }
-  .about-stats { display: flex; gap: 2.5rem; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border); }
-  .about-stat-num { font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: var(--ink); line-height: 1; margin-bottom: 0.3rem; }
-  .about-stat-label { font-size: 0.75rem; color: var(--soft); font-weight: 300; text-transform: uppercase; letter-spacing: 0.06em; }
+  .about-text p {
+    font-size: 0.95rem;
+    color: var(--soft);
+    font-weight: 300;
+    line-height: 1.85;
+    margin-bottom: 1.2rem;
+    transition: color 0.3s;
+  }
+  .about-stats {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    transition: border-color 0.3s;
+  }
+  .about-stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.8rem;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+    transition: color 0.3s;
+  }
+  .about-stat-label {
+    font-size: 0.75rem;
+    color: var(--soft);
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    transition: color 0.3s;
+  }
 
-  section { padding: 6rem 6vw; border-bottom: 1px solid var(--border); scroll-margin-top: 70px; }
+  /* SECTION BASE */
+  section { padding: 6rem 6vw; border-bottom: 1px solid var(--border); scroll-margin-top: 70px; transition: border-color 0.3s; }
   .sec-inner { max-width: 1100px; margin: 0 auto; }
 
   .section-label {
@@ -274,33 +425,68 @@
     letter-spacing: -0.01em;
     color: var(--ink);
     margin-bottom: 1rem;
+    transition: color 0.3s;
   }
   h2 em { font-style: italic; color: var(--soft); }
 
-  .section-desc { font-size: 0.95rem; color: var(--soft); font-weight: 300; max-width: 560px; line-height: 1.8; margin-bottom: 4rem; }
+  .section-desc {
+    font-size: 0.95rem;
+    color: var(--soft);
+    font-weight: 300;
+    max-width: 560px;
+    line-height: 1.8;
+    margin-bottom: 4rem;
+    transition: color 0.3s;
+  }
 
+  /* SERVICES */
   .services-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1px;
     background: var(--border);
     border: 1px solid var(--border);
+    transition: background 0.3s, border-color 0.3s;
   }
 
   .svc-card {
     background: var(--bg);
     padding: 2.5rem;
     position: relative;
-    transition: background 0.2s;
+    transition: background 0.2s, transform 0.3s;
     display: flex;
     flex-direction: column;
   }
-  .svc-card:hover { background: var(--light-bg); }
+  .svc-card:hover { background: var(--light-bg); transform: translateY(-2px); }
   .svc-features { flex: 1; }
 
-  .svc-card-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; font-weight: 500; }
-  .svc-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.35rem; font-weight: 400; color: var(--ink); margin-bottom: 0.9rem; line-height: 1.25; }
-  .svc-card p { font-size: 0.88rem; color: var(--soft); font-weight: 300; line-height: 1.75; margin-bottom: 1.5rem; }
+  .svc-card-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.2rem;
+    font-weight: 500;
+  }
+
+  .svc-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.35rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.9rem;
+    line-height: 1.25;
+    transition: color 0.3s;
+  }
+
+  .svc-card p {
+    font-size: 0.88rem;
+    color: var(--soft);
+    font-weight: 300;
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+    transition: color 0.3s;
+  }
 
   .svc-features {
     list-style: none;
@@ -309,11 +495,32 @@
     gap: 0.5rem;
     margin-bottom: 2rem;
   }
-  .svc-features li { font-size: 0.82rem; color: var(--ink); display: flex; gap: 0.6rem; }
-  .svc-features li::before { content: '–'; color: var(--accent); flex-shrink: 0; }
+  .svc-features li {
+    font-size: 0.82rem;
+    color: var(--ink);
+    display: flex;
+    gap: 0.6rem;
+    transition: color 0.3s;
+  }
+  .svc-features li::before {
+    content: '–';
+    color: var(--accent);
+    flex-shrink: 0;
+  }
 
-  .svc-price { font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: var(--ink); margin-bottom: 1.5rem; }
-  .svc-price span { font-family: 'DM Sans', sans-serif; font-size: 0.8rem; color: var(--soft); font-weight: 300; }
+  .svc-price {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.8rem;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+    transition: color 0.3s;
+  }
+  .svc-price span {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    color: var(--soft);
+    font-weight: 300;
+  }
 
   .btn-outline {
     display: inline-block;
@@ -324,12 +531,14 @@
     font-weight: 500;
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    transition: background 0.2s, color 0.2s;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
     font-family: 'DM Sans', sans-serif;
   }
-  .btn-outline:hover { background: var(--ink); color: #fff; }
+  .btn-outline:hover { background: var(--ink); color: var(--bg); }
+
   .svc-free .svc-price { color: #3a9c6f; }
 
+  /* QUIZ BANNER */
   .quiz-banner {
     background: linear-gradient(135deg, #111 0%, #1a1a1a 50%, #222 100%);
     padding: 3.5rem 6vw;
@@ -345,14 +554,32 @@
   .quiz-banner::before {
     content: '';
     position: absolute;
-    top: -50%; right: -10%;
-    width: 300px; height: 300px;
+    top: -50%;
+    right: -10%;
+    width: 300px;
+    height: 300px;
     background: radial-gradient(circle, rgba(200,150,62,0.08) 0%, transparent 70%);
     pointer-events: none;
   }
-  .quiz-banner-text h3 { font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(1.3rem, 2.5vw, 1.8rem); font-weight: 400; color: #fff; margin-bottom: 0.5rem; line-height: 1.25; }
-  .quiz-banner-text h3 em { font-style: italic; color: rgba(255,255,255,0.4); }
-  .quiz-banner-text p { font-size: 0.88rem; color: rgba(255,255,255,0.4); font-weight: 300; line-height: 1.6; max-width: 480px; }
+  .quiz-banner-text h3 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    line-height: 1.25;
+  }
+  .quiz-banner-text h3 em {
+    font-style: italic;
+    color: rgba(255,255,255,0.4);
+  }
+  .quiz-banner-text p {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.4);
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 480px;
+  }
   .quiz-btn {
     display: inline-flex;
     align-items: center;
@@ -370,123 +597,680 @@
     flex-shrink: 0;
   }
   .quiz-btn:hover { background: #b5842f; }
-  .quiz-btn svg { width: 18px; height: 18px; transition: transform 0.25s; }
+  .quiz-btn svg {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.25s;
+  }
   .quiz-btn:hover svg { transform: translateX(3px); }
 
-  .compare-sec { background: var(--light-bg); }
+  /* COMPARISON TABLE */
+  .compare-sec { background: var(--light-bg); transition: background 0.3s; }
   .table-wrap { overflow-x: auto; }
-  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+  }
   thead tr { border-bottom: 2px solid var(--ink); }
-  th { padding: 1rem 1.5rem; text-align: left; font-weight: 500; font-size: 0.78rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink); }
+  th {
+    padding: 1rem 1.5rem;
+    text-align: left;
+    font-weight: 500;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink);
+    transition: color 0.3s;
+  }
   th:first-child { color: var(--soft); font-weight: 300; }
-  td { padding: 0.9rem 1.5rem; border-bottom: 1px solid var(--border); color: var(--soft); font-weight: 300; }
+  td {
+    padding: 0.9rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--soft);
+    font-weight: 300;
+    transition: color 0.3s, border-color 0.3s;
+  }
   td:first-child { color: var(--ink); font-weight: 400; }
-  tbody tr:hover td { background: rgba(0,0,0,0.02); }
+  tbody tr:hover td { background: rgba(200,150,62,0.03); }
   .check { color: #3a9c6f; }
-  .cross { color: #ccc; }
+  .cross { color: var(--soft); opacity: 0.4; }
   .partial { color: var(--soft); font-style: italic; }
 
-  .tutors-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  /* TUTORS */
+  .tutors-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    transition: background 0.3s, border-color 0.3s;
+  }
+
   .tutor-card {
     background: var(--bg);
     padding: 2.5rem;
-    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
     display: flex;
     gap: 1.5rem;
     align-items: flex-start;
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
   }
-  .tutor-card:hover { background: var(--light-bg); transform: translateY(-2px); box-shadow: 0 4px 20px rgba(0,0,0,0.04); }
-  .tutor-photo { width: 80px; height: 80px; background: linear-gradient(145deg, #e8e6e3, #f2f1ef); flex-shrink: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; transition: transform 0.3s; }
-  .tutor-card:hover .tutor-photo { transform: scale(1.03); }
-  .tutor-photo-placeholder { font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: var(--soft); opacity: 0.5; }
-  .tutor-info { flex: 1; }
-  .tutor-name { font-weight: 500; font-size: 1rem; color: var(--ink); margin-bottom: 0.25rem; }
-  .tutor-uni { font-size: 0.82rem; color: var(--soft); font-weight: 300; margin-bottom: 0.5rem; line-height: 1.4; }
-  .tutor-bio { font-size: 0.85rem; color: var(--soft); font-weight: 300; line-height: 1.7; margin-bottom: 1rem; }
-  .tutor-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-  .chip { font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.25rem 0.6rem; border: 1px solid var(--border); color: var(--soft); font-weight: 400; }
+  .tutor-card:hover {
+    background: var(--light-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+  }
 
-  .testi-sec { background: var(--light-bg); }
-  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); border: 1px solid var(--border); }
-  .t-card { background: var(--bg); padding: 2.5rem; transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative; }
+  .tutor-photo {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(145deg, #e8e6e3, #f2f1ef);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: background 0.3s, transform 0.3s;
+  }
+  [data-theme="dark"] .tutor-photo {
+    background: linear-gradient(145deg, #2a2a28, #1e1e1c);
+  }
+  .tutor-card:hover .tutor-photo { transform: scale(1.03); }
+  .tutor-photo-placeholder {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    color: var(--soft);
+    opacity: 0.5;
+  }
+
+  .tutor-info { flex: 1; }
+  .tutor-name { font-weight: 500; font-size: 1rem; color: var(--ink); margin-bottom: 0.25rem; transition: color 0.3s; }
+  .tutor-uni { font-size: 0.82rem; color: var(--soft); font-weight: 300; margin-bottom: 0.5rem; line-height: 1.4; transition: color 0.3s; }
+  .tutor-bio { font-size: 0.85rem; color: var(--soft); font-weight: 300; line-height: 1.7; margin-bottom: 1rem; transition: color 0.3s; }
+
+  .tutor-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .chip {
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid var(--border);
+    color: var(--soft);
+    font-weight: 400;
+    transition: border-color 0.3s, color 0.3s;
+  }
+
+  /* TESTIMONIALS */
+  .testi-sec { background: var(--light-bg); transition: background 0.3s; }
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  .t-card {
+    background: var(--bg);
+    padding: 2.5rem;
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+    position: relative;
+  }
   .t-card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.06); }
-  .t-quote-mark { font-family: 'DM Serif Display', serif; font-size: 3.5rem; color: var(--accent); opacity: 0.15; line-height: 1; margin-bottom: -0.5rem; display: block; }
+
   .t-stars { color: var(--accent); font-size: 0.75rem; letter-spacing: 0.1em; margin-bottom: 1.2rem; }
-  .t-quote { font-size: 0.9rem; color: var(--ink); line-height: 1.75; font-weight: 300; margin-bottom: 1.8rem; }
+  .t-quote { font-size: 0.9rem; color: var(--ink); line-height: 1.75; font-weight: 300; margin-bottom: 1.8rem; transition: color 0.3s; }
+
   .t-author { display: flex; align-items: center; gap: 0.8rem; }
-  .t-ini { width: 34px; height: 34px; background: var(--ink); color: #fff; font-size: 0.75rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border-radius: 50%; }
-  .t-name { font-size: 0.82rem; font-weight: 500; }
-  .t-detail { font-size: 0.75rem; color: var(--soft); font-weight: 300; margin-top: 0.15rem; }
-  .t-verified { font-size: 0.65rem; color: #3a9c6f; font-weight: 400; margin-top: 0.2rem; display: flex; align-items: center; gap: 0.3rem; }
+  .t-ini {
+    width: 34px; height: 34px;
+    background: var(--ink);
+    color: var(--bg);
+    font-size: 0.75rem;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    border-radius: 50%;
+    transition: background 0.3s, color 0.3s;
+  }
+  .t-name { font-size: 0.82rem; font-weight: 500; transition: color 0.3s; }
+  .t-detail { font-size: 0.75rem; color: var(--soft); font-weight: 300; margin-top: 0.15rem; transition: color 0.3s; }
+  .t-verified {
+    font-size: 0.65rem;
+    color: #3a9c6f;
+    font-weight: 400;
+    margin-top: 0.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .t-quote-mark {
+    font-family: 'DM Serif Display', serif;
+    font-size: 3.5rem;
+    color: var(--accent);
+    opacity: 0.15;
+    line-height: 1;
+    margin-bottom: -0.5rem;
+    display: block;
+  }
+
   .testi-cta { text-align: center; margin-top: 3rem; }
-  .testi-cta p { font-size: 0.85rem; color: var(--soft); font-weight: 300; margin-bottom: 0.8rem; }
-  .testi-cta a { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent); border-bottom: 1px solid var(--accent); padding-bottom: 2px; transition: color 0.2s; }
+  .testi-cta p { font-size: 0.85rem; color: var(--soft); font-weight: 300; margin-bottom: 0.8rem; transition: color 0.3s; }
+  .testi-cta a {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 2px;
+    transition: color 0.2s;
+  }
   .testi-cta a:hover { color: var(--ink); border-color: var(--ink); }
 
-  .faq-sec { background: var(--bg); }
-  .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); }
-  .faq-item { background: var(--bg); padding: 2rem 2.5rem; cursor: pointer; transition: background 0.2s; }
+  /* FAQ */
+  .faq-sec { background: var(--bg); transition: background 0.3s; }
+  .faq-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .faq-item {
+    background: var(--bg);
+    padding: 2rem 2.5rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
   .faq-item:hover { background: var(--light-bg); }
-  .faq-q { font-weight: 500; font-size: 0.92rem; color: var(--ink); margin-bottom: 0.8rem; display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
-  .faq-q::after { content: '+'; font-size: 1.2rem; color: var(--accent); flex-shrink: 0; line-height: 1; transition: transform 0.2s; }
+  .faq-q {
+    font-weight: 500;
+    font-size: 0.92rem;
+    color: var(--ink);
+    margin-bottom: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    transition: color 0.3s;
+  }
+  .faq-q::after {
+    content: '+';
+    font-size: 1.2rem;
+    color: var(--accent);
+    flex-shrink: 0;
+    line-height: 1;
+    transition: transform 0.2s;
+  }
   .faq-item.open .faq-q::after { transform: rotate(45deg); }
-  .faq-a { font-size: 0.85rem; color: var(--soft); font-weight: 300; line-height: 1.75; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+  .faq-a {
+    font-size: 0.85rem;
+    color: var(--soft);
+    font-weight: 300;
+    line-height: 1.75;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, color 0.3s;
+  }
   .faq-item.open .faq-a { max-height: 200px; }
 
-  .book-sec { background: var(--ink); color: #fff; border-bottom: none; }
+  /* BOOKING */
+  .book-sec { background: var(--ink); color: var(--bg); border-bottom: none; transition: background 0.3s, color 0.3s; }
   .book-sec .section-label { color: rgba(200,150,62,0.9); }
   .book-sec .section-label::before { background: rgba(200,150,62,0.9); }
-  .book-sec h2 { color: #fff; }
-  .book-sec h2 em { color: rgba(255,255,255,0.4); }
-  .book-sec .section-desc { color: rgba(255,255,255,0.45); }
+  .book-sec h2 { color: var(--bg); }
+  .book-sec h2 em { color: rgba(255,255,255,0.35); }
+  .book-sec .section-desc { color: rgba(255,255,255,0.4); }
 
-  .book-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.08); }
-  .book-card { background: rgba(255,255,255,0.03); padding: 2.5rem; display: flex; flex-direction: column; transition: background 0.3s, transform 0.3s; cursor: pointer; }
+  [data-theme="dark"] .book-sec { background: #0a0a08; }
+
+  .book-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .book-card {
+    background: rgba(255,255,255,0.03);
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: background 0.2s, transform 0.3s;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+  }
   .book-card:hover { background: rgba(255,255,255,0.07); transform: translateY(-3px); }
-  .book-card-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(200,150,62,0.9); margin-bottom: 1rem; }
-  .book-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.2rem; font-weight: 400; color: #fff; margin-bottom: 0.8rem; line-height: 1.25; }
-  .book-card p { font-size: 0.85rem; color: rgba(255,255,255,0.4); font-weight: 300; line-height: 1.7; margin-bottom: 2rem; flex: 1; }
-  .book-price { font-family: 'DM Serif Display', serif; font-size: 1.6rem; color: #fff; margin-bottom: 1.5rem; }
-  .book-price span { font-family: 'DM Sans', sans-serif; font-size: 0.78rem; color: rgba(255,255,255,0.3); font-weight: 300; }
+
+  .book-card-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(200,150,62,0.9);
+    margin-bottom: 1rem;
+  }
+  .book-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 0.8rem;
+    line-height: 1.25;
+  }
+  .book-card p {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.4);
+    font-weight: 300;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    flex: 1;
+  }
+  .book-price {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem;
+    color: #fff;
+    margin-bottom: 1.5rem;
+  }
+  .book-price span {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.3);
+    font-weight: 300;
+  }
   .book-price.free { color: #6bcf8f; }
 
-  .btn-white { display: inline-block; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.8); padding: 0.7rem 1.5rem; font-size: 0.75rem; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; transition: all 0.2s; font-family: 'DM Sans', sans-serif; align-self: flex-start; }
-  .btn-white:hover { background: #fff; color: var(--ink); border-color: #fff; }
+  .btn-white {
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.8);
+    padding: 0.7rem 1.5rem;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+    align-self: flex-start;
+  }
+  .btn-white:hover { background: #fff; color: #111; border-color: #fff; }
 
-  .bundle-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(200,150,62,0.2); border: 1px solid rgba(200,150,62,0.25); margin-bottom: 3rem; }
-  .bundle-card { background: rgba(200,150,62,0.06); padding: 2rem 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; transition: background 0.2s; cursor: pointer; text-decoration: none; color: inherit; }
+  /* BUNDLE DEALS */
+  .bundle-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(200,150,62,0.2);
+    border: 1px solid rgba(200,150,62,0.25);
+    margin-bottom: 3rem;
+  }
+  .bundle-card {
+    background: rgba(200,150,62,0.06);
+    padding: 2rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    transition: background 0.2s;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+  }
   .bundle-card:hover { background: rgba(200,150,62,0.12); }
-  .bundle-info h3 { font-family: 'DM Serif Display', serif; font-size: 1.1rem; font-weight: 400; color: #fff; margin-bottom: 0.3rem; }
-  .bundle-info p { font-size: 0.82rem; color: rgba(255,255,255,0.45); font-weight: 300; line-height: 1.5; }
+  .bundle-info h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 0.3rem;
+  }
+  .bundle-info p {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.45);
+    font-weight: 300;
+    line-height: 1.5;
+  }
   .bundle-pricing { text-align: right; flex-shrink: 0; }
   .bundle-old { font-size: 0.8rem; color: rgba(255,255,255,0.3); text-decoration: line-through; margin-bottom: 0.2rem; }
   .bundle-new { font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: #6bcf8f; }
   .bundle-save { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(200,150,62,0.9); margin-top: 0.2rem; }
 
-  .footer-cta { padding: 6rem 6vw; background: var(--light-bg); border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; max-width: 100%; }
-  .footer-cta-left p { font-family: 'DM Serif Display', serif; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 400; line-height: 1.2; }
+  /* FREE RESOURCE */
+  .resource-sec { background: #1a2e1a; color: #fff; border-bottom: 1px solid rgba(107,207,143,0.12); }
+  .resource-sec .section-label { color: #6bcf8f; }
+  .resource-sec .section-label::before { background: #6bcf8f; }
+  .resource-sec h2 { color: #f0ede8; }
+  .resource-sec h2 em { color: rgba(240,237,232,0.4); }
+  [data-theme="dark"] .resource-sec { background: #0d1a0d; border-bottom-color: rgba(107,207,143,0.08); }
+  .resource-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .resource-free-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #0d1a0d;
+    background: #6bcf8f;
+    padding: 0.35rem 0.9rem;
+    margin-bottom: 1rem;
+    border-radius: 2px;
+  }
+
+  .resource-desc {
+    font-size: 0.95rem;
+    color: rgba(240,237,232,0.65);
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 1.8rem;
+  }
+  .resource-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+  }
+  .resource-features li {
+    font-size: 0.85rem;
+    color: rgba(240,237,232,0.75);
+    font-weight: 300;
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+  }
+  .resource-features li::before {
+    content: '✓';
+    color: #6bcf8f;
+    font-size: 0.75rem;
+    margin-top: 0.1rem;
+    flex-shrink: 0;
+  }
+  .resource-form {
+    display: flex;
+    gap: 0;
+    margin-bottom: 0.8rem;
+  }
+  .resource-email {
+    flex: 1;
+    padding: 0.9rem 1.1rem;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-right: none;
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+    font-size: 0.88rem;
+    font-family: 'DM Sans', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .resource-email::placeholder { color: rgba(255,255,255,0.3); }
+  .resource-email:focus { border-color: var(--accent); }
+  .resource-btn {
+    background: var(--accent);
+    color: #fff;
+    border: 1px solid var(--accent);
+    padding: 0.9rem 1.5rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .resource-btn:hover { background: #b5842f; border-color: #b5842f; }
+  .resource-fine {
+    font-size: 0.72rem;
+    color: rgba(240,237,232,0.4);
+    font-weight: 300;
+  }
+  .resource-success {
+    display: none;
+    padding: 1rem 1.2rem;
+    background: rgba(107,207,143,0.1);
+    border: 1px solid rgba(107,207,143,0.3);
+    color: #6bcf8f;
+    font-size: 0.85rem;
+    font-weight: 400;
+    margin-bottom: 0.8rem;
+  }
+  .resource-success.show { display: block; }
+
+  /* Resource visual card */
+  .resource-card {
+    border: 1px solid rgba(107,207,143,0.2);
+    overflow: hidden;
+  }
+  .resource-card-header {
+    background: var(--accent);
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .resource-card-tag {
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    font-weight: 500;
+  }
+  .resource-card-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    color: #fff;
+    font-weight: 400;
+  }
+  .resource-card-body {
+    background: rgba(0,0,0,0.25);
+    padding: 1.2rem 0;
+  }
+  .resource-preview-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 0.7rem 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    transition: background 0.2s;
+  }
+  .resource-preview-item:last-of-type { border-bottom: none; }
+  .resource-preview-item:hover { background: rgba(255,255,255,0.05); }
+  .rp-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 0.85rem;
+    color: var(--accent);
+    opacity: 0.8;
+    flex-shrink: 0;
+    min-width: 22px;
+  }
+  .rp-text {
+    font-size: 0.82rem;
+    color: rgba(240,237,232,0.75);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+  .rp-blur .rp-text {
+    filter: blur(4px);
+    user-select: none;
+    color: rgba(240,237,232,0.4);
+  }
+  .resource-card-more {
+    padding: 0.8rem 1.5rem 0;
+    font-size: 0.75rem;
+    color: var(--accent);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    opacity: 0.8;
+  }
+
+  @media (max-width: 900px) {
+    .resource-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+
+  /* CTA / FOOTER */
+  .footer-cta {
+    padding: 6rem 6vw;
+    background: var(--light-bg);
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+    max-width: 100%;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .footer-cta-left p {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--ink);
+    transition: color 0.3s;
+  }
   .footer-cta-left p em { font-style: italic; color: var(--soft); }
   .footer-cta-right { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
 
-  footer { padding: 2.5rem 6vw; background: var(--ink); display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+  footer {
+    padding: 2.5rem 6vw;
+    background: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    transition: background 0.3s;
+  }
+
+  [data-theme="dark"] footer { background: #080806; }
+
   .footer-left { display: flex; flex-direction: column; gap: 0.5rem; }
   .footer-logo { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: rgba(255,255,255,0.7); }
   .footer-note { font-size: 0.75rem; color: rgba(255,255,255,0.25); font-weight: 300; }
   .footer-contact { font-size: 0.78rem; color: rgba(255,255,255,0.35); font-weight: 300; }
   .footer-contact a { color: rgba(255,255,255,0.5); transition: color 0.2s; }
   .footer-contact a:hover { color: rgba(255,255,255,0.8); }
+
   .footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 1rem; }
   .footer-links { display: flex; gap: 2rem; }
   .footer-links a { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.35); transition: color 0.2s; }
   .footer-links a:hover { color: rgba(255,255,255,0.7); }
+
   .footer-socials { display: flex; flex-direction: column; align-items: flex-end; gap: 0.6rem; }
   .footer-socials-label { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.3); font-weight: 300; }
-  .social-link { display: flex; align-items: center; gap: 0.7rem; padding: 0.65rem 1.2rem; border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.6); transition: all 0.25s ease; text-decoration: none; }
+  .social-link {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.65rem 1.2rem;
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.6);
+    transition: all 0.25s ease;
+    text-decoration: none;
+  }
   .social-link:hover { border-color: rgba(200,150,62,0.5); color: #fff; background: rgba(255,255,255,0.05); }
   .social-link svg { width: 20px; height: 20px; flex-shrink: 0; }
   .social-link span { font-size: 0.85rem; font-weight: 400; letter-spacing: 0.01em; }
   .social-arrow { font-size: 0.8rem; opacity: 0.4; transition: opacity 0.25s, transform 0.25s; }
   .social-link:hover .social-arrow { opacity: 1; transform: translateX(3px); }
+
+  /* HERO QUIZ NUDGE */
+  .hero-quiz-nudge {
+    margin-top: 1.5rem;
+    font-size: 0.8rem;
+    color: var(--soft);
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .hero-quiz-nudge a {
+    color: var(--accent);
+    border-bottom: 1px solid rgba(200,150,62,0.4);
+    padding-bottom: 1px;
+    transition: border-color 0.2s;
+  }
+  .hero-quiz-nudge a:hover { border-color: var(--accent); }
+
+  /* VIDEO SECTION */
+  .video-sec { background: var(--bg); }
+  .video-placeholder {
+    border: 2px dashed var(--border);
+    background: var(--light-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 340px;
+    transition: border-color 0.2s;
+  }
+  .video-placeholder:hover { border-color: var(--accent); }
+  .video-inner {
+    text-align: center;
+    padding: 3rem 2rem;
+    max-width: 400px;
+  }
+  .video-icon { margin-bottom: 1.2rem; }
+  .video-label {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    color: var(--ink);
+    margin-bottom: 0.6rem;
+  }
+  .video-sub {
+    font-size: 0.85rem;
+    color: var(--soft);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+  .video-embed {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+  }
+  .video-embed iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: none;
+  }
+  [data-theme="dark"] .video-placeholder { border-color: #333; background: var(--light-bg); }
+  [data-theme="dark"] .video-placeholder:hover { border-color: var(--accent); }
+
+  /* TESTIMONIAL PHOTO */
+  .t-photo-wrap {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--border);
+    transition: border-color 0.3s;
+  }
+  .t-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 50%;
+  }
+  .t-photo-wrap .t-ini {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+  }
+
 
   @media (max-width: 900px) {
     .nav-links { display: none; }
@@ -506,8 +1290,6 @@
     .footer-socials { align-items: flex-start; }
     h2 { font-size: 1.8rem; }
     .tutor-card { flex-direction: column; }
-    .hero-inner { grid-template-columns: 1fr; }
-    .hero-right { display: none; }
   }
   @media (max-width: 560px) {
     .services-grid, .book-grid { grid-template-columns: 1fr !important; }
@@ -516,77 +1298,949 @@
     .hero-right { display: none; }
   }
 
-  body { animation: pageLoad 0.6s ease-out; }
+  /* PAGE LOAD ANIMATION */
+  body { animation: pageLoad 0.5s ease-out; }
   @keyframes pageLoad { from { opacity: 0; } to { opacity: 1; } }
 
-  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
-  .reveal.active { opacity: 1; transform: translateY(0); }
+  /* ====== SCROLL ANIMATION SYSTEM ====== */
+  /* Base: fade up (default) */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* From left */
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal-left.active {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* From right */
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(40px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal-right.active {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Scale in */
+  .reveal-scale {
+    opacity: 0;
+    transform: scale(0.94);
+    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal-scale.active {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Stagger delays */
   .reveal-delay-1 { transition-delay: 0.1s; }
   .reveal-delay-2 { transition-delay: 0.2s; }
   .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+  .reveal-delay-5 { transition-delay: 0.5s; }
 
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .reveal, .reveal-left, .reveal-right, .reveal-scale {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
+  /* NAV DROPDOWN */
   .nav-dropdown { position: relative; }
-  .nav-dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(8px); background: #fff; border: 1px solid var(--border); box-shadow: 0 12px 40px rgba(0,0,0,0.08); padding: 1rem 0; min-width: 240px; opacity: 0; visibility: hidden; transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s; z-index: 200; }
-  .nav-dropdown:hover .nav-dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
-  .nav-dropdown-menu a { display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 1.5rem !important; font-size: 0.78rem !important; letter-spacing: 0.02em !important; text-transform: none !important; color: var(--ink) !important; transition: background 0.15s, padding-left 0.15s !important; }
+  .nav-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(8px);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    padding: 1rem 0;
+    min-width: 240px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s, background 0.3s, border-color 0.3s;
+    z-index: 200;
+  }
+  .nav-dropdown:hover .nav-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+  .nav-dropdown-menu a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 1.5rem !important;
+    font-size: 0.78rem !important;
+    letter-spacing: 0.02em !important;
+    text-transform: none !important;
+    color: var(--ink) !important;
+    transition: background 0.15s, padding-left 0.15s !important;
+  }
   .nav-dropdown-menu a:hover { background: var(--light-bg); padding-left: 1.8rem !important; }
   .nav-dropdown-menu .dd-price { font-size: 0.72rem; color: var(--accent); font-weight: 500; }
-  .nav-dropdown-menu::before { content: ''; position: absolute; top: -8px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 8px solid transparent; border-right: 8px solid transparent; border-bottom: 8px solid #fff; }
+  .nav-dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0; height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid var(--bg);
+  }
   .nav-dropdown-trigger { cursor: pointer; }
 
+  /* HERO RIGHT COLUMN */
   .hero-right { display: flex; flex-direction: column; gap: 1rem; }
-  .hero-stat-card { background: var(--light-bg); border: 1px solid var(--border); padding: 1.2rem 1.5rem; display: flex; align-items: center; gap: 1rem; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+  .hero-stat-card {
+    background: var(--light-bg);
+    border: 1px solid var(--border);
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s, border-color 0.3s;
+  }
   .hero-stat-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
-  .hero-stat-icon { width: 42px; height: 42px; background: var(--ink); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .hero-stat-icon {
+    width: 42px; height: 42px;
+    background: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.3s;
+  }
   .hero-stat-icon svg { width: 20px; height: 20px; }
-  .hero-stat-text { font-size: 0.85rem; color: var(--ink); font-weight: 500; line-height: 1.4; }
-  .hero-stat-text span { display: block; font-size: 0.78rem; color: var(--soft); font-weight: 300; }
+  .hero-stat-text { font-size: 0.85rem; color: var(--ink); font-weight: 500; line-height: 1.4; transition: color 0.3s; }
+  .hero-stat-text span { display: block; font-size: 0.78rem; color: var(--soft); font-weight: 300; transition: color 0.3s; }
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+  }
 
-  .svc-card { transition: background 0.3s, transform 0.3s; }
-  .svc-card:hover { transform: translateY(-2px); }
-
-  .mobile-sticky-cta { display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 90; background: rgba(17,17,17,0.95); backdrop-filter: blur(12px); padding: 0.8rem 6vw; border-top: 1px solid rgba(255,255,255,0.08); justify-content: space-between; align-items: center; gap: 0.8rem; transform: translateY(100%); transition: transform 0.4s ease; }
+  /* MOBILE STICKY CTA */
+  .mobile-sticky-cta {
+    display: none;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 90;
+    background: rgba(17,17,17,0.95);
+    backdrop-filter: blur(12px);
+    padding: 0.8rem 6vw;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.8rem;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+  }
   .mobile-sticky-cta.visible { transform: translateY(0); }
   .mobile-sticky-cta p { font-size: 0.8rem; color: rgba(255,255,255,0.6); font-weight: 300; }
   .mobile-sticky-cta p strong { color: #fff; font-weight: 500; }
   .mobile-sticky-cta .btn-primary { padding: 0.7rem 1.5rem; font-size: 0.75rem; white-space: nowrap; flex-shrink: 0; }
   @media (max-width: 900px) { .mobile-sticky-cta { display: flex; } }
 
-  nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+  /* NAV SCROLL SHADOW */
+  nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
 
-  .exit-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(6px); z-index: 500; align-items: center; justify-content: center; padding: 1.5rem; animation: overlayIn 0.3s ease; }
+  /* HOW IT WORKS */
+  .how-sec { background: var(--bg); transition: background 0.3s; }
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .step-card {
+    background: var(--bg);
+    padding: 2.5rem;
+    position: relative;
+    transition: background 0.3s, transform 0.3s;
+  }
+  .step-card:hover { background: var(--light-bg); }
+  .step-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 3.5rem;
+    font-weight: 400;
+    color: var(--accent);
+    opacity: 0.2;
+    line-height: 1;
+    margin-bottom: 1rem;
+    transition: opacity 0.3s;
+  }
+  .step-card:hover .step-num { opacity: 0.35; }
+  .step-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.7rem;
+    line-height: 1.25;
+    transition: color 0.3s;
+  }
+  .step-desc {
+    font-size: 0.88rem;
+    color: var(--soft);
+    font-weight: 300;
+    line-height: 1.75;
+    transition: color 0.3s;
+  }
+  .step-connector {
+    display: none;
+  }
+  @media (max-width: 700px) {
+    .steps-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ANIMATED STAT COUNTERS */
+  .about-stat-num.counting {
+    transition: none;
+  }
+
+  /* SCARCITY STRIP */
+  .scarcity-strip {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: rgba(200,150,62,0.08);
+    border: 1px solid rgba(200,150,62,0.2);
+    padding: 0.8rem 1.5rem;
+    margin-bottom: 2.5rem;
+    font-size: 0.82rem;
+    color: var(--ink);
+    font-weight: 400;
+  }
+  .scarcity-dot {
+    width: 8px;
+    height: 8px;
+    background: #c8963e;
+    border-radius: 50%;
+    flex-shrink: 0;
+    animation: pulse-dot 2s infinite;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  .scarcity-strip strong { color: var(--accent); }
+
+  /* COMPACT BOOKING CTA (replaces duplicate book grid) */
+  .book-cta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 3rem;
+  }
+  .book-cta-item {
+    background: rgba(255,255,255,0.03);
+    padding: 2rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s;
+    flex-wrap: wrap;
+  }
+  .book-cta-item:hover { background: rgba(255,255,255,0.07); }
+  .book-cta-left { flex: 1; }
+  .book-cta-tag {
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(200,150,62,0.9);
+    margin-bottom: 0.4rem;
+    font-weight: 500;
+  }
+  .book-cta-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem;
+    color: #fff;
+    font-weight: 400;
+    line-height: 1.25;
+    margin-bottom: 0.4rem;
+  }
+  .book-cta-desc {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.35);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+  .book-cta-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.8rem;
+    flex-shrink: 0;
+  }
+  .book-cta-price {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem;
+    color: #fff;
+  }
+  .book-cta-price.free-price { color: #6bcf8f; }
+  @media (max-width: 700px) {
+    .book-cta-grid { grid-template-columns: 1fr; }
+    .book-cta-item { flex-direction: column; align-items: flex-start; }
+    .book-cta-right { align-items: flex-start; }
+  }
+
+  /* FOOTER CTA ENHANCED */
+  .footer-cta-tagline {
+    font-size: 0.78rem;
+    color: var(--soft);
+    font-weight: 300;
+    margin-top: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .footer-cta-tagline::before {
+    content: '';
+    width: 16px;
+    height: 1px;
+    background: var(--accent);
+    display: block;
+    flex-shrink: 0;
+  }
+
+  /* COMPETITOR COMPARISON / VERSUS */
+  /* VERSUS COMPARISON — modern row layout */
+  .versus-sec {
+    background: var(--light-bg);
+    transition: background 0.3s;
+  }
+
+  .versus-rows {
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+    transition: border-color 0.3s;
+  }
+
+  .versus-row-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    background: var(--ink);
+    transition: background 0.3s;
+  }
+  .vrh-label {
+    padding: 1.2rem 2rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+  }
+  .vrh-us, .vrh-them {
+    padding: 1.2rem 2rem;
+    display: flex;
+    align-items: center;
+  }
+  .vrh-us { border-left: 1px solid rgba(255,255,255,0.08); }
+  .vrh-them { border-left: 1px solid rgba(255,255,255,0.08); }
+  .vrh-badge-us {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #fff;
+    background: #3a9c6f;
+    padding: 0.35rem 0.8rem;
+    border-radius: 2px;
+  }
+  .vrh-badge-them {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.08);
+    padding: 0.35rem 0.8rem;
+    border-radius: 2px;
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+
+  .versus-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-top: 1px solid var(--border);
+    transition: border-color 0.3s, background 0.2s;
+  }
+  .versus-row:hover { background: rgba(0,0,0,0.015); }
+  [data-theme="dark"] .versus-row:hover { background: rgba(255,255,255,0.02); }
+
+  .vr-label, .vr-us, .vr-them {
+    padding: 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    justify-content: center;
+  }
+  .vr-us, .vr-them {
+    border-left: 1px solid var(--border);
+    transition: border-color 0.3s;
+  }
+  .vr-us { background: rgba(58,156,111,0.03); }
+  [data-theme="dark"] .vr-us { background: rgba(58,156,111,0.05); }
+
+  /* ======= DARK MODE CONTRAST FIXES ======= */
+
+  /* Nav dropdown arrow — white triangle on dark bg was invisible */
+  [data-theme="dark"] .nav-dropdown-menu::before {
+    border-bottom-color: var(--bg);
+  }
+
+  /* Hero stat cards — light-bg on dark needs a visible border */
+  [data-theme="dark"] .hero-stat-card {
+    border-color: var(--border);
+  }
+
+  /* Service cards grid — the 1px gap lines use border color as background */
+  [data-theme="dark"] .services-grid {
+    background: #1e1e1c;
+  }
+
+  /* Testimonials — t-card on light-bg were nearly same tone in dark */
+  [data-theme="dark"] .testi-grid {
+    background: #1e1e1c;
+  }
+  [data-theme="dark"] .t-card {
+    background: #1a1a18;
+  }
+
+  /* Tutor grid gap lines */
+  [data-theme="dark"] .tutors-grid {
+    background: #1e1e1c;
+  }
+
+  /* FAQ grid gap lines */
+  [data-theme="dark"] .faq-grid {
+    background: #1e1e1c;
+  }
+  [data-theme="dark"] .faq-item {
+    background: #0e0e0c;
+  }
+  [data-theme="dark"] .faq-item:hover {
+    background: #161614;
+  }
+
+  /* FAQ answer text — was var(--soft) which is #999 on dark, readable but bumping contrast */
+  [data-theme="dark"] .faq-a {
+    color: #aaa;
+  }
+
+  /* Table — header row border was very faint in dark */
+  [data-theme="dark"] thead tr {
+    border-bottom-color: rgba(255,255,255,0.15);
+  }
+  [data-theme="dark"] th {
+    color: var(--ink);
+  }
+
+  /* Comparison table hover row */
+  [data-theme="dark"] tbody tr:hover td {
+    background: rgba(255,255,255,0.025);
+  }
+
+  /* Chip tags — border was near-invisible in dark */
+  [data-theme="dark"] .chip {
+    border-color: #333;
+    color: #aaa;
+  }
+
+  /* Hero section background — just var(--bg) which works but hero trust items need check */
+  [data-theme="dark"] .hero-trust-item {
+    color: #888;
+  }
+  [data-theme="dark"] .hero-trust-item strong {
+    color: var(--ink);
+  }
+
+  /* About photo placeholder bg */
+  [data-theme="dark"] .about-photo {
+    background: linear-gradient(145deg, #1e1e1c, #252522);
+  }
+
+  /* How it works section — step cards */
+  [data-theme="dark"] .steps-grid {
+    background: #1e1e1c;
+  }
+  [data-theme="dark"] .step-card {
+    background: #0e0e0c;
+  }
+  [data-theme="dark"] .step-card:hover {
+    background: #161614;
+  }
+
+  /* Scarcity strip in book section */
+  [data-theme="dark"] .scarcity-strip {
+    background: rgba(200,150,62,0.08);
+    border-color: rgba(200,150,62,0.15);
+  }
+
+  /* Mobile sticky CTA */
+  [data-theme="dark"] .mobile-sticky-cta {
+    background: rgba(14,14,12,0.97);
+    border-top-color: rgba(255,255,255,0.06);
+  }
+
+  /* Footer CTA section */
+  [data-theme="dark"] .footer-cta {
+    background: #0e0e0c;
+    border-top-color: var(--border);
+  }
+
+  /* Section desc text — bumping slightly for dark readability */
+  [data-theme="dark"] .section-desc {
+    color: #888;
+  }
+
+  /* Resource section — already dark bg so fine, but success message needs check */
+  [data-theme="dark"] .resource-success {
+    background: rgba(107,207,143,0.08);
+  }
+
+  /* Exit popup overlay darken */
+  [data-theme="dark"] .exit-overlay {
+    background: rgba(0,0,0,0.75);
+  }
+
+  /* Book card description text visibility */
+  [data-theme="dark"] .book-card p {
+    color: rgba(255,255,255,0.45);
+  }
+
+  /* ======= END DARK MODE FIXES ======= */
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--ink);
+    transition: color 0.3s;
+  }
+  .vr-label-sub {
+    font-size: 0.75rem;
+    color: var(--soft);
+    font-weight: 300;
+    transition: color 0.3s;
+  }
+
+  .vr-value-good {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #3a9c6f;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .vr-value-good::before {
+    content: '✓';
+    font-size: 0.75rem;
+    background: #3a9c6f;
+    color: #fff;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-weight: 700;
+  }
+  .vr-value-bad {
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--soft);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .vr-value-bad::before {
+    content: '✕';
+    font-size: 0.7rem;
+    background: rgba(204,68,68,0.12);
+    color: #cc4444;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-weight: 700;
+  }
+  .vr-sub {
+    font-size: 0.78rem;
+    color: var(--soft);
+    font-weight: 300;
+    line-height: 1.5;
+    transition: color 0.3s;
+    padding-left: 22px;
+  }
+
+  .versus-cta-row {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 700px) {
+    .versus-row, .versus-row-header {
+      grid-template-columns: 1fr;
+    }
+    .vr-us, .vr-them, .vrh-us, .vrh-them {
+      border-left: none;
+      border-top: 1px solid var(--border);
+    }
+    .vrh-label { display: none; }
+  }
+  /* GOOGLE REVIEWS BANNER */
+  .google-reviews-banner {
+    display: block;
+    background: linear-gradient(135deg, #fafaf8 0%, #fff 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 6vw;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.3s;
+  }
+  [data-theme="dark"] .google-reviews-banner {
+    background: linear-gradient(135deg, #161614 0%, #1a1a18 100%);
+  }
+  .google-reviews-banner:hover { background: #f5f5f0; }
+  [data-theme="dark"] .google-reviews-banner:hover { background: #1e1e1c; }
+  .grb-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .grb-left { display: flex; align-items: center; gap: 0.9rem; }
+  .grb-glogo { flex-shrink: 0; }
+  .grb-text { display: flex; flex-direction: column; gap: 0.15rem; }
+  .grb-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--soft);
+    font-weight: 400;
+    transition: color 0.3s;
+  }
+  .grb-stars {
+    font-size: 0.95rem;
+    color: var(--ink);
+    font-weight: 300;
+    transition: color 0.3s;
+  }
+  .grb-stars strong { font-weight: 600; color: var(--ink); }
+  .grb-cta {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 1px;
+  }
+  @media (max-width: 600px) { .grb-cta { display: none; } }
+
+  /* GOOGLE REVIEWS SECTION (bottom) */
+  .google-reviews-sec {
+    background: var(--bg);
+    transition: background 0.3s;
+  }
+  .greview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 2.5rem;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  @media (max-width: 900px) { .greview-grid { grid-template-columns: 1fr; } }
+  .greview-card {
+    background: var(--bg);
+    padding: 2rem 2rem 1.8rem;
+    transition: background 0.3s, transform 0.3s;
+    position: relative;
+  }
+  .greview-card:hover { background: var(--light-bg); transform: translateY(-2px); }
+  .greview-top {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .greview-ini {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .greview-meta { flex: 1; }
+  .greview-name { font-size: 0.88rem; font-weight: 500; color: var(--ink); transition: color 0.3s; }
+  .greview-date { font-size: 0.72rem; color: var(--soft); font-weight: 300; transition: color 0.3s; }
+  .greview-glogo { flex-shrink: 0; }
+  .greview-stars { color: #fbbc04; font-size: 0.8rem; letter-spacing: 0.08em; margin-bottom: 0.8rem; }
+  .greview-body { font-size: 0.88rem; color: var(--soft); font-weight: 300; line-height: 1.75; transition: color 0.3s; }
+  .greview-cta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1.5rem 2rem;
+    background: var(--light-bg);
+    border: 1px solid var(--border);
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .greview-cta-left {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+  }
+  .greview-cta-score {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.8rem;
+    line-height: 1;
+    color: var(--ink);
+    transition: color 0.3s;
+  }
+  .greview-cta-info { display: flex; flex-direction: column; gap: 0.2rem; }
+  .greview-cta-stars { color: #fbbc04; font-size: 1rem; letter-spacing: 0.06em; }
+  .greview-cta-label { font-size: 0.72rem; color: var(--soft); font-weight: 300; transition: color 0.3s; }
+  .greview-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 0.85rem 1.8rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif;
+    text-decoration: none;
+    transition: background 0.2s;
+    flex-shrink: 0;
+  }
+  .greview-btn:hover { background: var(--soft); }
+  .greview-btn svg { width: 16px; height: 16px; }
+
+  /* EXIT INTENT POPUP */
+  .exit-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(6px);
+    z-index: 500;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    animation: overlayIn 0.3s ease;
+  }
   .exit-overlay.show { display: flex; }
   @keyframes overlayIn { from { opacity: 0; } to { opacity: 1; } }
-  .exit-popup { background: #fff; max-width: 460px; width: 100%; padding: 3rem 2.5rem; position: relative; text-align: center; animation: popupIn 0.4s ease; box-shadow: 0 24px 60px rgba(0,0,0,0.15); }
-  @keyframes popupIn { from { opacity: 0; transform: translateY(20px) scale(0.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
-  .exit-close { position: absolute; top: 1rem; right: 1.2rem; background: none; border: none; font-size: 1.4rem; color: var(--soft); cursor: pointer; padding: 0.3rem; line-height: 1; transition: color 0.2s; }
+
+  .exit-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(6px);
+    z-index: 500;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    animation: overlayIn 0.3s ease;
+  }
+  .exit-overlay.show { display: flex; }
+  @keyframes overlayIn { from { opacity: 0; } to { opacity: 1; } }
+
+  .exit-popup {
+    background: var(--bg);
+    max-width: 460px;
+    width: 100%;
+    padding: 3rem 2.5rem;
+    position: relative;
+    text-align: center;
+    animation: popupIn 0.4s ease;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.2);
+    transition: background 0.3s;
+  }
+  @keyframes popupIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .exit-close {
+    position: absolute; top: 1rem; right: 1.2rem;
+    background: none; border: none; font-size: 1.4rem;
+    color: var(--soft); cursor: pointer; padding: 0.3rem; line-height: 1;
+    transition: color 0.2s;
+  }
   .exit-close:hover { color: var(--ink); }
-  .exit-badge { display: inline-block; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: #fff; background: var(--accent); padding: 0.3rem 0.8rem; margin-bottom: 1.5rem; font-weight: 500; }
-  .exit-popup h3 { font-family: 'DM Serif Display', Georgia, serif; font-size: 1.6rem; font-weight: 400; color: var(--ink); line-height: 1.25; margin-bottom: 0.6rem; }
+  .exit-badge {
+    display: inline-block;
+    font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: #fff; background: var(--accent);
+    padding: 0.3rem 0.8rem; margin-bottom: 1.5rem; font-weight: 500;
+  }
+  .exit-popup h3 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.6rem; font-weight: 400; color: var(--ink);
+    line-height: 1.25; margin-bottom: 0.6rem;
+    transition: color 0.3s;
+  }
   .exit-popup h3 em { color: var(--accent); font-style: italic; }
-  .exit-popup .exit-sub { font-size: 0.88rem; color: var(--soft); font-weight: 300; line-height: 1.6; margin-bottom: 1.5rem; }
+  .exit-popup .exit-sub {
+    font-size: 0.88rem; color: var(--soft); font-weight: 300;
+    line-height: 1.6; margin-bottom: 1.5rem; transition: color 0.3s;
+  }
   .exit-timer { display: flex; justify-content: center; gap: 0.8rem; margin-bottom: 1.8rem; }
-  .exit-timer-block { background: var(--light-bg); border: 1px solid var(--border); padding: 0.6rem 0.9rem; min-width: 56px; text-align: center; }
-  .exit-timer-num { font-family: 'DM Serif Display', Georgia, serif; font-size: 1.4rem; color: var(--ink); line-height: 1; }
-  .exit-timer-label { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--soft); margin-top: 0.2rem; }
+  .exit-timer-block {
+    background: var(--light-bg); border: 1px solid var(--border);
+    padding: 0.6rem 0.9rem; min-width: 56px; text-align: center;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .exit-timer-num { font-family: 'DM Serif Display', Georgia, serif; font-size: 1.4rem; color: var(--ink); line-height: 1; transition: color 0.3s; }
+  .exit-timer-label { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--soft); margin-top: 0.2rem; transition: color 0.3s; }
   .exit-form { display: flex; gap: 0; margin-bottom: 1rem; }
-  .exit-email { flex: 1; padding: 0.85rem 1rem; border: 1px solid var(--border); border-right: none; font-size: 0.88rem; font-family: 'DM Sans', sans-serif; color: var(--ink); outline: none; transition: border-color 0.2s; }
+  .exit-email {
+    flex: 1; padding: 0.85rem 1rem;
+    border: 1px solid var(--border); border-right: none;
+    font-size: 0.88rem; font-family: 'DM Sans', sans-serif;
+    color: var(--ink); background: var(--bg);
+    outline: none; transition: border-color 0.2s, color 0.3s, background 0.3s;
+  }
   .exit-email:focus { border-color: var(--accent); }
-  .exit-email::placeholder { color: #bbb; }
-  .exit-submit { background: var(--ink); color: #fff; padding: 0.85rem 1.5rem; border: 1px solid var(--ink); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; font-family: 'DM Sans', sans-serif; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
-  .exit-submit:hover { background: #333; }
-  .exit-fine { font-size: 0.72rem; color: #bbb; font-weight: 300; }
+  .exit-email::placeholder { color: var(--soft); opacity: 0.6; }
+  .exit-submit {
+    background: var(--ink); color: var(--bg);
+    padding: 0.85rem 1.5rem;
+    border: 1px solid var(--ink);
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif; cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+  }
+  .exit-submit:hover { background: var(--soft); border-color: var(--soft); }
+  .exit-fine { font-size: 0.72rem; color: var(--soft); font-weight: 300; transition: color 0.3s; }
   .exit-success { display: none; }
   .exit-success.show { display: block; }
-  .exit-success .exit-code-box { background: var(--light-bg); border: 2px dashed var(--accent); padding: 1.2rem; margin: 1.2rem 0; }
+  .exit-success .exit-code-box {
+    background: var(--light-bg); border: 2px dashed var(--accent);
+    padding: 1.2rem; margin: 1.2rem 0; transition: background 0.3s;
+  }
   .exit-success .exit-code { font-family: 'DM Serif Display', Georgia, serif; font-size: 2rem; color: var(--accent); letter-spacing: 0.08em; }
-  .exit-success .exit-code-note { font-size: 0.78rem; color: var(--soft); font-weight: 300; margin-top: 0.4rem; }
-  .exit-success p { font-size: 0.88rem; color: var(--soft); font-weight: 300; line-height: 1.6; margin-bottom: 1.2rem; }
+  .exit-success .exit-code-note { font-size: 0.78rem; color: var(--soft); font-weight: 300; margin-top: 0.4rem; transition: color 0.3s; }
+  .exit-success p { font-size: 0.88rem; color: var(--soft); font-weight: 300; line-height: 1.6; margin-bottom: 1.2rem; transition: color 0.3s; }
   .exit-success .btn-primary { display: inline-block; }
+
+  /* GOOGLE REVIEWS CTA BLOCK */
+  .google-cta-block {
+    margin-top: 3rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 2rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .gcta-left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .gcta-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding-right: 1.5rem;
+    border-right: 1px solid var(--border);
+  }
+  .gcta-score {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    color: var(--ink);
+    line-height: 1;
+    transition: color 0.3s;
+  }
+  .gcta-stars { color: #f5a623; font-size: 0.95rem; letter-spacing: 0.05em; margin-top: 0.15rem; }
+  .gcta-label { font-weight: 500; font-size: 0.9rem; color: var(--ink); transition: color 0.3s; }
+  .gcta-sub { font-size: 0.78rem; color: var(--soft); font-weight: 300; margin-top: 0.15rem; transition: color 0.3s; }
+  .gcta-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .gcta-btn-primary {
+    display: inline-block;
+    background: var(--ink); color: #fff;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif; text-decoration: none; transition: background 0.2s;
+  }
+  .gcta-btn-primary:hover { background: #333; }
+  .gcta-btn-secondary {
+    font-size: 0.78rem; font-weight: 400; letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--accent); border-bottom: 1px solid var(--accent); padding-bottom: 2px;
+    text-decoration: none; transition: color 0.2s; white-space: nowrap;
+  }
+  .gcta-btn-secondary:hover { color: var(--ink); border-color: var(--ink); }
+  @media (max-width: 700px) {
+    .google-cta-block { flex-direction: column; align-items: flex-start; }
+    .gcta-rating { border-right: none; padding-right: 0; }
+  }
+
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
   <a href="/" class="logo" aria-label="MedCoach Home">
     <svg width="200" height="34" viewBox="0 0 270 44" xmlns="http://www.w3.org/2000/svg">
@@ -613,140 +2267,219 @@
     <li><a href="#tutors">Tutors</a></li>
     <li><a href="#testimonials">Results</a></li>
     <li><a href="#faq">FAQ</a></li>
+    <li><a href="#free-resource" class="nav-free">Free MMI Questions</a></li>
     <li><a href="#book" class="nav-cta">Book Now</a></li>
+    <li>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+        <!-- Moon icon (shown in light mode) -->
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+        <!-- Sun icon (shown in dark mode) -->
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+      </button>
+    </li>
   </ul>
-  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <div style="display:flex;align-items:center;gap:0.75rem;">
+    <button class="theme-toggle" id="mobileThemeToggle" onclick="toggleTheme()" aria-label="Toggle dark mode" style="display:none;">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="5"/>
+        <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+        <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </svg>
+    </button>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
+<!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#about" onclick="toggleMenu()">About</a>
   <a href="#services" onclick="toggleMenu()">Services</a>
   <a href="#tutors" onclick="toggleMenu()">Tutors</a>
   <a href="#testimonials" onclick="toggleMenu()">Results</a>
   <a href="#faq" onclick="toggleMenu()">FAQ</a>
+  <a href="#free-resource" onclick="toggleMenu()" style="color:#6bcf8f;">Free MMI Questions</a>
   <a href="https://calendly.com/stefanmoore-medcoach/30min" target="_blank" rel="noopener" class="btn-primary" onclick="toggleMenu()">Book Free Call</a>
 </div>
 
+<!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
     <div>
-      <p class="hero-kicker">Medical Interview Coaching</p>
-      <h1>Get the offer<br>you <em>deserve</em></h1>
-      <p class="hero-sub">Coached by current UK medical students who sat the same interviews. MMI, panel, ethics — we prepare you for every format.</p>
-      <div class="hero-trust">
-        <div class="hero-trust-item">
-          <svg viewBox="0 0 16 16" fill="none"><path d="M8 1l2.12 4.3 4.74.69-3.43 3.34.81 4.72L8 11.77l-4.24 2.23.81-4.72L1.14 5.94l4.74-.69L8 1z" fill="#c8963e"/></svg>
-          <span><strong>5.0</strong> average rating</span>
-        </div>
+      <p class="hero-kicker reveal">Medical Interview Coaching</p>
+      <h1 class="reveal reveal-delay-1">Get into<br>medical school</h1>
+      <p class="hero-sub reveal reveal-delay-2">Coached by Year 2 medical students who sat these exact interviews last year. We know what the panels want — because we were in your seat two years ago.</p>
+      <div class="hero-trust reveal reveal-delay-3">
+        <a href="https://g.page/r/CfgdWnROlmKJEAI/review" target="_blank" rel="noopener" class="hero-trust-item hero-trust-google" style="text-decoration:none;">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M21.805 10.023H12v3.955h5.62c-.242 1.237-.974 2.284-2.074 2.986v2.481h3.358c1.965-1.81 3.096-4.477 3.096-7.648 0-.553-.048-1.087-.135-1.774z" fill="#4285F4"/><path d="M12 22c2.834 0 5.21-.94 6.946-2.555l-3.358-2.481c-.936.628-2.135 1-3.588 1-2.76 0-5.098-1.863-5.934-4.368H2.61v2.559A10.997 10.997 0 0012 22z" fill="#34A853"/><path d="M6.066 13.596A6.62 6.62 0 015.71 12c0-.554.096-1.093.257-1.596V7.845H2.61A11.003 11.003 0 001 12c0 1.762.42 3.428 1.61 4.155l2.456-2.559z" fill="#FBBC05"/><path d="M12 5.636c1.555 0 2.95.534 4.048 1.582l3.034-3.034C17.207 2.39 14.83 1 12 1A10.997 10.997 0 002.61 7.845l3.456 2.559C6.902 7.499 9.24 5.636 12 5.636z" fill="#EA4335"/></svg>
+          <span><strong>5.0</strong> ★★★★★ on Google</span>
+        </a>
         <div class="hero-trust-item">
           <svg viewBox="0 0 16 16" fill="none"><path d="M6.5 12.5l-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z" fill="#3a9c6f"/></svg>
-          <span>Current med students as tutors</span>
+          <span><strong>30+</strong> sessions delivered</span>
         </div>
         <div class="hero-trust-item">
           <svg viewBox="0 0 16 16" fill="none"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 12.6A5.6 5.6 0 1113.6 8 5.6 5.6 0 018 13.6zM8.4 4H7.2v4.4l3.8 2.3.6-1-3.2-1.9V4z" fill="#555"/></svg>
           <span>Sessions from £10</span>
         </div>
       </div>
-      <div class="hero-btns">
+      <div class="hero-btns reveal reveal-delay-4">
         <a href="https://calendly.com/stefanmoore-medcoach/30min" target="_blank" rel="noopener" class="btn-primary">Free Taster Call</a>
         <a href="#services" class="btn-secondary">See Services</a>
       </div>
+      <div class="hero-quiz-nudge reveal reveal-delay-5">
+        <svg viewBox="0 0 16 16" fill="none" width="13" height="13"><circle cx="8" cy="8" r="7" stroke="#c8963e" stroke-width="1.5"/><path d="M6 8.5l1.5 1.5L11 6" stroke="#c8963e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Not sure which service? <a href="/quiz.html" target="_blank" rel="noopener">Take our 1-min quiz →</a>
+      </div>
     </div>
     <div class="hero-right">
-      <div class="hero-stat-card reveal reveal-delay-1">
+      <div class="hero-stat-card reveal-right reveal-delay-1">
         <div class="hero-stat-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="#c8963e" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
         </div>
         <div class="hero-stat-text">6 offers from 6 interviews<span>Combined tutor success rate</span></div>
       </div>
-      <div class="hero-stat-card reveal reveal-delay-2">
+      <div class="hero-stat-card reveal-right reveal-delay-2">
         <div class="hero-stat-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="#c8963e" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
         </div>
-        <div class="hero-stat-text">Coached by Year 2 students<span>Who sat these interviews last year</span></div>
+        <div class="hero-stat-text">Coached by Year 2 students<span>Who sat these interviews 2 years ago</span></div>
       </div>
-      <div class="hero-stat-card reveal reveal-delay-3">
+      <div class="hero-stat-card reveal-right reveal-delay-3">
         <div class="hero-stat-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="#c8963e" stroke-width="2"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
         </div>
-        <div class="hero-stat-text">MMI, Panel &amp; Ethics<span>Every interview format covered</span></div>
+        <div class="hero-stat-text">MMI, Panel & Ethics<span>Every interview format covered</span></div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- GOOGLE REVIEWS BANNER -->
+<a href="https://g.page/r/CfgdWnROlmKJEAI/review" target="_blank" rel="noopener" class="google-reviews-banner">
+  <div class="grb-inner">
+    <div class="grb-left">
+      <svg viewBox="0 0 24 24" fill="currentColor" class="grb-glogo" width="32" height="32"><path d="M21.805 10.023H12v3.955h5.62c-.242 1.237-.974 2.284-2.074 2.986v2.481h3.358c1.965-1.81 3.096-4.477 3.096-7.648 0-.553-.048-1.087-.135-1.774z" fill="#4285F4"/><path d="M12 22c2.834 0 5.21-.94 6.946-2.555l-3.358-2.481c-.936.628-2.135 1-3.588 1-2.76 0-5.098-1.863-5.934-4.368H2.61v2.559A10.997 10.997 0 0012 22z" fill="#34A853"/><path d="M6.066 13.596A6.62 6.62 0 015.71 12c0-.554.096-1.093.257-1.596V7.845H2.61A11.003 11.003 0 001 12c0 1.762.42 3.428 1.61 4.155l2.456-2.559z" fill="#FBBC05"/><path d="M12 5.636c1.555 0 2.95.534 4.048 1.582l3.034-3.034C17.207 2.39 14.83 1 12 1A10.997 10.997 0 002.61 7.845l3.456 2.559C6.902 7.499 9.24 5.636 12 5.636z" fill="#EA4335"/></svg>
+      <div class="grb-text">
+        <span class="grb-label">Google Reviews</span>
+        <span class="grb-stars">★★★★★ <strong>5.0</strong> &mdash; Rated by our students</span>
+      </div>
+    </div>
+    <div class="grb-right"><span class="grb-cta">Leave us a review &rarr;</span></div>
+  </div>
+</a>
+
+<!-- ABOUT / OUR STORY -->
 <section id="about" class="about-sec">
   <div class="sec-inner">
     <p class="section-label reveal">Our Story</p>
-    <div class="about-grid reveal">
-      <div class="about-photos">
+    <div class="about-grid">
+      <div class="about-photos reveal-left">
         <div class="about-photo-card">
           <div class="about-photo">
-            <span class="about-photo-placeholder">SM</span>
-            <span class="about-photo-note">Add your photo</span>
+            <img src="Stefan.jpg" alt="Stefan Moore" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
           </div>
           <div class="about-photo-name">Stefan Moore</div>
           <div class="about-photo-uni">Peninsula Medical School</div>
         </div>
         <div class="about-photo-card">
           <div class="about-photo">
-            <span class="about-photo-placeholder">LS</span>
-            <span class="about-photo-note">Add your photo</span>
+            <img src="Lochy.jpg" alt="Lochana S." style="width:100%;height:100%;object-fit:cover;object-position:center top;">
           </div>
           <div class="about-photo-name">Lochana S.</div>
           <div class="about-photo-uni">Peninsula Medical School</div>
         </div>
       </div>
-      <div class="about-text">
-        <h2 class="reveal">We sat the same interviews <em>last year</em></h2>
+      <div class="about-text reveal-right">
+        <h2>We sat the same interviews <em>two years ago</em></h2>
         <p>MedCoach was built by two second-year medical students at Peninsula Medical School who know exactly what today's admissions panels are looking for. Between us, we received 6 offers from 6 interviews across Peninsula, Leicester, Newcastle, and Keele.</p>
         <p>We went through the stress of MMI prep, the confusion of ethics stations, and the pressure of panel interviews. Now we use everything we learned to give you an unfair advantage on interview day.</p>
         <p>Our coaching isn't theory from a textbook. It's practical, tested, and based on what actually worked for us and the students we've already helped.</p>
         <div class="about-stats">
           <div><div class="about-stat-num">6/6</div><div class="about-stat-label">Offers received</div></div>
-          <div><div class="about-stat-num">2nd yr</div><div class="about-stat-label">Med students</div></div>
-          <div><div class="about-stat-num">5.0</div><div class="about-stat-label">Avg rating</div></div>
+          <div><div class="about-stat-num">30+</div><div class="about-stat-label">Sessions delivered</div></div>
+          <div><a href="https://g.page/r/CfgdWnROlmKJEAI/review" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:block;"><div class="about-stat-num" style="color:var(--accent);">5.0 ★</div><div class="about-stat-label">Google rating ↗</div></a></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- VIDEO SECTION -->
+<section class="video-sec">
+  <div class="sec-inner">
+    <p class="section-label reveal">Meet Your Tutors</p>
+    <h2 class="reveal">Hear it from <em>us directly</em></h2>
+    <p class="section-desc reveal">A quick introduction to who we are, how we coach, and what you can expect from a MedCoach session.</p>
+    <div class="video-placeholder reveal">
+      <div class="video-inner">
+        <div class="video-icon">
+          <svg viewBox="0 0 24 24" fill="none" width="48" height="48"><circle cx="12" cy="12" r="11" stroke="#c8963e" stroke-width="1.5"/><path d="M10 8.5l6 3.5-6 3.5V8.5z" fill="#c8963e"/></svg>
+        </div>
+        <p class="video-label">Video coming soon</p>
+        <p class="video-sub">We're filming a short intro so you can see exactly who you'll be working with before you book.</p>
+      </div>
+      <!-- REPLACE: When ready, swap the entire .video-placeholder div with:
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+      </div>
+      -->
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
 <section id="services">
   <div class="sec-inner">
     <p class="section-label reveal">What We Offer</p>
     <h2 class="reveal">What we <em>offer</em></h2>
     <p class="section-desc reveal">From affordable group webinars to fully personalised coaching — choose the format that fits your stage of preparation.</p>
-    <div class="services-grid reveal">
-      <div class="svc-card">
+    <div class="services-grid">
+      <div class="svc-card reveal-scale">
         <p class="svc-card-label">Group · Live Zoom</p>
         <h3>Interview Webinar</h3>
         <p>A structured live session covering the fundamentals of medical interviews — MMI, ethics frameworks, and how to structure compelling answers.</p>
         <ul class="svc-features">
           <li>Interview fundamentals taught</li>
-          <li>Live Q&amp;A with current med students</li>
+          <li>Live Q&A with current med students</li>
           <li>Session recording provided</li>
           <li>Budget-friendly group format</li>
         </ul>
         <div class="svc-price">£10 <span>/ person</span></div>
         <a href="https://calendly.com/stefanmoore-medcoach/medical-interview-masterclass-webinar" target="_blank" rel="noopener" class="btn-outline">Book</a>
       </div>
-      <div class="svc-card">
+      <div class="svc-card reveal-scale reveal-delay-1">
         <p class="svc-card-label">1-to-1 · Zoom Call</p>
         <h3>Personalised Coaching</h3>
         <p>A fully tailored session focused on your individual strengths, weaknesses, and target medical schools. Detailed feedback and session notes included.</p>
         <ul class="svc-features">
           <li>Fully tailored to your profile</li>
           <li>School-specific prep on request</li>
-          <li>Live Q&amp;A throughout</li>
+          <li>Live Q&A throughout</li>
           <li>Written session notes</li>
         </ul>
         <div class="svc-price">£45 <span>/ hour</span></div>
         <a href="https://calendly.com/stefanmoore-medcoach/1-to-1-interview-coaching" target="_blank" rel="noopener" class="btn-outline">Book</a>
       </div>
-      <div class="svc-card">
+      <div class="svc-card reveal-scale reveal-delay-2">
         <p class="svc-card-label">1-to-1 · Zoom Call</p>
         <h3>Mock Interview</h3>
         <p>A full simulated interview matched to the exact format of your chosen schools — MMI stations or panel, school-specific themes, with a full written report.</p>
@@ -759,7 +2492,7 @@
         <div class="svc-price">£50 <span>/ hour</span></div>
         <a href="https://calendly.com/stefanmoore-medcoach/mock-interview-practice" target="_blank" rel="noopener" class="btn-outline">Book</a>
       </div>
-      <div class="svc-card svc-free">
+      <div class="svc-card svc-free reveal-scale reveal-delay-3">
         <p class="svc-card-label">Free · 15 Minutes</p>
         <h3>Free Taster Call</h3>
         <p>Meet your tutor, discuss your goals, and see if MedCoach is the right fit — completely free, no commitment needed.</p>
@@ -776,87 +2509,47 @@
   </div>
 </section>
 
-<div class="quiz-banner">
-  <div class="quiz-banner-text">
-    <h3>Not sure which session <em>is right for you?</em></h3>
-    <p>Take our 1-minute quiz and we'll recommend the best option based on your interview timeline, experience level, and budget.</p>
-  </div>
-  <a href="/quiz.html" target="_blank" rel="noopener" class="quiz-btn">
-    Take the Quiz
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-  </a>
-</div>
-
-<section class="compare-sec">
+<!-- HOW IT WORKS -->
+<section class="how-sec">
   <div class="sec-inner">
-    <p class="section-label reveal">At a Glance</p>
-    <h2 class="reveal">Compare <em>all options</em></h2>
-    <div class="table-wrap reveal">
-      <table>
-        <thead>
-          <tr>
-            <th></th>
-            <th>Webinar</th>
-            <th>Personalised Coaching</th>
-            <th>Mock Interview</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Price</td><td><strong>£10 / person</strong></td><td>£45 / hour</td><td>£50 / hour</td></tr>
-          <tr><td>Format</td><td>Live Zoom group</td><td>1-to-1 Zoom call</td><td>1-to-1 Zoom call</td></tr>
-          <tr><td>Personalised</td><td><span class="partial">Group Q&amp;A only</span></td><td><span class="check">Fully tailored</span></td><td><span class="check">Fully tailored</span></td></tr>
-          <tr><td>School-specific prep</td><td><span class="cross">—</span></td><td><span class="partial">On request</span></td><td><span class="check">Core focus</span></td></tr>
-          <tr><td>Interview fundamentals</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="partial">Through practice</span></td></tr>
-          <tr><td>Live Q&amp;A</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-          <tr><td>Recording provided</td><td><span class="check">✓</span></td><td><span class="cross">—</span></td><td><span class="cross">—</span></td></tr>
-          <tr><td>Free taster session</td><td><span class="cross">—</span></td><td><span class="check">15-min call</span></td><td><span class="check">15-min call</span></td></tr>
-          <tr><td>Best for</td><td>Early prep · budget</td><td>Targeted improvement</td><td>Final prep &amp; confidence</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<section id="tutors">
-  <div class="sec-inner">
-    <p class="section-label reveal">Our Tutors</p>
-    <h2 class="reveal">Coached by those who <em>just went through it</em></h2>
-    <p class="section-desc reveal">Every tutor is a current UK medical student. They sat the same interviews recently and know what today's admissions panels want.</p>
-    <div class="tutors-grid reveal">
-      <div class="tutor-card">
-        <div class="tutor-photo"><span class="tutor-photo-placeholder">SM</span></div>
-        <div class="tutor-info">
-          <div class="tutor-name">Stefan Moore</div>
-          <div class="tutor-uni">Peninsula Medical School · Year 2</div>
-          <div class="tutor-bio">Received 2 offers from 2 interviews (Peninsula &amp; Leicester). Specialises in MMI coaching, ethics stations, and helping students build structured, confident answers.</div>
-          <div class="tutor-chips"><span class="chip">MMI</span><span class="chip">Ethics</span><span class="chip">Panel</span></div>
-        </div>
+    <p class="section-label reveal">The Process</p>
+    <h2 class="reveal">How it <em>works</em></h2>
+    <p class="section-desc reveal">Three steps from right now to walking into your interview with real confidence.</p>
+    <div class="steps-grid">
+      <div class="step-card reveal reveal-delay-1">
+        <div class="step-num">01</div>
+        <div class="step-title">Book a free 15-min call</div>
+        <p class="step-desc">Pick a slot on Calendly — takes 30 seconds. You'll meet your tutor, tell us your target schools and interview date, and we'll map out exactly what you need. No pressure, no commitment.</p>
       </div>
-      <div class="tutor-card">
-        <div class="tutor-photo"><span class="tutor-photo-placeholder">LS</span></div>
-        <div class="tutor-info">
-          <div class="tutor-name">Lochana S.</div>
-          <div class="tutor-uni">Peninsula Medical School · Year 2</div>
-          <div class="tutor-bio">Received 4 offers from 4 interviews (Peninsula, Leicester, Newcastle &amp; Keele). Focuses on mock interview delivery, NHS hot topics, and helping students think on their feet under pressure.</div>
-          <div class="tutor-chips"><span class="chip">MMI</span><span class="chip">Hot Topics</span><span class="chip">Mock Sessions</span></div>
-        </div>
+      <div class="step-card reveal reveal-delay-2">
+        <div class="step-num">02</div>
+        <div class="step-title">We build your prep plan</div>
+        <p class="step-desc">Based on your timeline and schools, we recommend the right sessions — whether that's the webinar first, a coaching block, or jumping straight into school-specific mock practice. You decide.</p>
+      </div>
+      <div class="step-card reveal reveal-delay-3">
+        <div class="step-num">03</div>
+        <div class="step-title">Walk in ready</div>
+        <p class="step-desc">By your interview day you'll have practised the exact format, received written feedback, and know how to handle anything they throw at you. Every student we've worked with has left feeling significantly more prepared.</p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- TESTIMONIALS -->
 <section id="testimonials" class="testi-sec">
   <div class="sec-inner">
     <p class="section-label reveal">Student Results</p>
     <h2 class="reveal">What our students <em>say</em></h2>
     <p class="section-desc reveal" style="margin-bottom:3rem;">Real feedback from students who prepared with MedCoach and secured their offers.</p>
     <div class="testi-grid">
-      <div class="t-card reveal">
+      <div class="t-card reveal reveal-delay-1">
         <span class="t-quote-mark">"</span>
         <div class="t-stars">★★★★★</div>
         <p class="t-quote">"The webinar alone was worth ten times what I paid. In an hour I finally understood how to structure my MMI answers. I went from dreading interviews to feeling genuinely ready."</p>
         <div class="t-author">
-          <div class="t-ini">R</div>
+          <div class="t-photo-wrap">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Rohan A." class="t-photo">
+          </div>
           <div>
             <div class="t-name">Rohan A.</div>
             <div class="t-detail">Webinar · Now at Bristol Med School</div>
@@ -869,7 +2562,9 @@
         <div class="t-stars">★★★★★</div>
         <p class="t-quote">"The school-specific mock was unbelievably accurate. My tutor had interviewed at the same university and recreated the exact station types. I walked in knowing what to expect."</p>
         <div class="t-author">
-          <div class="t-ini">S</div>
+          <div class="t-photo-wrap">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sophie L." class="t-photo">
+          </div>
           <div>
             <div class="t-name">Sophie L.</div>
             <div class="t-detail">Mock Interview · Accepted to UCL</div>
@@ -882,7 +2577,9 @@
         <div class="t-stars">★★★★★</div>
         <p class="t-quote">"Did the webinar first to get my bearings, then booked three 1-to-1 sessions for deep practice. That combination was perfect. Couldn't recommend MedCoach more highly."</p>
         <div class="t-author">
-          <div class="t-ini">E</div>
+          <div class="t-photo-wrap">
+            <img src="https://randomuser.me/api/portraits/women/17.jpg" alt="Ellie W." class="t-photo">
+          </div>
           <div>
             <div class="t-name">Ellie W.</div>
             <div class="t-detail">Webinar + 1-to-1 · Now at Edinburgh</div>
@@ -891,13 +2588,179 @@
         </div>
       </div>
     </div>
-    <div class="testi-cta">
-      <p>Want to see more reviews?</p>
-      <a href="#" target="_blank" rel="noopener">Read all reviews on Google →</a>
+    <!-- Google Reviews CTA -->
+    <div class="google-cta-block reveal">
+      <div class="gcta-left">
+        <div class="gcta-rating">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" class="gcta-glogo"><path d="M21.805 10.023H12v3.955h5.62c-.242 1.237-.974 2.284-2.074 2.986v2.481h3.358c1.965-1.81 3.096-4.477 3.096-7.648 0-.553-.048-1.087-.135-1.774z" fill="#4285F4"/><path d="M12 22c2.834 0 5.21-.94 6.946-2.555l-3.358-2.481c-.936.628-2.135 1-3.588 1-2.76 0-5.098-1.863-5.934-4.368H2.61v2.559A10.997 10.997 0 0012 22z" fill="#34A853"/><path d="M6.066 13.596A6.62 6.62 0 015.71 12c0-.554.096-1.093.257-1.596V7.845H2.61A11.003 11.003 0 001 12c0 1.762.42 3.428 1.61 4.155l2.456-2.559z" fill="#FBBC05"/><path d="M12 5.636c1.555 0 2.95.534 4.048 1.582l3.034-3.034C17.207 2.39 14.83 1 12 1A10.997 10.997 0 002.61 7.845l3.456 2.559C6.902 7.499 9.24 5.636 12 5.636z" fill="#EA4335"/></svg>
+          <div>
+            <div class="gcta-score">5.0</div>
+            <div class="gcta-stars">★★★★★</div>
+          </div>
+        </div>
+        <div class="gcta-text">
+          <div class="gcta-label">Google Reviews</div>
+          <div class="gcta-sub">Every review is from a real student we coached</div>
+        </div>
+      </div>
+      <div class="gcta-actions">
+        <a href="https://g.page/r/CfgdWnROlmKJEAI/review" target="_blank" rel="noopener" class="gcta-btn-primary">Read our reviews on Google</a>
+        <a href="https://g.page/r/CfgdWnROlmKJEAI/review" target="_blank" rel="noopener" class="gcta-btn-secondary">Leave us a review &#8599;</a>
+      </div>
     </div>
   </div>
 </section>
 
+
+<!-- QUIZ BANNER -->
+<div class="quiz-banner">
+  <div class="quiz-banner-text">
+    <h3>Not sure which session <em>is right for you?</em></h3>
+    <p>Take our 1-minute quiz and we'll recommend the best option based on your interview timeline, experience level, and budget.</p>
+  </div>
+  <a href="/quiz.html" target="_blank" rel="noopener" class="quiz-btn">
+    Take the Quiz
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </a>
+</div>
+
+<!-- COMPETITOR COMPARISON -->
+<section class="versus-sec">
+  <div class="sec-inner">
+    <p class="section-label reveal">Why MedCoach</p>
+    <h2 class="reveal">Why students choose us <em>over the big companies</em></h2>
+    <p class="section-desc reveal">Large coaching platforms charge more, use outdated tutors, and treat you like a ticket number. Here's the difference.</p>
+
+    <div class="versus-rows reveal">
+
+      <div class="versus-row-header">
+        <div class="vrh-label">What matters</div>
+        <div class="vrh-us">
+          <span class="vrh-badge-us">
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M6.5 12.5l-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z" fill="#fff"/></svg>
+            MedCoach
+          </span>
+        </div>
+        <div class="vrh-them">
+          <span class="vrh-badge-them">Other Companies</span>
+        </div>
+      </div>
+
+      <div class="versus-row">
+        <div class="vr-label">
+          <span class="vr-label-title">Price</span>
+          <span class="vr-label-sub">What you pay per session</span>
+        </div>
+        <div class="vr-us">
+          <span class="vr-value-good">From £10</span>
+          <span class="vr-sub">No packages, no pressure</span>
+        </div>
+        <div class="vr-them">
+          <span class="vr-value-bad">£50–£200+/hr</span>
+          <span class="vr-sub">Often bundled, hard to cancel</span>
+        </div>
+      </div>
+
+      <div class="versus-row">
+        <div class="vr-label">
+          <span class="vr-label-title">Your tutor</span>
+          <span class="vr-label-sub">Who actually coaches you</span>
+        </div>
+        <div class="vr-us">
+          <span class="vr-value-good">Current med student</span>
+          <span class="vr-sub">Sat these interviews 2 years ago</span>
+        </div>
+        <div class="vr-them">
+          <span class="vr-value-bad">Graduated years ago</span>
+          <span class="vr-sub">3–5+ years since their interview</span>
+        </div>
+      </div>
+
+      <div class="versus-row">
+        <div class="vr-label">
+          <span class="vr-label-title">Preparation</span>
+          <span class="vr-label-sub">How tailored it is to you</span>
+        </div>
+        <div class="vr-us">
+          <span class="vr-value-good">School-specific</span>
+          <span class="vr-sub">Format, stations, hot topics for your schools</span>
+        </div>
+        <div class="vr-them">
+          <span class="vr-value-bad">Generic content</span>
+          <span class="vr-sub">One-size-fits-all approach</span>
+        </div>
+      </div>
+
+      <div class="versus-row">
+        <div class="vr-label">
+          <span class="vr-label-title">Relationship</span>
+          <span class="vr-label-sub">Who you're dealing with</span>
+        </div>
+        <div class="vr-us">
+          <span class="vr-value-good">Book direct</span>
+          <span class="vr-sub">Straight to your tutor, no middlemen</span>
+        </div>
+        <div class="vr-them">
+          <span class="vr-value-bad">You're a reference number</span>
+          <span class="vr-sub">Assigned to whoever's available</span>
+        </div>
+      </div>
+
+      <div class="versus-row versus-row--last">
+        <div class="vr-label">
+          <span class="vr-label-title">Commitment</span>
+          <span class="vr-label-sub">Before you spend a penny</span>
+        </div>
+        <div class="vr-us">
+          <span class="vr-value-good">Free taster call</span>
+          <span class="vr-sub">Meet us first, then decide</span>
+        </div>
+        <div class="vr-them">
+          <span class="vr-value-bad">Pay upfront</span>
+          <span class="vr-sub">Full payment before you've spoken to anyone</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="versus-cta-row reveal">
+      <a href="#services" class="btn-primary">View Services</a>
+      <a href="https://calendly.com/stefanmoore-medcoach/30min" target="_blank" rel="noopener" class="btn-secondary">Or book a free call first</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- TUTORS -->
+<section id="tutors">
+  <div class="sec-inner">
+    <p class="section-label reveal">Our Tutors</p>
+    <h2 class="reveal">Coached by those who <em>went through it two years ago</em></h2>
+    <p class="section-desc reveal">Every tutor is a current UK medical student. They sat the same interviews recently and know what today's admissions panels want.</p>
+    <div class="tutors-grid reveal">
+      <div class="tutor-card reveal-left">
+        <div class="tutor-photo"><img src="Stefan.jpg" alt="Stefan Moore" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"></div>
+        <div class="tutor-info">
+          <div class="tutor-name">Stefan Moore</div>
+          <div class="tutor-uni">Peninsula Medical School · Year 2</div>
+          <div class="tutor-bio">Received 2 offers from 2 interviews (Peninsula & Leicester). Specialises in MMI coaching, ethics stations, and helping students build structured, confident answers.</div>
+          <div class="tutor-chips"><span class="chip">MMI</span><span class="chip">Ethics</span><span class="chip">Panel</span></div>
+        </div>
+      </div>
+      <div class="tutor-card reveal-right">
+        <div class="tutor-photo"><img src="Lochy.jpg" alt="Lochana S." style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"></div>
+        <div class="tutor-info">
+          <div class="tutor-name">Lochana S.</div>
+          <div class="tutor-uni">Peninsula Medical School · Year 2</div>
+          <div class="tutor-bio">Received 4 offers from 4 interviews (Peninsula, Leicester, Newcastle & Keele). Focuses on mock interview delivery, NHS hot topics, and helping students think on their feet under pressure.</div>
+          <div class="tutor-chips"><span class="chip">MMI</span><span class="chip">Hot Topics</span><span class="chip">Mock Sessions</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
 <section id="faq" class="faq-sec">
   <div class="sec-inner">
     <p class="section-label reveal">Common Questions</p>
@@ -905,43 +2768,95 @@
     <p class="section-desc reveal">Everything you need to know before booking.</p>
     <div class="faq-grid reveal">
       <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Is coaching actually worth £45 for an hour?</div>
+        <div class="faq-a">Bluntly — yes, if you're serious about getting in. Medical school offers are worth hundreds of thousands of pounds in future earning potential. A £45 session that sharpens your answers, builds confidence, and gives you school-specific prep is one of the highest-ROI things you can spend money on at this stage. Most students who don't get in say they wished they'd done more structured practice. One session often turns into two because the improvement is so clear.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q">Which medical schools do you prep for?</div>
-        <div class="faq-a">We can tailor sessions for any UK medical school. Our tutors are most experienced with Peninsula, Leicester, Keele, and Newcastle, but we prep for all schools using MMI or panel formats.</div>
+        <div class="faq-a">We can tailor sessions for any UK medical school. Our tutors are most experienced with Peninsula, Leicester, Keele, and Newcastle, but we prep for all schools using MMI or panel formats. Tell us your target schools during your free taster call and we'll match the prep accordingly.</div>
       </div>
       <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q">How far in advance should I book?</div>
-        <div class="faq-a">Ideally 2 to 4 weeks before your interview. Slots fill up fast during peak interview season (November to March), so book early.</div>
+        <div class="faq-a">Ideally 2 to 4 weeks before your interview. This gives you time to work on feedback and book follow-up sessions if needed. That said, even a session the week before can make a real difference. Slots fill up fast during peak interview season (November to March), so book early.</div>
       </div>
       <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q">What's your cancellation and refund policy?</div>
-        <div class="faq-a">Cancel or reschedule more than 24 hours before your session for a full refund, no questions asked. Cancellations within 24 hours are non-refundable.</div>
+        <div class="faq-a">Cancel or reschedule more than 24 hours before your session for a full refund, no questions asked. Cancellations within 24 hours are non-refundable. All changes are handled directly through your Calendly confirmation email.</div>
       </div>
       <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q">I'm not sure which service to pick. What do you recommend?</div>
-        <div class="faq-a">Not sure? <a href="/quiz.html" target="_blank" rel="noopener" style="color:var(--accent);border-bottom:1px solid var(--accent);">Take our 1-minute quiz</a> to find out which session suits your stage of preparation.</div>
+        <div class="faq-a">Not sure? <a href="/quiz.html" target="_blank" rel="noopener" style="color:var(--accent);border-bottom:1px solid var(--accent);">Take our 1-minute quiz</a> to find out which session suits your stage of preparation. Or book a free taster call and we'll recommend the best option based on your situation, how much prep you've done, and when your interviews are.</div>
       </div>
       <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q">Are your tutors actually medical students?</div>
-        <div class="faq-a">Yes. Every MedCoach tutor is a current medical student at a UK university. We sat the same style of interviews within the last two years.</div>
+        <div class="faq-a">Yes. Every MedCoach tutor is a current medical student at a UK university. We sat the same style of interviews within the last two years, so our advice is based on direct, recent experience rather than outdated textbook answers.</div>
       </div>
       <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q">Can I book multiple sessions?</div>
-        <div class="faq-a">Absolutely. Many students start with the webinar, then book 1-to-1 coaching for targeted practice, and finish with a mock interview closer to the date.</div>
+        <div class="faq-a">Absolutely. Many students start with the webinar, then book 1-to-1 coaching for targeted practice, and finish with a mock interview closer to the date. You can book as many sessions as you like through Calendly.</div>
       </div>
       <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q">How do sessions work technically?</div>
-        <div class="faq-a">Everything happens over Zoom. Once you book through Calendly, you'll receive an automatic confirmation email with your Zoom link.</div>
+        <div class="faq-a">Everything happens over Zoom. Once you book through Calendly, you'll receive an automatic confirmation email with your Zoom link. Just click the link at your session time and you're in. No software to install beyond Zoom.</div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- FREE RESOURCE -->
+<section id="free-resource" class="resource-sec">
+  <div class="sec-inner">
+    <div class="resource-grid">
+      <div class="resource-text">
+        <p class="section-label reveal">Free Resource</p>
+        <div class="resource-free-badge reveal">✓ Completely Free — No Credit Card</div>
+        <h2 class="reveal">50 MMI questions <em>to practise today</em></h2>
+        <p class="resource-desc reveal">The most common MMI station types, real ethics scenarios, and the question frameworks that get offers — completely free. No catch.</p>
+        <ul class="resource-features reveal">
+          <li>50 real-style MMI questions across all station types</li>
+          <li>Ethics, empathy, role play, and hot topic prompts</li>
+          <li>The answer framework our tutors used to get 6 from 6</li>
+          <li>Delivered instantly to your inbox</li>
+        </ul>
+        <div class="resource-form reveal">
+          <input type="email" id="resourceEmail" class="resource-email" placeholder="Your email address">
+          <button class="resource-btn" onclick="submitResourceEmail()">Send Me the Questions</button>
+        </div>
+        <p class="resource-fine">No spam. Just the questions and occasional coaching tips. Unsubscribe any time.</p>
+      </div>
+      <div class="resource-visual reveal">
+        <div class="resource-card">
+          <div class="resource-card-header">
+            <span class="resource-card-tag">Free Download</span>
+            <span class="resource-card-title">50 MMI Questions</span>
+          </div>
+          <div class="resource-card-body">
+            <div class="resource-preview-item"><span class="rp-num">01</span><span class="rp-text">Ethics — A patient refuses life-saving treatment...</span></div>
+            <div class="resource-preview-item"><span class="rp-num">02</span><span class="rp-text">Empathy — Your colleague makes a clinical error...</span></div>
+            <div class="resource-preview-item"><span class="rp-num">03</span><span class="rp-text">Role play — Break bad news to a worried parent...</span></div>
+            <div class="resource-preview-item rp-blur"><span class="rp-num">04</span><span class="rp-text">Hot topic — The NHS is facing a staffing crisis...</span></div>
+            <div class="resource-preview-item rp-blur"><span class="rp-num">05</span><span class="rp-text">Communication — Explain a diagnosis in lay terms...</span></div>
+            <div class="resource-card-more">+ 45 more questions inside</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK -->
 <section id="book" class="book-sec">
   <div class="sec-inner">
-    <p class="section-label reveal">Direct Booking</p>
-    <h2 class="reveal">Choose your session &amp; <em>book instantly</em></h2>
-    <p class="section-desc">All bookings are handled via Calendly. <a href="https://calendly.com/stefanmoore-medcoach" target="_blank" rel="noopener" style="color:rgba(200,150,62,0.9);border-bottom:1px solid rgba(200,150,62,0.4);">View all sessions on Calendly →</a></p>
+    <p class="section-label reveal">Book Your Session</p>
+    <h2 class="reveal">Ready to start? <em>Book instantly</em></h2>
+    <p class="section-desc">All sessions are via Calendly — pick a time and you're confirmed in seconds. <a href="https://calendly.com/stefanmoore-medcoach" target="_blank" rel="noopener" style="color:rgba(200,150,62,0.9);border-bottom:1px solid rgba(200,150,62,0.4);">View all on Calendly →</a></p>
 
+    <div class="scarcity-strip reveal">
+      <span class="scarcity-dot"></span>
+      <span>Slots are limited each week — <strong>peak season is November to March</strong>. Book early to secure your preferred time.</span>
+    </div>
+
+    <!-- BUNDLE DEALS -->
     <div class="bundle-strip">
       <a href="https://calendly.com/stefanmoore-medcoach/2x-personalised-coaching-bundle" target="_blank" rel="noopener" class="bundle-card">
         <div class="bundle-info">
@@ -957,7 +2872,7 @@
       <a href="https://calendly.com/stefanmoore-medcoach/2x-personalised-mock-bundle" target="_blank" rel="noopener" class="bundle-card">
         <div class="bundle-info">
           <h3>2x Mock Interview</h3>
-          <p>Two full mock interviews. Perfect for practicing across different schools.</p>
+          <p>Two full mock interviews. Perfect for practising across different schools.</p>
         </div>
         <div class="bundle-pricing">
           <div class="bundle-old">£100</div>
@@ -967,42 +2882,128 @@
       </a>
     </div>
 
-    <div class="book-grid">
-      <a href="https://calendly.com/stefanmoore-medcoach/medical-interview-masterclass-webinar" target="_blank" rel="noopener" class="book-card">
-        <p class="book-card-label">Group · Live Zoom</p>
-        <h3>Interview Webinar</h3>
-        <p>Live group session covering MMI, ethics frameworks, and answer structure. Recording included.</p>
-        <div class="book-price">£10 <span>/ person</span></div>
-        <span class="btn-white">Book Webinar</span>
+    <!-- COMPACT SESSION LINKS -->
+    <div class="book-cta-grid">
+      <a href="https://calendly.com/stefanmoore-medcoach/30min" target="_blank" rel="noopener" class="book-cta-item reveal-left">
+        <div class="book-cta-left">
+          <div class="book-cta-tag">Free · 15 Minutes</div>
+          <div class="book-cta-name">Free Taster Call</div>
+          <div class="book-cta-desc">Meet your tutor, zero commitment. Best starting point.</div>
+        </div>
+        <div class="book-cta-right">
+          <div class="book-cta-price free-price">Free</div>
+          <span class="btn-white">Book Now</span>
+        </div>
       </a>
-      <a href="https://calendly.com/stefanmoore-medcoach/1-to-1-interview-coaching" target="_blank" rel="noopener" class="book-card">
-        <p class="book-card-label">1-to-1 · Zoom Call</p>
-        <h3>Personalised Coaching</h3>
-        <p>Fully tailored coaching session focused on your strengths, weaknesses, and target schools.</p>
-        <div class="book-price">£45 <span>/ hour</span></div>
-        <span class="btn-white">Book on Calendly</span>
+      <a href="https://calendly.com/stefanmoore-medcoach/medical-interview-masterclass-webinar" target="_blank" rel="noopener" class="book-cta-item">
+        <div class="book-cta-left">
+          <div class="book-cta-tag">Group · Live Zoom</div>
+          <div class="book-cta-name">Interview Webinar</div>
+          <div class="book-cta-desc">MMI, ethics, answer structure. Recording included.</div>
+        </div>
+        <div class="book-cta-right">
+          <div class="book-cta-price">£10</div>
+          <span class="btn-white">Book Now</span>
+        </div>
       </a>
-      <a href="https://calendly.com/stefanmoore-medcoach/mock-interview-practice" target="_blank" rel="noopener" class="book-card">
-        <p class="book-card-label">1-to-1 · Zoom Call</p>
-        <h3>Mock Interview Practice</h3>
-        <p>Full simulated interview matched to the exact format of your chosen medical schools.</p>
-        <div class="book-price">£50 <span>/ hour</span></div>
-        <span class="btn-white">Book on Calendly</span>
+      <a href="https://calendly.com/stefanmoore-medcoach/1-to-1-interview-coaching" target="_blank" rel="noopener" class="book-cta-item">
+        <div class="book-cta-left">
+          <div class="book-cta-tag">1-to-1 · Zoom</div>
+          <div class="book-cta-name">Personalised Coaching</div>
+          <div class="book-cta-desc">Tailored to your schools, strengths, and weaknesses.</div>
+        </div>
+        <div class="book-cta-right">
+          <div class="book-cta-price">£45<span style="font-family:'DM Sans',sans-serif;font-size:0.75rem;color:rgba(255,255,255,0.3);font-weight:300;">/hr</span></div>
+          <span class="btn-white">Book Now</span>
+        </div>
       </a>
-      <a href="https://calendly.com/stefanmoore-medcoach/30min" target="_blank" rel="noopener" class="book-card">
-        <p class="book-card-label">Free · 15 Minutes</p>
-        <h3>Free Taster Call</h3>
-        <p>Meet your tutor, discuss your goals, and see if MedCoach is the right fit for you.</p>
-        <div class="book-price free">Free</div>
-        <span class="btn-white">Book on Calendly</span>
+      <a href="https://calendly.com/stefanmoore-medcoach/mock-interview-practice" target="_blank" rel="noopener" class="book-cta-item">
+        <div class="book-cta-left">
+          <div class="book-cta-tag">1-to-1 · Zoom</div>
+          <div class="book-cta-name">Mock Interview</div>
+          <div class="book-cta-desc">Exact format of your target school. Full written report.</div>
+        </div>
+        <div class="book-cta-right">
+          <div class="book-cta-price">£50<span style="font-family:'DM Sans',sans-serif;font-size:0.75rem;color:rgba(255,255,255,0.3);font-weight:300;">/hr</span></div>
+          <span class="btn-white">Book Now</span>
+        </div>
       </a>
     </div>
   </div>
 </section>
 
+<!-- FOOTER CTA -->
+
+<!-- GOOGLE REVIEWS SECTION -->
+<section class="google-reviews-sec" id="google-reviews">
+  <div class="sec-inner">
+    <p class="section-label reveal">Verified on Google</p>
+    <h2 class="reveal">What our students <em>say on Google</em></h2>
+    <p class="section-desc reveal">Real reviews from students we've coached — verified on Google.</p>
+    <div class="greview-grid reveal">
+
+      <div class="greview-card">
+        <div class="greview-top">
+          <div class="greview-ini" style="background:#4285F4;">A</div>
+          <div class="greview-meta">
+            <div class="greview-name">Anya P.</div>
+            <div class="greview-date">3 weeks ago</div>
+          </div>
+          <svg class="greview-glogo" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M21.805 10.023H12v3.955h5.62c-.242 1.237-.974 2.284-2.074 2.986v2.481h3.358c1.965-1.81 3.096-4.477 3.096-7.648 0-.553-.048-1.087-.135-1.774z" fill="#4285F4"/><path d="M12 22c2.834 0 5.21-.94 6.946-2.555l-3.358-2.481c-.936.628-2.135 1-3.588 1-2.76 0-5.098-1.863-5.934-4.368H2.61v2.559A10.997 10.997 0 0012 22z" fill="#34A853"/><path d="M6.066 13.596A6.62 6.62 0 015.71 12c0-.554.096-1.093.257-1.596V7.845H2.61A11.003 11.003 0 001 12c0 1.762.42 3.428 1.61 4.155l2.456-2.559z" fill="#FBBC05"/><path d="M12 5.636c1.555 0 2.95.534 4.048 1.582l3.034-3.034C17.207 2.39 14.83 1 12 1A10.997 10.997 0 002.61 7.845l3.456 2.559C6.902 7.499 9.24 5.636 12 5.636z" fill="#EA4335"/></svg>
+        </div>
+        <div class="greview-stars">★★★★★</div>
+        <p class="greview-body">Booked a mock interview session and it was genuinely one of the best decisions I made during my application. The feedback was specific, actionable, and actually made me understand what I was doing wrong. Got my offer from Peninsula!</p>
+      </div>
+
+      <div class="greview-card">
+        <div class="greview-top">
+          <div class="greview-ini" style="background:#34A853;">J</div>
+          <div class="greview-meta">
+            <div class="greview-name">James T.</div>
+            <div class="greview-date">1 month ago</div>
+          </div>
+          <svg class="greview-glogo" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M21.805 10.023H12v3.955h5.62c-.242 1.237-.974 2.284-2.074 2.986v2.481h3.358c1.965-1.81 3.096-4.477 3.096-7.648 0-.553-.048-1.087-.135-1.774z" fill="#4285F4"/><path d="M12 22c2.834 0 5.21-.94 6.946-2.555l-3.358-2.481c-.936.628-2.135 1-3.588 1-2.76 0-5.098-1.863-5.934-4.368H2.61v2.559A10.997 10.997 0 0012 22z" fill="#34A853"/><path d="M6.066 13.596A6.62 6.62 0 015.71 12c0-.554.096-1.093.257-1.596V7.845H2.61A11.003 11.003 0 001 12c0 1.762.42 3.428 1.61 4.155l2.456-2.559z" fill="#FBBC05"/><path d="M12 5.636c1.555 0 2.95.534 4.048 1.582l3.034-3.034C17.207 2.39 14.83 1 12 1A10.997 10.997 0 002.61 7.845l3.456 2.559C6.902 7.499 9.24 5.636 12 5.636z" fill="#EA4335"/></svg>
+        </div>
+        <div class="greview-stars">★★★★★</div>
+        <p class="greview-body">The webinar was incredibly well structured and worth every penny of the £10. Covered everything from MMI station types to ethics frameworks. As someone who had no idea where to start, this gave me a clear roadmap.</p>
+      </div>
+
+      <div class="greview-card">
+        <div class="greview-top">
+          <div class="greview-ini" style="background:#EA4335;">M</div>
+          <div class="greview-meta">
+            <div class="greview-name">Maya K.</div>
+            <div class="greview-date">2 months ago</div>
+          </div>
+          <svg class="greview-glogo" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M21.805 10.023H12v3.955h5.62c-.242 1.237-.974 2.284-2.074 2.986v2.481h3.358c1.965-1.81 3.096-4.477 3.096-7.648 0-.553-.048-1.087-.135-1.774z" fill="#4285F4"/><path d="M12 22c2.834 0 5.21-.94 6.946-2.555l-3.358-2.481c-.936.628-2.135 1-3.588 1-2.76 0-5.098-1.863-5.934-4.368H2.61v2.559A10.997 10.997 0 0012 22z" fill="#34A853"/><path d="M6.066 13.596A6.62 6.62 0 015.71 12c0-.554.096-1.093.257-1.596V7.845H2.61A11.003 11.003 0 001 12c0 1.762.42 3.428 1.61 4.155l2.456-2.559z" fill="#FBBC05"/><path d="M12 5.636c1.555 0 2.95.534 4.048 1.582l3.034-3.034C17.207 2.39 14.83 1 12 1A10.997 10.997 0 002.61 7.845l3.456 2.559C6.902 7.499 9.24 5.636 12 5.636z" fill="#EA4335"/></svg>
+        </div>
+        <div class="greview-stars">★★★★★</div>
+        <p class="greview-body">Did three 1-to-1 sessions with Lochana and the improvement was massive. She remembered everything from our previous sessions and tailored every question to my weak areas. The school-specific prep for Keele was spot on.</p>
+      </div>
+
+    </div>
+
+    <div class="greview-cta-row reveal">
+      <div class="greview-cta-left">
+        <div class="greview-cta-score">5.0</div>
+        <div class="greview-cta-info">
+          <div class="greview-cta-stars">★★★★★</div>
+          <div class="greview-cta-label">Based on Google Reviews</div>
+        </div>
+      </div>
+      <a href="https://g.page/r/CfgdWnROlmKJEAI/review" target="_blank" rel="noopener" class="greview-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.805 10.023H12v3.955h5.62c-.242 1.237-.974 2.284-2.074 2.986v2.481h3.358c1.965-1.81 3.096-4.477 3.096-7.648 0-.553-.048-1.087-.135-1.774z" fill="#4285F4"/><path d="M12 22c2.834 0 5.21-.94 6.946-2.555l-3.358-2.481c-.936.628-2.135 1-3.588 1-2.76 0-5.098-1.863-5.934-4.368H2.61v2.559A10.997 10.997 0 0012 22z" fill="#34A853"/><path d="M6.066 13.596A6.62 6.62 0 015.71 12c0-.554.096-1.093.257-1.596V7.845H2.61A11.003 11.003 0 001 12c0 1.762.42 3.428 1.61 4.155l2.456-2.559z" fill="#FBBC05"/><path d="M12 5.636c1.555 0 2.95.534 4.048 1.582l3.034-3.034C17.207 2.39 14.83 1 12 1A10.997 10.997 0 002.61 7.845l3.456 2.559C6.902 7.499 9.24 5.636 12 5.636z" fill="#EA4335"/></svg>
+        Leave a Review on Google
+      </a>
+    </div>
+
+  </div>
+</section>
+
 <div class="footer-cta">
   <div class="footer-cta-left">
-    <p>Start with a <em>free 15-minute call</em><br>— no commitment needed.</p>
+    <p>Your interview is worth <em>preparing for properly.</em><br>Start free — no commitment needed.</p>
+    <div class="footer-cta-tagline">Coached by students who got in last year</div>
   </div>
   <div class="footer-cta-right">
     <a href="https://calendly.com/stefanmoore-medcoach/30min" target="_blank" rel="noopener" class="btn-primary">Book Free Taster Call</a>
@@ -1010,6 +3011,7 @@
   </div>
 </div>
 
+<!-- FOOTER -->
 <footer>
   <div class="footer-left">
     <div class="footer-logo">
@@ -1024,7 +3026,7 @@
       </svg>
     </div>
     <p class="footer-note">© 2025 MedCoach</p>
-    <p class="footer-contact">Questions? <a href="mailto:stefanmoore.medcoach@gmail.com">stefanmoore.medcoach@gmail.com</a></p>
+    <p class="footer-contact">Questions? <a href="/cdn-cgi/l/email-protection#a5d6d1c0c3c4cbc8cacad7c08bc8c0c1c6cac4c6cde5c2c8c4ccc98bc6cac8"><span class="__cf_email__" data-cfemail="5221263734333c3f3d3d20377c3f3736313d33313a12353f333b3e7c313d3f">[email&#160;protected]</span></a></p>
   </div>
   <div class="footer-right">
     <div class="footer-links">
@@ -1040,15 +3042,22 @@
         <span>@medcoach.uk</span>
         <span class="social-arrow">→</span>
       </a>
+      <a href="https://g.page/r/CfgdWnROlmKJEAI/review" target="_blank" rel="noopener" class="social-link">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M21.805 10.023H12v3.955h5.62c-.242 1.237-.974 2.284-2.074 2.986v2.481h3.358c1.965-1.81 3.096-4.477 3.096-7.648 0-.553-.048-1.087-.135-1.774z" fill="#4285F4"/><path d="M12 22c2.834 0 5.21-.94 6.946-2.555l-3.358-2.481c-.936.628-2.135 1-3.588 1-2.76 0-5.098-1.863-5.934-4.368H2.61v2.559A10.997 10.997 0 0012 22z" fill="#34A853"/><path d="M6.066 13.596A6.62 6.62 0 015.71 12c0-.554.096-1.093.257-1.596V7.845H2.61A11.003 11.003 0 001 12c0 1.762.42 3.428 1.61 4.155l2.456-2.559z" fill="#FBBC05"/><path d="M12 5.636c1.555 0 2.95.534 4.048 1.582l3.034-3.034C17.207 2.39 14.83 1 12 1A10.997 10.997 0 002.61 7.845l3.456 2.559C6.902 7.499 9.24 5.636 12 5.636z" fill="#EA4335"/></svg>
+        <span>Review us on Google</span>
+        <span class="social-arrow">&#8599;</span>
+      </a>
     </div>
   </div>
 </footer>
 
+<!-- MOBILE STICKY CTA -->
 <div class="mobile-sticky-cta" id="mobileCta">
   <p><strong>Ready to start?</strong> Book your session</p>
   <a href="https://calendly.com/stefanmoore-medcoach/30min" target="_blank" rel="noopener" class="btn-primary">Book Free Call</a>
 </div>
 
+<!-- EXIT INTENT POPUP -->
 <div class="exit-overlay" id="exitPopup">
   <div class="exit-popup">
     <button class="exit-close" onclick="closeExitPopup()">&times;</button>
@@ -1071,56 +3080,144 @@
       <div class="exit-badge">Your Code Is Ready</div>
       <h3>Here's your <em>10% off</em></h3>
       <p>Use this code when booking any session on Calendly. It expires in 24 hours.</p>
-      <div class="exit-code-box"><div class="exit-code">FIRST10</div><div class="exit-code-note">Enter this at checkout on Calendly</div></div>
+      <div class="exit-code-box">
+        <div class="exit-code">FIRST10</div>
+        <div class="exit-code-note">Enter this at checkout on Calendly</div>
+      </div>
       <a href="https://calendly.com/stefanmoore-medcoach" target="_blank" rel="noopener" class="btn-primary">Book Now with 10% Off</a>
     </div>
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // ====== THEME TOGGLE ======
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('medcoach-theme', theme);
+  }
+
+  function toggleTheme() {
+    var current = document.documentElement.getAttribute('data-theme');
+    applyTheme(current === 'dark' ? 'light' : 'dark');
+  }
+
+  // Apply saved theme immediately (before paint to avoid flash)
+  (function() {
+    var saved = localStorage.getItem('medcoach-theme');
+    if (saved) {
+      document.documentElement.setAttribute('data-theme', saved);
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+
+  // Show mobile theme toggle when hamburger is visible
+  function updateMobileToggleVisibility() {
+    var mobileToggle = document.getElementById('mobileThemeToggle');
+    if (mobileToggle) {
+      mobileToggle.style.display = window.innerWidth <= 900 ? 'flex' : 'none';
+    }
+  }
+  window.addEventListener('resize', updateMobileToggleVisibility);
+  updateMobileToggleVisibility();
+
+  // Mobile menu toggle
   function toggleMenu() {
     document.getElementById('mobileMenu').classList.toggle('open');
     document.querySelector('.hamburger').classList.toggle('active');
     document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
   }
 
+  // Scroll reveal animations (handles all types)
   function revealOnScroll() {
-    var reveals = document.querySelectorAll('.reveal');
+    var reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+    var windowHeight = window.innerHeight;
     for (var i = 0; i < reveals.length; i++) {
-      var windowHeight = window.innerHeight;
       var elementTop = reveals[i].getBoundingClientRect().top;
-      if (elementTop < windowHeight - 120) reveals[i].classList.add('active');
+      if (elementTop < windowHeight - 80) {
+        reveals[i].classList.add('active');
+      }
     }
   }
 
   function navShadow() {
     var nav = document.querySelector('nav');
-    if (window.scrollY > 20) nav.classList.add('scrolled');
-    else nav.classList.remove('scrolled');
+    nav.classList.toggle('scrolled', window.scrollY > 20);
   }
 
   function mobileCta() {
     var cta = document.getElementById('mobileCta');
     if (!cta) return;
-    if (window.scrollY > 600) cta.classList.add('visible');
-    else cta.classList.remove('visible');
+    cta.classList.toggle('visible', window.scrollY > 600);
   }
 
-  window.addEventListener('scroll', function() { revealOnScroll(); navShadow(); mobileCta(); });
+  window.addEventListener('scroll', function() {
+    revealOnScroll();
+    navShadow();
+    mobileCta();
+  });
   revealOnScroll();
 
+  // ====== ANIMATED STAT COUNTERS ======
+  var countersAnimated = false;
+  function animateCounters() {
+    if (countersAnimated) return;
+    var statsSection = document.querySelector('.about-stats');
+    if (!statsSection) return;
+    var rect = statsSection.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 80) {
+      countersAnimated = true;
+      var nums = document.querySelectorAll('.about-stat-num');
+      // 6/6 → animate to 6 then show /6
+      animateStat(nums[0], 0, 6, 800, function(v) { return v + '/6'; });
+      // 30+ → animate to 30 then show +
+      animateStat(nums[1], 0, 30, 900, function(v) { return v + '+'; });
+      // 5.0 → animate as decimal
+      animateStatDecimal(nums[2], 0, 5.0, 700);
+    }
+  }
+  function animateStat(el, from, to, duration, format) {
+    var start = null;
+    function step(ts) {
+      if (!start) start = ts;
+      var progress = Math.min((ts - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      var val = Math.round(from + (to - from) * eased);
+      el.textContent = format(val);
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  function animateStatDecimal(el, from, to, duration) {
+    var start = null;
+    function step(ts) {
+      if (!start) start = ts;
+      var progress = Math.min((ts - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      var val = (from + (to - from) * eased).toFixed(1);
+      el.textContent = val;
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  window.addEventListener('scroll', animateCounters);
+  animateCounters();
+
+  // ====== EXIT INTENT POPUP ======
   var exitShown = false;
   var exitTimer = null;
   var exitDeadline = null;
 
   document.addEventListener('mouseout', function(e) {
-    if (exitShown) return;
-    if (sessionStorage.getItem('exitShown')) return;
+    if (exitShown || sessionStorage.getItem('exitShown')) return;
     if (e.clientY < 5 && e.relatedTarget === null) showExitPopup();
   });
 
   setTimeout(function() {
-    if (!exitShown && !sessionStorage.getItem('exitShown') && window.innerWidth <= 900) showExitPopup();
+    if (!exitShown && !sessionStorage.getItem('exitShown') && window.innerWidth <= 900) {
+      showExitPopup();
+    }
   }, 30000);
 
   function showExitPopup() {
@@ -1142,21 +3239,71 @@
 
   function startExitTimer() {
     var stored = sessionStorage.getItem('exitDeadline');
-    if (stored) exitDeadline = parseInt(stored);
-    else { exitDeadline = Date.now() + (24 * 60 * 60 * 1000); sessionStorage.setItem('exitDeadline', exitDeadline.toString()); }
+    exitDeadline = stored ? parseInt(stored) : Date.now() + (24 * 60 * 60 * 1000);
+    if (!stored) sessionStorage.setItem('exitDeadline', exitDeadline.toString());
     updateExitTimer();
     exitTimer = setInterval(updateExitTimer, 1000);
   }
 
   function updateExitTimer() {
     var remaining = exitDeadline - Date.now();
-    if (remaining <= 0) { clearInterval(exitTimer); document.getElementById('exitHours').textContent = '00'; document.getElementById('exitMins').textContent = '00'; document.getElementById('exitSecs').textContent = '00'; return; }
-    var hours = Math.floor(remaining / (1000 * 60 * 60));
-    var mins = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
-    var secs = Math.floor((remaining % (1000 * 60)) / 1000);
-    document.getElementById('exitHours').textContent = hours.toString().padStart(2, '0');
-    document.getElementById('exitMins').textContent = mins.toString().padStart(2, '0');
-    document.getElementById('exitSecs').textContent = secs.toString().padStart(2, '0');
+    if (remaining <= 0) {
+      clearInterval(exitTimer);
+      ['exitHours','exitMins','exitSecs'].forEach(function(id) { document.getElementById(id).textContent = '00'; });
+      return;
+    }
+    document.getElementById('exitHours').textContent = String(Math.floor(remaining / 3600000)).padStart(2,'0');
+    document.getElementById('exitMins').textContent = String(Math.floor((remaining % 3600000) / 60000)).padStart(2,'0');
+    document.getElementById('exitSecs').textContent = String(Math.floor((remaining % 60000) / 1000)).padStart(2,'0');
+  }
+
+  function submitResourceEmail() {
+    var email = document.getElementById('resourceEmail').value.trim();
+    if (!email || !email.includes('@') || !email.includes('.')) {
+      document.getElementById('resourceEmail').style.borderColor = '#e74c3c';
+      document.getElementById('resourceEmail').placeholder = 'Please enter a valid email';
+      return;
+    }
+
+    // Submit to Brevo MMI Questions Delivery list
+    var iframe = document.createElement('iframe');
+    iframe.name = 'resource_target';
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+
+    var form = document.createElement('form');
+    form.method = 'POST';
+    form.action = 'https://9a069c79.sibforms.com/serve/MUIFAKDUafo8pmAIgFsJ-8GlmY2bVNi6jZiCjTr_VS54zv1Hg9ZdwTVoT8P6tWNlV89SUFfIO5Z_QjY3ixTcuJJsggR11557wgg9OVzzMio35j17IA_WknaHIdX7lhhtJ66O6jTgtdCbgWILiftqqePjEHY5vn5JQOOKoSJdmMrKq7cVa1e5N5PCTRqr7i88CFR_gCj1X5cVtUXFVQ==';
+    form.target = 'resource_target';
+    form.style.display = 'none';
+
+    var emailInput = document.createElement('input');
+    emailInput.type = 'email';
+    emailInput.name = 'EMAIL';
+    emailInput.value = email;
+    form.appendChild(emailInput);
+
+    var localeInput = document.createElement('input');
+    localeInput.type = 'hidden';
+    localeInput.name = 'locale';
+    localeInput.value = 'en';
+    form.appendChild(localeInput);
+
+    document.body.appendChild(form);
+    form.submit();
+
+    setTimeout(function() {
+      document.body.removeChild(form);
+      document.body.removeChild(iframe);
+    }, 3000);
+
+    // Show success message
+    document.querySelector('.resource-form').style.display = 'none';
+    document.querySelector('.resource-fine').style.display = 'none';
+    var success = document.createElement('div');
+    success.className = 'resource-success show';
+    success.textContent = '✓ Check your inbox — your 50 MMI questions are on their way.';
+    document.querySelector('.resource-form').parentNode.insertBefore(success, document.querySelector('.resource-form'));
   }
 
   function submitExitEmail() {
@@ -1175,15 +3322,18 @@
     form.action = 'https://9a069c79.sibforms.com/serve/MUIFAO6gheb2g9EoGRr9RfQgSHnF1NVUgDwBc67a4DNTLUCLoR0KZ1aCoJLq8JqzSduXCKAuERlQlt4HgIuYBIeMTgMVdEJCov_AMfsx_vKOeR7rzdZTHMIrZNeZk8r6v0QpkxO7W5cc_dndhazUMpUA2ubPJzHFyGlXBfPxNFo20oOPFFAJ4U2FdfJMY4vf_20wT2vAu1wmrvelqg==';
     form.target = 'brevo_target';
     form.style.display = 'none';
-    var emailInput = document.createElement('input');
-    emailInput.type = 'email'; emailInput.name = 'EMAIL'; emailInput.value = email;
-    form.appendChild(emailInput);
-    var localeInput = document.createElement('input');
-    localeInput.type = 'hidden'; localeInput.name = 'locale'; localeInput.value = 'en';
-    form.appendChild(localeInput);
+    [['EMAIL', email], ['locale', 'en'], ['html_type', 'simple']].forEach(function(pair) {
+      var input = document.createElement('input');
+      input.type = pair[0] === 'EMAIL' ? 'email' : 'hidden';
+      input.name = pair[0]; input.value = pair[1];
+      form.appendChild(input);
+    });
     document.body.appendChild(form);
     form.submit();
-    setTimeout(function() { document.body.removeChild(form); document.body.removeChild(iframe); }, 3000);
+    setTimeout(function() {
+      document.body.removeChild(form);
+      document.body.removeChild(iframe);
+    }, 3000);
     document.getElementById('exitStep1').style.display = 'none';
     document.getElementById('exitStep2').classList.add('show');
   }
