@@ -1888,7 +1888,32 @@
     color: #888;
   }
 
-  /* EASTER SALE BANNER */
+  /* SALE FLASH ANIMATIONS */
+  @keyframes saleFlash {
+    0%, 100% { background: #c0392b; }
+    50% { background: #e8453c; }
+  }
+  @keyframes salePulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+  }
+  @keyframes bannerFlash {
+    0%, 100% { background: #c0392b; box-shadow: -4px 4px 24px rgba(0,0,0,0.25); }
+    50% { background: #d9403a; box-shadow: -4px 4px 36px rgba(192,57,43,0.55); }
+  }
+  @keyframes timerPop {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+  }
+  @keyframes badgeFlash {
+    0%, 100% { background: #c0392b; }
+    50% { background: #d9403a; }
+  }
+  @keyframes btnPulse {
+    0%, 100% { background: #c0392b; box-shadow: 0 0 0 0 rgba(192,57,43,0.5); }
+    60% { box-shadow: 0 0 0 10px rgba(192,57,43,0); }
+  }
+
   .easter-banner {
     position: fixed;
     top: 72px;
@@ -1900,14 +1925,13 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-    box-shadow: -4px 4px 24px rgba(0,0,0,0.25);
     clip-path: polygon(12px 0%, 100% 0%, 100% 100%, 0% 100%);
     cursor: pointer;
     text-decoration: none;
-    transition: background 0.2s;
     max-width: 340px;
+    animation: bannerFlash 1.6s ease-in-out infinite;
   }
-  .easter-banner:hover { background: #a93226; }
+  .easter-banner:hover { background: #a93226; animation: none; }
   .easter-banner-tag {
     font-size: 0.6rem;
     letter-spacing: 0.18em;
@@ -1945,6 +1969,14 @@
     font-variant-numeric: tabular-nums;
     min-width: 22px;
     text-align: center;
+    animation: timerPop 1.4s ease-in-out infinite;
+  }
+  .price-now-sale {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.5rem;
+    color: #c0392b;
+    line-height: 1;
+    animation: salePulse 1.6s ease-in-out infinite;
   }
   .easter-timer-label {
     font-size: 0.5rem;
@@ -1976,6 +2008,7 @@
     text-transform: uppercase;
     padding: 0.2rem 0.6rem;
     margin-bottom: 0.5rem;
+    animation: badgeFlash 1.4s ease-in-out infinite;
   }
   .price-was {
     font-size: 0.9rem;
@@ -1985,12 +2018,6 @@
     font-weight: 300;
     display: block;
     margin-bottom: 0.1rem;
-  }
-  .price-now-sale {
-    font-family: 'DM Serif Display', serif;
-    font-size: 2.5rem;
-    color: #c0392b;
-    line-height: 1;
   }
   .price-save-tag {
     font-size: 0.7rem;
@@ -2009,12 +2036,12 @@
     font-weight: 600;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    transition: background 0.2s;
     font-family: 'DM Sans', sans-serif;
     text-decoration: none;
     border: none;
+    animation: btnPulse 1.8s ease-in-out infinite;
   }
-  .btn-shop-sale:hover { background: #a93226; }
+  .btn-shop-sale:hover { background: #a93226; animation: none; }
 
   /* Resource section — already dark bg so fine, but success message needs check */
   [data-theme="dark"] .resource-success {
