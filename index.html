@@ -458,7 +458,9 @@
     flex-direction: column;
   }
   .svc-card:hover { background: var(--light-bg); transform: translateY(-2px); }
-  .svc-features { flex: 1; }
+  .svc-card p { flex: 1; }
+  .svc-features { flex: 0; margin-bottom: 1.5rem; }
+  .svc-price { margin-top: auto; padding-top: 1.5rem; }
 
   .svc-card-label {
     font-size: 0.65rem;
@@ -467,6 +469,9 @@
     color: var(--accent);
     margin-bottom: 1.2rem;
     font-weight: 500;
+    min-height: 2.2rem;
+    display: flex;
+    align-items: flex-start;
   }
 
   .svc-card h3 {
@@ -477,6 +482,9 @@
     margin-bottom: 0.9rem;
     line-height: 1.25;
     transition: color 0.3s;
+    min-height: 3.4rem;
+    display: flex;
+    align-items: flex-start;
   }
 
   .svc-card p {
@@ -486,6 +494,8 @@
     line-height: 1.75;
     margin-bottom: 1.5rem;
     transition: color 0.3s;
+    min-height: 4.8rem;
+  }
   }
 
   .svc-features {
@@ -2412,7 +2422,55 @@
     transition: background 0.2s;
   }
   .secondary-row-item:hover { background: var(--light-bg); }
+  [data-theme="dark"] nav {
+    background: rgba(14,14,12,0.97);
+  }
+  [data-theme="dark"] .secondary-row {
+    background: #1e1e1c;
+    border-color: #2a2a2a;
+  }
+  [data-theme="dark"] .secondary-row-item {
+    background: #0e0e0c;
+  }
   [data-theme="dark"] .secondary-row-item:hover { background: rgba(255,255,255,0.04); }
+  [data-theme="dark"] .secondary-row-name { color: var(--ink); }
+  [data-theme="dark"] .resource-shop-item {
+    background: #0e0e0c;
+    border-color: #2a2a2a;
+  }
+  [data-theme="dark"] .resource-shop-upsell {
+    background: rgba(200,150,62,0.06);
+    border-color: rgba(200,150,62,0.2);
+  }
+  [data-theme="dark"] .resource-shop-coming {
+    background: #0e0e0c;
+    border-color: #2a2a2a;
+  }
+  [data-theme="dark"] .shop-sec {
+    background: #0a0a08;
+  }
+  [data-theme="dark"] .btn-shop {
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+  [data-theme="dark"] .btn-shop:hover {
+    background: var(--ink);
+    color: #0e0e0c;
+  }
+  [data-theme="dark"] .svc-card {
+    background: #0e0e0c;
+  }
+  [data-theme="dark"] .svc-card:hover {
+    background: #161614;
+  }
+  [data-theme="dark"] .btn-outline {
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+  [data-theme="dark"] .btn-outline:hover {
+    background: var(--ink);
+    color: #0e0e0c;
+  }
   .secondary-row-label { font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); font-weight:500; margin-bottom:0.3rem; }
   .secondary-row-name { font-family:'DM Serif Display',serif; font-size:1rem; color:var(--ink); font-weight:400; }
   .secondary-row-desc { font-size:0.82rem; color:var(--soft); font-weight:300; margin-top:0.2rem; }
