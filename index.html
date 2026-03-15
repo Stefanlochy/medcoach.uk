@@ -3679,7 +3679,7 @@
   updateSaleTimers();
   setInterval(updateSaleTimers, 1000);
 
-
+  function submitExitEmail() {
     var email = document.getElementById('exitEmail').value.trim();
     if (!email || !email.includes('@') || !email.includes('.')) {
       document.getElementById('exitEmail').style.borderColor = '#e74c3c';
