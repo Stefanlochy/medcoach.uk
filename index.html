@@ -1888,6 +1888,134 @@
     color: #888;
   }
 
+  /* EASTER SALE BANNER */
+  .easter-banner {
+    position: fixed;
+    top: 72px;
+    right: 0;
+    z-index: 99;
+    background: #c0392b;
+    color: #fff;
+    padding: 0.6rem 1.2rem 0.6rem 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: -4px 4px 24px rgba(0,0,0,0.25);
+    clip-path: polygon(12px 0%, 100% 0%, 100% 100%, 0% 100%);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s;
+    max-width: 340px;
+  }
+  .easter-banner:hover { background: #a93226; }
+  .easter-banner-tag {
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    opacity: 0.85;
+    white-space: nowrap;
+  }
+  .easter-banner-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+  .easter-banner-timer {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    background: rgba(0,0,0,0.25);
+    padding: 0.3rem 0.6rem;
+    flex-shrink: 0;
+  }
+  .easter-timer-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.1;
+  }
+  .easter-timer-num {
+    font-size: 1rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    min-width: 22px;
+    text-align: center;
+  }
+  .easter-timer-label {
+    font-size: 0.5rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+  .easter-timer-sep { font-size: 1rem; font-weight: 600; opacity: 0.5; margin-bottom: 6px; }
+  .easter-close {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.6);
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1;
+    padding: 0 0 0 0.4rem;
+    flex-shrink: 0;
+  }
+  .easter-close:hover { color: #fff; }
+
+  /* SALE BADGE */
+  .sale-flash {
+    display: inline-block;
+    background: #c0392b;
+    color: #fff;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    margin-bottom: 0.5rem;
+  }
+  .price-was {
+    font-size: 0.9rem;
+    color: var(--soft);
+    text-decoration: line-through;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    display: block;
+    margin-bottom: 0.1rem;
+  }
+  .price-now-sale {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.5rem;
+    color: #c0392b;
+    line-height: 1;
+  }
+  .price-save-tag {
+    font-size: 0.7rem;
+    color: #c0392b;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    margin-top: 0.2rem;
+    display: block;
+  }
+  .btn-shop-sale {
+    display: inline-block;
+    background: #c0392b;
+    color: #fff;
+    padding: 0.85rem 2rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: background 0.2s;
+    font-family: 'DM Sans', sans-serif;
+    text-decoration: none;
+    border: none;
+  }
+  .btn-shop-sale:hover { background: #a93226; }
+
   /* Resource section — already dark bg so fine, but success message needs check */
   [data-theme="dark"] .resource-success {
     background: rgba(107,207,143,0.08);
@@ -2586,6 +2714,36 @@
   </div>
 </nav>
 
+<!-- EASTER SALE BANNER -->
+<a href="#resources" class="easter-banner" id="easterBanner">
+  <div>
+    <div class="easter-banner-tag">🐣 Easter Sale</div>
+    <div class="easter-banner-title">Resources — 75% Off</div>
+  </div>
+  <div class="easter-banner-timer">
+    <div class="easter-timer-unit">
+      <span class="easter-timer-num" id="easterD">00</span>
+      <span class="easter-timer-label">days</span>
+    </div>
+    <span class="easter-timer-sep">:</span>
+    <div class="easter-timer-unit">
+      <span class="easter-timer-num" id="easterH">00</span>
+      <span class="easter-timer-label">hrs</span>
+    </div>
+    <span class="easter-timer-sep">:</span>
+    <div class="easter-timer-unit">
+      <span class="easter-timer-num" id="easterM">00</span>
+      <span class="easter-timer-label">min</span>
+    </div>
+    <span class="easter-timer-sep">:</span>
+    <div class="easter-timer-unit">
+      <span class="easter-timer-num" id="easterS">00</span>
+      <span class="easter-timer-label">sec</span>
+    </div>
+  </div>
+  <button class="easter-close" onclick="event.preventDefault();event.stopPropagation();document.getElementById('easterBanner').style.display='none';" aria-label="Close">✕</button>
+</a>
+
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#about" onclick="toggleMenu()">About</a>
@@ -2758,7 +2916,8 @@
         <div class="svc-price">£50 <span>/ hour</span></div>
         <a href="https://calendly.com/stefanmoore-medcoach/mock-interview-practice" target="_blank" rel="noopener" class="btn-outline">Book</a>
       </div>
-      <div class="svc-card reveal-scale reveal-delay-2">
+      <div class="svc-card reveal-scale reveal-delay-2" style="border-top: 2px solid #c0392b; position:relative;">
+        <span style="position:absolute;top:0;right:0;background:#c0392b;color:#fff;font-size:0.55rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.7rem;">🐣 SALE</span>
         <p class="svc-card-label">PDF Download · Instant Delivery</p>
         <h3>MMI Question Bank</h3>
         <p>50 stations across 6 categories with model answers, examiner insight, and a strategy tip for every question.</p>
@@ -2768,21 +2927,27 @@
           <li>Examiner insight on every question</li>
           <li>Strategy tip for each station</li>
         </ul>
-        <div class="svc-price">£25 <span>/ PDF</span></div>
-        <a href="PAYHIP_LINK_HERE" target="_blank" rel="noopener" class="btn-outline">Buy</a>
+        <div class="svc-price">
+          <span style="font-size:0.85rem;color:var(--soft);text-decoration:line-through;font-family:'DM Sans',sans-serif;font-weight:300;display:block;margin-bottom:0.1rem;">£100</span>
+          <span style="color:#c0392b;">£25</span> <span>/ PDF</span>
+        </div>
+        <a href="https://payhip.com/b/h82Cy" target="_blank" rel="noopener" class="btn-outline" style="border-color:#c0392b;color:#c0392b;">Buy — 75% off</a>
       </div>
       <div class="svc-card reveal-scale reveal-delay-3" style="border-left: 2px solid var(--accent);">
         <p class="svc-card-label" style="color:#3a9c6f;">Best Value · Everything Included</p>
         <h3>Complete Pack</h3>
-        <p>Coaching session, mock interview, and the full MMI Question Bank PDF. Everything in one purchase — save £21 vs buying separately.</p>
+        <p>Coaching session, mock interview, and the full MMI Question Bank PDF. Everything in one purchase.</p>
         <ul class="svc-features">
           <li>1x personalised coaching session</li>
           <li>1x school-specific mock interview</li>
           <li>MMI Question Bank PDF — 50 stations</li>
-          <li>Save £21 vs buying separately</li>
+          <li>Save £96 vs buying separately</li>
         </ul>
-        <div class="svc-price" style="color:#3a9c6f">£99 <span>/ everything</span></div>
-        <a href="https://calendly.com/stefanmoore-medcoach/complete-pack" target="_blank" rel="noopener" class="btn-outline">Buy Now</a>
+        <div class="svc-price">
+          <span style="font-size:0.85rem;color:var(--soft);text-decoration:line-through;font-family:'DM Sans',sans-serif;font-weight:300;display:block;margin-bottom:0.1rem;">£195</span>
+          <span style="color:#c0392b;">£99</span> <span>/ everything</span>
+        </div>
+        <a href="https://calendly.com/stefanmoore-medcoach/complete-pack" target="_blank" rel="noopener" class="btn-outline" style="border-color:#c0392b;color:#c0392b;">Buy Now — 🐣 Sale</a>
       </div>
     </div>
 
@@ -3082,15 +3247,32 @@
 </section>
 
 <!-- RESOURCES SHOP -->
-<section id="resources" class="shop-sec">
-  <div class="sec-inner">
+<section id="resources" class="shop-sec" style="padding-top:0;">
+  <!-- EASTER SALE URGENCY STRIP -->
+  <div style="background:#c0392b;color:#fff;padding:0.9rem 6vw;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+    <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+      <span style="font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;background:rgba(0,0,0,0.2);padding:0.25rem 0.7rem;">🐣 Easter Sale</span>
+      <span style="font-size:0.92rem;font-weight:300;">All resources <strong style="font-weight:700;">75% off</strong> — limited time only</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.82rem;font-weight:500;letter-spacing:0.04em;">
+      <span style="opacity:0.75;font-size:0.75rem;">Sale ends in</span>
+      <span style="background:rgba(0,0,0,0.3);padding:0.3rem 0.55rem;font-variant-numeric:tabular-nums;min-width:28px;text-align:center;" id="saleD2">00</span><span style="opacity:0.6;">d</span>
+      <span style="background:rgba(0,0,0,0.3);padding:0.3rem 0.55rem;font-variant-numeric:tabular-nums;min-width:28px;text-align:center;" id="saleH2">00</span><span style="opacity:0.6;">h</span>
+      <span style="background:rgba(0,0,0,0.3);padding:0.3rem 0.55rem;font-variant-numeric:tabular-nums;min-width:28px;text-align:center;" id="saleM2">00</span><span style="opacity:0.6;">m</span>
+      <span style="background:rgba(0,0,0,0.3);padding:0.3rem 0.55rem;font-variant-numeric:tabular-nums;min-width:28px;text-align:center;" id="saleS2">00</span><span style="opacity:0.6;">s</span>
+    </div>
+  </div>
+
+  <div class="sec-inner" style="padding-top:4rem;">
     <p class="section-label reveal">Resources</p>
     <h2 class="reveal">PDF study guides <em>delivered instantly</em></h2>
     <p class="section-desc reveal">Written by current medical students. Download and work through at your own pace.</p>
 
     <!-- PRIMARY PRODUCT -->
-    <div class="resource-shop-item reveal">
+    <div class="resource-shop-item reveal" style="border:2px solid #c0392b;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:16px;right:-32px;background:#c0392b;color:#fff;font-size:0.55rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:0.3rem 2.8rem;transform:rotate(35deg);z-index:2;white-space:nowrap;">75% OFF</div>
       <div style="flex:1; min-width: 260px;">
+        <span class="sale-flash">🐣 Easter Sale</span>
         <div style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:0.6rem;">PDF Download · Instant Delivery</div>
         <h3 style="font-family:'DM Serif Display',serif;font-size:1.4rem;font-weight:400;color:var(--ink);margin-bottom:0.6rem;">MMI Question Bank</h3>
         <p style="font-size:0.9rem;color:var(--soft);font-weight:300;line-height:1.7;margin-bottom:1.2rem;max-width:520px;">50 stations across 6 categories — ethics, communication, NHS systems, personal qualities, scenarios, and medical knowledge. Every station includes a model answer, examiner insight, and a strategy tip.</p>
@@ -3101,28 +3283,34 @@
           <span style="font-size:0.75rem;padding:0.25rem 0.7rem;border:1px solid var(--border);color:var(--soft);">Examiner insight</span>
           <span style="font-size:0.75rem;padding:0.25rem 0.7rem;border:1px solid var(--border);color:var(--soft);">Strategy tips</span>
         </div>
-        <a href="PAYHIP_LINK_HERE" target="_blank" rel="noopener" class="btn-shop">Buy Now — £25</a>
+        <a href="https://payhip.com/b/h82Cy" target="_blank" rel="noopener" class="btn-shop-sale">Buy Now — £25 &rarr;</a>
+        <div style="font-size:0.75rem;color:var(--soft);margin-top:0.9rem;display:flex;align-items:center;gap:0.4rem;">
+          <span style="color:#c0392b;font-size:0.85rem;">⚡</span> Instant PDF delivery · Sale ends in <strong style="color:#c0392b;" id="saleCountdownInline">—</strong>
+        </div>
       </div>
       <div style="flex-shrink:0;text-align:right;">
-        <div style="font-size:0.78rem;color:var(--soft);font-weight:300;margin-bottom:0.2rem;">One-time purchase</div>
-        <div style="font-family:'DM Serif Display',serif;font-size:2.5rem;color:var(--ink);line-height:1;">£25</div>
-        <div style="font-size:0.75rem;color:var(--soft);font-weight:300;margin-top:0.3rem;">Instant PDF delivery</div>
+        <div style="font-size:0.78rem;color:var(--soft);font-weight:300;margin-bottom:0.4rem;">One-time purchase</div>
+        <span class="price-was">£100</span>
+        <div class="price-now-sale">£25</div>
+        <span class="price-save-tag">You save £75 — 75% off</span>
+        <div style="margin-top:1rem;font-size:0.72rem;color:var(--soft);">Instant PDF delivery</div>
       </div>
     </div>
 
     <!-- COMPLETE PACK UPSELL -->
     <div class="resource-shop-upsell reveal">
       <div>
-        <div style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:#3a9c6f;font-weight:500;margin-bottom:0.5rem;">Best Value — Save £21</div>
+        <span class="sale-flash" style="margin-bottom:0.5rem;">🐣 Easter Sale — Best Value</span>
         <div style="font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--ink);font-weight:400;margin-bottom:0.3rem;">Complete Pack</div>
-        <div style="font-size:0.85rem;color:var(--soft);font-weight:300;">MMI Question Bank PDF + 1x coaching session + 1x mock interview — everything in one.</div>
+        <div style="font-size:0.85rem;color:var(--soft);font-weight:300;">MMI Question Bank PDF + 1x coaching session + 1x mock interview — everything in one. <strong style="color:var(--ink);">Save £96</strong> vs buying separately.</div>
       </div>
       <div style="display:flex;align-items:center;gap:2rem;flex-shrink:0;flex-wrap:wrap;">
         <div style="text-align:right;">
-          <div style="font-size:0.78rem;color:var(--soft);text-decoration:line-through;">£120 value</div>
-          <div style="font-family:'DM Serif Display',serif;font-size:2rem;color:#3a9c6f;line-height:1;">£99</div>
+          <div style="font-size:0.78rem;color:var(--soft);text-decoration:line-through;">£195</div>
+          <div style="font-family:'DM Serif Display',serif;font-size:2rem;color:#c0392b;line-height:1.1;">£99</div>
+          <div style="font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;color:#c0392b;margin-top:0.2rem;">Save £96 today</div>
         </div>
-        <a href="https://calendly.com/stefanmoore-medcoach/complete-pack" target="_blank" rel="noopener" class="btn-shop">Buy Now</a>
+        <a href="https://calendly.com/stefanmoore-medcoach/complete-pack" target="_blank" rel="noopener" class="btn-shop-sale">Buy Now</a>
       </div>
     </div>
 
@@ -3458,7 +3646,46 @@
     document.querySelector('.resource-form').parentNode.insertBefore(success, document.querySelector('.resource-form'));
   }
 
-  function submitExitEmail() {
+  // ====== EASTER SALE COUNTDOWN TIMER ======
+  document.addEventListener('DOMContentLoaded', function() {
+    var SALE_KEY = 'easterSaleDeadline';
+    var DURATION = 3 * 24 * 60 * 60 * 1000; // 3 days in ms
+    var deadline;
+    var stored = localStorage.getItem(SALE_KEY);
+    if (stored) {
+      deadline = parseInt(stored, 10);
+      if (deadline < Date.now()) {
+        deadline = Date.now() + DURATION;
+        localStorage.setItem(SALE_KEY, deadline.toString());
+      }
+    } else {
+      deadline = Date.now() + DURATION;
+      localStorage.setItem(SALE_KEY, deadline.toString());
+    }
+
+    function pad(n) { return String(Math.floor(n)).padStart(2, '0'); }
+
+    function updateTimers() {
+      var remaining = Math.max(0, deadline - Date.now());
+      var d = Math.floor(remaining / 86400000);
+      var h = Math.floor((remaining % 86400000) / 3600000);
+      var m = Math.floor((remaining % 3600000) / 60000);
+      var s = Math.floor((remaining % 60000) / 1000);
+
+      ['easterD','saleD2'].forEach(function(id) { var el = document.getElementById(id); if(el) el.textContent = pad(d); });
+      ['easterH','saleH2'].forEach(function(id) { var el = document.getElementById(id); if(el) el.textContent = pad(h); });
+      ['easterM','saleM2'].forEach(function(id) { var el = document.getElementById(id); if(el) el.textContent = pad(m); });
+      ['easterS','saleS2'].forEach(function(id) { var el = document.getElementById(id); if(el) el.textContent = pad(s); });
+
+      var il = document.getElementById('saleCountdownInline');
+      if (il) il.textContent = pad(d) + 'd ' + pad(h) + 'h ' + pad(m) + 'm';
+    }
+
+    updateTimers();
+    setInterval(updateTimers, 1000);
+  });
+
+
     var email = document.getElementById('exitEmail').value.trim();
     if (!email || !email.includes('@') || !email.includes('.')) {
       document.getElementById('exitEmail').style.borderColor = '#e74c3c';
