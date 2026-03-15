@@ -3647,43 +3647,37 @@
   }
 
   // ====== EASTER SALE COUNTDOWN TIMER ======
-  document.addEventListener('DOMContentLoaded', function() {
-    var SALE_KEY = 'easterSaleDeadline';
-    var DURATION = 3 * 24 * 60 * 60 * 1000; // 3 days in ms
-    var deadline;
-    var stored = localStorage.getItem(SALE_KEY);
-    if (stored) {
-      deadline = parseInt(stored, 10);
-      if (deadline < Date.now()) {
-        deadline = Date.now() + DURATION;
-        localStorage.setItem(SALE_KEY, deadline.toString());
-      }
-    } else {
-      deadline = Date.now() + DURATION;
-      localStorage.setItem(SALE_KEY, deadline.toString());
-    }
+  var SALE_KEY = 'easterSaleDeadline';
+  var SALE_DURATION = 3 * 24 * 60 * 60 * 1000;
+  var saleDeadline;
+  var storedDeadline = localStorage.getItem(SALE_KEY);
+  if (storedDeadline && parseInt(storedDeadline, 10) > Date.now()) {
+    saleDeadline = parseInt(storedDeadline, 10);
+  } else {
+    saleDeadline = Date.now() + SALE_DURATION;
+    localStorage.setItem(SALE_KEY, saleDeadline.toString());
+  }
 
-    function pad(n) { return String(Math.floor(n)).padStart(2, '0'); }
+  function salePad(n) { return String(Math.floor(n)).padStart(2, '0'); }
 
-    function updateTimers() {
-      var remaining = Math.max(0, deadline - Date.now());
-      var d = Math.floor(remaining / 86400000);
-      var h = Math.floor((remaining % 86400000) / 3600000);
-      var m = Math.floor((remaining % 3600000) / 60000);
-      var s = Math.floor((remaining % 60000) / 1000);
+  function updateSaleTimers() {
+    var remaining = Math.max(0, saleDeadline - Date.now());
+    var d = Math.floor(remaining / 86400000);
+    var h = Math.floor((remaining % 86400000) / 3600000);
+    var m = Math.floor((remaining % 3600000) / 60000);
+    var s = Math.floor((remaining % 60000) / 1000);
 
-      ['easterD','saleD2'].forEach(function(id) { var el = document.getElementById(id); if(el) el.textContent = pad(d); });
-      ['easterH','saleH2'].forEach(function(id) { var el = document.getElementById(id); if(el) el.textContent = pad(h); });
-      ['easterM','saleM2'].forEach(function(id) { var el = document.getElementById(id); if(el) el.textContent = pad(m); });
-      ['easterS','saleS2'].forEach(function(id) { var el = document.getElementById(id); if(el) el.textContent = pad(s); });
+    ['easterD','saleD2'].forEach(function(id) { var el = document.getElementById(id); if(el) el.textContent = salePad(d); });
+    ['easterH','saleH2'].forEach(function(id) { var el = document.getElementById(id); if(el) el.textContent = salePad(h); });
+    ['easterM','saleM2'].forEach(function(id) { var el = document.getElementById(id); if(el) el.textContent = salePad(m); });
+    ['easterS','saleS2'].forEach(function(id) { var el = document.getElementById(id); if(el) el.textContent = salePad(s); });
 
-      var il = document.getElementById('saleCountdownInline');
-      if (il) il.textContent = pad(d) + 'd ' + pad(h) + 'h ' + pad(m) + 'm';
-    }
+    var il = document.getElementById('saleCountdownInline');
+    if (il) il.textContent = salePad(d) + 'd ' + salePad(h) + 'h ' + salePad(m) + 'm';
+  }
 
-    updateTimers();
-    setInterval(updateTimers, 1000);
-  });
+  updateSaleTimers();
+  setInterval(updateSaleTimers, 1000);
 
 
     var email = document.getElementById('exitEmail').value.trim();
