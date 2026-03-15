@@ -3022,7 +3022,7 @@
       </div>
       <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q">I'm not sure which service to pick. What do you recommend?</div>
-        <div class="faq-a">Not sure? <a href="/quiz.html" target="_blank" rel="noopener" style="color:var(--accent);border-bottom:1px solid var(--accent);">Take our 1-minute quiz</a> to find out which session suits your stage of preparation. Or email us at <a href="mailto:stefanmoore.medcoach@gmail.com" style="color:var(--accent);border-bottom:1px solid var(--accent);">stefanmoore.medcoach@gmail.com</a> and we'll point you in the right direction.</div>
+        <div class="faq-a">Not sure? <a href="/quiz.html" target="_blank" rel="noopener" style="color:var(--accent);border-bottom:1px solid var(--accent);">Take our 1-minute quiz</a> to find out which session suits your stage of preparation. Or email us at <a href="/cdn-cgi/l/email-protection#0e7d7a6b686f606361617c6b20636b6a6d616f6d664e69636f6762206d6163" style="color:var(--accent);border-bottom:1px solid var(--accent);"><span class="__cf_email__" data-cfemail="572423323136393a38382532793a3233343836343f17303a363e3b7934383a">[email&#160;protected]</span></a> and we'll point you in the right direction.</div>
       </div>
       <div class="faq-item" onclick="this.classList.toggle('open')">
         <div class="faq-q">Are your tutors actually medical students?</div>
@@ -3136,7 +3136,7 @@
       <span style="font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--soft);border:1px solid var(--border);padding:0.4rem 1rem;flex-shrink:0;">Available soon</span>
     </div>
 
-    <p class="shop-note" style="margin-top:1.2rem;">All PDFs are delivered instantly by email after purchase. Questions? <a href="mailto:stefanmoore.medcoach@gmail.com">stefanmoore.medcoach@gmail.com</a></p>
+    <p class="shop-note" style="margin-top:1.2rem;">All PDFs are delivered instantly by email after purchase. Questions? <a href="/cdn-cgi/l/email-protection#ef9c9b8a898e818280809d8ac1828a8b8c808e8c87af88828e8683c18c8082"><span class="__cf_email__" data-cfemail="e69592838087888b89899483c88b8382858987858ea6818b878f8ac885898b">[email&#160;protected]</span></a></p>
   </div>
 </section>
 
@@ -3178,7 +3178,7 @@
       </svg>
     </div>
     <p class="footer-note">© 2025 MedCoach</p>
-    <p class="footer-contact">Questions? <a href="mailto:stefanmoore.medcoach@gmail.com">stefanmoore.medcoach@gmail.com</a></p>
+    <p class="footer-contact">Questions? <a href="/cdn-cgi/l/email-protection#6417100102050a090b0b16014a090100070b05070c240309050d084a070b09"><span class="__cf_email__" data-cfemail="b8cbccddded9d6d5d7d7cadd96d5dddcdbd7d9dbd0f8dfd5d9d1d496dbd7d5">[email&#160;protected]</span></a></p>
   </div>
   <div class="footer-right">
     <div class="footer-links">
@@ -3241,7 +3241,7 @@
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // ====== THEME TOGGLE ======
   function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
@@ -3466,12 +3466,42 @@
       return;
     }
     var iframe = document.createElement('iframe');
-    iframe.name = 'brevo_target';
+    iframe.name = 'exit_target';
     iframe.style.display = 'none';
     document.body.appendChild(iframe);
+
     var form = document.createElement('form');
     form.method = 'POST';
-    form.action = 'https://9a069c79.sibforms.com/serve/MUIFAO6gheb2g9EoGRr9RfQgSHnF1NVUgDwBc67a4DNTLUCLoR0KZ1aCoJLq8JqzSduXCKAuERlQlt4HgIuYBIeMTgMVdEJCov_AMfsx_vKOeR7rzdZTHMIrZNeZk8r6v0QpkxO7W5cc_dndhazUMpUA2ubPJzHFyGlXBfPxNFo20oOPFFAJ4U2FdfJMY4vf_20wT2vAu1wmrvelqg==';
-    form.target = 'brevo_target';
+    form.action = 'https://9a069c79.sibforms.com/serve/MUIFAKDUafo8pmAIgFsJ-8GlmY2bVNi6jZiCjTr_VS54zv1Hg9ZdwTVoT8P6tWNlV89SUFfIO5Z_QjY3ixTcuJJsggR11557wgg9OVzzMio35j17IA_WknaHIdX7lhhtJ66O6jTgtdCbgWILiftqqePjEHY5vn5JQOOKoSJdmMrKq7cVa1e5N5PCTRqr7i88CFR_gCj1X5cVtUXFVQ==';
+    form.target = 'exit_target';
     form.style.display = 'none';
-    [['EMAIL', email], ['locale', 'en'], ['html_type', 'simple']].forEach(func
+
+    var emailInput = document.createElement('input');
+    emailInput.type = 'email';
+    emailInput.name = 'EMAIL';
+    emailInput.value = email;
+    form.appendChild(emailInput);
+
+    var localeInput = document.createElement('input');
+    localeInput.type = 'hidden';
+    localeInput.name = 'locale';
+    localeInput.value = 'en';
+    form.appendChild(localeInput);
+
+    document.body.appendChild(form);
+    form.submit();
+
+    setTimeout(function() {
+      document.body.removeChild(form);
+      document.body.removeChild(iframe);
+    }, 3000);
+
+    // Show step 2
+    document.getElementById('exitStep1').style.display = 'none';
+    document.getElementById('exitStep2').style.display = 'block';
+  }
+
+</script>
+
+</body>
+</html>
