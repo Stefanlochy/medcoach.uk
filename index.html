@@ -283,6 +283,20 @@
   .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
 
   .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    padding: 0.9rem 2rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    display: inline-block;
+    transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-primary:hover { background: #b5842f; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(200,150,62,0.25); }
+
+  .btn-primary-dark {
     background: var(--ink);
     color: var(--bg);
     padding: 0.9rem 2rem;
@@ -294,7 +308,7 @@
     transition: background 0.2s, color 0.2s;
     font-family: 'DM Sans', sans-serif;
   }
-  .btn-primary:hover { background: var(--soft); }
+  .btn-primary-dark:hover { background: var(--soft); }
 
   .btn-secondary {
     color: var(--soft);
@@ -1917,119 +1931,59 @@
     color: #888;
   }
 
-  /* SALE FLASH ANIMATIONS */
-  @keyframes saleFlash {
-    0%, 100% { background: #c0392b; }
-    50% { background: #e8453c; }
-  }
-  @keyframes salePulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.05); }
-  }
-  @keyframes bannerFlash {
-    0%, 100% { background: #c0392b; box-shadow: -4px 4px 24px rgba(0,0,0,0.25); }
-    50% { background: #d9403a; box-shadow: -4px 4px 36px rgba(192,57,43,0.55); }
-  }
-  @keyframes timerPop {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.08); }
-  }
-  @keyframes badgeFlash {
-    0%, 100% { background: #c0392b; }
-    50% { background: #d9403a; }
-  }
-  @keyframes btnPulse {
-    0%, 100% { background: #c0392b; box-shadow: 0 0 0 0 rgba(192,57,43,0.5); }
-    60% { box-shadow: 0 0 0 10px rgba(192,57,43,0); }
-  }
-
-  .easter-banner {
+  /* ON SALE BADGE */
+  .sale-badge-fixed {
     position: fixed;
-    top: 72px;
+    top: 76px;
     right: 0;
     z-index: 99;
-    background: #c0392b;
+    background: var(--accent);
     color: #fff;
-    padding: 0.6rem 1.2rem 0.6rem 1.4rem;
+    padding: 0.55rem 1.2rem 0.55rem 1.4rem;
     display: flex;
     align-items: center;
-    gap: 1rem;
-    clip-path: polygon(12px 0%, 100% 0%, 100% 100%, 0% 100%);
+    gap: 0.6rem;
+    clip-path: polygon(10px 0%, 100% 0%, 100% 100%, 0% 100%);
     cursor: pointer;
     text-decoration: none;
-    max-width: 340px;
-    animation: bannerFlash 1.6s ease-in-out infinite;
+    transition: background 0.25s, transform 0.25s;
+    box-shadow: -2px 3px 12px rgba(0,0,0,0.15);
   }
-  .easter-banner:hover { background: #a93226; animation: none; }
-  .easter-banner-tag {
-    font-size: 0.6rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    font-weight: 600;
-    opacity: 0.85;
-    white-space: nowrap;
-  }
-  .easter-banner-title {
+  .sale-badge-fixed:hover { background: #b5842f; transform: translateX(-2px); }
+  .sale-badge-title {
     font-family: 'DM Serif Display', serif;
-    font-size: 1rem;
+    font-size: 0.92rem;
     font-weight: 400;
     white-space: nowrap;
   }
-  .easter-banner-timer {
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    background: rgba(0,0,0,0.25);
-    padding: 0.3rem 0.6rem;
-    flex-shrink: 0;
-  }
-  .easter-timer-unit {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    line-height: 1.1;
-  }
-  .easter-timer-num {
-    font-size: 1rem;
-    font-weight: 600;
-    font-variant-numeric: tabular-nums;
-    min-width: 22px;
-    text-align: center;
-    animation: timerPop 1.4s ease-in-out infinite;
-  }
-  .price-now-sale {
-    font-family: 'DM Serif Display', serif;
-    font-size: 2.5rem;
-    color: #c0392b;
-    line-height: 1;
-    animation: salePulse 1.6s ease-in-out infinite;
-  }
-  .easter-timer-label {
-    font-size: 0.5rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    opacity: 0.7;
-  }
-  .easter-timer-sep { font-size: 1rem; font-weight: 600; opacity: 0.5; margin-bottom: 6px; }
-  .easter-close {
+  .sale-badge-close {
     background: none;
     border: none;
     color: rgba(255,255,255,0.6);
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 0.9rem;
     line-height: 1;
-    padding: 0 0 0 0.4rem;
+    padding: 0;
     flex-shrink: 0;
+    transition: color 0.2s;
   }
-  .easter-close:hover { color: #fff; }
+  .sale-badge-close:hover { color: #fff; }
+  @media (max-width: 560px) {
+    .sale-badge-fixed { padding: 0.45rem 0.9rem 0.45rem 1.1rem; }
+    .sale-badge-title { font-size: 0.82rem; }
+  }
+
+  .price-now-sale {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.5rem;
+    color: var(--accent);
+    line-height: 1;
+  }
 
   /* SALE BADGE */
   .sale-flash {
     display: inline-block;
-    background: #c0392b;
+    background: var(--accent);
     color: #fff;
     font-size: 0.6rem;
     font-weight: 600;
@@ -2037,7 +1991,6 @@
     text-transform: uppercase;
     padding: 0.2rem 0.6rem;
     margin-bottom: 0.5rem;
-    animation: badgeFlash 1.4s ease-in-out infinite;
   }
   .price-was {
     font-size: 0.9rem;
@@ -2050,7 +2003,7 @@
   }
   .price-save-tag {
     font-size: 0.7rem;
-    color: #c0392b;
+    color: var(--accent);
     font-weight: 500;
     letter-spacing: 0.06em;
     margin-top: 0.2rem;
@@ -2058,7 +2011,7 @@
   }
   .btn-shop-sale {
     display: inline-block;
-    background: #c0392b;
+    background: var(--accent);
     color: #fff;
     padding: 0.85rem 2rem;
     font-size: 0.82rem;
@@ -2068,9 +2021,9 @@
     font-family: 'DM Sans', sans-serif;
     text-decoration: none;
     border: none;
-    animation: btnPulse 1.8s ease-in-out infinite;
+    transition: background 0.25s, transform 0.25s;
   }
-  .btn-shop-sale:hover { background: #a93226; animation: none; }
+  .btn-shop-sale:hover { background: #b5842f; transform: translateY(-1px); }
 
   /* Resource section — already dark bg so fine, but success message needs check */
   [data-theme="dark"] .resource-success {
@@ -2697,6 +2650,160 @@
     .resource-shop-item > div:last-child { text-align: left; }
     .resource-shop-upsell > div:last-child { align-items: flex-start; }
   }
+  /* HERO AUDIENCE QUALIFIER */
+  .hero-qualifier {
+    font-size: 0.78rem;
+    color: var(--soft);
+    font-weight: 300;
+    margin-bottom: 0.8rem;
+    padding: 0.5rem 0.9rem;
+    background: rgba(200,150,62,0.06);
+    border-left: 2px solid var(--accent);
+    display: inline-block;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  /* MOBILE HERO TRUST CARD */
+  .mobile-hero-trust {
+    display: none;
+    background: var(--light-bg);
+    border: 1px solid var(--border);
+    padding: 1.2rem 1.5rem;
+    margin-top: 1.5rem;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .mobile-hero-trust-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--ink);
+    margin-bottom: 0.6rem;
+    transition: color 0.3s;
+  }
+  .mobile-hero-trust-stats {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .mobile-hero-trust-stat {
+    display: flex;
+    flex-direction: column;
+  }
+  .mobile-hero-trust-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem;
+    color: var(--accent);
+    line-height: 1.1;
+  }
+  .mobile-hero-trust-label {
+    font-size: 0.72rem;
+    color: var(--soft);
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  @media (max-width: 560px) {
+    .mobile-hero-trust { display: block; }
+  }
+
+  /* FOOTER CTA SECTION */
+  .footer-cta-section {
+    padding: 5rem 6vw;
+    background: var(--light-bg);
+    border-top: 1px solid var(--border);
+    text-align: center;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .footer-cta-inner {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .footer-cta-inner h2 {
+    margin-bottom: 1rem;
+  }
+  .footer-cta-inner p {
+    font-size: 0.95rem;
+    color: var(--soft);
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    transition: color 0.3s;
+  }
+  .footer-cta-btns {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  /* ENHANCED MICRO-INTERACTIONS */
+  .svc-card { transition: background 0.2s, transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s; }
+  .svc-card:hover { background: var(--light-bg); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.06); }
+
+  .t-card { transition: background 0.3s, transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s; }
+  .t-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
+
+  .faq-a {
+    transition: max-height 0.4s cubic-bezier(0.22,1,0.36,1), color 0.3s;
+  }
+  .faq-item.open .faq-a { max-height: 300px; }
+
+  /* SOCIAL PROOF STRIP FOR SHOP */
+  .shop-proof {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+    transition: border-color 0.3s;
+  }
+  .shop-proof-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    color: var(--soft);
+    font-weight: 300;
+    transition: color 0.3s;
+  }
+  .shop-proof-item strong { color: var(--ink); font-weight: 500; transition: color 0.3s; }
+  .shop-proof-item svg { flex-shrink: 0; }
+
+  /* HERO PARALLAX SUBTLE */
+  .hero { position: relative; overflow: hidden; }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: -10%;
+    width: 60%;
+    height: 140%;
+    background: radial-gradient(ellipse at center, rgba(200,150,62,0.06) 0%, transparent 70%);
+    pointer-events: none;
+    animation: heroFloat 20s ease-in-out infinite alternate;
+  }
+  @keyframes heroFloat {
+    from { transform: translate(0, 0); }
+    to { transform: translate(5%, 3%); }
+  }
+
+  /* RESOURCE PREVIEW HOVER */
+  .resource-preview-item {
+    transition: background 0.2s, padding-left 0.3s;
+  }
+  .resource-preview-item:hover {
+    padding-left: 2rem;
+  }
+
+  /* SHOP CARD GOLD BORDER ON HOVER */
+  .resource-shop-item {
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .resource-shop-item:hover {
+    box-shadow: 0 8px 32px rgba(200,150,62,0.1);
+  }
 </style>
 </head>
 <body>
@@ -2726,8 +2833,7 @@
       </div>
     </li>
     <li><a href="#tutors">Tutors</a></li>
-    <li><a href="#resources">Resources</a></li>
-    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#resources">Study Guides</a></li>    <li><a href="#faq">FAQ</a></li>
     <li><a href="#free-resource" class="nav-free">Free MMI Questions</a></li>
     <li><a href="#book" class="nav-cta">Book Now</a></li>
     <li>
@@ -2770,34 +2876,10 @@
   </div>
 </nav>
 
-<!-- EASTER SALE BANNER -->
-<a href="#resources" class="easter-banner" id="easterBanner">
-  <div>
-    <div class="easter-banner-tag">🐣 Easter Sale</div>
-    <div class="easter-banner-title">Resources — 75% Off</div>
-  </div>
-  <div class="easter-banner-timer">
-    <div class="easter-timer-unit">
-      <span class="easter-timer-num" id="easterD">00</span>
-      <span class="easter-timer-label">days</span>
-    </div>
-    <span class="easter-timer-sep">:</span>
-    <div class="easter-timer-unit">
-      <span class="easter-timer-num" id="easterH">00</span>
-      <span class="easter-timer-label">hrs</span>
-    </div>
-    <span class="easter-timer-sep">:</span>
-    <div class="easter-timer-unit">
-      <span class="easter-timer-num" id="easterM">00</span>
-      <span class="easter-timer-label">min</span>
-    </div>
-    <span class="easter-timer-sep">:</span>
-    <div class="easter-timer-unit">
-      <span class="easter-timer-num" id="easterS">00</span>
-      <span class="easter-timer-label">sec</span>
-    </div>
-  </div>
-  <button class="easter-close" onclick="event.preventDefault();event.stopPropagation();document.getElementById('easterBanner').style.display='none';" aria-label="Close">✕</button>
+<!-- ON SALE BADGE -->
+<a href="#resources" class="sale-badge-fixed" id="saleBadge">
+  <span class="sale-badge-title">On Sale — 75% Off</span>
+  <button class="sale-badge-close" onclick="event.preventDefault();event.stopPropagation();document.getElementById('saleBadge').style.display='none';" aria-label="Close">✕</button>
 </a>
 
 <!-- MOBILE MENU -->
@@ -2805,7 +2887,7 @@
   <a href="#about" onclick="toggleMenu()">About</a>
   <a href="#services" onclick="toggleMenu()">Services</a>
   <a href="#tutors" onclick="toggleMenu()">Tutors</a>
-  <a href="#resources" onclick="toggleMenu()">Resources</a>
+  <a href="#resources" onclick="toggleMenu()">Study Guides</a>
   <a href="#faq" onclick="toggleMenu()">FAQ</a>
   <a href="#free-resource" onclick="toggleMenu()" style="color:#6bcf8f;">Free MMI Questions</a>
   <a href="https://calendly.com/stefanmoore-medcoach/complete-pack" target="_blank" rel="noopener" class="btn-primary" onclick="toggleMenu()">Buy Complete Pack</a>
@@ -2816,6 +2898,7 @@
   <div class="hero-inner">
     <div>
       <p class="hero-kicker reveal">Medical Interview Coaching</p>
+      <div class="hero-qualifier reveal reveal-delay-1">For UK medical school applicants preparing for MMI &amp; panel interviews</div>
       <h1 class="reveal reveal-delay-1">Get into<br>medical school</h1>
       <p class="hero-sub reveal reveal-delay-2">Coached by Year 2 medical students who sat these exact interviews last year. We know what the panels want — because we were in your seat two years ago.</p>
       <div class="hero-trust reveal reveal-delay-3">
@@ -2839,6 +2922,15 @@
       <div class="hero-quiz-nudge reveal reveal-delay-5">
         <svg viewBox="0 0 16 16" fill="none" width="13" height="13"><circle cx="8" cy="8" r="7" stroke="#c8963e" stroke-width="1.5"/><path d="M6 8.5l1.5 1.5L11 6" stroke="#c8963e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         Not sure which service? <a href="/quiz.html" target="_blank" rel="noopener">Take our 1-min quiz →</a>
+      </div>
+      <!-- MOBILE TRUST CARD -->
+      <div class="mobile-hero-trust reveal">
+        <div class="mobile-hero-trust-title">Why students choose us</div>
+        <div class="mobile-hero-trust-stats">
+          <div class="mobile-hero-trust-stat"><span class="mobile-hero-trust-num">6/6</span><span class="mobile-hero-trust-label">Offers received</span></div>
+          <div class="mobile-hero-trust-stat"><span class="mobile-hero-trust-num">30+</span><span class="mobile-hero-trust-label">Sessions</span></div>
+          <div class="mobile-hero-trust-stat"><span class="mobile-hero-trust-num">5.0 ★</span><span class="mobile-hero-trust-label">Google rating</span></div>
+        </div>
       </div>
     </div>
     <div class="hero-right hero-story reveal-right">
@@ -2867,29 +2959,6 @@
         <div><div class="about-stat-num">30+</div><div class="about-stat-label">Sessions delivered</div></div>
         <div><a href="https://g.page/r/CfgdWnROlmKJEAI/review" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:block;"><div class="about-stat-num" style="color:var(--accent);">5.0 ★</div><div class="about-stat-label">Google rating ↗</div></a></div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- VIDEO SECTION -->
-<section class="video-sec">
-  <div class="sec-inner">
-    <p class="section-label reveal">Meet Your Tutors</p>
-    <h2 class="reveal">Hear it from <em>us directly</em></h2>
-    <p class="section-desc reveal">A quick introduction to who we are, how we coach, and what you can expect from a MedCoach session.</p>
-    <div class="video-placeholder reveal">
-      <div class="video-inner">
-        <div class="video-icon">
-          <svg viewBox="0 0 24 24" fill="none" width="48" height="48"><circle cx="12" cy="12" r="11" stroke="#c8963e" stroke-width="1.5"/><path d="M10 8.5l6 3.5-6 3.5V8.5z" fill="#c8963e"/></svg>
-        </div>
-        <p class="video-label">Video coming soon</p>
-        <p class="video-sub">We're filming a short intro so you can see exactly who you'll be working with before you book.</p>
-      </div>
-      <!-- REPLACE: When ready, swap the entire .video-placeholder div with:
-      <div class="video-embed">
-        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allowfullscreen></iframe>
-      </div>
-      -->
     </div>
   </div>
 </section>
@@ -2945,8 +3014,8 @@
         <div class="svc-price">£50 <span>/ hour</span></div>
         <a href="https://calendly.com/stefanmoore-medcoach/mock-interview-practice" target="_blank" rel="noopener" class="btn-outline">Book</a>
       </div>
-      <div class="svc-card reveal-scale reveal-delay-2" style="border-top: 2px solid #c0392b; position:relative;">
-        <span style="position:absolute;top:0;right:0;background:#c0392b;color:#fff;font-size:0.55rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.7rem;">🐣 SALE</span>
+      <div class="svc-card reveal-scale reveal-delay-2" style="border-top: 2px solid var(--accent); position:relative;">
+        <span style="position:absolute;top:0;right:0;background:var(--accent);color:#fff;font-size:0.55rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.7rem;">ON SALE</span>
         <p class="svc-card-label">PDF Download · Instant Delivery</p>
         <h3>MMI Question Bank</h3>
         <p>50 stations across 6 categories with model answers, examiner insight, and a strategy tip for every question.</p>
@@ -2958,9 +3027,9 @@
         </ul>
         <div class="svc-price">
           <span style="font-size:0.85rem;color:var(--soft);text-decoration:line-through;font-family:'DM Sans',sans-serif;font-weight:300;display:block;margin-bottom:0.1rem;">£100</span>
-          <span style="color:#c0392b;">£25</span> <span>/ PDF</span>
+          <span style="color:var(--accent);">£25</span> <span>/ PDF</span>
         </div>
-        <a href="https://payhip.com/b/h82Cy" target="_blank" rel="noopener" class="btn-outline" style="border-color:#c0392b;color:#c0392b;">Buy — 75% off</a>
+        <a href="https://payhip.com/b/h82Cy" target="_blank" rel="noopener" class="btn-outline" style="border-color:var(--accent);color:var(--accent);">Buy — 75% off</a>
       </div>
       <div class="svc-card reveal-scale reveal-delay-3" style="border-left: 2px solid var(--accent);">
         <p class="svc-card-label" style="color:#3a9c6f;">Best Value · Everything Included</p>
@@ -2974,9 +3043,9 @@
         </ul>
         <div class="svc-price">
           <span style="font-size:0.85rem;color:var(--soft);text-decoration:line-through;font-family:'DM Sans',sans-serif;font-weight:300;display:block;margin-bottom:0.1rem;">£195</span>
-          <span style="color:#c0392b;">£99</span> <span>/ everything</span>
+          <span style="color:var(--accent);">£99</span> <span>/ everything</span>
         </div>
-        <a href="https://calendly.com/stefanmoore-medcoach/complete-pack" target="_blank" rel="noopener" class="btn-outline" style="border-color:#c0392b;color:#c0392b;">Buy Now — 🐣 Sale</a>
+        <a href="https://calendly.com/stefanmoore-medcoach/complete-pack" target="_blank" rel="noopener" class="btn-outline" style="border-color:var(--accent);color:var(--accent);">Buy Now — On Sale</a>
       </div>
     </div>
 
@@ -3016,6 +3085,99 @@
 
   </div>
 </section>
+
+<!-- RESOURCES SHOP -->
+<section id="resources" class="shop-sec" style="padding-top:0;">
+  <!-- SALE STRIP -->
+  <div style="background:var(--accent);color:#fff;padding:0.9rem 6vw;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+    <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+      <span style="font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;background:rgba(0,0,0,0.15);padding:0.25rem 0.7rem;">On Sale</span>
+      <span style="font-size:0.92rem;font-weight:300;">All resources <strong style="font-weight:700;">75% off</strong> — limited time only</span>
+    </div>
+    <a href="https://payhip.com/b/h82Cy" target="_blank" rel="noopener" style="font-size:0.78rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.5);padding-bottom:1px;">Shop Now →</a>
+  </div>
+
+  <div class="sec-inner" style="padding-top:4rem;">
+    <p class="section-label reveal">Study Guides</p>
+    <h2 class="reveal">PDF study guides <em>delivered instantly</em></h2>
+    <p class="section-desc reveal">Written by current medical students. Download and work through at your own pace.</p>
+
+    <!-- SOCIAL PROOF STRIP -->
+    <div class="shop-proof reveal">
+      <div class="shop-proof-item">
+        <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M6.5 12.5l-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z" fill="#3a9c6f"/></svg>
+        <span>Used by <strong>30+ students</strong> across UK medical schools</span>
+      </div>
+      <div class="shop-proof-item">
+        <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M8 1l2.2 4.5 5 .7-3.6 3.5.85 5L8 12.4 3.55 14.7l.85-5L.8 6.2l5-.7z" fill="#c8963e"/></svg>
+        <span><strong>5.0</strong> Google rating</span>
+      </div>
+      <div class="shop-proof-item">
+        <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 12.6A5.6 5.6 0 1113.6 8 5.6 5.6 0 018 13.6zM8.4 4H7.2v4.4l3.8 2.3.6-1-3.2-1.9V4z" fill="currentColor"/></svg>
+        <span>Instant delivery after purchase</span>
+      </div>
+    </div>
+
+    <!-- PRIMARY PRODUCT -->
+    <div class="resource-shop-item reveal" style="border:2px solid var(--accent);position:relative;overflow:hidden;">
+      <div style="position:absolute;top:16px;right:-32px;background:var(--accent);color:#fff;font-size:0.55rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:0.3rem 2.8rem;transform:rotate(35deg);z-index:2;white-space:nowrap;">75% OFF</div>
+      <div style="flex:1; min-width: 260px;">
+        <span class="sale-flash">On Sale</span>
+        <div style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:0.6rem;">PDF Download · Instant Delivery</div>
+        <h3 style="font-family:'DM Serif Display',serif;font-size:1.4rem;font-weight:400;color:var(--ink);margin-bottom:0.6rem;">MMI Question Bank</h3>
+        <p style="font-size:0.9rem;color:var(--soft);font-weight:300;line-height:1.7;margin-bottom:1.2rem;max-width:520px;">50 stations across 6 categories — ethics, communication, NHS systems, personal qualities, scenarios, and medical knowledge. Every station includes a model answer, examiner insight, and a strategy tip.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.5rem;">
+          <span style="font-size:0.75rem;padding:0.25rem 0.7rem;border:1px solid var(--border);color:var(--soft);">50 stations</span>
+          <span style="font-size:0.75rem;padding:0.25rem 0.7rem;border:1px solid var(--border);color:var(--soft);">6 categories</span>
+          <span style="font-size:0.75rem;padding:0.25rem 0.7rem;border:1px solid var(--border);color:var(--soft);">Model answers</span>
+          <span style="font-size:0.75rem;padding:0.25rem 0.7rem;border:1px solid var(--border);color:var(--soft);">Examiner insight</span>
+          <span style="font-size:0.75rem;padding:0.25rem 0.7rem;border:1px solid var(--border);color:var(--soft);">Strategy tips</span>
+        </div>
+        <a href="https://payhip.com/b/h82Cy" target="_blank" rel="noopener" class="btn-shop-sale">Buy Now — £25 →</a>
+        <div style="font-size:0.75rem;color:var(--soft);margin-top:0.9rem;display:flex;align-items:center;gap:0.4rem;">
+          <span style="color:var(--accent);font-size:0.85rem;">⚡</span> Instant PDF delivery after purchase
+        </div>
+      </div>
+      <div style="flex-shrink:0;text-align:right;">
+        <div style="font-size:0.78rem;color:var(--soft);font-weight:300;margin-bottom:0.4rem;">One-time purchase</div>
+        <span class="price-was">£100</span>
+        <div class="price-now-sale">£25</div>
+        <span class="price-save-tag">You save £75 — 75% off</span>
+        <div style="margin-top:1rem;font-size:0.72rem;color:var(--soft);">Instant PDF delivery</div>
+      </div>
+    </div>
+
+    <!-- COMPLETE PACK UPSELL -->
+    <div class="resource-shop-upsell reveal">
+      <div>
+        <span class="sale-flash" style="margin-bottom:0.5rem;">Best Value — On Sale</span>
+        <div style="font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--ink);font-weight:400;margin-bottom:0.3rem;">Complete Pack</div>
+        <div style="font-size:0.85rem;color:var(--soft);font-weight:300;">MMI Question Bank PDF + 1x interview coaching session + 1x mock interview — everything in one. <strong style="color:var(--ink);">Save £96</strong> vs buying separately.</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:2rem;flex-shrink:0;flex-wrap:wrap;">
+        <div style="text-align:right;">
+          <div style="font-size:0.78rem;color:var(--soft);text-decoration:line-through;">£195</div>
+          <div style="font-family:'DM Serif Display',serif;font-size:2rem;color:var(--accent);line-height:1.1;">£99</div>
+          <div style="font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin-top:0.2rem;">Save £96 today</div>
+        </div>
+        <a href="https://calendly.com/stefanmoore-medcoach/complete-pack" target="_blank" rel="noopener" class="btn-shop-sale">Buy Now</a>
+      </div>
+    </div>
+
+    <!-- COMING SOON -->
+    <div class="resource-shop-coming reveal">
+      <div>
+        <div style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--soft);font-weight:500;margin-bottom:0.4rem;">Coming Soon</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--ink);font-weight:400;">Medical Ethics Framework Guide</div>
+        <div style="font-size:0.82rem;color:var(--soft);font-weight:300;margin-top:0.2rem;">Four pillars, common dilemmas, and answer frameworks for every ethics station.</div>
+      </div>
+      <span style="font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--soft);border:1px solid var(--border);padding:0.4rem 1rem;flex-shrink:0;">Available soon</span>
+    </div>
+
+    <p class="shop-note" style="margin-top:1.2rem;">All PDFs are delivered instantly by email after purchase. Questions? <a href="/cdn-cgi/l/email-protection#ef9c9b8a898e818280809d8ac1828a8b8c808e8c87af88828e8683c18c8082"><span class="__cf_email__" data-cfemail="e69592838087888b89899483c88b8382858987858ea6818b878f8ac885898b">[email&#160;protected]</span></a></p>
+  </div>
+</section>
+
 <section class="how-sec">
   <div class="sec-inner">
     <p class="section-label reveal">The Process</p>
@@ -3041,7 +3203,6 @@
     </div>
   </div>
 </section>
-
 
 <!-- QUIZ BANNER -->
 <div class="quiz-banner">
@@ -3162,6 +3323,47 @@
   </div>
 </section>
 
+<!-- FREE RESOURCE -->
+<section id="free-resource" class="resource-sec">
+  <div class="sec-inner">
+    <div class="resource-grid">
+      <div class="resource-text">
+        <p class="section-label reveal">Free Resource</p>
+        <div class="resource-free-badge reveal">✓ Completely Free — No Credit Card</div>
+        <h2 class="reveal">5 free MMI questions <em>to practise today</em></h2>
+        <p class="resource-desc reveal">5 sample stations from our full question bank — real ethics scenarios, model answers, and the examiner frameworks that get offers. Completely free, delivered straight to your inbox.</p>
+        <ul class="resource-features reveal">
+          <li>5 real-style MMI ethics stations</li>
+          <li>Model answers and key points for each</li>
+          <li>Examiner insight — what they're actually scoring</li>
+          <li>Delivered instantly to your inbox</li>
+        </ul>
+        <div class="resource-form reveal">
+          <input type="email" id="resourceEmail" class="resource-email" placeholder="Your email address">
+          <button class="resource-btn" onclick="submitResourceEmail()">Send Me the Questions</button>
+        </div>
+        <p class="resource-fine">No spam. Just the questions and occasional coaching tips. Unsubscribe any time.</p>
+      </div>
+      <div class="resource-visual reveal">
+        <div class="resource-card">
+          <div class="resource-card-header">
+            <span class="resource-card-tag">Free Download</span>
+            <span class="resource-card-title">5 MMI Taster Stations</span>
+          </div>
+          <div class="resource-card-body">
+            <div class="resource-preview-item"><span class="rp-num">01</span><span class="rp-text">Confidentiality — A 17-year-old asks you not to tell her parents...</span></div>
+            <div class="resource-preview-item"><span class="rp-num">02</span><span class="rp-text">Consent &amp; Capacity — Patient with dementia refuses treatment...</span></div>
+            <div class="resource-preview-item"><span class="rp-num">03</span><span class="rp-text">Truth Telling — Family asks you not to share a terminal diagnosis...</span></div>
+            <div class="resource-preview-item rp-blur"><span class="rp-num">04</span><span class="rp-text">Resource Allocation — Only one ICU bed for two patients...</span></div>
+            <div class="resource-preview-item rp-blur"><span class="rp-num">05</span><span class="rp-text">End of Life — Patient asks you to help end his life...</span></div>
+            <div class="resource-card-more">Full 50-station bank available in the Complete Pack</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- TUTORS -->
 <section id="tutors">
   <div class="sec-inner">
@@ -3234,129 +3436,6 @@
   </div>
 </section>
 
-<!-- FREE RESOURCE -->
-<section id="free-resource" class="resource-sec">
-  <div class="sec-inner">
-    <div class="resource-grid">
-      <div class="resource-text">
-        <p class="section-label reveal">Free Resource</p>
-        <div class="resource-free-badge reveal">✓ Completely Free — No Credit Card</div>
-        <h2 class="reveal">5 free MMI questions <em>to practise today</em></h2>
-        <p class="resource-desc reveal">5 sample stations from our full question bank — real ethics scenarios, model answers, and the examiner frameworks that get offers. Completely free, delivered straight to your inbox.</p>
-        <ul class="resource-features reveal">
-          <li>5 real-style MMI ethics stations</li>
-          <li>Model answers and key points for each</li>
-          <li>Examiner insight — what they're actually scoring</li>
-          <li>Delivered instantly to your inbox</li>
-        </ul>
-        <div class="resource-form reveal">
-          <input type="email" id="resourceEmail" class="resource-email" placeholder="Your email address">
-          <button class="resource-btn" onclick="submitResourceEmail()">Send Me the Questions</button>
-        </div>
-        <p class="resource-fine">No spam. Just the questions and occasional coaching tips. Unsubscribe any time.</p>
-      </div>
-      <div class="resource-visual reveal">
-        <div class="resource-card">
-          <div class="resource-card-header">
-            <span class="resource-card-tag">Free Download</span>
-            <span class="resource-card-title">5 MMI Taster Stations</span>
-          </div>
-          <div class="resource-card-body">
-            <div class="resource-preview-item"><span class="rp-num">01</span><span class="rp-text">Confidentiality — A 17-year-old asks you not to tell her parents...</span></div>
-            <div class="resource-preview-item"><span class="rp-num">02</span><span class="rp-text">Consent &amp; Capacity — Patient with dementia refuses treatment...</span></div>
-            <div class="resource-preview-item"><span class="rp-num">03</span><span class="rp-text">Truth Telling — Family asks you not to share a terminal diagnosis...</span></div>
-            <div class="resource-preview-item rp-blur"><span class="rp-num">04</span><span class="rp-text">Resource Allocation — Only one ICU bed for two patients...</span></div>
-            <div class="resource-preview-item rp-blur"><span class="rp-num">05</span><span class="rp-text">End of Life — Patient asks you to help end his life...</span></div>
-            <div class="resource-card-more">Full 50-station bank available in the Complete Pack</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- RESOURCES SHOP -->
-<section id="resources" class="shop-sec" style="padding-top:0;">
-  <!-- EASTER SALE URGENCY STRIP -->
-  <div style="background:#c0392b;color:#fff;padding:0.9rem 6vw;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
-    <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
-      <span style="font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;background:rgba(0,0,0,0.2);padding:0.25rem 0.7rem;">🐣 Easter Sale</span>
-      <span style="font-size:0.92rem;font-weight:300;">All resources <strong style="font-weight:700;">75% off</strong> — limited time only</span>
-    </div>
-    <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.82rem;font-weight:500;letter-spacing:0.04em;">
-      <span style="opacity:0.75;font-size:0.75rem;">Sale ends in</span>
-      <span style="background:rgba(0,0,0,0.3);padding:0.3rem 0.55rem;font-variant-numeric:tabular-nums;min-width:28px;text-align:center;" id="saleD2">00</span><span style="opacity:0.6;">d</span>
-      <span style="background:rgba(0,0,0,0.3);padding:0.3rem 0.55rem;font-variant-numeric:tabular-nums;min-width:28px;text-align:center;" id="saleH2">00</span><span style="opacity:0.6;">h</span>
-      <span style="background:rgba(0,0,0,0.3);padding:0.3rem 0.55rem;font-variant-numeric:tabular-nums;min-width:28px;text-align:center;" id="saleM2">00</span><span style="opacity:0.6;">m</span>
-      <span style="background:rgba(0,0,0,0.3);padding:0.3rem 0.55rem;font-variant-numeric:tabular-nums;min-width:28px;text-align:center;" id="saleS2">00</span><span style="opacity:0.6;">s</span>
-    </div>
-  </div>
-
-  <div class="sec-inner" style="padding-top:4rem;">
-    <p class="section-label reveal">Resources</p>
-    <h2 class="reveal">PDF study guides <em>delivered instantly</em></h2>
-    <p class="section-desc reveal">Written by current medical students. Download and work through at your own pace.</p>
-
-    <!-- PRIMARY PRODUCT -->
-    <div class="resource-shop-item reveal" style="border:2px solid #c0392b;position:relative;overflow:hidden;">
-      <div style="position:absolute;top:16px;right:-32px;background:#c0392b;color:#fff;font-size:0.55rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:0.3rem 2.8rem;transform:rotate(35deg);z-index:2;white-space:nowrap;">75% OFF</div>
-      <div style="flex:1; min-width: 260px;">
-        <span class="sale-flash">🐣 Easter Sale</span>
-        <div style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:0.6rem;">PDF Download · Instant Delivery</div>
-        <h3 style="font-family:'DM Serif Display',serif;font-size:1.4rem;font-weight:400;color:var(--ink);margin-bottom:0.6rem;">MMI Question Bank</h3>
-        <p style="font-size:0.9rem;color:var(--soft);font-weight:300;line-height:1.7;margin-bottom:1.2rem;max-width:520px;">50 stations across 6 categories — ethics, communication, NHS systems, personal qualities, scenarios, and medical knowledge. Every station includes a model answer, examiner insight, and a strategy tip.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.5rem;">
-          <span style="font-size:0.75rem;padding:0.25rem 0.7rem;border:1px solid var(--border);color:var(--soft);">50 stations</span>
-          <span style="font-size:0.75rem;padding:0.25rem 0.7rem;border:1px solid var(--border);color:var(--soft);">6 categories</span>
-          <span style="font-size:0.75rem;padding:0.25rem 0.7rem;border:1px solid var(--border);color:var(--soft);">Model answers</span>
-          <span style="font-size:0.75rem;padding:0.25rem 0.7rem;border:1px solid var(--border);color:var(--soft);">Examiner insight</span>
-          <span style="font-size:0.75rem;padding:0.25rem 0.7rem;border:1px solid var(--border);color:var(--soft);">Strategy tips</span>
-        </div>
-        <a href="https://payhip.com/b/h82Cy" target="_blank" rel="noopener" class="btn-shop-sale">Buy Now — £25 &rarr;</a>
-        <div style="font-size:0.75rem;color:var(--soft);margin-top:0.9rem;display:flex;align-items:center;gap:0.4rem;">
-          <span style="color:#c0392b;font-size:0.85rem;">⚡</span> Instant PDF delivery · Sale ends in <strong style="color:#c0392b;" id="saleCountdownInline">—</strong>
-        </div>
-      </div>
-      <div style="flex-shrink:0;text-align:right;">
-        <div style="font-size:0.78rem;color:var(--soft);font-weight:300;margin-bottom:0.4rem;">One-time purchase</div>
-        <span class="price-was">£100</span>
-        <div class="price-now-sale">£25</div>
-        <span class="price-save-tag">You save £75 — 75% off</span>
-        <div style="margin-top:1rem;font-size:0.72rem;color:var(--soft);">Instant PDF delivery</div>
-      </div>
-    </div>
-
-    <!-- COMPLETE PACK UPSELL -->
-    <div class="resource-shop-upsell reveal">
-      <div>
-        <span class="sale-flash" style="margin-bottom:0.5rem;">🐣 Easter Sale — Best Value</span>
-        <div style="font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--ink);font-weight:400;margin-bottom:0.3rem;">Complete Pack</div>
-        <div style="font-size:0.85rem;color:var(--soft);font-weight:300;">MMI Question Bank PDF + 1x interview coaching session + 1x mock interview — everything in one. <strong style="color:var(--ink);">Save £96</strong> vs buying separately.</div>
-      </div>
-      <div style="display:flex;align-items:center;gap:2rem;flex-shrink:0;flex-wrap:wrap;">
-        <div style="text-align:right;">
-          <div style="font-size:0.78rem;color:var(--soft);text-decoration:line-through;">£195</div>
-          <div style="font-family:'DM Serif Display',serif;font-size:2rem;color:#c0392b;line-height:1.1;">£99</div>
-          <div style="font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;color:#c0392b;margin-top:0.2rem;">Save £96 today</div>
-        </div>
-        <a href="https://calendly.com/stefanmoore-medcoach/complete-pack" target="_blank" rel="noopener" class="btn-shop-sale">Buy Now</a>
-      </div>
-    </div>
-
-    <!-- COMING SOON -->
-    <div class="resource-shop-coming reveal">
-      <div>
-        <div style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--soft);font-weight:500;margin-bottom:0.4rem;">Coming Soon</div>
-        <div style="font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--ink);font-weight:400;">Medical Ethics Framework Guide</div>
-        <div style="font-size:0.82rem;color:var(--soft);font-weight:300;margin-top:0.2rem;">Four pillars, common dilemmas, and answer frameworks for every ethics station.</div>
-      </div>
-      <span style="font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--soft);border:1px solid var(--border);padding:0.4rem 1rem;flex-shrink:0;">Available soon</span>
-    </div>
-
-    <p class="shop-note" style="margin-top:1.2rem;">All PDFs are delivered instantly by email after purchase. Questions? <a href="/cdn-cgi/l/email-protection#ef9c9b8a898e818280809d8ac1828a8b8c808e8c87af88828e8683c18c8082"><span class="__cf_email__" data-cfemail="e69592838087888b89899483c88b8382858987858ea6818b878f8ac885898b">[email&#160;protected]</span></a></p>
-  </div>
-</section>
-
 <!-- BOOK -->
 <section id="book" class="book-sec">
   <div class="sec-inner">
@@ -3377,7 +3456,19 @@
   </div>
 </section>
 
+
 <!-- FOOTER CTA -->
+<div class="footer-cta-section">
+  <div class="footer-cta-inner">
+    <p class="section-label reveal" style="justify-content:center;">Still deciding?</p>
+    <h2 class="reveal">Not sure where to start? <em>We'll help</em></h2>
+    <p class="reveal">Take our 1-minute quiz to find the right session for your stage of prep — or grab the Complete Pack and get everything in one go.</p>
+    <div class="footer-cta-btns reveal">
+      <a href="/quiz.html" target="_blank" rel="noopener" class="btn-primary">Take the Quiz</a>
+      <a href="https://calendly.com/stefanmoore-medcoach/complete-pack" target="_blank" rel="noopener" class="btn-primary-dark">Buy Complete Pack — £99</a>
+    </div>
+  </div>
+</div>
 
 
 <!-- FOOTER -->
@@ -3401,6 +3492,7 @@
     <div class="footer-links">
       <a href="#about">About</a>
       <a href="#services">Services</a>
+      <a href="#resources">Study Guides</a>
       <a href="#tutors">Tutors</a>
       <a href="#faq">FAQ</a>
     </div>
@@ -3423,7 +3515,7 @@
 <!-- MOBILE STICKY CTA -->
 <div class="mobile-sticky-cta" id="mobileCta">
   <p><strong>Ready to start?</strong> Book your session</p>
-  <a href="https://calendly.com/stefanmoore-medcoach/complete-pack" target="_blank" rel="noopener" class="btn-primary">Buy Complete Pack</a>
+  <a href="https://calendly.com/stefanmoore-medcoach/complete-pack" target="_blank" rel="noopener" class="btn-primary" style="padding:0.7rem 1.5rem;font-size:0.75rem;">Complete Pack — £99</a>
 </div>
 
 <!-- EXIT INTENT POPUP -->
@@ -3675,38 +3767,7 @@
     document.querySelector('.resource-form').parentNode.insertBefore(success, document.querySelector('.resource-form'));
   }
 
-  // ====== EASTER SALE COUNTDOWN TIMER ======
-  var SALE_KEY = 'easterSaleDeadline';
-  var SALE_DURATION = 3 * 24 * 60 * 60 * 1000;
-  var saleDeadline;
-  var storedDeadline = localStorage.getItem(SALE_KEY);
-  if (storedDeadline && parseInt(storedDeadline, 10) > Date.now()) {
-    saleDeadline = parseInt(storedDeadline, 10);
-  } else {
-    saleDeadline = Date.now() + SALE_DURATION;
-    localStorage.setItem(SALE_KEY, saleDeadline.toString());
-  }
-
-  function salePad(n) { return String(Math.floor(n)).padStart(2, '0'); }
-
-  function updateSaleTimers() {
-    var remaining = Math.max(0, saleDeadline - Date.now());
-    var d = Math.floor(remaining / 86400000);
-    var h = Math.floor((remaining % 86400000) / 3600000);
-    var m = Math.floor((remaining % 3600000) / 60000);
-    var s = Math.floor((remaining % 60000) / 1000);
-
-    ['easterD','saleD2'].forEach(function(id) { var el = document.getElementById(id); if(el) el.textContent = salePad(d); });
-    ['easterH','saleH2'].forEach(function(id) { var el = document.getElementById(id); if(el) el.textContent = salePad(h); });
-    ['easterM','saleM2'].forEach(function(id) { var el = document.getElementById(id); if(el) el.textContent = salePad(m); });
-    ['easterS','saleS2'].forEach(function(id) { var el = document.getElementById(id); if(el) el.textContent = salePad(s); });
-
-    var il = document.getElementById('saleCountdownInline');
-    if (il) il.textContent = salePad(d) + 'd ' + salePad(h) + 'h ' + salePad(m) + 'm';
-  }
-
-  updateSaleTimers();
-  setInterval(updateSaleTimers, 1000);
+  // ====== SALE (no countdown — clean) ======
 
   function submitExitEmail() {
     var email = document.getElementById('exitEmail').value.trim();
