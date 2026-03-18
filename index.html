@@ -2132,27 +2132,47 @@
   /* ON SALE BADGE */
   .sale-badge-fixed {
     position: fixed;
-    top: 76px;
+    top: 68px;
     right: 0;
     z-index: 99;
-    background: var(--accent);
+    background: #b5842f;
+    background: linear-gradient(135deg, #c8963e 0%, #a87530 100%);
     color: #fff;
-    padding: 0.55rem 1.2rem 0.55rem 1.4rem;
+    padding: 0.85rem 1.6rem 0.85rem 2rem;
     display: flex;
     align-items: center;
-    gap: 0.6rem;
-    clip-path: polygon(10px 0%, 100% 0%, 100% 100%, 0% 100%);
+    gap: 0.8rem;
+    clip-path: polygon(14px 0%, 100% 0%, 100% 100%, 0% 100%);
     cursor: pointer;
     text-decoration: none;
     transition: background 0.25s, transform 0.25s;
-    box-shadow: -2px 3px 12px rgba(0,0,0,0.15);
+    box-shadow: -4px 4px 20px rgba(0,0,0,0.25);
+    border-left: 3px solid rgba(255,255,255,0.2);
   }
-  .sale-badge-fixed:hover { background: #b5842f; transform: translateX(-2px); }
+  .sale-badge-fixed:hover { background: linear-gradient(135deg, #b5842f 0%, #96650a 100%); transform: translateX(-3px); }
+  .sale-badge-eyebrow {
+    font-size: 0.52rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 700;
+    opacity: 0.75;
+    display: block;
+    margin-bottom: 0.15rem;
+  }
   .sale-badge-title {
     font-family: 'DM Serif Display', serif;
-    font-size: 0.92rem;
+    font-size: 1.05rem;
     font-weight: 400;
     white-space: nowrap;
+    display: block;
+    line-height: 1.1;
+  }
+  .sale-badge-sub {
+    font-size: 0.65rem;
+    font-weight: 300;
+    opacity: 0.8;
+    display: block;
+    margin-top: 0.1rem;
   }
   .sale-badge-close {
     background: none;
@@ -2164,11 +2184,13 @@
     padding: 0;
     flex-shrink: 0;
     transition: color 0.2s;
+    margin-left: 0.4rem;
   }
   .sale-badge-close:hover { color: #fff; }
   @media (max-width: 560px) {
-    .sale-badge-fixed { padding: 0.45rem 0.9rem 0.45rem 1.1rem; }
-    .sale-badge-title { font-size: 0.82rem; }
+    .sale-badge-fixed { padding: 0.65rem 1.1rem 0.65rem 1.4rem; }
+    .sale-badge-title { font-size: 0.88rem; }
+    .sale-badge-sub { display: none; }
   }
 
   .price-now-sale {
@@ -2995,6 +3017,11 @@
     padding-left: 2rem;
   }
 
+  /* GUIDE GRID RESPONSIVE */
+  @media (max-width: 700px) {
+    .guide-grid-2col { grid-template-columns: 1fr !important; }
+  }
+
   /* SHOP CARD GOLD BORDER ON HOVER */
   .resource-shop-item {
     transition: border-color 0.3s, box-shadow 0.3s;
@@ -3076,7 +3103,11 @@
 
 <!-- ON SALE BADGE -->
 <a href="#resources" class="sale-badge-fixed" id="saleBadge">
-  <span class="sale-badge-title">On Sale — 75% Off</span>
+  <div>
+    <span class="sale-badge-eyebrow">🔥 Limited Time</span>
+    <span class="sale-badge-title">Complete Med School Pack</span>
+    <span class="sale-badge-sub">75% Off — Everything You Need To Get In</span>
+  </div>
   <button class="sale-badge-close" onclick="event.preventDefault();event.stopPropagation();document.getElementById('saleBadge').style.display='none';" aria-label="Close">✕</button>
 </a>
 
@@ -3284,18 +3315,18 @@
 <!-- RESOURCES SHOP -->
 <section id="resources" class="shop-sec" style="padding-top:0;">
   <!-- SALE STRIP -->
-  <div style="background:var(--accent);color:#fff;padding:0.9rem 6vw;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
-    <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
-      <span style="font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;background:rgba(0,0,0,0.15);padding:0.25rem 0.7rem;">On Sale</span>
-      <span style="font-size:0.92rem;font-weight:300;">All resources <strong style="font-weight:700;">75% off</strong> — limited time only</span>
+  <div style="background:linear-gradient(135deg,#1a1200 0%,#2a1e00 50%,#1a1200 100%);color:#fff;padding:1.1rem 6vw;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;border-bottom:2px solid var(--accent);">
+    <div style="display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;">
+      <span style="font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:800;background:var(--accent);color:#fff;padding:0.3rem 0.8rem;">🔥 On Sale Now</span>
+      <span style="font-size:1rem;font-weight:300;">Complete Med School Pack — <strong style="font-weight:800;color:var(--accent);font-size:1.1rem;">75% off</strong> limited time only</span>
     </div>
-    <a href="https://payhip.com/b/h82Cy" target="_blank" rel="noopener" style="font-size:0.78rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.5);padding-bottom:1px;">Shop Now →</a>
+    <a href="https://payhip.com/b/h82Cy" target="_blank" rel="noopener" style="font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--accent);text-decoration:none;border:1px solid var(--accent);padding:0.5rem 1.2rem;transition:background 0.2s;" onmouseover="this.style.background='rgba(200,150,62,0.15)'" onmouseout="this.style.background='transparent'">Get the Pack →</a>
   </div>
 
   <div class="sec-inner" style="padding-top:4rem;">
     <p class="section-label reveal">Study Guides</p>
-    <h2 class="reveal">PDF study guides <em>delivered instantly</em></h2>
-    <p class="section-desc reveal">Written by current medical students. Download and work through at your own pace.</p>
+    <h2 class="reveal">Everything you need <em>to get into medical school</em></h2>
+    <p class="section-desc reveal">10 comprehensive guides written by current Peninsula Medical School students who got 6 offers from 6 interviews. One bundle. Every stage of your application covered.</p>
 
     <!-- SOCIAL PROOF STRIP -->
     <div class="shop-proof reveal">
@@ -3311,43 +3342,149 @@
         <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 12.6A5.6 5.6 0 1113.6 8 5.6 5.6 0 018 13.6zM8.4 4H7.2v4.4l3.8 2.3.6-1-3.2-1.9V4z" fill="currentColor"/></svg>
         <span>Instant delivery after purchase</span>
       </div>
-    </div>
-
-    <!-- PRIMARY PRODUCT -->
-    <div class="resource-shop-item reveal" style="border:2px solid var(--accent);position:relative;overflow:hidden;">
-      <div style="position:absolute;top:16px;right:-32px;background:var(--accent);color:#fff;font-size:0.55rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:0.3rem 2.8rem;transform:rotate(35deg);z-index:2;white-space:nowrap;">75% OFF</div>
-      <div style="flex:1; min-width: 260px;">
-        <span class="sale-flash">On Sale</span>
-        <div style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:0.6rem;">PDF Download · Instant Delivery</div>
-        <h3 style="font-family:'DM Serif Display',serif;font-size:1.4rem;font-weight:400;color:var(--ink);margin-bottom:0.6rem;">MMI Question Bank</h3>
-        <p style="font-size:0.9rem;color:var(--soft);font-weight:300;line-height:1.7;margin-bottom:1.2rem;max-width:520px;">50 stations across 6 categories — ethics, communication, NHS systems, personal qualities, scenarios, and medical knowledge. Every station includes a model answer, examiner insight, and a strategy tip.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.5rem;">
-          <span style="font-size:0.75rem;padding:0.25rem 0.7rem;border:1px solid var(--border);color:var(--soft);">50 stations</span>
-          <span style="font-size:0.75rem;padding:0.25rem 0.7rem;border:1px solid var(--border);color:var(--soft);">6 categories</span>
-          <span style="font-size:0.75rem;padding:0.25rem 0.7rem;border:1px solid var(--border);color:var(--soft);">Model answers</span>
-          <span style="font-size:0.75rem;padding:0.25rem 0.7rem;border:1px solid var(--border);color:var(--soft);">Examiner insight</span>
-          <span style="font-size:0.75rem;padding:0.25rem 0.7rem;border:1px solid var(--border);color:var(--soft);">Strategy tips</span>
-        </div>
-        <a href="https://payhip.com/b/h82Cy" target="_blank" rel="noopener" class="btn-shop-sale">Buy Now — £25 →</a>
-        <div style="font-size:0.75rem;color:var(--soft);margin-top:0.9rem;display:flex;align-items:center;gap:0.4rem;">
-          <span style="color:var(--accent);font-size:0.85rem;">⚡</span> Instant PDF delivery after purchase
-        </div>
-      </div>
-      <div style="flex-shrink:0;text-align:right;">
-        <div style="font-size:0.78rem;color:var(--soft);font-weight:300;margin-bottom:0.4rem;">One-time purchase</div>
-        <span class="price-was">£100</span>
-        <div class="price-now-sale">£25</div>
-        <span class="price-save-tag">You save £75 — 75% off</span>
-        <div style="margin-top:1rem;font-size:0.72rem;color:var(--soft);">Instant PDF delivery</div>
+      <div class="shop-proof-item">
+        <svg viewBox="0 0 16 16" fill="none" width="14" height="14"><path d="M2 4h12v9H2zM2 4l6 5 6-5" stroke="currentColor" stroke-width="1.3" fill="none"/></svg>
+        <span><strong>10 guides</strong> — every stage covered</span>
       </div>
     </div>
 
-    <!-- COMPLETE PACK UPSELL -->
-    <div class="resource-shop-upsell reveal">
+    <!-- PRIMARY PRODUCT — THE COMPLETE BUNDLE -->
+    <div class="resource-shop-item reveal" style="border:2.5px solid var(--accent);position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(200,150,62,0.04) 0%,var(--bg) 60%);flex-direction:column;gap:0;padding:0;">
+
+      <!-- RIBBON -->
+      <div style="position:absolute;top:20px;right:-36px;background:linear-gradient(135deg,#c8963e,#a87530);color:#fff;font-size:0.58rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;padding:0.35rem 3.5rem;transform:rotate(35deg);z-index:2;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.2);">75% OFF</div>
+
+      <!-- HEADER BAR -->
+      <div style="background:linear-gradient(135deg,#111 0%,#1a1200 100%);padding:1.8rem 2.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;border-bottom:1px solid rgba(200,150,62,0.3);">
+        <div>
+          <span style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);font-weight:700;display:block;margin-bottom:0.5rem;">🎓 Complete Med School Pack · PDF Bundle · Instant Delivery</span>
+          <h3 style="font-family:'DM Serif Display',serif;font-size:1.8rem;font-weight:400;color:#fff;line-height:1.15;margin-bottom:0.3rem;">Everything You Need to Get <em style="color:rgba(255,255,255,0.5);">Into Medical School</em></h3>
+          <p style="font-size:0.9rem;color:rgba(255,255,255,0.55);font-weight:300;line-height:1.6;max-width:540px;">10 expert guides covering every single stage of your application — from A-level choices to your offer. Written by two students who received 6 offers from 6 interviews.</p>
+        </div>
+        <div style="text-align:right;flex-shrink:0;">
+          <div style="font-size:0.78rem;color:rgba(255,255,255,0.35);text-decoration:line-through;margin-bottom:0.2rem;">£100</div>
+          <div style="font-family:'DM Serif Display',serif;font-size:3rem;color:var(--accent);line-height:1;">£25</div>
+          <div style="font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:#6bcf8f;margin-top:0.2rem;font-weight:600;">You save £75 today</div>
+        </div>
+      </div>
+
+      <!-- WHAT YOU GET — THE 10 GUIDES -->
+      <div style="padding:2rem 2.5rem;">
+        <div style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.8rem;">
+          <span style="display:block;width:24px;height:1px;background:var(--accent);flex-shrink:0;"></span>
+          What's included — 10 complete guides
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0.8rem;margin-bottom:2rem;">
+
+          <div style="display:flex;gap:0.9rem;align-items:flex-start;padding:1rem 1.2rem;border:1px solid var(--border);background:var(--light-bg);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+            <div style="flex-shrink:0;width:28px;height:28px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:0.8rem;color:#fff;font-weight:400;">01</div>
+            <div>
+              <div style="font-family:'DM Serif Display',serif;font-size:0.95rem;color:var(--ink);margin-bottom:0.2rem;line-height:1.2;">How to Get Into Medical School</div>
+              <div style="font-size:0.78rem;color:var(--soft);font-weight:300;line-height:1.5;">The complete 10-step guide from GCSEs to receiving your offer. England-specific, updated 2026.</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:0.9rem;align-items:flex-start;padding:1rem 1.2rem;border:1px solid var(--border);background:var(--light-bg);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+            <div style="flex-shrink:0;width:28px;height:28px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:0.8rem;color:#fff;font-weight:400;">02</div>
+            <div>
+              <div style="font-family:'DM Serif Display',serif;font-size:0.95rem;color:var(--ink);margin-bottom:0.2rem;line-height:1.2;">Interview Masterclass</div>
+              <div style="font-size:0.78rem;color:var(--soft);font-weight:300;line-height:1.5;">MMI and panel fully explained. Every framework, station type, and on-the-day strategy.</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:0.9rem;align-items:flex-start;padding:1rem 1.2rem;border:1px solid var(--border);background:var(--light-bg);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+            <div style="flex-shrink:0;width:28px;height:28px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:0.8rem;color:#fff;font-weight:400;">03</div>
+            <div>
+              <div style="font-family:'DM Serif Display',serif;font-size:0.95rem;color:var(--ink);margin-bottom:0.2rem;line-height:1.2;">50 MMI Question Bank</div>
+              <div style="font-size:0.78rem;color:var(--soft);font-weight:300;line-height:1.5;">50 stations across 6 categories — ethics, communication, NHS, personal qualities, scenarios. Model answers included.</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:0.9rem;align-items:flex-start;padding:1rem 1.2rem;border:1px solid var(--border);background:var(--light-bg);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+            <div style="flex-shrink:0;width:28px;height:28px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:0.8rem;color:#fff;font-weight:400;">04</div>
+            <div>
+              <div style="font-family:'DM Serif Display',serif;font-size:0.95rem;color:var(--ink);margin-bottom:0.2rem;line-height:1.2;">Medical School Comparison Guide</div>
+              <div style="font-size:0.78rem;color:var(--soft);font-weight:300;line-height:1.5;">21 schools compared — interview format, UCAT weighting, GCSE scoring, and who each school actually suits.</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:0.9rem;align-items:flex-start;padding:1rem 1.2rem;border:1px solid var(--border);background:var(--light-bg);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+            <div style="flex-shrink:0;width:28px;height:28px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:0.8rem;color:#fff;font-weight:400;">05</div>
+            <div>
+              <div style="font-family:'DM Serif Display',serif;font-size:0.95rem;color:var(--ink);margin-bottom:0.2rem;line-height:1.2;">Personal Statement &amp; UCAS Guide</div>
+              <div style="font-size:0.78rem;color:var(--soft);font-weight:300;line-height:1.5;">How to write a standout personal statement. What selectors look for, what to avoid, and how to structure your UCAS application.</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:0.9rem;align-items:flex-start;padding:1rem 1.2rem;border:1px solid var(--border);background:var(--light-bg);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+            <div style="flex-shrink:0;width:28px;height:28px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:0.8rem;color:#fff;font-weight:400;">06</div>
+            <div>
+              <div style="font-family:'DM Serif Display',serif;font-size:0.95rem;color:var(--ink);margin-bottom:0.2rem;line-height:1.2;">NHS Hot Topics 2026</div>
+              <div style="font-size:0.78rem;color:var(--soft);font-weight:300;line-height:1.5;">The key debates every applicant must know — AI in medicine, junior doctor pay, 18-week waits, obesity, mental health gaps.</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:0.9rem;align-items:flex-start;padding:1rem 1.2rem;border:1px solid var(--border);background:var(--light-bg);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+            <div style="flex-shrink:0;width:28px;height:28px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:0.8rem;color:#fff;font-weight:400;">07</div>
+            <div>
+              <div style="font-family:'DM Serif Display',serif;font-size:0.95rem;color:var(--ink);margin-bottom:0.2rem;line-height:1.2;">What is UCAT &amp; How to Pass</div>
+              <div style="font-size:0.78rem;color:var(--soft);font-weight:300;line-height:1.5;">Full breakdown of the 2026 UCAT format, scoring, preparation strategy, and school-by-school weighting.</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:0.9rem;align-items:flex-start;padding:1rem 1.2rem;border:1px solid var(--border);background:var(--light-bg);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+            <div style="flex-shrink:0;width:28px;height:28px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:0.8rem;color:#fff;font-weight:400;">08</div>
+            <div>
+              <div style="font-family:'DM Serif Display',serif;font-size:0.95rem;color:var(--ink);margin-bottom:0.2rem;line-height:1.2;">Work Experience Guide</div>
+              <div style="font-size:0.78rem;color:var(--soft);font-weight:300;line-height:1.5;">How to find, reflect on, and write about your clinical and caring experience in a way that actually impresses selectors.</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:0.9rem;align-items:flex-start;padding:1rem 1.2rem;border:1px solid var(--border);background:var(--light-bg);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+            <div style="flex-shrink:0;width:28px;height:28px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:0.8rem;color:#fff;font-weight:400;">09</div>
+            <div>
+              <div style="font-family:'DM Serif Display',serif;font-size:0.95rem;color:var(--ink);margin-bottom:0.2rem;line-height:1.2;">A-Level Subject Guide</div>
+              <div style="font-size:0.78rem;color:var(--soft);font-weight:300;line-height:1.5;">Which subjects to take, which are risky, which schools accept what — for Year 10 &amp; 11 students before it's too late to change.</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:0.9rem;align-items:flex-start;padding:1rem 1.2rem;border:1px solid var(--border);background:var(--light-bg);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+            <div style="flex-shrink:0;width:28px;height:28px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:0.8rem;color:#fff;font-weight:400;">10</div>
+            <div>
+              <div style="font-family:'DM Serif Display',serif;font-size:0.95rem;color:var(--ink);margin-bottom:0.2rem;line-height:1.2;">Gap Year &amp; Reapplication Guide</div>
+              <div style="font-size:0.78rem;color:var(--soft);font-weight:300;line-height:1.5;">What to do after rejection. How to use the year, resit UCAT, rewrite your statement, and come back stronger.</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- CTA ROW -->
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;padding-top:1.5rem;border-top:1px solid var(--border);">
+          <div>
+            <div style="font-size:0.78rem;color:var(--soft);font-weight:300;margin-bottom:0.3rem;">One-time purchase · Instant PDF delivery</div>
+            <div style="display:flex;align-items:baseline;gap:0.8rem;">
+              <span style="font-family:'DM Serif Display',serif;font-size:2.8rem;color:var(--accent);line-height:1;">£25</span>
+              <span style="font-size:1rem;color:var(--soft);text-decoration:line-through;font-weight:300;">£100</span>
+              <span style="font-size:0.75rem;background:#6bcf8f;color:#0d1a0d;padding:0.2rem 0.6rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;">75% OFF</span>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.6rem;">
+            <a href="https://payhip.com/b/h82Cy" target="_blank" rel="noopener" class="btn-shop-sale" style="font-size:0.9rem;padding:1rem 2.5rem;">Get the Complete Pack →</a>
+            <div style="font-size:0.72rem;color:var(--soft);display:flex;align-items:center;gap:0.4rem;">
+              <span style="color:var(--accent);">⚡</span> Instant PDF delivery · 10 guides · No subscription
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPLETE PACK UPSELL (coaching bundle) -->
+    <div class="resource-shop-upsell reveal" style="margin-top:1px;">
       <div>
-        <span class="sale-flash" style="margin-bottom:0.5rem;">Best Value — On Sale</span>
-        <div style="font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--ink);font-weight:400;margin-bottom:0.3rem;">Complete Pack</div>
-        <div style="font-size:0.85rem;color:var(--soft);font-weight:300;">MMI Question Bank PDF + 1x interview coaching session + 1x mock interview — everything in one. <strong style="color:var(--ink);">Save £96</strong> vs buying separately.</div>
+        <span class="sale-flash" style="margin-bottom:0.5rem;">Best Value — Coaching + Guides</span>
+        <div style="font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--ink);font-weight:400;margin-bottom:0.3rem;">Complete Pack — Guides + Coaching</div>
+        <div style="font-size:0.85rem;color:var(--soft);font-weight:300;">All 10 PDF guides + 1-to-1 interview coaching + 1 mock interview. Everything in one package. <strong style="color:var(--ink);">Save £96</strong> vs buying separately.</div>
       </div>
       <div style="display:flex;align-items:center;gap:2rem;flex-shrink:0;flex-wrap:wrap;">
         <div style="text-align:right;">
@@ -3359,17 +3496,7 @@
       </div>
     </div>
 
-    <!-- COMING SOON -->
-    <div class="resource-shop-coming reveal">
-      <div>
-        <div style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--soft);font-weight:500;margin-bottom:0.4rem;">Coming Soon</div>
-        <div style="font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--ink);font-weight:400;">Medical Ethics Framework Guide</div>
-        <div style="font-size:0.82rem;color:var(--soft);font-weight:300;margin-top:0.2rem;">Four pillars, common dilemmas, and answer frameworks for every ethics station.</div>
-      </div>
-      <span style="font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--soft);border:1px solid var(--border);padding:0.4rem 1rem;flex-shrink:0;">Available soon</span>
-    </div>
-
-    <p class="shop-note" style="margin-top:1.2rem;">All PDFs are delivered instantly by email after purchase. Questions? <a href="/cdn-cgi/l/email-protection#ef9c9b8a898e818280809d8ac1828a8b8c808e8c87af88828e8683c18c8082"><span class="__cf_email__" data-cfemail="e69592838087888b89899483c88b8382858987858ea6818b878f8ac885898b">[email&#160;protected]</span></a></p>
+    <p class="shop-note" style="margin-top:1.2rem;">All PDFs are delivered instantly after purchase. Questions? <a href="mailto:hello@medcoach.uk">hello@medcoach.uk</a></p>
   </div>
 </section>
 
