@@ -15,6 +15,29 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon.svg">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script>
+  // Apply saved theme immediately before first paint to prevent flash
+  (function() {
+    try {
+      var saved = localStorage.getItem('medcoach-theme');
+      if (saved) {
+        document.documentElement.setAttribute('data-theme', saved);
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    } catch(e) {}
+  })();
+
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    try { localStorage.setItem('medcoach-theme', theme); } catch(e) {}
+  }
+
+  function toggleTheme() {
+    var current = document.documentElement.getAttribute('data-theme');
+    applyTheme(current === 'dark' ? 'light' : 'dark');
+  }
+</script>
 <style>
   :root {
     --ink: #111;
@@ -3873,28 +3896,7 @@
 </div>
 
 <script>
-  // ====== THEME TOGGLE ======
-  function applyTheme(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('medcoach-theme', theme);
-  }
-
-  function toggleTheme() {
-    var current = document.documentElement.getAttribute('data-theme');
-    applyTheme(current === 'dark' ? 'light' : 'dark');
-  }
-
-  // Apply saved theme immediately (before paint to avoid flash)
-  (function() {
-    var saved = localStorage.getItem('medcoach-theme');
-    if (saved) {
-      document.documentElement.setAttribute('data-theme', saved);
-    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      document.documentElement.setAttribute('data-theme', 'dark');
-    }
-  })();
-
-  // Show mobile theme toggle when hamburger is visible
+  // ====== MOBILE TOGGLE VISIBILITY ======
   function updateMobileToggleVisibility() {
     var mobileToggle = document.getElementById('mobileThemeToggle');
     if (mobileToggle) {
