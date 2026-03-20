@@ -4176,4 +4176,35 @@
     var lines = document.querySelectorAll('.section-accent-line');
     lines.forEach(function(line) {
       var rect = line.getBoundingClientRect();
-      if (rect.top < window.innerH
+      if (rect.top < window.innerHeight - 40 && rect.bottom > 0) {
+        line.classList.add('active');
+      } else {
+        line.classList.remove('active');
+      }
+    });
+  }
+
+  // ====== PARALLAX HERO ORBS ======
+  function parallaxOrbs() {
+    var scrollY = window.scrollY;
+    var orb1 = document.querySelector('.hero-orb-1');
+    var orb2 = document.querySelector('.hero-orb-2');
+    if (orb1) orb1.style.transform = 'translateY(' + (scrollY * 0.15) + 'px)';
+    if (orb2) orb2.style.transform = 'translateY(' + (scrollY * -0.1) + 'px)';
+  }
+
+  // Register all additional scroll handlers
+  window.addEventListener('scroll', function() {
+    animateResourcePreviews();
+    animateAccentLines();
+    parallaxOrbs();
+  }, { passive: true });
+
+  // Run once on load
+  animateResourcePreviews();
+  animateAccentLines();
+
+</script>
+
+</body>
+</html>
