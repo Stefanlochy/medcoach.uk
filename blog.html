@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MedCoach Blog | Medical Interview Tips & Advice</title>
+<meta name="description" content="Free medical interview tips, MMI advice, and preparation guides from current medical students who went 6/6 at interview.">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CKYY2WXNWD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-CKYY2WXNWD');
+</script>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script>
+  (function() {
+    try {
+      var saved = localStorage.getItem('medcoach-theme');
+      if (saved) {
+        document.documentElement.setAttribute('data-theme', saved);
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    } catch(e) {}
+  })();
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    try { localStorage.setItem('medcoach-theme', theme); } catch(e) {}
+  }
+  function toggleTheme() {
+    var current = document.documentElement.getAttribute('data-theme');
+    applyTheme(current === 'dark' ? 'light' : 'dark');
+  }
+</script>
+<style>
+  :root {
+    --ink: #111;
+    --soft: #555;
+    --border: #e5e5e5;
+    --bg: #fff;
+    --accent: #c8963e;
+    --light-bg: #fafaf8;
+  }
+  [data-theme="dark"] {
+    --ink: #f0ede8;
+    --soft: #999;
+    --border: #2a2a2a;
+    --bg: #0e0e0c;
+    --accent: #c8963e;
+    --light-bg: #161614;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.6;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 6vw;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  [data-theme="dark"] nav { background: rgba(14,14,12,0.95); }
+  nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+
+  .logo { display: flex; align-items: center; text-decoration: none; }
+  .logo svg { display: block; }
+
+  .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.8rem; font-weight: 400; letter-spacing: 0.05em;
+    text-transform: uppercase; color: var(--soft); transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-links a.active-nav { color: var(--ink); border-bottom: 1.5px solid var(--accent); padding-bottom: 2px; }
+
+  .nav-cta {
+    font-size: 0.78rem !important; color: var(--ink) !important;
+    border-bottom: 1.5px solid var(--ink); padding-bottom: 1px;
+    letter-spacing: 0.04em !important; text-transform: uppercase !important;
+    transition: color 0.2s, border-color 0.2s !important;
+  }
+  .nav-cta:hover { color: var(--accent) !important; border-color: var(--accent) !important; }
+
+  .nav-free {
+    font-size: 0.78rem !important; color: #6bcf8f !important;
+    letter-spacing: 0.04em !important; text-transform: uppercase !important;
+    border-bottom: 1px solid rgba(107,207,143,0.4) !important; padding-bottom: 1px;
+    transition: color 0.2s, border-color 0.2s !important;
+  }
+  .nav-free:hover { color: #4db878 !important; border-color: #4db878 !important; }
+
+  /* THEME TOGGLE */
+  .theme-toggle {
+    background: none; border: 1px solid var(--border); color: var(--soft);
+    cursor: pointer; width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    transition: border-color 0.2s, color 0.2s; flex-shrink: 0; padding: 0;
+  }
+  .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+  .theme-toggle svg { width: 15px; height: 15px; }
+  .icon-sun { display: none; }
+  .icon-moon { display: block; }
+  [data-theme="dark"] .icon-sun { display: block; }
+  [data-theme="dark"] .icon-moon { display: none; }
+
+  /* HAMBURGER */
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px; cursor: pointer;
+    padding: 4px; background: none; border: none; z-index: 200;
+  }
+  .hamburger span {
+    display: block; width: 22px; height: 1.5px; background: var(--ink);
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  .hamburger.active span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .hamburger.active span:nth-child(2) { opacity: 0; }
+  .hamburger.active span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(255,255,255,0.98); backdrop-filter: blur(20px); z-index: 150;
+    flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem;
+  }
+  [data-theme="dark"] .mobile-menu { background: rgba(14,14,12,0.98); }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-size: 1.1rem; font-weight: 400; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--ink); transition: color 0.2s;
+  }
+  .mobile-menu a:hover { color: var(--accent); }
+
+  /* PAGE CONTENT */
+  .page-hero {
+    padding: 8rem 6vw 4rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .page-hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .back-link {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.78rem; letter-spacing: 0.05em; text-transform: uppercase;
+    color: var(--soft); margin-bottom: 2rem; transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--accent); }
+  .back-link svg { width: 16px; height: 16px; }
+
+  .section-label {
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .section-label::before { content: ''; width: 24px; height: 1px; background: var(--accent); display: block; }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 400; line-height: 1.15; letter-spacing: -0.01em;
+    color: var(--ink); margin-bottom: 1rem; transition: color 0.3s;
+  }
+  h1 em { font-style: italic; color: var(--soft); }
+
+  .page-desc {
+    font-size: 0.95rem; color: var(--soft); font-weight: 300;
+    max-width: 560px; line-height: 1.8; transition: color 0.3s;
+  }
+
+  /* BLOG GRID */
+  .blog-section {
+    padding: 4rem 6vw 6rem;
+    background: var(--light-bg);
+    transition: background 0.3s;
+  }
+  .blog-inner { max-width: 1100px; margin: 0 auto; }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    transition: background 0.3s, border-color 0.3s;
+  }
+  [data-theme="dark"] .blog-grid { background: #1e1e1c; }
+
+  .blog-card {
+    background: var(--bg);
+    padding: 2.5rem;
+    display: flex; flex-direction: column;
+    transition: background 0.2s, transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s;
+  }
+  .blog-card:hover {
+    background: var(--light-bg);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.06);
+  }
+  [data-theme="dark"] .blog-card { background: #0e0e0c; }
+  [data-theme="dark"] .blog-card:hover { background: #161614; }
+
+  .blog-card-tag {
+    font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; margin-bottom: 1rem;
+  }
+  .blog-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.25rem; font-weight: 400; color: var(--ink);
+    line-height: 1.3; margin-bottom: 0.8rem; transition: color 0.3s;
+  }
+  .blog-card p {
+    font-size: 0.88rem; color: var(--soft); font-weight: 300;
+    line-height: 1.75; margin-bottom: 1.5rem; flex: 1; transition: color 0.3s;
+  }
+  .blog-card-meta {
+    font-size: 0.75rem; color: var(--soft); font-weight: 300;
+    display: flex; align-items: center; gap: 1rem;
+    padding-top: 1rem; border-top: 1px solid var(--border);
+    transition: color 0.3s, border-color 0.3s;
+  }
+  .blog-card-read {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--accent);
+    margin-left: auto; transition: color 0.2s;
+  }
+  .blog-card:hover .blog-card-read { color: var(--ink); }
+
+  /* EMPTY STATE */
+  .blog-empty {
+    padding: 5rem 2rem;
+    text-align: center;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .blog-empty-icon {
+    font-size: 2.5rem; margin-bottom: 1.5rem; opacity: 0.3;
+  }
+  .blog-empty h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem; font-weight: 400; color: var(--ink);
+    margin-bottom: 0.6rem; transition: color 0.3s;
+  }
+  .blog-empty p {
+    font-size: 0.9rem; color: var(--soft); font-weight: 300;
+    max-width: 400px; margin: 0 auto; line-height: 1.7; transition: color 0.3s;
+  }
+
+  /* CTA STRIP */
+  .blog-cta {
+    margin-top: 4rem; padding: 3rem;
+    background: var(--bg); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 2rem; flex-wrap: wrap;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .blog-cta h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem; font-weight: 400; color: var(--ink);
+    margin-bottom: 0.3rem; transition: color 0.3s;
+  }
+  .blog-cta h3 em { font-style: italic; color: var(--soft); }
+  .blog-cta p {
+    font-size: 0.88rem; color: var(--soft); font-weight: 300; transition: color 0.3s;
+  }
+  .btn-primary {
+    background: var(--accent); color: #fff;
+    padding: 0.9rem 2rem; font-size: 0.82rem; font-weight: 500;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    display: inline-block; font-family: 'DM Sans', sans-serif;
+    transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+  }
+  .btn-primary:hover { background: #b5842f; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(200,150,62,0.25); }
+
+  /* FOOTER */
+  footer {
+    background: #111; color: rgba(255,255,255,0.5);
+    padding: 3rem 6vw; display: flex; justify-content: space-between;
+    align-items: flex-start; gap: 2rem; flex-wrap: wrap;
+    font-size: 0.82rem; font-weight: 300;
+  }
+  .footer-logo { margin-bottom: 0.8rem; }
+  .footer-note { font-size: 0.75rem; margin-bottom: 0.3rem; }
+  .footer-contact a { color: var(--accent); transition: color 0.2s; }
+  .footer-contact a:hover { color: #fff; }
+  .footer-links { display: flex; gap: 1.5rem; margin-bottom: 1.2rem; flex-wrap: wrap; }
+  .footer-links a { color: rgba(255,255,255,0.5); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; transition: color 0.2s; }
+  .footer-links a:hover { color: #fff; }
+  .footer-socials-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 0.6rem; }
+  .social-link {
+    display: flex; align-items: center; gap: 0.7rem;
+    padding: 0.65rem 1.2rem; border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.6); transition: all 0.25s; text-decoration: none;
+  }
+  .social-link:hover { border-color: rgba(200,150,62,0.5); color: #fff; background: rgba(255,255,255,0.05); }
+  .social-link svg { width: 20px; height: 20px; flex-shrink: 0; }
+  .social-link span { font-size: 0.85rem; font-weight: 400; }
+  .social-arrow { font-size: 0.8rem; opacity: 0.4; transition: opacity 0.25s, transform 0.25s; }
+  .social-link:hover .social-arrow { opacity: 1; transform: translateX(3px); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .blog-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 700px) {
+    .blog-cta { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="logo" aria-label="MedCoach Home">
+    <svg width="200" height="34" viewBox="0 0 270 44" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 8 Q8 20 16 20 Q24 20 24 8" fill="none" stroke="#c8963e" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="8" cy="6" r="2.5" fill="#c8963e"/>
+      <circle cx="24" cy="6" r="2.5" fill="#c8963e"/>
+      <line x1="16" y1="20" x2="16" y2="30" stroke="#c8963e" stroke-width="1.8"/>
+      <circle cx="16" cy="34" r="4" fill="none" stroke="#c8963e" stroke-width="1.8"/>
+      <text x="42" y="34" font-family="'DM Serif Display', Georgia, serif" font-size="34" font-weight="400" fill="#c8963e">Med</text>
+      <text x="122" y="34" font-family="'DM Serif Display', Georgia, serif" font-size="34" font-weight="400" fill="#c8963e" font-style="italic">Coach</text>
+    </svg>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/#about">About</a></li>
+    <li><a href="/#services">Services</a></li>
+    <li><a href="/#tutors">Tutors</a></li>
+    <li><a href="/#resources">Study Guides</a></li>
+    <li><a href="/#faq">FAQ</a></li>
+    <li><a href="/blog.html" class="active-nav">Blog</a></li>
+    <li><a href="/#free-resource" class="nav-free">Free MMI Questions</a></li>
+    <li><a href="/#book" class="nav-cta">Book Now</a></li>
+    <li>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+    </li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:0.75rem;">
+    <button class="theme-toggle" id="mobileThemeToggle" onclick="toggleTheme()" aria-label="Toggle dark mode" style="display:none;">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/#about" onclick="toggleMenu()">About</a>
+  <a href="/#services" onclick="toggleMenu()">Services</a>
+  <a href="/#tutors" onclick="toggleMenu()">Tutors</a>
+  <a href="/#resources" onclick="toggleMenu()">Study Guides</a>
+  <a href="/#faq" onclick="toggleMenu()">FAQ</a>
+  <a href="/blog.html" onclick="toggleMenu()" style="color:var(--accent);">Blog</a>
+  <a href="/#free-resource" onclick="toggleMenu()" style="color:#6bcf8f;">Free MMI Questions</a>
+  <a href="https://calendly.com/stefanmoore-medcoach/complete-pack" target="_blank" rel="noopener" class="btn-primary" onclick="toggleMenu()">Buy All-In Package</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <a href="/" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back to home
+    </a>
+    <p class="section-label">MedCoach Blog</p>
+    <h1>Interview tips & <em>advice</em></h1>
+    <p class="page-desc">Free guides, strategies, and insider tips from medical students who went 6 for 6 at interview. Everything you need to prepare with confidence.</p>
+  </div>
+</div>
+
+<!-- BLOG LISTING -->
+<div class="blog-section">
+  <div class="blog-inner">
+
+    <!-- ============================================
+         BLOG POSTS GO HERE
+         
+         To add a new blog post:
+         1. Create a new HTML file in /blog/ folder (e.g. blog/mmi-interview-tips.html)
+         2. Copy the blog-post-template.html and fill in your content
+         3. Add a card below using this format:
+
+         <a href="/blog/your-post-slug.html" class="blog-card">
+           <span class="blog-card-tag">Category</span>
+           <h3>Your Blog Post Title</h3>
+           <p>A short 1-2 sentence description of what the post covers.</p>
+           <div class="blog-card-meta">
+             <span>April 2026</span>
+             <span>5 min read</span>
+             <span class="blog-card-read">Read &rarr;</span>
+           </div>
+         </a>
+
+         ============================================ -->
+
+    <!-- EMPTY STATE (remove this div once you add your first blog card above) -->
+    <div class="blog-empty">
+      <div class="blog-empty-icon">✍️</div>
+      <h3>Posts coming soon</h3>
+      <p>We're writing our first guides right now. Check back soon for MMI tips, interview strategies, and preparation advice.</p>
+    </div>
+
+    <!-- EXAMPLE: Uncomment the grid below and add cards when ready
+    <div class="blog-grid">
+      <a href="/blog/mmi-interview-tips.html" class="blog-card">
+        <span class="blog-card-tag">MMI Preparation</span>
+        <h3>How to Prepare for MMI Interviews: A Complete Guide</h3>
+        <p>Everything you need to know about the MMI format, what stations look like, and how to practise effectively.</p>
+        <div class="blog-card-meta">
+          <span>April 2026</span>
+          <span>8 min read</span>
+          <span class="blog-card-read">Read &rarr;</span>
+        </div>
+      </a>
+      <a href="/blog/common-mmi-mistakes.html" class="blog-card">
+        <span class="blog-card-tag">Interview Tips</span>
+        <h3>7 MMI Mistakes That Cost People Their Offer</h3>
+        <p>The most common errors we see in mock interviews, and exactly how to avoid each one.</p>
+        <div class="blog-card-meta">
+          <span>April 2026</span>
+          <span>5 min read</span>
+          <span class="blog-card-read">Read &rarr;</span>
+        </div>
+      </a>
+      <a href="/blog/nhs-hot-topics-2026.html" class="blog-card">
+        <span class="blog-card-tag">NHS Knowledge</span>
+        <h3>NHS Hot Topics for Medicine Interviews 2026</h3>
+        <p>The key NHS issues you need to understand and be ready to discuss at interview this cycle.</p>
+        <div class="blog-card-meta">
+          <span>April 2026</span>
+          <span>6 min read</span>
+          <span class="blog-card-read">Read &rarr;</span>
+        </div>
+      </a>
+    </div>
+    -->
+
+    <!-- CTA -->
+    <div class="blog-cta">
+      <div>
+        <h3>Want personalised <em>feedback?</em></h3>
+        <p>Our blog gives you the theory. A 1-to-1 session puts it into practice.</p>
+      </div>
+      <a href="https://calendly.com/stefanmoore-medcoach/complete-pack" target="_blank" rel="noopener" class="btn-primary">Book a Session</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    <div class="footer-logo">
+      <svg width="160" height="28" viewBox="0 0 270 44" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 8 Q8 20 16 20 Q24 20 24 8" fill="none" stroke="#c8963e" stroke-width="1.8" stroke-linecap="round"/>
+        <circle cx="8" cy="6" r="2.5" fill="#c8963e"/>
+        <circle cx="24" cy="6" r="2.5" fill="#c8963e"/>
+        <line x1="16" y1="20" x2="16" y2="30" stroke="#c8963e" stroke-width="1.8"/>
+        <circle cx="16" cy="34" r="4" fill="none" stroke="#c8963e" stroke-width="1.8"/>
+        <text x="42" y="34" font-family="'DM Serif Display', Georgia, serif" font-size="34" font-weight="400" fill="rgba(255,255,255,0.7)">Med</text>
+        <text x="122" y="34" font-family="'DM Serif Display', Georgia, serif" font-size="34" font-weight="400" fill="#c8963e" font-style="italic">Coach</text>
+      </svg>
+    </div>
+    <p class="footer-note">&copy; 2025 MedCoach</p>
+    <p class="footer-contact">Questions? <a href="mailto:hello@medcoach.co.uk">hello@medcoach.co.uk</a></p>
+  </div>
+  <div class="footer-right">
+    <div class="footer-links">
+      <a href="/#about">About</a>
+      <a href="/#services">Services</a>
+      <a href="/blog.html">Blog</a>
+      <a href="/#resources">Study Guides</a>
+      <a href="/#tutors">Tutors</a>
+      <a href="/#faq">FAQ</a>
+    </div>
+    <div class="footer-socials">
+      <p class="footer-socials-label">Follow us on socials</p>
+      <a href="https://www.instagram.com/medcoach.uk/" target="_blank" rel="noopener" class="social-link">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        <span>@medcoach.uk</span>
+        <span class="social-arrow">&rarr;</span>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile toggle visibility
+  function updateMobileToggleVisibility() {
+    var mobileToggle = document.getElementById('mobileThemeToggle');
+    if (mobileToggle) {
+      mobileToggle.style.display = window.innerWidth <= 900 ? 'flex' : 'none';
+    }
+  }
+  window.addEventListener('resize', updateMobileToggleVisibility);
+  updateMobileToggleVisibility();
+
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+    document.querySelector('.hamburger').classList.toggle('active');
+    document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
+  }
+
+  // Nav shadow
+  window.addEventListener('scroll', function() {
+    document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+
+</body>
+</html>
