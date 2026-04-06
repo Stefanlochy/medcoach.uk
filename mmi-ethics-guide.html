@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MMI Ethical Scenarios: How to Answer Any Ethics Question | MedCoach Blog</title>
+<meta name="description" content="Learn how to approach ethical scenario questions in MMI interviews. Covers the four pillars of medical ethics, common scenarios, and a step-by-step framework for structuring your answers.">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CKYY2WXNWD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-CKYY2WXNWD');
+</script>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script>
+  (function() {
+    try {
+      var saved = localStorage.getItem('medcoach-theme');
+      if (saved) { document.documentElement.setAttribute('data-theme', saved); }
+      else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) { document.documentElement.setAttribute('data-theme', 'dark'); }
+    } catch(e) {}
+  })();
+  function applyTheme(theme) { document.documentElement.setAttribute('data-theme', theme); try { localStorage.setItem('medcoach-theme', theme); } catch(e) {} }
+  function toggleTheme() { var current = document.documentElement.getAttribute('data-theme'); applyTheme(current === 'dark' ? 'light' : 'dark'); }
+</script>
+<style>
+  :root { --ink: #111; --soft: #555; --border: #e5e5e5; --bg: #fff; --accent: #c8963e; --light-bg: #fafaf8; }
+  [data-theme="dark"] { --ink: #f0ede8; --soft: #999; --border: #2a2a2a; --bg: #0e0e0c; --accent: #c8963e; --light-bg: #161614; }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); font-size: 16px; line-height: 1.6; transition: background 0.3s ease, color 0.3s ease; }
+  a { color: inherit; text-decoration: none; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 6vw; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; }
+  [data-theme="dark"] nav { background: rgba(14,14,12,0.95); }
+  nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+  .logo { display: flex; align-items: center; text-decoration: none; } .logo svg { display: block; }
+  .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.05em; text-transform: uppercase; color: var(--soft); transition: color 0.2s; }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-links a.active-nav { color: var(--ink); border-bottom: 1.5px solid var(--accent); padding-bottom: 2px; }
+  .nav-cta { font-size: 0.78rem !important; color: var(--ink) !important; border-bottom: 1.5px solid var(--ink); padding-bottom: 1px; letter-spacing: 0.04em !important; text-transform: uppercase !important; transition: color 0.2s, border-color 0.2s !important; }
+  .nav-cta:hover { color: var(--accent) !important; border-color: var(--accent) !important; }
+  .nav-free { font-size: 0.78rem !important; color: #6bcf8f !important; letter-spacing: 0.04em !important; text-transform: uppercase !important; border-bottom: 1px solid rgba(107,207,143,0.4) !important; padding-bottom: 1px; transition: color 0.2s, border-color 0.2s !important; }
+  .nav-free:hover { color: #4db878 !important; border-color: #4db878 !important; }
+  .theme-toggle { background: none; border: 1px solid var(--border); color: var(--soft); cursor: pointer; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s, color 0.2s; flex-shrink: 0; padding: 0; }
+  .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+  .theme-toggle svg { width: 15px; height: 15px; }
+  .icon-sun { display: none; } .icon-moon { display: block; }
+  [data-theme="dark"] .icon-sun { display: block; } [data-theme="dark"] .icon-moon { display: none; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; z-index: 200; }
+  .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--ink); transition: transform 0.3s, opacity 0.3s; }
+  .hamburger.active span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .hamburger.active span:nth-child(2) { opacity: 0; }
+  .hamburger.active span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+  .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.98); backdrop-filter: blur(20px); z-index: 150; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; }
+  [data-theme="dark"] .mobile-menu { background: rgba(14,14,12,0.98); }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { font-size: 1.1rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); transition: color 0.2s; }
+  .mobile-menu a:hover { color: var(--accent); }
+  .article-header { padding: 8rem 6vw 3rem; border-bottom: 1px solid var(--border); background: var(--bg); transition: background 0.3s, border-color 0.3s; }
+  .article-header-inner { max-width: 720px; margin: 0 auto; }
+  .back-link { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--soft); margin-bottom: 2rem; transition: color 0.2s; }
+  .back-link:hover { color: var(--accent); } .back-link svg { width: 16px; height: 16px; }
+  .article-tag { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.8rem; }
+  .article-tag::before { content: ''; width: 24px; height: 1px; background: var(--accent); display: block; }
+  .article-header h1 { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 400; line-height: 1.15; letter-spacing: -0.01em; color: var(--ink); margin-bottom: 1rem; transition: color 0.3s; }
+  .article-header h1 em { font-style: italic; color: var(--soft); }
+  .article-meta { display: flex; align-items: center; gap: 1.5rem; font-size: 0.82rem; color: var(--soft); font-weight: 300; padding-top: 1.5rem; border-top: 1px solid var(--border); margin-top: 1.5rem; transition: color 0.3s, border-color 0.3s; }
+  .article-meta-dot { width: 3px; height: 3px; background: var(--border); border-radius: 50%; }
+  .article-body { padding: 4rem 6vw 6rem; background: var(--light-bg); transition: background 0.3s; }
+  .article-content { max-width: 720px; margin: 0 auto; }
+  .article-content h2 { font-family: 'DM Serif Display', serif; font-size: 1.6rem; font-weight: 400; color: var(--ink); margin: 2.5rem 0 1rem; line-height: 1.25; transition: color 0.3s; }
+  .article-content h2:first-child { margin-top: 0; }
+  .article-content h3 { font-family: 'DM Sans', sans-serif; font-size: 1.1rem; font-weight: 600; color: var(--ink); margin: 2rem 0 0.8rem; transition: color 0.3s; }
+  .article-content p { font-size: 1rem; color: var(--soft); font-weight: 300; line-height: 1.85; margin-bottom: 1.4rem; transition: color 0.3s; }
+  .article-content strong { color: var(--ink); font-weight: 500; }
+  .article-content a { color: var(--accent); border-bottom: 1px solid rgba(200,150,62,0.4); transition: border-color 0.2s; }
+  .article-content a:hover { border-color: var(--accent); }
+  .article-content ul, .article-content ol { margin: 0 0 1.4rem 1.2rem; color: var(--soft); font-weight: 300; }
+  .article-content li { font-size: 1rem; line-height: 1.85; margin-bottom: 0.4rem; }
+  .article-content blockquote { border-left: 2px solid var(--accent); padding: 1rem 1.5rem; margin: 2rem 0; background: rgba(200,150,62,0.04); font-style: italic; color: var(--soft); transition: background 0.3s; }
+  .tip-box { border: 1px solid var(--border); background: var(--bg); padding: 1.5rem 2rem; margin: 2rem 0; transition: background 0.3s, border-color 0.3s; }
+  .tip-box-label { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 0.5rem; }
+  .tip-box p { margin-bottom: 0; }
+  .pillar-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); margin: 2rem 0; }
+  .pillar-card { background: var(--bg); padding: 1.5rem; transition: background 0.3s; }
+  [data-theme="dark"] .pillar-card { background: #0e0e0c; }
+  .pillar-card-name { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--ink); margin-bottom: 0.4rem; transition: color 0.3s; }
+  .pillar-card-desc { font-size: 0.88rem; color: var(--soft); font-weight: 300; line-height: 1.7; margin-bottom: 0; transition: color 0.3s; }
+  .article-cta { margin-top: 3rem; padding: 2.5rem; background: var(--bg); border: 1px solid var(--border); text-align: center; transition: background 0.3s, border-color 0.3s; }
+  .article-cta h3 { font-family: 'DM Serif Display', serif; font-size: 1.3rem; font-weight: 400; color: var(--ink); margin-bottom: 0.5rem; transition: color 0.3s; }
+  .article-cta h3 em { font-style: italic; color: var(--soft); }
+  .article-cta p { font-size: 0.88rem; color: var(--soft); font-weight: 300; margin-bottom: 1.5rem; transition: color 0.3s; }
+  .btn-primary { background: var(--accent); color: #fff; padding: 0.9rem 2rem; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; display: inline-block; font-family: 'DM Sans', sans-serif; transition: background 0.25s, transform 0.25s, box-shadow 0.25s; }
+  .btn-primary:hover { background: #b5842f; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(200,150,62,0.25); }
+  .btn-secondary { color: var(--soft); font-size: 0.82rem; font-weight: 400; letter-spacing: 0.04em; text-transform: uppercase; border-bottom: 1px solid var(--border); padding-bottom: 2px; display: inline-block; transition: color 0.2s, border-color 0.2s; margin-left: 1rem; }
+  .btn-secondary:hover { color: var(--ink); border-color: var(--soft); }
+  footer { background: #111; color: rgba(255,255,255,0.5); padding: 3rem 6vw; display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; flex-wrap: wrap; font-size: 0.82rem; font-weight: 300; }
+  .footer-logo { margin-bottom: 0.8rem; } .footer-note { font-size: 0.75rem; margin-bottom: 0.3rem; }
+  .footer-contact a { color: var(--accent); transition: color 0.2s; } .footer-contact a:hover { color: #fff; }
+  .footer-links { display: flex; gap: 1.5rem; margin-bottom: 1.2rem; flex-wrap: wrap; }
+  .footer-links a { color: rgba(255,255,255,0.5); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; transition: color 0.2s; } .footer-links a:hover { color: #fff; }
+  .footer-socials-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 0.6rem; }
+  .social-link { display: flex; align-items: center; gap: 0.7rem; padding: 0.65rem 1.2rem; border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.6); transition: all 0.25s; text-decoration: none; }
+  .social-link:hover { border-color: rgba(200,150,62,0.5); color: #fff; background: rgba(255,255,255,0.05); }
+  .social-link svg { width: 20px; height: 20px; flex-shrink: 0; } .social-link span { font-size: 0.85rem; font-weight: 400; }
+  .social-arrow { font-size: 0.8rem; opacity: 0.4; transition: opacity 0.25s, transform 0.25s; } .social-link:hover .social-arrow { opacity: 1; transform: translateX(3px); }
+  @media (max-width: 900px) { .nav-links { display: none; } .hamburger { display: flex; } .pillar-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 600px) { .article-meta { flex-wrap: wrap; gap: 0.8rem; } .article-meta-dot { display: none; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo" aria-label="MedCoach Home">
+    <svg width="200" height="34" viewBox="0 0 270 44" xmlns="http://www.w3.org/2000/svg"><path d="M8 8 Q8 20 16 20 Q24 20 24 8" fill="none" stroke="#c8963e" stroke-width="1.8" stroke-linecap="round"/><circle cx="8" cy="6" r="2.5" fill="#c8963e"/><circle cx="24" cy="6" r="2.5" fill="#c8963e"/><line x1="16" y1="20" x2="16" y2="30" stroke="#c8963e" stroke-width="1.8"/><circle cx="16" cy="34" r="4" fill="none" stroke="#c8963e" stroke-width="1.8"/><text x="42" y="34" font-family="'DM Serif Display', Georgia, serif" font-size="34" font-weight="400" fill="#c8963e">Med</text><text x="122" y="34" font-family="'DM Serif Display', Georgia, serif" font-size="34" font-weight="400" fill="#c8963e" font-style="italic">Coach</text></svg>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/#about">About</a></li><li><a href="/#services">Services</a></li><li><a href="/#tutors">Tutors</a></li><li><a href="/#resources">Study Guides</a></li><li><a href="/#faq">FAQ</a></li><li><a href="/blog.html" class="active-nav">Blog</a></li><li><a href="/#free-resource" class="nav-free">Free MMI Questions</a></li><li><a href="/#book" class="nav-cta">Book Now</a></li>
+    <li><button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:0.75rem;">
+    <button class="theme-toggle" id="mobileThemeToggle" onclick="toggleTheme()" aria-label="Toggle dark mode" style="display:none;"><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/#about" onclick="toggleMenu()">About</a><a href="/#services" onclick="toggleMenu()">Services</a><a href="/#tutors" onclick="toggleMenu()">Tutors</a><a href="/#resources" onclick="toggleMenu()">Study Guides</a><a href="/#faq" onclick="toggleMenu()">FAQ</a><a href="/blog.html" onclick="toggleMenu()" style="color:var(--accent);">Blog</a><a href="/#free-resource" onclick="toggleMenu()" style="color:#6bcf8f;">Free MMI Questions</a>
+  <a href="https://calendly.com/stefanmoore-medcoach/complete-pack" target="_blank" rel="noopener" class="btn-primary" onclick="toggleMenu()">Buy All-In Package</a>
+</div>
+
+<div class="article-header">
+  <div class="article-header-inner">
+    <a href="/blog.html" class="back-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back to blog</a>
+    <p class="article-tag">Ethics &amp; Scenarios</p>
+    <h1>MMI Ethical Scenarios: How to Answer <em>Any Ethics Question</em></h1>
+    <div class="article-meta">
+      <span>By Stefan Moore</span><span class="article-meta-dot"></span><span>April 2026</span><span class="article-meta-dot"></span><span>9 min read</span>
+    </div>
+  </div>
+</div>
+
+<div class="article-body">
+  <div class="article-content">
+
+    <h2>Why ethics stations trip people up</h2>
+
+    <p>Ethics stations are the ones that make most candidates nervous, and it's easy to see why. With a motivation question, you can prepare your examples in advance. With an NHS knowledge question, you can revise the facts. But with an ethical scenario, you're handed a situation you've never seen before and asked to think through it on the spot. There's no answer you can memorise.</p>
+
+    <p>The good news is that while you can't predict the exact scenario, you absolutely can learn a framework that works for every single one. Once you have that framework in your head, ethics stations stop feeling like a guessing game and start feeling like a structured exercise. That's the shift this article is going to give you.</p>
+
+    <h2>The four pillars of medical ethics</h2>
+
+    <p>Every ethical question in medicine can be analysed through four core principles. You don't necessarily need to name them in your answer, but having them as a mental checklist means you'll never miss an important angle.</p>
+
+    <div class="pillar-grid">
+      <div class="pillar-card">
+        <div class="pillar-card-name">Autonomy</div>
+        <div class="pillar-card-desc">A patient's right to make their own decisions about their care, even if you disagree with their choice. This includes the right to refuse treatment.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-card-name">Beneficence</div>
+        <div class="pillar-card-desc">The duty to act in the patient's best interest. Doing good. Providing the treatment or care that will benefit them the most.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-card-name">Non-maleficence</div>
+        <div class="pillar-card-desc">The duty to do no harm. This means considering the risks and side effects of any action, and weighing whether the potential benefit justifies the potential harm.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-card-name">Justice</div>
+        <div class="pillar-card-desc">Fairness in the distribution of healthcare resources. Treating patients equally regardless of background, and making decisions that are fair to society as a whole.</div>
+      </div>
+    </div>
+
+    <p>Most ethical dilemmas in medicine come down to a tension between two or more of these principles. A patient wants to refuse treatment (autonomy) but the doctor believes the treatment would save their life (beneficence). A new drug would help one patient enormously (beneficence) but it's extremely expensive and funding it means less money for other patients (justice). When you can identify which pillars are in tension, you've already done half the work of answering the question.</p>
+
+    <h2>A framework for answering any ethics question</h2>
+
+    <p>Here's a step by step approach that works for any ethical scenario you'll face at an MMI. It's not a rigid script. Think of it more like a route through the question that keeps you on track.</p>
+
+    <h3>Step 1: Identify the core dilemma</h3>
+
+    <p>Start by naming the central conflict. What makes this situation difficult? Usually it's because two legitimate principles or obligations are pulling in opposite directions. "The core issue here is the tension between the patient's right to make their own choices and the doctor's duty to protect them from harm." This shows the assessor immediately that you've understood the question.</p>
+
+    <h3>Step 2: Explore one side</h3>
+
+    <p>Take one of the two sides and explore it properly. Don't just mention it in passing. Explain the reasoning behind it. Why might someone hold this position? What values does it reflect? What would the consequences be if you followed this path? Spend roughly 60 to 90 seconds here.</p>
+
+    <h3>Step 3: Explore the other side</h3>
+
+    <p>Now do the same for the opposing perspective. Give it equal weight and genuine consideration. This is where many students fall down. They clearly favour one side and give the other side a cursory mention before dismissing it. The assessor can tell. If you're going to disagree with a position, disagree with the strongest version of it, not a weak caricature.</p>
+
+    <h3>Step 4: Consider additional factors</h3>
+
+    <p>Are there any other considerations that could influence the situation? Legal obligations, professional guidelines, the impact on third parties, cultural or religious factors, practical constraints? This step shows depth of thinking and distinguishes strong candidates from average ones.</p>
+
+    <h3>Step 5: Give your reasoned conclusion</h3>
+
+    <p>State which side you lean towards and explain why. Be clear, but not dogmatic. "On balance, I think the most important consideration here is X because Y, although I recognise that Z is also a valid concern." This shows you can make a decision while remaining respectful of other perspectives.</p>
+
+    <div class="tip-box">
+      <div class="tip-box-label">Pro Tip</div>
+      <p>You don't need to formally announce "step 1, step 2" as you go. The framework should shape the flow of your answer naturally. With practice, it becomes automatic and your answers will sound conversational rather than mechanical.</p>
+    </div>
+
+    <h2>Worked example: a patient refuses a blood transfusion</h2>
+
+    <p>Let's walk through a common scenario to see the framework in action.</p>
+
+    <p><strong>The scenario:</strong> A patient is admitted to hospital after a car accident and has lost a significant amount of blood. The medical team recommends an urgent blood transfusion. The patient is a Jehovah's Witness and refuses the transfusion on religious grounds, despite being told they could die without it.</p>
+
+    <p><strong>The core dilemma:</strong> This is a tension between autonomy (the patient's right to refuse treatment based on their beliefs) and beneficence (the medical team's duty to save the patient's life).</p>
+
+    <p><strong>Exploring autonomy:</strong> In the UK, a competent adult has the legal right to refuse any medical treatment, even if that refusal will result in their death. This is a fundamental principle of medical law and ethics. The patient's religious beliefs are deeply held and part of their identity. Overriding their wishes, even to save their life, would be a serious violation of their personal freedom and could cause significant psychological and spiritual distress. Respecting autonomy means respecting choices we disagree with, not just choices we approve of.</p>
+
+    <p><strong>Exploring beneficence:</strong> The medical team has a duty of care. They can see that this patient will likely die without the transfusion, and they have the ability to prevent that death. It could feel morally wrong to stand by and let someone die when the treatment is straightforward and available. There's also the question of whether the patient fully understands the consequences of their decision, especially in an emergency situation where they may be in pain, frightened, or not thinking clearly.</p>
+
+    <p><strong>Additional factors:</strong> Is the patient conscious and able to make a clear, informed decision? Have they been given all the relevant information about the consequences? Is there documentation of their wishes, such as an advance directive? Are there alternative treatments that might be acceptable to the patient? What about the emotional impact on the medical team who feel they could have saved a life?</p>
+
+    <p><strong>Conclusion:</strong> On balance, if the patient is a competent adult who has been fully informed of the risks and is making a clear, voluntary decision, their autonomy should be respected. The medical team should document the refusal thoroughly, explore any acceptable alternatives, and ensure the patient is supported regardless of their decision. Overriding a competent patient's wishes, even with the best intentions, sets a dangerous precedent that undermines the trust between doctors and patients.</p>
+
+    <div class="tip-box">
+      <div class="tip-box-label">Key Takeaway</div>
+      <p>Notice how the conclusion isn't just "I'd respect their wishes." It explains the reasoning, acknowledges the difficulty, and suggests practical next steps. That's what turns a decent answer into a strong one.</p>
+    </div>
+
+    <h2>Common ethical topics to prepare for</h2>
+
+    <p>While you can't predict exactly what you'll be asked, certain themes come up repeatedly across different medical schools. It's worth thinking through each of these before your interview so you're not encountering the core arguments for the first time in the station itself.</p>
+
+    <p><strong>Confidentiality and its limits.</strong> When is it acceptable to break patient confidentiality? Think about situations involving risk to the patient, risk to others, safeguarding concerns with children, and legal obligations like notifiable diseases.</p>
+
+    <p><strong>Resource allocation.</strong> If there's one organ available and two patients who need it, how do you decide? What about expensive treatments that benefit one person vs cheaper treatments that benefit many? These questions test your understanding of justice.</p>
+
+    <p><strong>Consent and capacity.</strong> Can a 15 year old consent to treatment? What about a patient with dementia? What happens when a parent refuses treatment for their child? Gillick competence and Fraser guidelines are worth understanding here.</p>
+
+    <p><strong>End of life care.</strong> Assisted dying, withdrawal of treatment, do-not-resuscitate orders. These are emotionally charged topics where you need to be especially careful to explore both sides with genuine respect.</p>
+
+    <p><strong>Honesty and disclosure.</strong> A doctor makes a mistake during surgery. Should they tell the patient? A colleague comes to work smelling of alcohol. What do you do? These scenarios test your understanding of professional responsibility and the duty of candour.</p>
+
+    <p><strong>Public health vs individual freedom.</strong> Mandatory vaccination, quarantine measures, restrictions on unhealthy foods. When is it acceptable for the state to limit individual freedom in the name of public health?</p>
+
+    <h2>Three things assessors are actually looking for</h2>
+
+    <p>It's helpful to know what's going through the assessor's mind while you're talking. They're not looking for a specific answer. They're scoring you on three things.</p>
+
+    <p><strong>First: can you identify the ethical issues?</strong> Do you understand what makes this scenario a dilemma? Can you name the competing principles at stake? If you launch into your opinion without first establishing what the tension is, you've missed the first marker.</p>
+
+    <p><strong>Second: can you explore multiple perspectives?</strong> Do you engage genuinely with both sides, or do you clearly favour one and pay lip service to the other? The assessor wants to see balanced, mature thinking. Not fence-sitting, but genuine consideration of different viewpoints.</p>
+
+    <p><strong>Third: can you reach a reasoned conclusion?</strong> After exploring the complexity, can you commit to a position and explain your reasoning? A conclusion doesn't need to be absolute, but it does need to exist. Ending with "so it's really complicated and there's no right answer" is not a conclusion. It's an avoidance.</p>
+
+    <blockquote>
+      <p>The assessor isn't asking "do you know the right answer?" They're asking "can you think like someone who will one day have to make these decisions for real?"</p>
+    </blockquote>
+
+    <h2>How to practise ethics questions</h2>
+
+    <p>Reading about the framework is the first step, but it won't help you on interview day unless you've practised using it out loud. The transition from understanding the theory to delivering it fluently under pressure takes repetition.</p>
+
+    <p>Start by picking one scenario from the list above and talking through it using the five step framework. Time yourself. You should be able to cover all five steps in about 5 minutes without rushing. If you're running long, you're probably going too deep on one side and not leaving enough time for your conclusion.</p>
+
+    <p>Once you're comfortable with familiar scenarios, get someone to give you a scenario you've never seen before. This is where the real practice happens, because at your interview, every scenario will be unfamiliar. The framework is designed to work even when the content is new to you. Trust the structure and let it guide you through.</p>
+
+    <div class="article-cta">
+      <h3>Want 50 ethics scenarios <em>with model answers?</em></h3>
+      <p>Our MMI Question Bank PDF covers 50 stations across 6 categories, each with a full model answer, examiner insight, and strategy tip. It's the fastest way to build your confidence for ethics stations.</p>
+      <a href="https://payhip.com/b/h82Cy" target="_blank" rel="noopener" class="btn-primary">Get the Question Bank</a>
+      <a href="/blog.html" class="btn-secondary">More Articles</a>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-left">
+    <div class="footer-logo"><svg width="160" height="28" viewBox="0 0 270 44" xmlns="http://www.w3.org/2000/svg"><path d="M8 8 Q8 20 16 20 Q24 20 24 8" fill="none" stroke="#c8963e" stroke-width="1.8" stroke-linecap="round"/><circle cx="8" cy="6" r="2.5" fill="#c8963e"/><circle cx="24" cy="6" r="2.5" fill="#c8963e"/><line x1="16" y1="20" x2="16" y2="30" stroke="#c8963e" stroke-width="1.8"/><circle cx="16" cy="34" r="4" fill="none" stroke="#c8963e" stroke-width="1.8"/><text x="42" y="34" font-family="'DM Serif Display', Georgia, serif" font-size="34" font-weight="400" fill="rgba(255,255,255,0.7)">Med</text><text x="122" y="34" font-family="'DM Serif Display', Georgia, serif" font-size="34" font-weight="400" fill="#c8963e" font-style="italic">Coach</text></svg></div>
+    <p class="footer-note">&copy; 2025 MedCoach</p>
+    <p class="footer-contact">Questions? <a href="mailto:hello@medcoach.co.uk">hello@medcoach.co.uk</a></p>
+  </div>
+  <div class="footer-right">
+    <div class="footer-links"><a href="/#about">About</a><a href="/#services">Services</a><a href="/blog.html">Blog</a><a href="/#resources">Study Guides</a><a href="/#tutors">Tutors</a><a href="/#faq">FAQ</a></div>
+    <div class="footer-socials">
+      <p class="footer-socials-label">Follow us on socials</p>
+      <a href="https://www.instagram.com/medcoach.uk/" target="_blank" rel="noopener" class="social-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg><span>@medcoach.uk</span><span class="social-arrow">&rarr;</span></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function updateMobileToggleVisibility() { var m = document.getElementById('mobileThemeToggle'); if (m) m.style.display = window.innerWidth <= 900 ? 'flex' : 'none'; }
+  window.addEventListener('resize', updateMobileToggleVisibility); updateMobileToggleVisibility();
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); document.querySelector('.hamburger').classList.toggle('active'); document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : ''; }
+  window.addEventListener('scroll', function() { document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 20); });
+</script>
+</body>
+</html>
